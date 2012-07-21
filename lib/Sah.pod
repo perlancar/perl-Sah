@@ -623,4 +623,17 @@ length(ARRAY) will return the number of elements in the ARRAY, while length(STR)
 will return the number of characters in the string. However, when an
 inappropriate argument is given, a Perl exception will be thrown.
 
+
+=head1 HISTORY
+
+To be written.
+
+2012-07-21 split specification
+
+2011-11-23 Data::Sah
+
+2009-03-30  - Data::Schema (first public release)
+
+previous: Schema-nested (internal)
+
 =cut
