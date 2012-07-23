@@ -5,6 +5,16 @@ package Sah; # just to make PodWeaver happy
 1;
 # ABSTRACT: Specification of Sah schema language
 
+=head1 SPECIFICATION VERSION
+
+0.9
+
+=head1 STATUS
+
+In the 0.9.0 series, there will probably still be incompatible syntax changes
+between revision before the spec stabilizes into 1.0 series.
+
+
 =head1 OVERVIEW AND TERMINOLOGY
 
 Although it can contain extra stuffs, a B<schema> is essentially a type
