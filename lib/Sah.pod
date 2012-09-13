@@ -649,6 +649,6 @@ previous: Schema-nested (internal)
 
 =head1 SEE ALSO
 
-Sah::Type::*, e.g. L<Sah::Type::BaseType>
+L<Sah::Type>
 
 =cut

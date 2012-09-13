@@ -1,0 +1,565 @@
+package Sah::Type; # just to make PodWeaver happy
+
+# VERSION
+
+1;
+# ABSTRACT: Standard types
+
+=head1 DESCRIPTION
+
+This document specifies Sah standard types.
+
+
+=head1 ROLE: BaseType
+
+This is the base type role, all Sah types must implement this role.
+
+=head2 Clauses
+
+The list below is ordered by priority, from highest to lowest.
+
+=head3 v => INT (default: 1)
+
+Specify schema version. Should be C<1> at the moment. See also: L<DefHash>.
+
+Priority: 0 (checked first before everything else).
+
+=head3 default => ANY
+
+Supply a default value.
+
+Priority: 1 (very high). This is processed before all other clauses.
+
+Example: Given schema [int => {req=>1}] an undef data is invalid, but given
+schema [int => {req=>1, default=>3}] an undef data is valid because it will be
+given default value first.
+
+=head3 default_lang => LOCALE_CODE (defaut: en_US)
+
+Set default language for this schema. Language-dependant attribute values (e.g.
+C<summary>, C<description>) will be assumed to be in the default language. See
+also: L<DefHash>.
+
+Priority: 2 (very high), after C<default>.
+
+=head3 name => STR
+
+A short (usually single-word, without any formatting) to name the schema, useful
+for identifying the schema when used as a type for human compiler. See also:
+L<DefHash>.
+
+To store translations, you can use the C<alt.lang.*> clause attributes.
+
+Example:
+
+ [int => {
+     'name:alt.lang.en_US' => 'pos_int',
+     'name:alt.lang.id_ID' => 'bil_pos',
+     min=>0,
+ }]
+
+Priority: 2 (very high), after C<default>.
+
+See also: C<summary>, C<description>, C<tags>.
+
+=head3 summary => STR
+
+A one-line text (about 72 characters maximum, without any formatting) to
+describe the schema. This is useful, e.g. for manually describe a schema instead
+of using the human compiler. It can also be used in form field labels. See also:
+L<DefHash>.
+
+To store translations, you can use the C<alt.lang.*> clause attributes.
+
+Example:
+
+ # definition for 'single_dice_throw' schema/type
+ [int => {
+     req => 1,
+     'summary:alt.lang.en_US' =>
+         'A number representing result of single dice throw (1-6)',
+     'summary:alt.lang.id_ID' =>
+         'Bilangan yang menyatakan hasil lempar sebuah dadu (1-6)',
+     between => [1, 6],
+ }]
+
+Using the human compiler, the above schema will be output as the standard, more
+boring 'Integer, value between 1 and 6.'
+
+Priority: 2 (very high), after C<default>.
+
+See also: C<name>, C<description>, C<tags>.
+
+=head3 description => STR
+
+A longer text (a paragraph or more) to describe the schema, useful e.g. for
+help/usage text. Text should be in Markdown format. See also: L<DefHash>.
+
+To store translations, you can use the C<alt.lang.*> clause attributes.
+
+Example:
+
+ [array => {
+     name        => 'http_headers',
+     description => <<EOT,
+ HTTP headers should be specified as an array of 2-element arrays (pairs). Each
+ pair should contain header name in the first element (all lowercase, *-*
+ written as *_*) and header value in the second element.
+
+ Example:
+
+ : [[content_type => 'text/html'], [accept => 'text/html'], [accept => '*/*']]
+
+ EOT
+     req => 1,
+     of  => 'http_header',
+  },
+  {
+      def => {
+          http_header => ['array*', len=>2],
+      },
+ }]
+
+Priority: 2 (very high), after C<default>.
+
+See also: C<name>, C<summary>, C<tags>.
+
+=head3 tags => ARRAY OF STR
+
+A list of tags, can be used to categorize schemas. See also: L<DefHash>.
+
+Priority: 2 (very high), after C<default>.
+
+See also: C<name>, C<summary>, C<description>.
+
+=head3 req => BOOL
+
+If set to 1, require that data be defined. Otherwise, allow data to be undef
+(the default behaviour).
+
+Priority: 3 (very high), executed after C<default>.
+
+By default, undef will pass even elaborate schema, e.g. [int => {min=>0,
+max=>10, div_by=>3}] will still pass an undef. However, undef will not pass
+[int=>{req=>1}].
+
+This behaviour is much like NULLs in SQL: we *can't* (in)validate something that
+is unknown/unset.
+
+See also: C<forbidden>
+
+=head3 forbidden => BOOL
+
+This is the opposite of C<req>, requiring that data be not defined (i.e. undef).
+
+Priority: 3 (very high), executed after C<default>.
+
+Given schema [int=>{forbidden=>1}], a non-undef value will fail. Another
+example: the schema [int=>{req=>1, forbidden=>1}] will always fail due to
+conflicting clauses.
+
+See also: C<req>
+
+=head3 prefilters => [EXPR, ...]
+
+Run expression(s), usually to preprocess data before further checking. Data is
+referred to in expression by variable C<$_>. Prefiltered value should persist
+until the end of all other clauses (until the end of clause set), after which
+the old value can be restored.
+
+Priority: 10 (high). Run after C<default> and C<req>/C<forbidden>.
+
+Specific attributes: C<perm>. If set to true, then prefiltered value will
+persist.
+
+=head3 noop => ANY
+
+Will do nothing. This clause is just a convenience if you want to do nothing (or
+perhaps just use the attributes of this clause to do things).
+
+Priority: 50 (normal)
+
+=head3 fail => BOOL
+
+If set to 1, validation of this clause always fails. This is just a convenience
+to force failure.
+
+Priority: 50 (normal)
+
+=head3 cset => HASH
+
+Evaluate a clause set.
+
+Priority: 50 (normal)
+
+=head3 if => [CLAUSE1=>VAL, CLAUSE2=>VAL]
+
+If CLAUSE1 succeeds, then CLAUSE2 must also succeed. Otherwise, nothing is done.
+The second form (2-argument) operates on a clause set (hash) or clause sets
+(array of hashes).
+
+Example:
+
+ # leap year
+ [int => {div_by=>4, if => [div_by => 100, div_by => 400]}]
+
+The C<if> clause states that if input number is divisible by 100, it must also
+divisible by 400. Otherwise, the clause fails.
+
+=head3 if_cset => [CSET1, CSET2]
+
+If clause set CSET1 succeeds, then CSET2 must also succeed. Otherwise, nothing
+is done.
+
+Examples:
+
+ [str => {min_len=>1, max_len=>10,
+          if_cset => [ {min_len=>4, max_len=>6}, {is_palindrome=>1} ]}]
+
+The above says that if a string has length between 4 and 6 then it must be a
+palindrome. Otherwise it doesn't have to be one. But nevertheless, all input
+must be between 1 and 10 characters long.
+
+ [str => {if_cset => [ {'cset&' => [{match=>'a'}, {match=>'b'}]},
+                       {'cset&' => [{match=>'c'}, {match=>'d'}]}, ]}]
+
+The above says that if a string matches 'a' and 'b', it must also match 'c' and
+'d'. As a side note, the above schema can also be written as:
+
+ [str => {if => [ 'match&'=>['a', 'b'], 'match&'=>['c', 'd'] ]}]
+
+=head3 check => EXPR
+
+Evaluate expression, which must evaluate to a true value for this clause to
+succeed.
+
+Priority: 50 (normal)
+
+=head3 postfilters => [EXPR, ...]
+
+Run expression(s), usually to postprocess data. Data is referred to in
+expression by variable C<$_>. From here on, the data will be permanently set to
+the postfiltered value.
+
+Priority: 90 (very low). Run after all other clauses.
+
+
+=head1 ROLE: Comparable
+
+This is the comparable type role. All types which have comparable values must
+implement this role. Most types implement this role, including C<str>, all
+number types, etc.
+
+=head2 Clauses
+
+=head3 in => [ANY, ...]
+
+Require that the data be one of the specified choices.
+
+See also: B<match> (for type 'str'), B<has> (for 'HasElems' types)
+
+Examples:
+
+ [int => {in => [1, 2, 3, 4, 5, 6]}] # single dice throw value
+ [str => {'!in' => ['root', 'admin', 'administrator']}] # forbidden usernames
+
+=head3 is => ANY
+
+Require that the data is the same as VALUE. Will perform a numeric comparison
+for numeric types, or stringwise for string types, or deep comparison for deep
+structures.
+
+Examples:
+
+ [int => {is => 3}]
+ [int => {'is&' => [1, 2, 3, 4, 5, 6]}] # effectively the same as 'in'
+
+=cut
+
+
+=head1 ROLE: HasElems
+
+This is the role for types that have the notion of elements/length. It provides
+clauses like C<max_len>, C<len>, C<len_between>, C<all_elems>, C<elems>, etc. It
+is used by 'array', 'hash', and also 'str'.
+
+=head2 Clauses
+
+=head3 max_len => NUM
+
+Requires that the data have at most NUM elements.
+
+Example:
+
+ [str, {req=>1, max_len=>10}] # define a string with at most 10 characters
+
+=head3 min_len => NUM
+
+Requires that the data have at least NUM elements.
+
+Example:
+
+ [array, {min_len=>1}] # define an array with at least one element
+
+=head3 len_between => [NUM_MIN, NUM_MAX]
+
+A convenience clause that combines B<min_len> and B<max_len>.
+
+Example, the two schemas below are equivalent:
+
+ [str, {len_between=>[1, 10]}]
+ [str, {min_len=>1, max_len=>10}]
+
+=head3 len => NUM
+
+Requires that the data have exactly NUM elements.
+
+=head3 has => ANY
+
+Requires that the data contains the element.
+
+Examples:
+
+ # requires that array has element x
+ [array => {has => 'x'}]
+
+ # requires that array has elements 'x', 'y', and 'z'
+ [array => {'has&' => ['x', 'y', 'z']}]
+
+ # requires that array does not have element 'x'
+ [array => {'!has' => 'x'}]
+
+=head3 all_elems => SCHEMA
+
+Requires that every element of the data validate to the specified schema.
+
+Note: filters applied by SCHEMA to elements will be preserved.
+
+Examples:
+
+ [array => {all_elems => 'int'}]
+
+The above specifies an array of ints.
+
+ [hash => {all_elems => [str => { match => '^[A-Za-z0-9]+$' }]}]
+
+The above specifies hash with alphanumeric-only values.
+
+=head3 if_elem => [INDEX1 => SCHEMA1, INDEX2 => SCHEMA2]
+
+State that if element with the index of INDEX1 passes SCHEMA1, then element with
+the index of INDEX2 must also passes SCHEMA2. Otherwise, nothing is done.
+
+Examples:
+
+ [hash => {if_elem => [
+     password => 'str*', password_confirmation => 'str*',
+ ]}]
+
+The above says: key 'password_confirmation' is required if 'password' is set.
+
+ [hash => {'elem_deps&' => [
+   [ province => ['str*', {is => 'Outside US'}],
+     zipcode => [str => {forbidden=>1}] ],
+   [ province => ['str*', {not => 'Outside US'}],
+     zipcode => [str => {required=>1}] ]
+ ]}]
+
+The above says: if province is set to 'Outside US', then zipcode must not be
+specified. Otherwise if province is set to US states, zipcode is required.
+
+=head3 if_elem_re => [REGEX1 => SCHEMA1, REGEX2 => SCHEMA2]
+
+State that if all elements with index matching REGEX1 pass SCHEMA1, then all
+elements with index matching REGEX2 must also pass SCHEMA2. Otherwise, nothing
+is done.
+
+Example:
+
+ [array => {'if_elem_re&' => [
+     [ '^0$',   ['str*'  => {is => 'int'}],
+       '[1-9]', ['hash*' => {keys_in => [qw/is min max/]}] ],
+     [ '^0$',   ['str*'  => {is => 'str'}],
+       '[1-9]', ['hash*' => {keys_in => [qw/is min max min_len max_len/]}] ],
+     [ '^0$',   ['str*'  => {is => 'bool'}],
+       '[1-9]', ['hash*' => {keys_in => [qw/is/]}] ],
+ ]}]
+
+The above says: if first element of array is C<int>, then the following elements
+must be hash with specified keys. A similar rule is there for first element
+being 'str' and 'bool'.
+
+Example valid array:
+
+ ['str', {min_len=>0, max_len=>1}, {is=>'a'}]
+
+Example invalid array (key C<min_len> is not allowed):
+
+ ['int', {min_len=>0, max_len=>1}, {is=>'a'}]
+
+Note: You need to be careful with undef, because it matches all schema unless
+req=>1 (or the shortcut 'foo*') is specified.
+
+
+=head1 ROLE: Sortable
+
+This is the type role for sortable types. It provides clauses like C<min>,
+C<max>, and C<between>. It is used by many types, for example C<str>, all
+numeric types, etc.
+
+=head2 Clauses
+
+=head3 min => ANY
+
+Require that the value is not less than some specified minimum (equivalent in
+intention to the Perl string C<ge> operator, or the numeric C<< >= >> operator).
+
+Example:
+
+ [int => {min => 0}] # specify positive numbers
+
+=head3 xmin => ANY
+
+Require that the value is not less nor equal than some specified minimum
+(equivalent in intention to the Perl string C<gt> operator, or the numeric C<< >
+>> operator). The C<x> prefix is for "exclusive".
+
+=head3 max => ANY
+
+Require that the value is less or equal than some specified maximum (equivalent
+in intention to the Perl string C<le> operator, or the numeric C<< <= >>
+operator).
+
+=head3 xmax => ANY
+
+Require that the value is less than some specified maximum (equivalent in
+intention to the Perl string C<lt> operator, or the numeric C<< < >> operator).
+The C<x> prefix is for "exclusive".
+
+=head3 between => [ANY_MIN, ANY_MAX]
+
+A convenient clause to combine C<min> and C<max>.
+
+Example, the following schemas are equivalent:
+
+ [float => {between => [0.0, 1.5]}]
+ [float => {min => 0.0, max => 1.5}]
+
+=head3 xbetween => [ANY_MIN, ANY_MAX]
+
+A convenient clause to combine C<xmin> and C<xmax>.
+
+
+=head1 TYPE: buf
+
+C<buf> stores binary data. Elements of buf data are bytes. It is derived from
+C<str>.
+
+
+=head1 TYPE: num
+
+C<num> stores numbers. This type assumes the Comparable and Sortable roles.
+
+
+=head1 TYPE: float
+
+C<int> stores real (floating-point) numbers. This type is derived from C<num>.
+
+
+=head1 TYPE: int
+
+C<int> stores integers. This type is derived from C<num>.
+
+=head2 Clauses
+
+=head3 mod => [INT1, INT2]
+
+Require that (data mod INT1) equals INT2. For example, C<< mod => [2, 1] >>
+effectively specifies odd numbers.
+
+=head3 div_by => INT
+
+Require that data is divisible by a number. This is effectively just a shortcut
+for C<< mod => [INT, 0] >>.
+
+Example: Given schema C<< [int=>{div_by=>2}] >>, undef, 0, 2, 4, and 6 are valid
+but 1, 3, 5 are not.
+
+
+=head1 TYPE: str
+
+C<str> stores strings (text). This type assumes the Comparable, Sortable, and
+HasElems roles (the elements are individual characters). Default encoding is
+utf8.
+
+=head2 Clauses
+
+=head3 match => REGEX|{COMPILER=>REGEX, ...}
+
+Require that string match the specified regular expression.
+
+Since regular expressions might not be 100% compatible from language to
+language, instead of avoiding the use of regex entirely, you can specify
+different regex for each target language, e.g.:
+
+ [str => {match => {
+   js     => '...',
+   perl   => '...',
+   python => '...',
+ }}]
+
+To match against multiple regexes:
+
+ # string must match a, b, and c
+ [str => {"match&"=>['a', 'b', 'c']}]
+
+ # string must match either a or b or c
+ [str => {"match|"=>['a', 'b', 'c']}
+
+ # idem, shortcut form
+ [str => {"!match"=>'a'}]
+
+ # string must NOT match a nor b nor c (i.e. must match none of those)
+ [str => {"match.vals"=>[a, b, c], "match.max_ok"=>0}]
+
+ # string must at least not match a or b or c (i.e. if all match, schema fail;
+ # if at least one does not match, schema succeeds)
+ [str => {"match.vals"=>[a, b, c], "match.max_ok"=>2}]
+
+=head3 is_re => BOOL
+
+If value is true, require that the string be a valid regular expression string.
+If value is false, require that the string not be a valid regular expression
+string.
+
+
+=head1 TYPE: bool
+
+Boolean type. This type assumes the Comparable and Sortable roles.
+
+
+=head1 TYPE: array
+
+Array type. This type assumes the Comparable, Sortable, and HasElems roles (the
+elements are indexed by integers starting from 0).
+
+=head2 Clauses
+
+TBD
+
+
+=head1 TYPE: hash
+
+Hash (a.k.a. dictionary) type. This type assumes the Comparable, Sortable, and
+HasElems roles (the elements are indexed by strings).
+
+=head2 Clauses
+
+TBD
+
+
+=head1 SEE ALSO
+
+L<Sah>
+
+=cut
