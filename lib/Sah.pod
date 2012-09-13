@@ -646,4 +646,9 @@ To be written.
 
 previous: Schema-nested (internal)
 
+
+=head1 SEE ALSO
+
+Sah::Type::*, e.g. L<Sah::Type::BaseType>
+
 =cut
