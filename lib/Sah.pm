@@ -3,4 +3,4 @@ package Sah;
 # VERSION
 
 1;
-# ABSTRACT: Sah schema (specification)
+# ABSTRACT: Schema for data structures (specification)
