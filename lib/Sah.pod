@@ -15,7 +15,54 @@ In the 0.9.0 series, there will probably still be incompatible syntax changes
 between revision before the spec stabilizes into 1.0 series.
 
 
-=head1 OVERVIEW AND TERMINOLOGY
+=head1 OVERVIEW
+
+This document specifies Sah, a schema language for validating data structures.
+Some features of this schema language:
+
+=over 4
+
+=item * Written as data structure
+
+A Sah schema is just a normal data structure. Using data structures as schemas
+simplifies parsing and enables easier manipulation (composition, merging, etc)
+of schemas as well validation of the schemas themselves.
+
+=item * Emphasis on reusability
+
+A schema can be defined in terms of (based of) other schemas. An example:
+
+ # schema: even (even numbers)
+ [int => {div_by=>2}]
+
+ # schema: pos_even (positive even numbers)
+ [even => {min=>0}]
+
+In the above example, C<pos_even> is defined in terms of C<even> with an
+additional clause (C<< min=>0 >>). As a matter of fact you can also override and
+B<remove> clauses from your base schema, for even more flexibility.
+
+ # schema: pos_even_or_odd (positive even or odd numbers)
+ [pos_even => {"[merge!]div_by"=>2}] # remove the div_by clause
+
+The above example makes C<pos_even_or_odd> effectively equivalent to positive
+integer.
+
+For schema-local definition, you can also define schemas within schemas:
+
+ # dice_throws: array of dice throw results
+ ["array*" => {of => 'dice_throw*'},
+  {def => {
+      dice_throw => [int => {between=>[1, 6]}],
+  }},
+ ]
+
+The C<dice_throw> schema will only be visible from within the C<dice_throws>.
+
+=back
+
+
+=head1 TERMINOLOGY
 
 Although it can contain extra stuffs, a B<schema> is essentially a type
 definition, stating a set of valid values for data. Sah defines several basic
