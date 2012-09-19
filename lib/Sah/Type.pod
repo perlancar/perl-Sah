@@ -18,9 +18,9 @@ This is the base type role, all Sah types must implement this role.
 
 The list below is ordered by priority, from highest to lowest.
 
-=head3 v => INT (default: 1)
+=head3 v => FLOAT (default: 1)
 
-Specify schema version. Should be C<1> at the moment. See also: L<DefHash>.
+From DefHash. Specify schema version. Should be C<1> at the moment.
 
 Priority: 0 (checked first before everything else).
 
@@ -36,17 +36,17 @@ given default value first.
 
 =head3 default_lang => LOCALE_CODE (defaut: en_US)
 
-Set default language for this schema. Language-dependant attribute values (e.g.
-C<summary>, C<description>) will be assumed to be in the default language. See
-also: L<DefHash>.
+From DefHash. Set default language for this schema. Language-dependant attribute
+values (e.g. C<summary>, C<description>) will be assumed to be in the default
+language.
 
 Priority: 2 (very high), after C<default>.
 
 =head3 name => STR
 
-A short (usually single-word, without any formatting) to name the schema, useful
-for identifying the schema when used as a type for human compiler. See also:
-L<DefHash>.
+From DefHash. A short (usually single-word, without any formatting) to name the
+schema, useful for identifying the schema when used as a type for human
+compiler.
 
 To store translations, you can use the C<alt.lang.*> clause attributes.
 
@@ -64,10 +64,10 @@ See also: C<summary>, C<description>, C<tags>.
 
 =head3 summary => STR
 
-A one-line text (about 72 characters maximum, without any formatting) to
-describe the schema. This is useful, e.g. for manually describe a schema instead
-of using the human compiler. It can also be used in form field labels. See also:
-L<DefHash>.
+From DefHash. A one-line text (about 72 characters maximum, without any
+formatting) to describe the schema. This is useful, e.g. for manually describe a
+schema instead of using the human compiler. It can also be used in form field
+labels.
 
 To store translations, you can use the C<alt.lang.*> clause attributes.
 
@@ -92,8 +92,8 @@ See also: C<name>, C<description>, C<tags>.
 
 =head3 description => STR
 
-A longer text (a paragraph or more) to describe the schema, useful e.g. for
-help/usage text. Text should be in Markdown format. See also: L<DefHash>.
+From DefHash. A longer text (a paragraph or more) to describe the schema, useful
+e.g. for help/usage text. Text should be in Markdown format.
 
 To store translations, you can use the C<alt.lang.*> clause attributes.
 
@@ -126,7 +126,7 @@ See also: C<name>, C<summary>, C<tags>.
 
 =head3 tags => ARRAY OF STR
 
-A list of tags, can be used to categorize schemas. See also: L<DefHash>.
+From DefHash. A list of tags, can be used to categorize schemas.
 
 Priority: 2 (very high), after C<default>.
 
