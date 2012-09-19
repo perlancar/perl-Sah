@@ -73,12 +73,16 @@ You can't do this since it will cause a conflict:
 
 However, you can do this:
 
- [str => {csets => [{in => [qw/a b c/]}, {'!in' => [qw/x y z/]}]}]
+ [str => {'cset&' => [{in => [qw/a b c/]}, {'!in' => [qw/x y z/]}]}]
 
 =head2 How to express mutual failure ("if A fails, B must also fails")?
 
 You can use C<if> clause and negate the clauses. For example:
 
  if => ['!div_by' => 2, '!div_by' => 5]
+
+=head2 Merging and hash keys?
+
+XXX (Turn off hash merging using the C<''> Data::ModeMerge options key.
 
 =cut

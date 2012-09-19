@@ -107,10 +107,6 @@ tests:
     input:  [int, {'': 1}]
     dies: Yes
 
-  - name: 'array: setting value attribute on clause "" using syntax ".val" is currently permitted (but will be useless)'
-    input:  [int, {'.val': 1}]
-    result: [int, {'.val': 1}]
-
   - name: 'array: flattened clause set is permitted'
     input:  ['int', a, 1, b, 2]
     result: [int, {a: 1, b: 2}]
@@ -123,20 +119,8 @@ tests:
     input:  ['int', a, 1, b, 2, c]
     dies: Yes
 
-  - name: 'array: clause.val is normalized to clause'
-    input:  ['int', {'foo.val': 2}]
-    result: [int, {foo: 2}]
-
-  - name: 'array: clause.val must not conflict with clause (fail)'
-    input:  ['int', {'foo.val': 2, foo: 3}]
-    dies: Yes
-
   - name: 'array: expression (clause=) is allowed on clause'
     input:  ['int', {'foo=': 2}]
-    result: ['int', {'foo=': 2}]
-
-  - name: 'array: expression (clause=) is allowed on clause.val'
-    input:  ['int', {'foo.val=': 2}]
     result: ['int', {'foo=': 2}]
 
   - name: 'array: expression (clause=) is allowed on clause.otherattr'
@@ -145,10 +129,6 @@ tests:
 
   - name: 'array: expression (clause=) must not conflict with clause (fail)'
     input:  ['int', {'foo=': 2, foo: 3}]
-    dies: Yes
-
-  - name: 'array: expression (clause=) must not conflict with clause (fail, .val)'
-    input:  ['int', {'foo=': 2, "foo.val": 3}]
     dies: Yes
 
   - name: 'array: !clause is normalized'
