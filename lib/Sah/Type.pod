@@ -20,9 +20,51 @@ The list below is ordered by priority, from highest to lowest.
 
 =head3 v => FLOAT (default: 1)
 
-From DefHash. Specify schema version. Should be C<1> at the moment.
+From DefHash. Specify Sah version. Should be C<1> at the moment.
 
 Priority: 0 (checked first before everything else).
+
+=head3 defhash_v => FLOAT
+
+From DefHash. Normally there is no need to set this.
+
+=head3 schema_v => FLOAT (default: 1)
+
+Specify schema version. By default assumed to be 1 if not set.
+
+=head3 base_v => FLOAT (default: 1)
+
+Specify base schema version. By default assumed to be 1 if not set. Using a base
+schema with a different value will fail. Can be used to force child schemas to
+update whenever we change our schema. For example:
+
+ # schema: vocal
+ [str => {in => ['a', 'e', 'i', 'o', 'u']}]
+
+ # schema: consonant, defined in terms of 'vocal', by
+ [vocal => {match=>'\A[a-z]\z', 'in.max_ok'=>0}]
+
+However, if C<vocal> changes its implementation or structure to:
+
+ # the new vocal
+ [str => {match => '\A[aeiou]\z'}]
+
+then B<vocal> will break. To force B<consonant> to fail (so its author can
+update it):
+
+ # the new vocal
+ [str => {schema_v=>2, match => '\A[aeiou]\z'}]
+
+Since C<vocal>'s C<schema_v> is now 2, it is not the same as 1 (which is implied
+by C<consonant>, having the default value of C<base_v>). C<consonant>'s author
+might then update its own implementation to match C<vocal>:
+
+ # the adjusted consonant
+ [str => {base_v=>2, cset=>{match=>'\A[a-z]\z'}, 'match.max_ok' => 0}]
+
+Notice the matching of C<consonant>'s C<base_v> against C<vocal>'s C<schema_v>.
+C<consonant> might also add its own C<< schema_v=>2 >> so other schemas
+depending on it are forced to adjust, if needed.
 
 =head3 default => ANY
 
