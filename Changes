@@ -6,6 +6,8 @@ Revision history for Sah
 
          - '=' is now a shortcut for '.expr' attribute.
 
+         - Add FAQ and overview (moved from Data::Sah's POD).
+
          [REMOVED]
 
          - '.val' removed, now use clause value (DefHash).
