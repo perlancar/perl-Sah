@@ -296,6 +296,12 @@ This attribute can be used to store more than one values to a clause. Example:
 
 The above schema requires an integer which is divisible by 2, 3, I<and> 5.
 
+If this attribute is set, and the clause attribute is set, then all values from
+both must pass the clause. For example, the previous schema can also be written
+as:
+
+ ['int*' => {div_by=>2, "div_by.vals"=>[3, 5]}]
+
 =item * min_ok, max_ok, min_nok, max_nok => INT
 
 In a clause when using multiple clause values, these attributes regulate the
