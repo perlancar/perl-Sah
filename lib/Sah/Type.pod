@@ -442,6 +442,77 @@ Example invalid array (key C<min_len> is not allowed):
 Note: You need to be careful with undef, because it matches all schema unless
 req=>1 (or the shortcut 'foo*') is specified.
 
+=head3 if => HASH (EXPERIMENTAL, UNFINISHED)
+
+A generic condition clause. Condition can be data (the data being validated
+itself), type property
+
+Syntax not yet fixed. Draft:
+
+ # condition keys: C<expr> (or C<eval_true>?), C<prop>, C<not>, C<validates>
+
+ # action keys: C<{then,else}_{schema,ok,nok}>.
+
+ if => {expr=>'an arbitrary expression ...',
+        then_schema=>SCHEMA1,
+        else_schema=>SCHEMA2}
+ if => {prop=>'property_name', not=>1, expr=>'$_>1',
+        then_nok=>1, else_ok=>1}
+ if => {..., then_ok=>1, else_nok=>1}
+ # then_clause?
+ # then_cset?
+
+Aside from passing/failing, also return either the C<then_schema> (if condition
+matches) or the C<else_schema> (if condition does not matches) result.
+
+Some examples:
+
+ [str => {if=>{expr=>'length($data) >= 2', then_nok=>1}}]
+ [str => {if=>{data=>1, not=>1, expr=>'length($data)<2', then_nok=>1}}]
+ [str => {if=>{prop=>'length', expr=>'$_<2', then_nok=>1}}]
+ [str => {if=>{prop=>'length', expr=>'$_<2', then_nok=>1}}]
+
+ # equivalent to:
+ [str => {min_len=>2}]
+
+ # require that subject of email is palindrome
+ [email => {if=>{prop=>[header=>{header=>'subject'}],
+                 validates=>'palindrome_str*',
+                 then_ok=>1}}]
+
+=head3 each => HASH (EXPERIMENTAL, UNFINISHED)
+
+A generic looping clause. Schema or expression will be evaluated for each
+element and needs to be true for the clause to pass. Return the last schema or
+expression result.
+
+Example:
+
+ [array => { each=>{         validates=>['str*' => {min_len=>1}]} }]
+ [array => { each=>{elem=>1, validates=>['str*' => {min_len=>1}]} }]
+
+ # equivalent to:
+ [array => {of=>['str*' => {min_len=>1}]}]
+
+ # require that each element is a prime number
+ [array => { each=>{elem=>1, cond_expr=>'is_prime($_)'} }]
+
+ # require that no email headers are empty
+ [email => { each=>{prop=>'headers', validates=>['str*' => {min_len=>1}]} }]
+
+ [email => { each=>{list_expr=>'$_->headers', validates=>['str*' => {min_len=>1}]} }]
+
+=head3 exists => HASH (EXPERIMENTAL, UNFINISHED)
+
+Require that an element matches a schema or expression. Return the first element
+that matches. Keyword: first.
+
+ # require that there is at least a prime number in the array (store it in $p)
+ [array => {
+     exists              => {elem=>1, expr=>'is_prime($_)'},
+     'exists.result_var' => 'p',
+ }]
+
 
 =head1 ROLE: Sortable
 
