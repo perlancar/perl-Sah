@@ -322,8 +322,8 @@ Examples:
 =head1 ROLE: HasElems
 
 This is the role for types that have the notion of elements/length. It provides
-clauses like C<max_len>, C<len>, C<len_between>, C<all_elems>, C<elems>, etc. It
-is used by 'array', 'hash', and also 'str'.
+clauses like C<max_len>, C<len>, C<len_between>, C<each_elem>, etc. It is used
+by C<array>, C<hash>, and also C<str>.
 
 =head2 Clauses
 
@@ -371,7 +371,7 @@ Examples:
  # requires that array does not have element 'x'
  [array => {'!has' => 'x'}]
 
-=head3 all_elems => SCHEMA
+=head3 each_elem => SCHEMA
 
 Requires that every element of the data validate to the specified schema.
 
@@ -379,11 +379,11 @@ Note: filters applied by SCHEMA to elements will be preserved.
 
 Examples:
 
- [array => {all_elems => 'int'}]
+ [array => {each_elem => 'int'}]
 
 The above specifies an array of ints.
 
- [hash => {all_elems => [str => { match => '^[A-Za-z0-9]+$' }]}]
+ [hash => {each_elem => [str => { match => '^[A-Za-z0-9]+$' }]}]
 
 The above specifies hash with alphanumeric-only values.
 
@@ -597,7 +597,32 @@ elements are indexed by integers starting from 0).
 
 =head2 Clauses
 
-TBD
+=head3 elems => ARRAY_OF_SCHEMA
+
+Specify that corresponding array element must validate to the schema. Example:
+
+ # Rinci function result envelope
+ [array => {
+     elems => [
+         [int => {between => [100, 999]}],
+         'str',
+         'any',
+         'defhash',
+     ]
+ }]
+
+The above schema validates result envelope, which is an array (see
+L<Rinci::function>). The first element (the status) must be a 3-digit integer.
+The second element (the error message) is a string. The third element (the
+actual result) can be anything. The fourth element (result metadata) is a hash
+containing extra data. Examples of valid data including:
+
+ [404, "Not found"]
+ [200, "OK", [1, 2, 3, 4], {'cmdline.pager'=>'less'}]
+
+=head3 of => SCHEMA
+
+This is just an alias to C<each_elem>.
 
 
 =head1 TYPE: hash
