@@ -234,7 +234,7 @@ Evaluate a clause set.
 
 Priority: 50 (normal)
 
-=head3 if => [CLAUSE1=>VAL, CLAUSE2=>VAL]
+=head3 if_clause => [CLAUSE1=>VAL, CLAUSE2=>VAL]
 
 If CLAUSE1 succeeds, then CLAUSE2 must also succeed. Otherwise, nothing is done.
 The second form (2-argument) operates on a clause set (hash) or clause sets
@@ -243,7 +243,7 @@ The second form (2-argument) operates on a clause set (hash) or clause sets
 Example:
 
  # leap year
- [int => {div_by=>4, if => [div_by => 100, div_by => 400]}]
+ [int => {div_by=>4, if_clause => [div_by => 100, div_by => 400]}]
 
 The C<if> clause states that if input number is divisible by 100, it must also
 divisible by 400. Otherwise, the clause fails.
@@ -268,7 +268,7 @@ must be between 1 and 10 characters long.
 The above says that if a string matches 'a' and 'b', it must also match 'c' and
 'd'. As a side note, the above schema can also be written as:
 
- [str => {if => [ 'match&'=>['a', 'b'], 'match&'=>['c', 'd'] ]}]
+ [str => {if_clause => [ 'match&'=>['a', 'b'], 'match&'=>['c', 'd'] ]}]
 
 =head3 check => EXPR
 
