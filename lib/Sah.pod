@@ -456,6 +456,32 @@ attributes.
 This comes from DefHash, mainly used to store translations for B<name>,
 B<summary>, B<description>.
 
+=item * result_var => VARNAME (EXPERIMENTAL)
+
+Specify variable name to store results in.
+
+Aside from pass/failure, a clause or clause set can also produce some value.
+This attribute specifies where to put the results in. The value can then be
+used by referring to the variable in expression. Example:
+
+ [any => {
+     of => [
+         ['str*'   => {min_len=>1, max_len=>10}], # 0
+         ['str*'   => {min_len=>11}],             # 1
+         ['array*' => {}],                        # 2
+         ['hash*'  => {}],                        # 3
+     ],
+    'of.result_var' => 'a',
+ }]
+
+Aside from passing/failing the validation, the C<of> clause above also produces
+an index to the schema in the list which matches. So if you validate an array,
+C<$a> in the schema will be set to 2. If you validate a string with length 12,
+C<$a> will be set to 1. If you pass an empty string (which does not pass the
+C<of> clause, C<$a> will not be set.
+
+Refer to each clause's documentation to find out what value the clause returns.
+
 =back
 
 =head2 Clause set merging
