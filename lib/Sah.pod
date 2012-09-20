@@ -84,6 +84,18 @@ B<Base schema>. You can define a schema, declare it as a new type, and then
 write subsequent schemas against that type, along with additional clauses. This
 is very much like subtyping. See L</"BASE SCHEMA"> for more information.
 
+Type can also have B<type property> (not to be confused with properties from the
+DefHash terminology, which map to clauses in Sah). For example, the type C<str>
+can have the following properties: C<length> (an integer). The type
+C<email_address> might have the following properties C<local> (the local part,
+the part before the last C<@>, a string) and C<domain> (the part after the last
+C<@>, a string). Type properties can also have parameters, for example the type
+C<email> might have a property called C<< header(header=>'subject') >>.
+
+Types are usually implemented in the target language using classes, and type
+properties using (class instance) methods. To retrieve a property's value, a
+method with the same name as the property's method is called.
+
 
 =head1 GENERAL STRUCTURE
 
@@ -202,6 +214,9 @@ generated.
 Optional definition is useful if you want to provide some defaults (e.g. a
 rudimentary validation for email) but don't mind if the validator already has
 something probably better (a stricter or more precise definition of email).
+
+
+=head1 TYPE
 
 
 =head1 CLAUSE
