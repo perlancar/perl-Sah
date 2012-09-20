@@ -39,14 +39,16 @@ A schema can be defined in terms of (based of) other schemas. An example:
  [even => {min=>0}]
 
 In the above example, C<pos_even> is defined in terms of C<even> with an
-additional clause (C<< min=>0 >>). As a matter of fact you can also override and
-B<remove> clauses from your base schema, for even more flexibility.
+additional clause (C<< min=>0 >>).
+
+Overriding and removing base schema's clauses are also possible via a process
+called merging. For example:
 
  # schema: pos_even_or_odd (positive even or odd numbers)
  [pos_even => {"[merge!]div_by"=>2}] # remove the div_by clause
 
-The above example makes C<pos_even_or_odd> effectively equivalent to positive
-integer.
+In the above example, C<pos_even> removes its base schema's C<div_by> clause,
+making C<pos_even_or_odd> effectively equivalent to positive integer.
 
 For schema-local definition, you can also define schemas within schemas:
 
@@ -68,12 +70,12 @@ Although it can contain extra stuffs, a B<schema> is essentially a type
 definition, stating a set of valid values for data. Sah defines several basic
 types like "bool", "int", "str", "array", "hash", and a few others.
 
-A type can have B<clauses>, which mostly declare constraints. When validating
-data each clause will be tested and must succeed for the whole validation to
-succeed (there are exceptions, but it is not important right now). Aside from
-declaring constraints, clauses can also declare other stuff like default value
-(the C<default> clause), store metadata (the C<summary>, C<description>, C<tags>
-clauses), etc.
+A type can have B<clauses>, which mostly declare constraints. Clauses are like
+functions, they are evaluated against data and return a value. For the clause to
+succeed, the return value must be true. For the schema to succeed, all
+constraint clauses must be true. Aside from declaring constraints, clauses can
+also declare other stuff like default value (the C<default> clause), store
+metadata (the C<summary>, C<description>, C<tags> clauses), etc.
 
 A B<Clause set> is just a set of clauses, written in a defhash (see L<DefHash>).
 Defhash properties map to Sah clauses, while defhash property attributes map to
@@ -83,18 +85,6 @@ clause set.
 B<Base schema>. You can define a schema, declare it as a new type, and then
 write subsequent schemas against that type, along with additional clauses. This
 is very much like subtyping. See L</"BASE SCHEMA"> for more information.
-
-Type can also have B<type property> (not to be confused with properties from the
-DefHash terminology, which map to clauses in Sah). For example, the type C<str>
-can have the following properties: C<length> (an integer). The type
-C<email_address> might have the following properties C<local> (the local part,
-the part before the last C<@>, a string) and C<domain> (the part after the last
-C<@>, a string). Type properties can also have parameters, for example the type
-C<email> might have a property called C<< header(header=>'subject') >>.
-
-Types are usually implemented in the target language using classes, and type
-properties using (class instance) methods. To retrieve a property's value, a
-method with the same name as the property's method is called.
 
 
 =head1 GENERAL STRUCTURE
