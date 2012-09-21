@@ -119,16 +119,20 @@ tests:
     input:  ['int', a, 1, b, 2, c]
     dies: Yes
 
-  - name: 'array: expression (clause=) is allowed on clause'
+  - name: 'array: expression (clause=) is allowed on clause and normalized'
     input:  ['int', {'foo=': 2}]
-    result: ['int', {'foo=': 2}]
+    result: ['int', {'foo': 2, 'foo.is_expr': 1}]
 
-  - name: 'array: expression (clause=) is allowed on clause.otherattr'
+  - name: 'array: expression (clause=) is allowed on clause.attr and normalized'
     input:  ['int', {'foo.bar=': 2}]
-    result: ['int', {'foo.bar=': 2}]
+    result: ['int', {'foo.bar': 2, 'foo.bar.is_expr': 1}]
 
-  - name: 'array: expression (clause=) must not conflict with clause (fail)'
+  - name: 'array: expression (clause=) must not conflict with literal value (fail)'
     input:  ['int', {'foo=': 2, foo: 3}]
+    dies: Yes
+
+  - name: 'array: expression (clause.attr=) must not conflict with literal value (fail)'
+    input:  ['int', {'foo.bar=': 2, 'foo.bar': 3}]
     dies: Yes
 
   - name: 'array: !clause is normalized'
@@ -163,7 +167,7 @@ tests:
     input: [int, {'[merge]a|': [1]}]
     dies: Yes
 
-  - name: 'array: !clause cannot be mixed with expression'
+  - name: 'array: clause| cannot be mixed with expression'
     input: [int, {'a|=': [1]}]
     dies: Yes
 
@@ -230,5 +234,3 @@ tests:
   - name: 'hash form (old DS syntax) is no longer recognized'
     input: {type: int}
     dies: Yes
-
-

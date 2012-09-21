@@ -9,80 +9,137 @@ package Sah::FAQ; # just to make PodWeaver happy
 
 =head2 Why use a schema (a.k.a "Turing tarpit")? Why not use pure Perl?
 
-I'll leave it to others to debate DSL (like templating language, schema, etc) vs
-pure Perl. But my principle is: if a DSL can save me significant amount of time,
-keep my code clean and maintainable, even if it's not perfect (what is?), I'll
-take it. 90% of the time, my schemas are some variations of the simple cases
-like:
+Schema language is a specialized language (DSL) that should be more concise to
+write than equivalent Perl code for common validation tasks. Its goal is never
+to be as powerful as Perl.
 
- 'str*'
- [str => {len_between=>[1, 10], match=>'some regex'}]
- [str => {in => [qw/a b c and some other values/]}]
- [array => {of => 'some_other_type'}]
- [hash => {keys => {key1=>'some schema', ...}, req_keys => [qw/.../], ...}]
+90% of the time, my schemas are some variations of the simple cases like:
 
-and writing schemas I<is> faster and less tedious/error-prone than writing
-equivalent Perl code, plus Sah can generate JavaScript code and human
+ "str*"
+ ["str":   {"len_between": [1, 10], "match": "some regex"}]
+ ["str":   {"in": ["a", "b", "c", ...]}]
+ ["array": {"of": "some_other_type"}]
+ ["hash":  {"keys": {"key1": "some schema", ...}, "req_keys": [...], ...}]
+
+and writing schemas is faster and less tedious/error-prone than writing
+equivalent Perl code, plus L<Data::Sah> can generate JavaScript code and human
 description text for me. For more complex validation I stay with Sah until it
 starts to get unwieldy. It usually can go pretty far since I can add functions
-and custom clauses to its types; it's for the rare and very complex validation
-needs that I go pure Perl. Your mileage may vary.
+and custom clauses to its types; it's for the very complex and dynamic
+validation needs that I go pure Perl. Your mileage may vary.
 
-=head2 What does 'Sah' mean?
+=head2 What does "Sah" mean?
 
-Sah is an Indonesian word, meaning 'valid' or 'legal'. It's picked because it's
+Sah is an Indonesian word, meaning "valid" or "legal". It's picked because it's
 short.
 
 The previous incarnation of this module uses the namespace L<Data::Schema>,
-started in 2009 and deprecated in 2011 in favor of Sah.
+started in 2009 and deprecated in 2011 in favor of "Sah".
 
-=head2 Why a new name/module? Difference with Data::Schema?
+=head2 Comparison to JSON schema?
 
-There are enough incompatibilities between the two (some different syntaxes,
-renamed clauses). Also, some terminology have been changed, e.g. "attribute"
-become "clauses", "suffix" becomes "attributes". This warrants a new name.
+=over 4
 
-Compared to Data::Schema, Sah always compiles schemas and there is much greater
-flexibility in code generation (can generate data term, can generate code to
-validate multiple schemas, etc). There is no longer hash form, schema is either
-a string or an array. Some clauses have been renamed (mostly, commonly used
-clauses are abbreviated, Huffman encoding thingy), some removed (usually because
-they are replaced by a more general solution), and new ones have been added.
+=item * JSON schema limits its type system to that supported by JSON/JavaScript.
 
-If you use Data::Schema, I recommend you migrate to Data::Sah as I will not be
-developing Data::Schema anymore. Sorry, there's currently no tool to convert
-your Data::Schema schemas to Sah, but it should be relatively straightforward. I
-recommend that you look into L<Data::Sah::Easy>.
+=item * JSON schema's syntax is simpler.
+
+It's metaschema (schema for the schema) is only about 130 lines. There are no
+shortcut forms.
+
+=item * JSON schema's features are more limited.
+
+No expression, no function,
+
+=back
 
 
-=head1 SCHEMA SYNTAX
+=head1 WRITING SCHEMAS
 
 =head2 How to express "not-something"? Why isn't there a C<not> or C<not_in> clause?
 
 There are generally no C<not_CLAUSE> clauses. Instead, a generic C<!CLAUSE>
 syntax is provided. Examples:
 
- # an integer that is not 0
- [int => {'!is' => 0}]
+ // an integer that is not 0
+ ["int", {"!is": 0}]
 
 =head2 How to state C<in> as well as C<!in> in the same clause set?
 
 You can't do this since it will cause a conflict:
 
- [str => {in => [qw/a b c/], '!in' => [qw/x y z/]}]
+ ["str ", {"in": ["a","b","c"], "!in": ["x","y","z"]}]
 
 However, you can do this:
 
- [str => {'cset&' => [{in => [qw/a b c/]}, {'!in' => [qw/x y z/]}]}]
+ ["str ", {"cset&": [{"in": ["a","b","c"]}, {"!in": ["x","y","z"]}]}]
 
 =head2 How to express mutual failure ("if A fails, B must also fails")?
 
-You can use C<if> clause and negate the clauses. For example:
+You can use C<if_clause> clause and negate the clauses. For example:
 
- if => ['!div_by' => 2, '!div_by' => 5]
+ "if_clause": ["!div_by": 2, "!div_by": 5]
 
 =head2 Merging and hash keys?
 
 XXX (Turn off hash merging using the C<''> Data::ModeMerge options key.
+
+=head2 General advice when writing schemas?
+
+=over 4
+
+=item * Avoid C<any> or C<all> if you know that data is of a certain type
+
+For performance and ease of reflection, it is better to create a custom clause
+than using the C<any> type, especially with long list of alternatives. An
+example:
+
+ // dns_record is either a_record, mx_record, ns_record, cname_record, ...
+ ["any", "of", [
+         "a_record",
+         "mx_record",
+         "ns_record",
+         "cname_record",
+         ...
+     ]
+ ]
+
+ // base_record
+ ["hash", "keys", {
+     "owner": "str*",
+     "ttl": "int",
+ }]
+
+// a_record
+ ["hash", "[merge]keys", {
+     "type": ["str*", "is", "A"],
+     "address": "str*"
+ }]
+
+ // mx_record
+ ["hash", "[merge]keys", {
+     "type": ["str*", "is", "MX"],
+     "host": "str*",
+     "prio": "int"
+ }]
+
+ ...
+
+If you see the declaration above, every record is a hash. So it is better to
+declare C<dns_record> as a C<hash> instead of an C<any>. But we need to select a
+different schema based on the C<type> key. We can develop a custom clause like
+this:
+
+ ["hash", "select_schema_on_key", ["type", {
+     "A": "a_record",
+     "MX": "mx_record",
+     "NS": "ns_record",
+     "CNAME": "cname_record",
+     ...
+ }]]
+
+This will be faster.
+
+=back
 
 =cut

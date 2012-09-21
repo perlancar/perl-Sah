@@ -1,5 +1,54 @@
 Revision history for Sah
 
+0.9.4    2012-09-21 (SHARYANTO) (not yet released)
+
+         - Rewrite some parts.
+
+         - Specify types 'all', 'any', 'obj', 'date' (moved from Data::Sah).
+           Type 'date' still doesn't have clauses specified yet.
+
+         - Specify clauses for 'hash' and 'array' (moved from Data::Sah)
+
+         - Change examples to use JSON instead of Perl notation.
+
+         - Add FAQ item: comparison to JSON schema.
+
+         - Add FAQ item: advice on writing schemas (preliminary).
+
+         [NEW]
+
+         - Add type: 'undef'.
+
+         - Add attribute: 'input'.
+
+         - Add clauses: 'check_each', 'exists', 'check_exists', 'each_index',
+           'check_each_index'.
+
+         [INCOMPATIBLE CHANGES]
+
+         - Rename 'vals' attribute to 'is_multi' (a bool) and store the multiple
+           values in the clause value itself. This is to avoid having both
+           'CLAUSE' and 'CLAUSE.vals'.
+
+         - Rename 'expr' clause attribute to 'is_expr' (a bool). The expression
+           is now contained in the original clause value/attribute. This is to
+           be consistent with 'is_multi'.
+
+         - Tweak the 'if' clause (change 'then_ok' or 'else_nok' to 'then' and
+           'else').
+
+         - Rename clause 'noop' to 'ok' (consistency with min_ok/max_nok/etc).
+           Remove clause 'fail' (can be replaced with '!ok').
+
+         - Rename clause 'check' to 'expr' (consistency with 'prop' as well as
+           the 'prop' and 'expr' keys in the 'if' clause).
+
+         [REMOVED]
+
+         - HasElems: remove 'num_of' clause (not generic enough, might be split
+           to a custom clause distribution later).
+
+
 0.9.3    2012-09-20 (SHARYANTO)
 
          [INCOMPATIBLE CHANGES]
