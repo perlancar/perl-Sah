@@ -139,9 +139,17 @@ tests:
     input:  ['int', {'!foo': 2}]
     result: [int, {foo: 2, 'foo.max_ok': 0}]
 
+  - name: 'array: !clause.attr is not allowed'
+    input:  ['int', {'!foo.bar': 2}]
+    dies: Yes
+
   - name: 'array: clause| is normalized'
     input:  ['int', {'foo|': [1, 2, 3]}]
-    result: [int, {'foo.vals': [1, 2, 3], 'foo.min_ok': 1}]
+    result: [int, {'foo': [1, 2, 3], 'foo.is_multi': 1, 'foo.min_ok': 1}]
+
+  - name: 'array: clause.attr| is not allowed'
+    input:  ['int', {'foo.bar|': [1, 2, 3]}]
+    dies: Yes
 
   - name: 'array: clause| value must be array (fail, not array)'
     input:  ['int', {'foo|': 1}]
@@ -149,7 +157,11 @@ tests:
 
   - name: 'array: clause& is normalized'
     input:  ['int', {'foo&': [1, 2, 3]}]
-    result: [int, {'foo.vals': [1, 2, 3]}]
+    result: [int, {'foo': [1, 2, 3], 'foo.is_multi': 1}]
+
+  - name: 'array: clause.attr& is not allowed'
+    input:  ['int', {'foo.bar&': [1, 2, 3]}]
+    dies: Yes
 
   - name: 'array: clause& value must be array (fail, not array)'
     input:  ['int', {'foo&': 1}]
