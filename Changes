@@ -1,5 +1,13 @@
 Revision history for Sah
 
+0.9.5    2012-09-26 (SHARYANTO)
+
+         [INCOMPATIBLE CHANGES]
+
+         - Change merge prefix from "[merge]", "[merge+]", etc to
+           "merge.normal.", "merge.add.", etc (to be compliant with DefHash)
+
+
 0.9.4    2012-09-21 (SHARYANTO)
 
          - Rewrite some parts.
