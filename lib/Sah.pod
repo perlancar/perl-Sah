@@ -552,29 +552,29 @@ be done from left to right.
 The base schema's clause set must not contain any merge prefixes.
 
 Merging is done using L<Data::ModeMerge>, with merge prefixes changed to
-'[merge+]', '[merge!]' and so on. In merging, Data::ModeMerge allows keys on the
-right side hash not only to replace but also add, subtract, remove keys from the
-left side. This is powerful because it allows schema definition to not only add
-clauses (restrict types even more), but also replace clauses (change type
-restriction) as well as delete clauses (relax type restriction). For more
+'merge.add.', 'merge.delete.' and so on. In merging, Data::ModeMerge allows keys
+on the right side hash not only to replace but also add, subtract, remove keys
+from the left side. This is powerful because it allows schema definition to not
+only add clauses (restrict types even more), but also replace clauses (change
+type restriction) as well as delete clauses (relax type restriction). For more
 information, refer to the Data::ModeMerge documentation.
 
 Illustration:
 
- int + {"div_by": 2} + {"div_by": 3}             // must be divisible by 2 & 3
+ int + {"div_by": 2} + {"div_by": 3}               // must be divisible by 2 & 3
 
- int + {"div_by": 2} + {"[merge]div_by": 3}      // will be merged and become:
- int + {"div_by": 3}                             // must be divisible by 3 ONLY
+ int + {"div_by": 2} + {"merge.normal.div_by": 3} // will be merged and become:
+ int + {"div_by": 3}                              // must be divisible by 3 ONLY
 
- int + {"div_by": 2} + {"[merge!]div_by": 0}     // will be merged and become:
- int + {}                                        // need not be divisible by any
+ int + {"div_by": 2} + {"merge.delete.div_by": 0}  // will be merged and become:
+ int + {}                                          // need not be divisible
 
- int + {"in": [1,2,3,4,5]} + {"in": [6]}         // impossible to satisfy
+ int + {"in": [1,2,3,4,5]} + {"in": [6]}           // impossible to satisfy
 
- int + {"in": [1,2,3,4,5]} + {"[merge+]in": [6]} // will be merged and become:
+ int + {"in": [1,2,3,4,5]} + {"merge.add.in": [6]} // will be merged and become:
  int + {"in": [1,2,3,4,5,6]}
 
- int + {"in": [1,2,3,4,5]}, {"[merge-]in": [4]}  // will be merged and become:
+ int + {"in": [1,2,3,4,5]}, {"merge.subtract.in": [4]}  // will become:
  int + {"in": [1,2,3,  5]}
 
 Merging is performed before schema is normalized.

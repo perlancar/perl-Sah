@@ -168,7 +168,7 @@ tests:
     dies: Yes
 
   - name: 'array: !clause cannot be mixed with merge prefix'
-    input: [int, {'[merge]!a': 1}]
+    input: [int, {'merge.normal.!a': 1}]
     dies: Yes
 
   - name: 'array: !clause cannot be mixed with expression'
@@ -176,7 +176,7 @@ tests:
     dies: Yes
 
   - name: 'array: clause| cannot be mixed with merge prefix'
-    input: [int, {'[merge]a|': [1]}]
+    input: [int, {'merge.normal.a|': [1]}]
     dies: Yes
 
   - name: 'array: clause| cannot be mixed with expression'
@@ -184,7 +184,7 @@ tests:
     dies: Yes
 
   - name: 'array: clause& cannot be mixed with merge prefix'
-    input: [int, {'[merge]a&': 1}]
+    input: [int, {'merge.normal.a&': 1}]
     dies: Yes
 
   - name: 'array: clause& cannot be mixed with expression'
@@ -216,12 +216,12 @@ tests:
     dies: Yes
 
   - name: 'array: merge prefix in clause is allowed'
-    input:  [foo, {'[merge]a': 1, '[merge+]a': 2, '[merge.]a': 3, '[merge-]a': 4, '[merge!]a': 5, '[merge^]a': 6}]
-    result: [foo, {'[merge]a': 1, '[merge+]a': 2, '[merge.]a': 3, '[merge-]a': 4, '[merge!]a': 5, '[merge^]a': 6}]
+    input:  [foo, {'merge.normal.a': 1, 'merge.add.a': 2, 'merge.concat.a': 3, 'merge.subtract.a': 4, 'merge.delete.a': 5, 'merge.keep.a': 6}]
+    result: [foo, {'merge.normal.a': 1, 'merge.add.a': 2, 'merge.concat.a': 3, 'merge.subtract.a': 4, 'merge.delete.a': 5, 'merge.keep.a': 6}]
 
-  - name: 'array: merge prefix in clause is allowed (fail, unknown merging prefix)'
-    input:  [foo, {'[merge%]a': 1}]
-    dies: Yes
+  #- name: 'array: merge prefix in clause is allowed (fail, unknown merging prefix)'
+  #  input:  [foo, {'merge.foo.a': 1}]
+  #  dies: Yes
 
   - name: 'array: extras must be hash (ok)'
     input:  ['int*', {}, {}]
