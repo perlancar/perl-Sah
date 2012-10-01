@@ -285,6 +285,18 @@ Currently known attributes:
 
 =over 4
 
+=item * prio : INT
+
+Change the clause's priority for this clause set. Note that this only works for
+clauses which have equal priorities. Otherwise, priority value from clause
+definition takes precedence.
+
+Example:
+
+ // both "min" and "max" clauses have priority of 50, but we want to make sure
+ // that "min" is evaluated first
+ ["int*", {"min=": "some expr", "min.prio": 1, "max": 10}]
+
 =item * is_multi : BOOL (default: 0)
 
 This attribute can be used to signify that clause contain multiple (an array of)
