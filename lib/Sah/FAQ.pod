@@ -54,7 +54,34 @@ No expression, no function.
 =back
 
 
-=head1 WRITING SCHEMAS
+=head1 SYNTAX
+
+=head2 Why is C<req> not enabled the default?
+
+I am following SQL's behavior. A type declaration like:
+
+ INT
+
+in SQL means C<NULL> is allowed, while:
+
+ INT NOT NULL
+
+means C<NULL> is not allowed. The above is equivalent to specifying this in Sah:
+
+ int*
+
+One could argue that setting C<req> to 1 by default is safer/more convenient to
+her/whatever, and C<int> should mean C<< ["int", "req", 1] >> while something
+like perhaps C<int?> means C<< ["int", "req", 0] >>. But this is simply a design
+choice and each has its pros/cons. Nullable by default can also be convenient in
+some cases, like when specifying program options where most of the options are
+optional.
+
+=head2 How about adding a C<default_req> configuration in C<Data::Sah> then?
+
+In general I am against compiler configuration which changes language behavior.
+In this case, it makes a simple schema like C<int> to have ambiguous meaning (is
+undefined value allowed? or not allowed?).
 
 =head2 What is the difference between the C<keys> and C<req_keys> clauses?
 
