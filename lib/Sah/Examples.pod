@@ -72,12 +72,12 @@ package Sah::Examples; # just to make PodWeaver happy
   # a US address, let's base it on 'address' but change 'postcode' to 'zipcode'.
   # also, require country to be set to 'US'
   ['address' => {
-      '[merge-]keys' => {postcode=>undef},
-      '[merge]keys' => {
+      'merge.subtract.keys' => {postcode=>undef},
+      'merge.normal.keys' => {
           zipcode => ['str*', len=>5, '^\d{5}$'],
           country => ['str*', is=>'US'],
       },
-      '[merge-]req_keys' => [qw/postcode/],
-      '[merge+]req_keys' => [qw/zipcode/],
+      'merge.subtract.req_keys' => [qw/postcode/],
+      'merge.add.req_keys' => [qw/zipcode/],
   }]
 

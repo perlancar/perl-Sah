@@ -133,13 +133,13 @@ example:
  }]
 
 // a_record
- ["hash", "[merge]keys", {
+ ["hash", "merge.normal.keys", {
      "type": ["str*", "is", "A"],
      "address": "str*"
  }]
 
  // mx_record
- ["hash", "[merge]keys", {
+ ["hash", "merge.normal.keys", {
      "type": ["str*", "is", "MX"],
      "host": "str*",
      "prio": "int"
