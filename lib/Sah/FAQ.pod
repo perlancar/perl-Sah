@@ -49,7 +49,7 @@ shortcut forms.
 
 =item * JSON schema's features are more limited.
 
-No expression, no function,
+No expression, no function.
 
 =back
 
