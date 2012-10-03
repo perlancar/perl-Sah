@@ -174,7 +174,7 @@ To store translations, you can use the C<alt.lang.*> clause attributes.
 
 Example (using Perl syntax because it supports heredoc):
 
- [array => {
+ ["array", {
      name        => 'http_headers',
      description => <<EOT,
  HTTP headers should be specified as an array of 2-element arrays (pairs). Each
@@ -183,11 +183,11 @@ Example (using Perl syntax because it supports heredoc):
 
  Example:
 
- : [[content_type => 'text/html'], [accept => 'text/html'], [accept => '*/*']]
+     [["content_type","text/html"], ["accept","text/html"], ["accept","*/*"]]
 
  EOT
-     req => 1,
-     of  => 'http_header',
+     req         => 1,
+     of          => 'http_header',
   },
   {
       def => {
@@ -537,7 +537,7 @@ Examples:
  // requires that array does not have element 'x'
  ["array", {"!has": "x"}]
 
-=head3 uniq => BOOL
+=head3 uniq : BOOL
 
 If set to 1, require that the array values be unique (like in a set). If set to
 0, require that there are duplicates in the array.
@@ -573,41 +573,41 @@ numeric types, etc.
 
 =head2 Clauses
 
-=head3 min => ANY
+=head3 min : ANY
 
 Require that the value is not less than some specified minimum (equivalent in
 intention to the Perl string C<ge> operator, or the numeric C<< >= >> operator).
 
 Example:
 
- [int => {min => 0}] // specify positive numbers
+ ["int", "min", 0] // specify positive numbers
 
-=head3 xmin => ANY
+=head3 xmin : ANY
 
 Require that the value is not less nor equal than some specified minimum
 (equivalent in intention to the Perl string C<gt> operator, or the numeric C<< >
 >> operator). The C<x> prefix is for "exclusive".
 
-=head3 max => ANY
+=head3 max : ANY
 
 Require that the value is less or equal than some specified maximum (equivalent
 in intention to the Perl string C<le> operator, or the numeric C<< <= >>
 operator).
 
-=head3 xmax => ANY
+=head3 xmax : ANY
 
 Require that the value is less than some specified maximum (equivalent in
 intention to the Perl string C<lt> operator, or the numeric C<< < >> operator).
 The C<x> prefix is for "exclusive".
 
-=head3 between => [ANY_MIN, ANY_MAX]
+=head3 between : [ANY_MIN, ANY_MAX]
 
 A convenient clause to combine C<min> and C<max>.
 
 Example, the following schemas are equivalent:
 
- [float => {between => [0.0, 1.5]}]
- [float => {min => 0.0, max => 1.5}]
+ ["float", {"between": [0.0, 1.5]}]
+ ["float", {"min": 0.0, "max": 1.5}]
 
 =head3 xbetween => [ANY_MIN, ANY_MAX]
 
@@ -631,11 +631,11 @@ C<int> stores real (floating-point) numbers. This type is derived from C<num>.
 
 =head2 Clauses
 
-=head3 is_nan => BOOL
+=head3 is_nan : BOOL
 
 Require that number is a "NaN" (or "-NaN").
 
-=head2 is_inf => BOOL
+=head2 is_inf : BOOL
 
 Require that number is an "Inf" or "Infinity" (or "-Inf" or "-Infinity").
 
@@ -646,18 +646,18 @@ C<int> stores integers. This type is derived from C<num>.
 
 =head2 Clauses
 
-=head3 mod => [INT1, INT2]
+=head3 mod : [INT1, INT2]
 
 Require that (data mod INT1) equals INT2. For example, C<< mod => [2, 1] >>
 effectively specifies odd numbers.
 
-=head3 div_by => INT
+=head3 div_by : INT
 
 Require that data is divisible by a number. This is effectively just a shortcut
-for C<< mod => [INT, 0] >>.
+for C<< "mod": [INT, 0] >>.
 
-Example: Given schema C<< [int=>{div_by=>2}] >>, undef, 0, 2, 4, and 6 are valid
-but 1, 3, 5 are not.
+Example: Given schema C<< ["int", {"div_by": 2}] >>, null, 0, 2, 4, and 6 are
+valid but 1, 3, 5 are not.
 
 
 =head1 TYPE: str
@@ -668,7 +668,7 @@ utf8.
 
 =head2 Clauses
 
-=head3 match => REGEX|{COMPILER=>REGEX, ...}
+=head3 match : REGEX|{COMPILER=>REGEX, ...}
 
 Require that string match the specified regular expression.
 
@@ -676,31 +676,31 @@ Since regular expressions might not be 100% compatible from language to
 language, instead of avoiding the use of regex entirely, you can specify
 different regex for each target language, e.g.:
 
- [str => {match => {
-   js     => '...',
-   perl   => '...',
-   python => '...',
+ ["str", {"match": {
+   "js":     "...",
+   "perl":   "...",
+   "python": "..."
  }}]
 
 To match against multiple regexes:
 
  // string must match a, b, and c
- [str => {"match&"=>['a', 'b', 'c']}]
+ ["str", {"match&": ["a", "b", "c"]}]
 
  // string must match either a or b or c
- [str => {"match|"=>['a', 'b', 'c']}
+ ["str", {"match|": ["a", "b", "c"]}
 
  // idem, shortcut form
- [str => {"!match"=>'a'}]
+ ["str", {"!match": "a"}]
 
  // string must NOT match a nor b nor c (i.e. must match none of those)
- [str => {"match"=>[a, b, c], "match.is_multi"=>1, "match.max_ok"=>0}]
+ ["str", {"match": [a, b, c], "match.is_multi": 1, "match.max_ok": 0}]
 
  // string must at least not match a or b or c (i.e. if all match, schema fail;
  // if at least one does not match, schema succeeds)
- [str => {"match"=>[a, b, c], "match.max_ok"=>2}]
+ ["str", {"match": [a, b, c], "match.max_ok": 2}]
 
-=head3 is_re => BOOL
+=head3 is_re : BOOL
 
 If value is true, require that the string be a valid regular expression string.
 If value is false, require that the string not be a valid regular expression
@@ -727,12 +727,12 @@ elements are indexed by integers starting from 0).
 Specify that corresponding array element must validate to the schema. Example:
 
  // Rinci function result envelope
- [array => {
-     elems => [
-         [int => {between => [100, 999]}],
-         'str',
-         'any',
-         'defhash',
+ ["array", {
+     "elems": [
+         ["int", "between", [100, 999]],
+         "str",
+         "any",
+         "defhash"
      ]
  }]
 
@@ -743,9 +743,9 @@ actual result) can be anything. The fourth element (result metadata) is a hash
 containing extra data. Examples of valid data including:
 
  [404, "Not found"]
- [200, "OK", [1, 2, 3, 4], {'cmdline.pager'=>'less'}]
+ [200, "OK", [1, 2, 3, 4], {"cmdline.pager": "less"}]
 
-=head3 of => SCHEMA
+=head3 of : SCHEMA
 
 This is just an alias to C<each>.
 
@@ -757,34 +757,57 @@ HasElems roles (the elements are indexed by strings).
 
 =head2 Clauses
 
-=head3 keys => HASH
+=head3 keys : HASH
 
-Specify schema for specific pair value. Also, restrict keys of hash to the list
-specified in this clause, except if C<allow_extra_keys> clause is set to true.
-Example:
+Attributes specific to this clause: C<restrict> (bool, default: 1)
 
- ['hash*' => {
-     keys => {
-         name => 'str',
-         address => [any => {of=>['str', [array => {of=>'str'}]]}],
-         email => 'email_address',
+Specify schema for specific pair value. Also, by default, restrict keys of hash
+to the list specified in this clause, except if the C<.restrict> attribute is
+set to false. Example:
+
+ ["hash*",
+     "keys", {
+         "name": "str",
+         "address": ["any", "of", ["str", ["array", "of", "str"]]],
+         "email": "email_address"
      },
- }]
+ ]
 
 The above schema requires data to be a hash with keys C<name>, C<address>,
 C<email>. None of the keys are required to be present (use C<req_keys> for
 that), but other keys are not allowed.
 
-=head3 allow_extra_keys => BOOL (default: 0)
+Another example:
 
-If set to true, allow hash to have keys other than specified in the C<keys>
-clause. See also: C<keys>.
+ ["hash",
+     "keys", {"a": "int", "b": "str", "c": "float"},
+     "keys.restrict", 0
+ ]
 
-=head3 each_key => SCHEMA
+The above schema specifies a hash with definition for the value of its C<a>,
+C<b>, and C<c> keys. But other keys like C<d> are allowed since the C<keys>
+clause is set to not restrict keys.
+
+=head3 req_keys : ARRAY
+
+Specify which keys are required to be present. Note that the values for those
+keys are not required to be defined (use C<keys> for that). Example:
+
+ ["hash", "req_keys", ["a", "b"]]
+
+The above schema specifies that hash needs to have some keys, but the value can
+be null. This hash will validate: C<< {"a": 1, "b": null} >>. However, given
+this schema:
+
+ ["hash", "req_keys", ["a", "b"], "keys", {"a": "int", "b": "int*"}]
+
+the previous hash will not validate since the value for C<b> is required.
+
+=head3 each_key : SCHEMA
 
 Alias to C<each_index>.
 
-=head3 each_value => SCHEMA
+=head3 each_value : SCHEMA
 
 Alias to C<each>.
 
@@ -795,7 +818,7 @@ A type to specify alternate schemas.
 
 =head2 Clauses
 
-=head3 of => [SCHEMA, ...]
+=head3 of : [SCHEMA, ...]
 
 Specify the schema(s) where the value will need to be valid to at least one of
 them.
@@ -807,7 +830,7 @@ A type to specify co-schemas (all schemas that must be validated to value).
 
 =head2 Clauses
 
-=head3 of => [SCHEMA, ...]
+=head3 of : [SCHEMA, ...]
 
 Specify the schema(s) where the value will need to be valid to all of them.
 
@@ -828,9 +851,6 @@ Object.
 =head3 can
 
 =head3 isa
-
-=head3
-
 
 
 =head1 TYPE: date

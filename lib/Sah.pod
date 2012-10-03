@@ -281,7 +281,7 @@ letters/numbers/underscores, but it can be a dotted-separated series of parts,
 e.g. C<alt.lang.id_ID>. As with clauses, clause attributes which begin with C<_>
 (underscore) is ignored. You can use this to embed extra data.
 
-Currently known attributes:
+Currently known general attributes:
 
 =over 4
 
@@ -533,6 +533,9 @@ still refer to the data (the string).
  ["str", "check", "is_prime(len($_))"]
 
 =back
+
+Aside from the above general attributes, each clause might recognize its own
+specific attributes. See documentation of respective clauses.
 
 =head2 Clause set merging
 
