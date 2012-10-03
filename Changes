@@ -1,5 +1,29 @@
 Revision history for Sah
 
+0.9.6    2012-10-03 (SHARYANTO)
+
+         [INCOMPATIBLE CHANGES]
+
+         - Remove hash clause 'allow_extra_keys' and replace it with '.restrict'
+           attribute for 'keys' clause.
+
+         [NEW FEATURES]
+
+         - Add property: 'prio'.
+
+         - Add HasElems properties: 'elems', 'indices'.
+
+         - Add hash properties: 'keys', 'values'.
+
+         - Add hash clauses: 're_keys', 'allowed_keys', 'allowed_keys_re'.
+
+         [ENHANCEMENTS]
+
+         - Specification for 'req_keys' (previously forgotten to be written).
+
+         - Reorganize FAQ and add some items.
+
+
 0.9.5    2012-09-26 (SHARYANTO)
 
          [INCOMPATIBLE CHANGES]
