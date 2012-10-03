@@ -300,10 +300,10 @@ succeed. Examples:
 Using the C<.input> attribute, you can change the input. Examples:
 
  // same as previous schema, but using input.prop attribute
- ["str", "check.input.prop", "len", "check", "is_prime($_)"]
+ ["str", "check.input", ["prop", "len"], "check", "is_prime($_)"]
 
  // check that the email's Subject header is a palindrome
- ["email", "check.input.prop", ["headers", "subject"],
+ ["email", "check.input", ["prop", ["headers", "subject"]],
            "check", "is_palindrome($_)"]
 
 =head3 if : HASH -> ANY
