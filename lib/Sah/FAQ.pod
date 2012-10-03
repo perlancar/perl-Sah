@@ -160,18 +160,41 @@ This will be faster.
 =head3 How does Sah check allowed/unallowed keys?
 
 If C<keys> clause is specified, then by default only keys defined in C<keys>
-clause is allowed, unless the C<allow_extra_keys>
-
-If C<keys> clause is specified and C<allow_extra_keys> clause is set to true,
-any hash key is allowed.
+clause is allowed, unless the C<.restrict> attribute is set to false, in which
+case no restriction to allowed keys is done by the clause. The same case for
+C<re_keys>.
 
 If C<allowed_keys> and/or C<allowed_keys_re> clause is specified, then only keys
-matching those clauses are allowed.
+matching those clauses are allowed. This is in addition to restriction placed by
+other clauses, of course.
+
+=head3 How do I specify schemas for some keys, but still allow some other keys?
+
+Set the C<.restrict> attribute for C<keys> or C<re_keys> to false. Example:
+
+ ["hash", {
+     "keys": {"a": "int", "b": "int"},
+     "keys.restrict": 0,
+     "allowed_keys": ["a", "b", "c", "d", "e"]
+ ]
+
+The above schema allows keys C<a, b, c, d, e> and specifies values for C<a, b>.
+Another example:
+
+ ["hash", {
+     "keys": {"a": "int", "b": "int"},
+     "keys.restrict": 0,
+     "allowed_keys_re": "^[ab_]",
+ ]
+
+The above schema specifies values for C<a, b> but still allows other keys
+beginning with an underscore.
 
 =head3 What is the difference between the C<keys> and C<req_keys> clauses?
 
-C<req_keys> require keys to I<exist>, but its value is governed by the schema in
-C<keys>. Here are four combination possibilities, each with the schema:
+C<req_keys> require keys to I<exist>, but their values are governed by the
+schemas in C<keys> or C<keys_re>. Here are four combination possibilities, each
+with the schema:
 
 To require a hash key to exist, but its value can be undef:
 

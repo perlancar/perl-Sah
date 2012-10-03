@@ -469,7 +469,11 @@ C<array>, C<hash>, and also C<str>.
 
 =head2 Properties
 
-=head3 len -> STR
+=head3 len : STR
+
+=head3 elems : ARRAY
+
+=head3 indices : ARRAY
 
 =head2 Clauses
 
@@ -755,11 +759,21 @@ This is just an alias to C<each>.
 Hash (a.k.a. dictionary) type. This type assumes the Comparable, Sortable, and
 HasElems roles (the elements are indexed by strings).
 
+=head2 Properties
+
+=head3 keys : ARRAY
+
+Alias for C<HasElems>' C<indices>.
+
+=head3 values : ARRAY
+
+Alias for C<HasElems>' C<elems>.
+
 =head2 Clauses
 
 =head3 keys : HASH
 
-Attributes specific to this clause: C<restrict> (bool, default: 1)
+Attributes: C<restrict> (bool, default: 1)
 
 Specify schema for specific pair value. Also, by default, restrict keys of hash
 to the list specified in this clause, except if the C<.restrict> attribute is
@@ -788,6 +802,20 @@ The above schema specifies a hash with definition for the value of its C<a>,
 C<b>, and C<c> keys. But other keys like C<d> are allowed since the C<keys>
 clause is set to not restrict keys.
 
+=head3 re_keys : HASH
+
+Attributes: C<restrict> (bool, default: 1)
+
+Just like C<keys>, but specifies schemas for keys which match regexes. Example:
+
+ ["hash", "re_keys", {"^[A-Za-z]": "str", "^[0-9]": "int"}]
+
+The above schema specifies that for keys which begin with a letter the values
+must be strings, and for keys which begin with a digit the values must be
+integers. These hashes validate: C<< {} >>, C<< {"a": "x", "b": 1, "1": 1} >>.
+These hashes do not validate: C<< {"1": "x"} >>, C<< {"#": "x"} >> (key does not
+match any keys in C<re_keys>).
+
 =head3 req_keys : ARRAY
 
 Specify which keys are required to be present. Note that the values for those
@@ -802,6 +830,14 @@ this schema:
  ["hash", "req_keys", ["a", "b"], "keys", {"a": "int", "b": "int*"}]
 
 the previous hash will not validate since the value for C<b> is required.
+
+=head3 allowed_keys : ARRAY
+
+Specify which keys are allowed.
+
+=head3 allowed_keys_re : RE
+
+Like C<allowed_keys> but using regular expression.
 
 =head3 each_key : SCHEMA
 
