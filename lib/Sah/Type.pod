@@ -349,54 +349,6 @@ is specified, in which case the default else is C<< "else": 0 >>. Examples:
  "if": {"expr": "is_palindrome($_)", "then_prop": ["len", ["int", "xmin": 5]]}
  "if": {"expr": "is_palindrome($_)", "then_expr": "len($_) > 5"}
 
-=head3 each_elem : SCHEMA
-
-Priority: 50 (normal)
-
-Category: constraint, looping
-
-Requires that every element of data validate to the specified schema. The first
-element that fails the schema will terminate the loop.
-
-Examples:
-
- ["array", {"each_elem": "int"}]
- ["array", {"of": "int"}] // same thing, "of" is the same as "each_elem"
-
-The above specifies an array of integers.
-
- ["hash", {"each_elem": ["str", {"match": "^[A-Za-z0-9]+$" }]}]
-
-The above specifies hash with alphanumeric-only values.
-
-=head3 check_each_elem : EXPR
-
-Priority: 50 (normal)
-
-Category: constraint, looping
-
-Just like C<each_elem> but instead of using schema, each element is tested using
-expression.
-
-=head3 exists : SCHEMA
-
-Priority: 50 (normal)
-
-Category: constraint, looping
-
-Test that there is at least one element of data that validates to the schema.
-That element is returned. Be careful to not return element which has the value
-which evaluates to false.
-
-=head3 check_exists : EXPR
-
-Priority: 50 (normal)
-
-Category: constraint, looping
-
-Just like C<exists> but instead of using schema, each element is tested using
-expression.
-
 =head3 postfilters : [EXPR, ...]
 
 Priority: 90 (very low). Run after all other clauses.
@@ -532,6 +484,35 @@ Examples:
 If set to 1, require that the array values be unique (like in a set). If set to
 0, require that there are duplicates in the array.
 
+=head3 each_elem : SCHEMA
+
+Priority: 50 (normal)
+
+Category: constraint, looping
+
+Requires that every element of data validate to the specified schema. The first
+element that fails the schema will terminate the loop.
+
+Examples:
+
+ ["array", {"each_elem": "int"}]
+ ["array", {"of": "int"}] // same thing, "of" is the same as "each_elem"
+
+The above specifies an array of integers.
+
+ ["hash", {"each_elem": ["str", {"match": "^[A-Za-z0-9]+$" }]}]
+
+The above specifies hash with alphanumeric-only values.
+
+=head3 check_each_elem : EXPR
+
+Priority: 50 (normal)
+
+Category: constraint, looping
+
+Just like C<each_elem> but instead of using schema, each element is tested using
+expression.
+
 =head3 each_index : SCHEMA
 
 Priority: 50 (normal)
@@ -548,6 +529,25 @@ Priority: 50 (normal)
 Category: constraint, looping
 
 Like C<each_index> but instead of using schema, each index is tested using
+expression.
+
+=head3 exists : SCHEMA
+
+Priority: 50 (normal)
+
+Category: constraint, looping
+
+Test that there is at least one element of data that validates to the schema.
+That element is returned. Be careful to not return element which has the value
+which evaluates to false.
+
+=head3 check_exists : EXPR
+
+Priority: 50 (normal)
+
+Category: constraint, looping
+
+Just like C<exists> but instead of using schema, each element is tested using
 expression.
 
 
