@@ -7,7 +7,7 @@ package Sah::FAQ; # just to make PodWeaver happy
 
 =head1 GENERAL
 
-=head2 Why use a schema (a.k.a "Turing tarpit")? Why not use pure Perl?
+=head3 Why use a schema (a.k.a "Turing tarpit")? Why not use pure Perl?
 
 Schema language is a specialized language (DSL) that should be more concise to
 write than equivalent Perl code for common validation tasks. Its goal is never
@@ -28,7 +28,7 @@ starts to get unwieldy. It usually can go pretty far since I can add functions
 and custom clauses to its types; it's for the very complex and dynamic
 validation needs that I go pure Perl. Your mileage may vary.
 
-=head2 What does "Sah" mean?
+=head3 What does "Sah" mean?
 
 Sah is an Indonesian word, meaning "valid" or "legal". It's picked because it's
 short.
@@ -36,7 +36,9 @@ short.
 The previous incarnation of this module uses the namespace L<Data::Schema>,
 started in 2009 and deprecated in 2011 in favor of "Sah".
 
-=head2 Comparison to JSON schema?
+=head2 Comparison to other schema languages and type systems
+
+=head3 Comparison to JSON schema?
 
 =over 4
 
@@ -51,12 +53,24 @@ shortcut forms.
 
 No expression, no function.
 
-=back
+=head3 Comparison to Data::Rx?
+
+TBD
+
+=head3 Comparison to Data::FormValidator (DFV)?
+
+TBD
+
+=head3 Comparison to Moose types?
+
+TBD
 
 
 =head1 SYNTAX
 
-=head2 Why is C<req> not enabled the default?
+=head2 General
+
+=head3 Why is C<req> not enabled the default?
 
 I am following SQL's behavior. A type declaration like:
 
@@ -77,63 +91,13 @@ choice and each has its pros/cons. Nullable by default can also be convenient in
 some cases, like when specifying program options where most of the options are
 optional.
 
-=head2 How about adding a C<default_req> configuration in C<Data::Sah> then?
+=head3 How about adding a C<default_req> configuration in C<Data::Sah> then?
 
 In general I am against compiler configuration which changes language behavior.
 In this case, it makes a simple schema like C<int> to have ambiguous meaning (is
 undefined value allowed? or not allowed?).
 
-=head2 What is the difference between the C<keys> and C<req_keys> clauses?
-
-C<req_keys> require keys to I<exist>, but its value is governed by the schema in
-C<keys>. Here are four combination possibilities, each with the schema:
-
-To require a hash key to exist, but its value can be undef:
-
- ["hash", "keys", {"a": "int"}, "req_keys": ["a"]]
-
-To allow a hash key to not exist, but when it exists it must not be
-undef:
-
- ["hash", "keys", {"a": "int*"}]
-
-To allow a hash key to not exist, or its value to be undef when exists:
-
- ["hash", "keys", {"a": "int"}]
-
-To require hash key exist and its value must not be undef:
-
- ["hash", "keys", {"a": "int*"}, "req_keys": ["a"]]
-
-=head2 How to express "not-something"? Why isn't there a C<not> or C<not_in> clause?
-
-There are generally no C<not_CLAUSE> clauses. Instead, a generic C<!CLAUSE>
-syntax is provided. Examples:
-
- // an integer that is not 0
- ["int", {"!is": 0}]
-
-=head2 How to state C<in> as well as C<!in> in the same clause set?
-
-You can't do this since it will cause a conflict:
-
- ["str ", {"in": ["a","b","c"], "!in": ["x","y","z"]}]
-
-However, you can do this:
-
- ["str ", {"cset&": [{"in": ["a","b","c"]}, {"!in": ["x","y","z"]}]}]
-
-=head2 How to express mutual failure ("if A fails, B must also fails")?
-
-You can use C<if_clause> clause and negate the clauses. For example:
-
- "if_clause": ["!div_by": 2, "!div_by": 5]
-
-=head2 Merging and hash keys?
-
-XXX (Turn off hash merging using the C<''> Data::ModeMerge options key.
-
-=head2 General advice when writing schemas?
+=head3 General advice when writing schemas?
 
 =over 4
 
@@ -159,7 +123,7 @@ example:
      "ttl": "int",
  }]
 
-// a_record
+ // a_record
  ["base_record", "merge.normal.keys", {
      "type": ["str*", "is", "A"],
      "address": "str*"
@@ -190,5 +154,68 @@ this:
 This will be faster.
 
 =back
+
+=head2 Hash
+
+=head3 How does Sah check allowed/unallowed keys?
+
+If C<keys> clause is specified, then by default only keys defined in C<keys>
+clause is allowed, unless the C<allow_extra_keys>
+
+If C<keys> clause is specified and C<allow_extra_keys> clause is set to true,
+any hash key is allowed.
+
+If C<allowed_keys> and/or C<allowed_keys_re> clause is specified, then only keys
+matching those clauses are allowed.
+
+=head3 What is the difference between the C<keys> and C<req_keys> clauses?
+
+C<req_keys> require keys to I<exist>, but its value is governed by the schema in
+C<keys>. Here are four combination possibilities, each with the schema:
+
+To require a hash key to exist, but its value can be undef:
+
+ ["hash", "keys", {"a": "int"}, "req_keys": ["a"]]
+
+To allow a hash key to not exist, but when it exists it must not be
+undef:
+
+ ["hash", "keys", {"a": "int*"}]
+
+To allow a hash key to not exist, or its value to be undef when exists:
+
+ ["hash", "keys", {"a": "int"}]
+
+To require hash key exist and its value must not be undef:
+
+ ["hash", "keys", {"a": "int*"}, "req_keys": ["a"]]
+
+=head3 How to express "not-something"? Why isn't there a C<not> or C<not_in> clause?
+
+There are generally no C<not_CLAUSE> clauses. Instead, a generic C<!CLAUSE>
+syntax is provided. Examples:
+
+ // an integer that is not 0
+ ["int", {"!is": 0}]
+
+=head2 How to state C<in> as well as C<!in> in the same clause set?
+
+You can't do this since it will cause a conflict:
+
+ ["str ", {"in": ["a","b","c"], "!in": ["x","y","z"]}]
+
+However, you can do this:
+
+ ["str ", {"cset&": [{"in": ["a","b","c"]}, {"!in": ["x","y","z"]}]}]
+
+=head3 How to express mutual failure ("if A fails, B must also fails")?
+
+You can use C<if_clause> clause and negate the clauses. For example:
+
+ "if_clause": ["!div_by": 2, "!div_by": 5]
+
+=head3 Merging and hash keys?
+
+XXX (Turn off hash merging using the C<''> Data::ModeMerge options key.
 
 =cut
