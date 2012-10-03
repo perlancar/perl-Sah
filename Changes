@@ -1,5 +1,17 @@
 Revision history for Sah
 
+0.9.7    2012-10-03 (SHARYANTO)
+
+         [INCOMPATIBLE CHANGES]
+
+         - Rename HasElems' clause: 'each' to 'each_elem' to avoid ambiguity
+           with 'each_index'. Also rename 'check_each' to 'check_each_elem'.
+
+         [NEW FEATURES]
+
+         - Add hash clauses: 'check_each_key', 'check_each_value'.
+
+
 0.9.6    2012-10-03 (SHARYANTO)
 
          [INCOMPATIBLE CHANGES]
