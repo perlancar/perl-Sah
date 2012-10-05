@@ -1,5 +1,17 @@
 Revision history for Sah
 
+0.9.9    2012-10-05 (SHARYANTO)
+
+         [INCOMPATIBLE CHANGES]
+
+         - Change attribute for 'prefilters' clause, from 'perm' to 'temp' (to
+           make it consistent with the new default.temp).
+
+         [NEW FEATURES]
+
+         - Add attribute for 'default' clause: 'temp'.
+
+
 0.9.8    2012-10-03 (SHARYANTO)
 
          No functional changes. Fix examples and misplaced clauses.
