@@ -89,6 +89,10 @@ depending on it are forced to adjust, if needed.
 
 =head3 default : ANY
 
+Attributes specific to this clause: C<temp> (bool, default 0, if set to true
+then default value will only be used during validation and at the end data will
+not use this value).
+
 Priority: 1 (very high). This is processed before all other clauses.
 
 Category: default.
@@ -245,13 +249,14 @@ Priority: 10 (high). Run after C<default> and C<req>/C<forbidden>.
 
 Category: filter.
 
+Attributes specific to this clause: C<temp> (bool, default 0, if set to true
+then prefiltered value will only be used during validation and at the end of the
+clause set data will not use this value).
+
 Run expression(s), usually to preprocess data before further checking. Data is
 referred to in expression by variable C<$_>. Prefiltered value should persist
 until the end of all other clauses (until the end of clause set), after which
 the old value can be restored.
-
-Specific attributes: C<perm>. If set to true, then prefiltered value will
-persist.
 
 =head3 ok : ANY -> true
 
