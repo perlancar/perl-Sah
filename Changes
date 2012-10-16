@@ -1,5 +1,23 @@
 Revision history for Sah
 
+0.9.10   2012-10-16 (SHARYANTO)
+
+         [INCOMPATIBLE CHANGES]
+
+         - Simplify syntax for 'if' clause. Argument back to 3-element array
+           [COND, THEN, ELSE]. Whether COND/THEN/ELSE is an expression, schema,
+           clause set, or simple true/false is determined by its type (str,
+           array, str, hash, bool). This improves readability.
+
+         - Replace '.input' attribute with 'prop' and 'check_prop' clauses (and
+           possibly others in the future). '.input' does not provide a clean
+           switch between types (e.g. to express string which has an even
+           length, we used ["str", "div_by.input", ["prop", "len"], "div_by",
+           2], but 'div_by' is not a clause for str. Now we simply use: ["str",
+           "prop", ["len", ["int", "div_by": 2]]] or ["str", "check_prop", "$_ %
+           2 == 0"].
+
+
 0.9.9    2012-10-05 (SHARYANTO)
 
          [INCOMPATIBLE CHANGES]
