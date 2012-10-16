@@ -95,7 +95,34 @@ optional.
 
 In general I am against compiler configuration which changes language behavior.
 In this case, it makes a simple schema like C<int> to have ambiguous meaning (is
-undefined value allowed? or not allowed?).
+undefined value allowed? Ir not allowed? It depends on compiler configuration).
+
+=head3 How to express "not-something"? Why isn't there a C<not> or C<not_in> clause?
+
+There are generally no C<not_CLAUSE> clauses. Instead, a generic C<!CLAUSE>
+syntax is provided. Examples:
+
+ // an integer that is not 0
+ ["int", {"!is": 0}]
+
+ // a username that is not one of the forbidden/reserved ones
+ ["str", {"!in": ["root", "admin", "superuser"]}]
+
+=head2 How to state C<in> as well as C<!in> in the same clause set?
+
+You can't do this since it will cause a conflict:
+
+ ["str ", {"in": ["a","b","c"], "!in": ["x","y","z"]}]
+
+However, you can do this:
+
+ ["str ", {"cset&": [{"in": ["a","b","c"]}, {"!in": ["x","y","z"]}]}]
+
+=head3 How to express mutual failure ("if A fails, B must also fails")?
+
+You can use C<if> clause and negate the clauses. For example:
+
+ "if": [{"!div_by": 2}, {"!div_by": 5}]
 
 =head3 General advice when writing schemas?
 
@@ -212,30 +239,6 @@ To allow a hash key to not exist, or its value to be undef when exists:
 To require hash key exist and its value must not be undef:
 
  ["hash", "keys", {"a": "int*"}, "req_keys": ["a"]]
-
-=head3 How to express "not-something"? Why isn't there a C<not> or C<not_in> clause?
-
-There are generally no C<not_CLAUSE> clauses. Instead, a generic C<!CLAUSE>
-syntax is provided. Examples:
-
- // an integer that is not 0
- ["int", {"!is": 0}]
-
-=head2 How to state C<in> as well as C<!in> in the same clause set?
-
-You can't do this since it will cause a conflict:
-
- ["str ", {"in": ["a","b","c"], "!in": ["x","y","z"]}]
-
-However, you can do this:
-
- ["str ", {"cset&": [{"in": ["a","b","c"]}, {"!in": ["x","y","z"]}]}]
-
-=head3 How to express mutual failure ("if A fails, B must also fails")?
-
-You can use C<if_clause> clause and negate the clauses. For example:
-
- "if_clause": ["!div_by": 2, "!div_by": 5]
 
 =head3 Merging and hash keys?
 
