@@ -463,11 +463,22 @@ errors instead of just stopping after the first error is found.
 
 This tells the compiler that instead of the default error message from the type
 handler, a custom error message is supplied. You can add translations by adding
-more attributes. For example:
+more attributes with language code suffixes. For example:
 
  ["str", {"match":                "[^A-Za-z0-9_-]",
-          "match.err_msg"         "Must not contain naughty characters",
+          "match.err_msg":        "Must not contain naughty characters",
           "match.err_msg.id_ID": "Tidak boleh mengandung karakter aneh-aneh"
+ }]
+
+=item * ok_err_msg[.LANGCODE]
+
+Just like C<err_msg>, but this error message will be used when clause succeeds
+and there is C<.min_nok> or C<.max_ok> attributes defined. You can add
+translations by adding more attributes with language code suffix. For example:
+
+ ["str", {"!in": ["root", "admin"], // shortcut for "in": ... + "in.max_ok": 0
+          "in.ok_err_msg":       "Sorry, username is reserved",
+          "in.ok_err_msg.id_ID": "Maaf, nama user dilarang digunakan"
  }]
 
 =item * human[.LANGCODE]
