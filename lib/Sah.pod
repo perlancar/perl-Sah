@@ -435,8 +435,8 @@ fail. Example:
 
 =item * err_level : STR (default: error)
 
-Valid value: C<error>, C<warn>. Normally, when clause checking fails, an error
-is generated and it causes validation of the whole schema to fail. If
+Valid value: C<fatal>, C<error>, C<warn>. Normally, when clause checking fails,
+an error is generated and it causes validation of the whole schema to fail. If
 C<err_level> is set to C<warn>, however, this only generates a warning and does
 not cause the validation to fail.
 
@@ -454,6 +454,10 @@ In the above example, the C<err_level> and C<err_msg> are attributes for the
 C<min_len> clause. The second clause set basically adds an optional restriction
 for the password: when the C<min_len> clause is not satisfied, instead of making
 the data fails the validation, only a warning is issued.
+
+C<fatal> is the same as C<error> but will make validation exit early, without
+collecting further errors. This only takes effect when validation collects full
+errors instead of just stopping after the first error is found.
 
 =item * err_msg[.LANGCODE]
 
