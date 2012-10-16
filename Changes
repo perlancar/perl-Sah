@@ -1,5 +1,17 @@
 Revision history for Sah
 
+0.9.11   2012-10-16 (SHARYANTO)
+
+         [ENHANCEMENTS]
+
+         - Add .ok_err_msg to set error message when clause succeeds (existing
+           .err_msg is for when clause fails). Succeeding clause is regarded as
+           a validation failure under the presence of .max_ok or .min_ok
+           attributes.
+
+         - Introduce another error level (.err_level => 'fatal').
+
+
 0.9.10   2012-10-16 (SHARYANTO)
 
          [INCOMPATIBLE CHANGES]
