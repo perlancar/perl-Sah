@@ -528,6 +528,19 @@ Refer to each clause's documentation to find out what value the clause returns.
 Aside from the above general attributes, each clause might recognize its own
 specific attributes. See documentation of respective clauses.
 
+=item * c.COMPILER
+
+This is a namespace for specifying compiler options. Each compiler will have its
+specific options; see documentation on respective compiler to see available
+options. For example:
+
+ // skip clauses which are not implemented in JavaScript. we'll check on the
+ // server-side anyway.
+ ["str", {
+   "soundex": "E460",
+   "c.js.ignore_missing_clause_handler": true
+ }]
+
 =head2 Clause set merging
 
 Clause set merging happens when a schema is based on another schema and the
