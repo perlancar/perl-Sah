@@ -1,0 +1,487 @@
+#!/usr/bin/perl
+
+use 5.010;
+use strict;
+use warnings FATAL => 'all';
+use FindBin '$Bin';
+
+use vars qw($VERSION);
+#use Data::Clone;
+use File::Slurp;
+use YAML::Syck qw(Dump);
+
+# VERSION
+unless (defined $VERSION) {
+    my $dist = read_file "$Bin/../dist.ini";
+    $dist =~ /^\s*version\s*=\s*(.+)/m and $VERSION = $1;
+}
+
+our ($Type, $Clause);
+
+# describe literal
+sub _l {
+    my $d = shift;
+    return "undefined value" if !defined($d);
+    return $d unless ref($d);
+    my $res = Dump($_);
+    $res =~ s/\s+\z//s;
+    $res;
+}
+
+sub gen_type_check_tests {
+    my %args = @_;
+    my @res;
+
+    for (@{ $args{accept} }) {
+        push @res, {
+            name   => "type check: must accept "._l($_),
+            input  => $_,
+            schema => $Type,
+            valid  => 1,
+        };
+    }
+    for (@{ $args{reject} }) {
+        push @res, {
+            name   => "type check: must reject "._l($_),
+            input  => $_,
+            schema => $Type,
+            valid  => 0,
+        };
+    }
+
+    @res;
+}
+
+sub gen_BaseType_tests {
+    my %args = @_;
+    my @res;
+
+    push @res, {
+        name   => "must accept undefined value",
+        schema => $Type,
+        input  => undef,
+        valid  => 1,
+    };
+
+    # req
+    push @res, {
+        name   => "req=0 must accept undefined value",
+        schema => [$Type, req=>0],
+        input  => undef,
+        valid  => 1,
+    };
+    push @res, {
+        name   => "req=1 must reject undefined value",
+        schema => [$Type, req=>1],
+        input  => undef,
+        valid  => 0,
+    };
+
+    # forbidden
+    push @res, {
+        name   => "forbidden=0 must accept defined value",
+        schema => [$Type, forbidden=>0],
+        input  => $args{value},
+        valid  => 1,
+    };
+    push @res, {
+        name   => "forbidden=1 must reject defined value",
+        schema => [$Type, forbidden=>1],
+        input  => $args{value},
+        valid  => 0,
+    };
+
+    # default
+    for (@{ $args{ok_defaults} }) {
+        push @res, {
+            name   => "default: must accept valid default "._l($_),
+            input  => undef,
+            schema => ["$Type*", default=>$_],
+            valid  => 1,
+        };
+    }
+    for (@{ $args{nok_defaults} }) {
+        push @res, {
+            name   => "default: must reject invalid default "._l($_),
+            input  => undef,
+            schema => ["$Type*", default=>$_],
+            valid  => 0,
+        };
+    }
+
+    @res;
+}
+
+sub gen_multi_cval_tests {
+    my %args = @_;
+    my @res;
+
+    push @res, {
+        name  => "!$Clause: (1)",
+        input => $args{input},
+        schema => [$Type, "!$Clause" => $args{ok_values}[0]],
+        valid  => 0,
+    };
+    push @res, {
+        name  => "!$Clause: (2)",
+        input => $args{input},
+        schema => [$Type, "!$Clause" => $args{nok_values}[0]],
+        valid  => 1,
+    };
+
+    push @res, {
+        name  => "$Clause&: (0)",
+        input => $args{input},
+        schema => [$Type, "$Clause&" => []],
+        valid  => 1,
+    };
+    push @res, {
+        name  => "$Clause&: (1)",
+        input => $args{input},
+        schema => [$Type,
+                   "$Clause&" => $args{ok_values}],
+        valid  => 1,
+    };
+    push @res, {
+        name  => "$Clause&: (2)",
+        input => $args{input},
+        schema => [$Type,
+                   "$Clause&" => [$args{nok_values}[0], $args{ok_values}[0]]],
+        valid  => 0,
+    };
+    push @res, {
+        name  => "$Clause&: (3)",
+        input => $args{input},
+        schema => [$Type,
+                   "$Clause&" => [$args{ok_values}[0], $args{nok_values}[0]]],
+        valid  => 0,
+    };
+    push @res, {
+        name  => "$Clause&: (4)",
+        input => $args{input},
+        schema => [$Type,
+                   "$Clause&" => [$args{nok_values}[0], $args{nok_values}[1]]],
+        valid  => 0,
+    };
+
+    # push @res, {
+    #     name  => "$Clause|: (0)",
+    #     input => $args{input},
+    #     schema => [$Type, "$Clause|" => []],
+    #     valid  => 1,
+    # };
+    # push @res, {
+    #     name  => "$Clause|: (1)",
+    #     input => $args{input},
+    #     schema => [$Type, "$Clause|" => $args{ok_values}],
+    #     valid  => 1,
+    # };
+    # push @res, {
+    #     name  => "$Clause|: (2)",
+    #     input => $args{input},
+    #     schema => [$Type,
+    #                "$Clause|" => [$args{nok_values}[0], $args{ok_values}[0]]],
+    #     valid  => 1,
+    # };
+    # push @res, {
+    #     name  => "$Clause|: (3)",
+    #     input => $args{input},
+    #     schema => [$Type,
+    #                "$Clause|" => [$args{ok_values}[0], $args{nok_values}[0]]],
+    #     valid  => 1,
+    # };
+    # push @res, {
+    #     name  => "$Clause|: (4)",
+    #     input => $args{input},
+    #     schema => [$Type,
+    #                "$Clause|" => [$args{nok_values}[0], $args{nok_values}[1]]],
+    #     valid  => 0,
+    # };
+
+    # XXX {min,max}_{ok,nok}
+
+    @res;
+}
+
+sub gen_multi_clause_tests {
+}
+
+sub gen_Comparable_tests {
+    my %args = @_;
+    my @res;
+
+    my $v  = $args{values}[0];
+    my $v2 = $args{values}[1];
+
+    # is
+    push @res, {
+        name   => "is: must accept same value",
+        schema => [$Type, is=>$v],
+        input  => $v,
+        valid  => 1,
+    };
+    push @res, {
+        name   => "is: must reject different value",
+        schema => [$Type, is=>$v2],
+        input  => $v,
+        valid  => 0,
+    };
+    local $Clause = "is";
+    push @res, gen_multi_cval_tests(
+        input      => $v,
+        ok_values  => [$v],
+        nok_values => [$v2],
+    );
+
+    # in
+    push @res, {
+        name   => "in: must accept valid choices",
+        schema => [$Type, in=>$args{values}],
+        input  => $v,
+        valid  => 1,
+    };
+    push @res, {
+        name   => "in: must reject empty choices",
+        schema => [$Type, in=>[]],
+        input  => $v,
+        valid  => 0,
+    };
+    local $Clause = "in";
+    push @res, gen_multi_cval_tests(
+        input      => $v,
+        ok_values  => [$args{values}, $args{values}],
+        nok_values => [[], []],
+    );
+
+    @res;
+}
+
+sub gen_Sortable_tests {
+    my %args = @_;
+    my @res;
+
+    my ($v1, $v2, $v3) = @{ $args{values} };
+
+    push @res, (
+
+        {
+            name   => "min: "._l($v2)." "._l($v1),
+            input  => $v2,
+            schema => [$Type, min => $v1],
+            valid  => 1,
+        },
+        {
+            name   => "min: "._l($v2)." "._l($v2),
+            input  => $v2,
+            schema => [$Type, min => $v2],
+            valid  => 1,
+        },
+        {
+            name   => "min: "._l($v2)." "._l($v3).' -> fail',
+            input  => $v2,
+            schema => [$Type, min => $v3],
+            valid  => 0,
+        },
+
+        {
+            name   => "xmin: "._l($v2)." "._l($v1),
+            input  => $v2,
+            schema => [$Type, xmin => $v1],
+            valid  => 1,
+        },
+        {
+            name   => "xmin: "._l($v2)." "._l($v2).' -> fail',
+            input  => $v2,
+            schema => [$Type, xmin => $v2],
+            valid  => 0,
+        },
+        {
+            name   => "xmin: "._l($v2)." "._l($v3).' -> fail',
+            input  => $v2,
+            schema => [$Type, xmin => $v3],
+            valid  => 0,
+        },
+
+        {
+            name   => "max: "._l($v2)." "._l($v1).' -> fail',
+            input  => $v2,
+            schema => [$Type, max => $v1],
+            valid  => 0,
+        },
+        {
+            name   => "max: "._l($v2)." "._l($v2),
+            input  => $v2,
+            schema => [$Type, max => $v2],
+            valid  => 1,
+        },
+        {
+            name   => "max: "._l($v2)." "._l($v3),
+            input  => $v2,
+            schema => [$Type, max => $v3],
+            valid  => 1,
+        },
+
+        {
+            name   => "xmax: "._l($v2)." "._l($v1).' -> fail',
+            input  => $v2,
+            schema => [$Type, xmax => $v3],
+            valid  => 1,
+        },
+        {
+            name   => "xmax: "._l($v2)." "._l($v2).' -> fail',
+            input  => $v2,
+            schema => [$Type, xmax => $v2],
+            valid  => 0,
+        },
+        {
+            name   => "xmax: "._l($v2)." "._l($v3),
+            input  => $v2,
+            schema => [$Type, xmax => $v3],
+            valid  => 1,
+        },
+
+        {
+            name   => "between: "._l($v2)." "._l($v1)." & "._l($v3),
+            input  => $v2,
+            schema => [$Type, between => [$v1, $v3]],
+            valid  => 1,
+        },
+        {
+            name   => "between: "._l($v2)." "._l($v1)." & "._l($v2),
+            input  => $v2,
+            schema => [$Type, between => [$v1, $v2]],
+            valid  => 1,
+        },
+        {
+            name   => "between: "._l($v2)." "._l($v2)." & "._l($v2),
+            input  => $v2,
+            schema => [$Type, between => [$v2, $v2]],
+            valid  => 1,
+        },
+        {
+            name   => "between: "._l($v3)." "._l($v1)." & "._l($v2).' -> fail',
+            input  => $v3,
+            schema => [$Type, between => [$v1, $v2]],
+            valid  => 0,
+        },
+
+        {
+            name   => "xbetween: "._l($v2)." "._l($v1)." & "._l($v3),
+            input  => $v2,
+            schema => [$Type, xbetween => [$v1, $v3]],
+            valid  => 1,
+        },
+        {
+            name   => "xbetween: "._l($v2)." "._l($v1)." & "._l($v2).' -> fail',
+            input  => $v2,
+            schema => [$Type, xbetween => [$v1, $v2]],
+            valid  => 0,
+        },
+        {
+            name   => "xbetween: "._l($v2)." "._l($v2)." & "._l($v2).' -> fail',
+            input  => $v2,
+            schema => [$Type, xbetween => [$v2, $v2]],
+            valid  => 0,
+        },
+        {
+            name   => "xbetween: "._l($v3)." "._l($v1)." & "._l($v2).' -> fail',
+            input  => $v3,
+            schema => [$Type, xbetween => [$v1, $v2]],
+            valid  => 0,
+        },
+
+    );
+
+    local $Clause = "between";
+    push @res, gen_multi_cval_tests(
+        input      => $v2,
+        ok_values  => [[$v1, $v2], [$v2, $v3]],
+        nok_values => [[$v1, $v1], [$v3, $v3]],
+    );
+
+    # XXX multi cval for xbetween
+
+    @res;
+}
+
+sub gen_HasElems_tests {
+}
+
+sub gen_int_tests {
+    my %args = @_;
+    my @res;
+
+    local $Type = "int";
+
+    (
+        gen_type_check_tests(
+            accept => [-1, 0, 1],
+            reject => [1.1, "a", [], {}], # XXX -Inf, NaN, Inf
+        ),
+        gen_BaseType_tests(
+            value => 2,
+            ok_defaults  => [1],
+            nok_defaults => [[]],
+        ),
+        gen_Comparable_tests(
+            ok_defaults  => [1],
+            nok_defaults => [[]],
+            values => [1, 2],
+        ),
+        gen_Sortable_tests(
+            values => [-3, 2, 4],
+        ),
+
+        {
+            name   => 'mod: (1)',
+            input  => 10,
+            schema => [int => mod => [3, 2]],
+            valid  => 0,
+        },
+        {
+            name   => 'mod: (2)',
+            input  => 11,
+            schema => [int => mod => [3, 2]],
+            valid  => 1,
+        },
+
+        {
+            name   => 'div_by: (1)',
+            input  => 7,
+            schema => [int => div_by => 3],
+            valid  => 0,
+        },
+        {
+            name   => 'div_by: (2)',
+            input  => 6,
+            schema => [int => div_by => 3],
+            valid  => 1,
+        },
+
+    );
+
+    # XXX multi_cval for mod
+    # XXX multi_cval for div_by
+    # XXX div_by 0
+}
+
+sub gen_float_tests {
+}
+
+{
+    my $now = localtime();
+    local $YAML::Syck::Headless = 1;
+    local $YAML::Syck::ImplicitTyping = 1;
+    for my $type (qw(int)) {
+        my $f = "gen_${type}_tests";
+        no strict 'refs';
+        write_file(
+            "$Bin/10-type-$type.yaml",
+            join(
+                "",
+                "# Generated by $0 v$VERSION on $now\n\n",
+                Dump({tests => [$f->()]}),
+            )
+        );
+    }
+}
