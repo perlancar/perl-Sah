@@ -1,6 +1,6 @@
 Revision history for Sah
 
-0.9.12   2012-10-16 (SHARYANTO) (not yet released)
+0.9.12   2012-10-18 (SHARYANTO)
 
          [ENHANCEMENTS]
 
@@ -8,6 +8,8 @@ Revision history for Sah
            options.
 
          - float: Add clauses 'is_pos_inf' and 'is_neg_inf'.
+
+         - Add type spectest. Preliminary version, now only available for 'int'.
 
 
 0.9.11   2012-10-16 (SHARYANTO)
