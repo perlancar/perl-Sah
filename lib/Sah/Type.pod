@@ -87,6 +87,16 @@ Notice the matching of C<consonant>'s C<base_v> against C<vocal>'s C<schema_v>.
 C<consonant> might also add its own C<< "schema_v":2 >> so other schemas
 depending on it are forced to adjust, if needed.
 
+=head3 c : ANY
+
+Priority: 0 (checked first before anything else).
+
+Category: metadata
+
+Used to store compiler-specific options in its attributes. Example:
+
+ "c.perl.use_defined_or": 0
+
 =head3 default : ANY
 
 Attributes specific to this clause: C<temp> (bool, default 0, if set to true
