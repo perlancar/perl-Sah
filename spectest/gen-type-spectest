@@ -148,6 +148,7 @@ sub gen_multi_cval_tests {
         schema => [$Type,
                    "$Clause&" => [$args{nok_values}[0], $args{ok_values}[0]]],
         valid  => 0,
+        errors => 1,
     };
     push @res, {
         name  => "$Clause&: (3)",
@@ -155,6 +156,7 @@ sub gen_multi_cval_tests {
         schema => [$Type,
                    "$Clause&" => [$args{ok_values}[0], $args{nok_values}[0]]],
         valid  => 0,
+        errors => 1,
     };
     push @res, {
         name  => "$Clause&: (4)",
@@ -162,6 +164,7 @@ sub gen_multi_cval_tests {
         schema => [$Type,
                    "$Clause&" => [$args{nok_values}[0], $args{nok_values}[1]]],
         valid  => 0,
+        errors => 2,
     };
 
     # push @res, {
@@ -196,6 +199,7 @@ sub gen_multi_cval_tests {
     #     schema => [$Type,
     #                "$Clause|" => [$args{nok_values}[0], $args{nok_values}[1]]],
     #     valid  => 0,
+    #     errors => 2,
     # };
 
     # XXX {min,max}_{ok,nok}
