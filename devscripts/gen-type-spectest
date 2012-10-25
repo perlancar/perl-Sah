@@ -399,6 +399,8 @@ sub gen_Sortable_tests {
     my %args = @_;
     my @res;
 
+    die "BUG: Please supply 3 values" unless @{ $args{values} } == 3;
+
     my ($v1, $v2, $v3) = @{ $args{values} };
 
     push @res, (
@@ -544,6 +546,78 @@ sub gen_Sortable_tests {
 }
 
 sub gen_HasElems_tests {
+    my %args = @_;
+    my @res;
+
+    die "BUG: Please supply two values" unless @{$args{values}} == 2;
+
+    my $v1 = $args{values}[0][0];
+    my $l1 = $args{values}[0][1];
+    my $v2 = $args{values}[1][0];
+    my $l2 = $args{values}[1][1];
+
+    die "BUG: First value's length must be less than second value's"
+        unless $l1 < $l2;
+
+    push @res, (
+        {
+            name   => "len (ok)",
+            input  => $v1,
+            schema => [$Type, len => $l1],
+            valid  => 1,
+        },
+        {
+            name   => "len (nok)",
+            input  => $v1,
+            schema => [$Type, len => $l2],
+            valid  => 0,
+        },
+        {
+            name   => "min_len (ok)",
+            input  => $v1,
+            schema => [$Type, min_len => $l1],
+            valid  => 1,
+        },
+        {
+            name   => "min_len (nok)",
+            input  => $v1,
+            schema => [$Type, min_len => $l2],
+            valid  => 0,
+        },
+        {
+            name   => "max_len (ok)",
+            input  => $v1,
+            schema => [$Type, min_len => $l1],
+            valid  => 1,
+        },
+        {
+            name   => "max_len (nok)",
+            input  => $v2,
+            schema => [$Type, max_len => $l1],
+            valid  => 0,
+        },
+        {
+            name   => "len_between (ok)",
+            input  => $v1,
+            schema => [$Type, len_between => [$l1, $l2]],
+            valid  => 1,
+        },
+        {
+            name   => "len_between (nok)",
+            input  => $v2,
+            schema => [$Type, len_between => [$l1, $l1]],
+            valid  => 0,
+        },
+        # XXX has
+        # XXX each_index
+        # XXX each_elem
+        # XXX check_each_index
+        # XXX check_each_elem
+        # XXX uniq
+        # XXX exists
+    );
+
+    @res;
 }
 
 sub gen_int_tests {
@@ -641,11 +715,49 @@ sub gen_float_tests {
     );
 }
 
+sub gen_array_tests {
+    my %args = @_;
+    my @res;
+
+    local $Type = "array";
+
+    (
+        gen_type_check_tests(
+            accept => [[], [1, "a"], [[]]],
+            reject => [1, "a", {}],
+        ),
+        gen_BaseType_tests(
+            value => [],
+            ok_defaults  => [[]],
+            nok_defaults => ["a"],
+        ),
+        gen_err_level_tests(
+            clause    => 'is',
+            cval      => [],
+            ok_value  => [],
+            nok_value => [0],
+        ),
+        gen_Comparable_tests(
+            values => [[1], [2]],
+        ),
+
+        # currently we don't do array sortable in perl
+        #gen_Sortable_tests(
+        #    values => [[-1], [2], [2, 1]],
+        #),
+
+        gen_HasElems_tests(
+            # two values, each value is [INPUT_VAL, INPUT_LEN]
+            values => [ [["a"], 1], [["b", "c"], 2] ],
+        ),
+    );
+}
+
 {
     my $now = localtime();
     local $YAML::Syck::Headless = 1;
     local $YAML::Syck::ImplicitTyping = 1;
-    for my $type (qw(int float)) {
+    for my $type (qw(int float array)) {
         my $f = "gen_${type}_tests";
         no strict 'refs';
         write_file(
