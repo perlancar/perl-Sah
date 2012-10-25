@@ -339,6 +339,7 @@ sub gen_err_level_tests {
             schema => ["$Type*", $args{clause} => $args{cval},
                        "$args{clause}.err_level"=>"warn"],
             valid  => 1,
+            warnings => 1,
         },
     );
     # XXX .err_level=fatal (needs two clauses)
