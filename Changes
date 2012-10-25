@@ -1,5 +1,11 @@
 Revision history for Sah
 
+0.9.13   2012-10-25 (SHARYANTO)
+
+         No spec changes. Improve spectest: reenable "clause|" tests, add
+         {min,max}_{ok,nok} and .err_level=warn tests.
+
+
 0.9.12   2012-10-18 (SHARYANTO)
 
          [ENHANCEMENTS]
