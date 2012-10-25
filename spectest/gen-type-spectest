@@ -609,13 +609,43 @@ sub gen_int_tests {
 }
 
 sub gen_float_tests {
+    my %args = @_;
+    my @res;
+
+    local $Type = "float";
+
+    (
+        gen_type_check_tests(
+            accept => [-1.1, -1, 0, 1, 1.1], # XXX -Inf, NaN, Inf
+            reject => ["a", [], {}],
+        ),
+        gen_BaseType_tests(
+            value => 1.1,
+            ok_defaults  => [1.1],
+            nok_defaults => [[]],
+        ),
+        gen_err_level_tests(
+            clause    => 'min',
+            cval      => 0,
+            ok_value  =>  0.1,
+            nok_value => -0.1,
+        ),
+        gen_Comparable_tests(
+            values => [1.1, 1.2],
+        ),
+        gen_Sortable_tests(
+            values => [-3.1, 2.1, 4.1],
+        ),
+
+        # is_{nan,inf,pos_inf,neg_inf} is currently tested in perl compiler
+    );
 }
 
 {
     my $now = localtime();
     local $YAML::Syck::Headless = 1;
     local $YAML::Syck::ImplicitTyping = 1;
-    for my $type (qw(int)) {
+    for my $type (qw(int float)) {
         my $f = "gen_${type}_tests";
         no strict 'refs';
         write_file(
