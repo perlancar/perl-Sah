@@ -384,6 +384,15 @@ Examples:
  // if string is a palindrome, then require it to have length > 5
  "if": [{"check": "is_palindrome($_)"}, ["len", ["int", "xmin": 5]]]
 
+Note that you have to write schema in array form instead of string form, to
+avoid ambiguity with expression:
+
+ // parsed as expression, wrong!
+ "if": ["int", true]
+
+ // correct
+ "if": [["int"], true]
+
 =head3 postfilters : [EXPR, ...]
 
 Priority: 90 (very low). Run after all other clauses.
