@@ -167,40 +167,40 @@ sub gen_multi_cval_tests {
         errors => 2,
     };
 
-    # push @res, {
-    #     name  => "$Clause|: (0)",
-    #     input => $args{input},
-    #     schema => [$Type, "$Clause|" => []],
-    #     valid  => 1,
-    # };
-    # push @res, {
-    #     name  => "$Clause|: (1)",
-    #     input => $args{input},
-    #     schema => [$Type, "$Clause|" => $args{ok_values}],
-    #     valid  => 1,
-    # };
-    # push @res, {
-    #     name  => "$Clause|: (2)",
-    #     input => $args{input},
-    #     schema => [$Type,
-    #                "$Clause|" => [$args{nok_values}[0], $args{ok_values}[0]]],
-    #     valid  => 1,
-    # };
-    # push @res, {
-    #     name  => "$Clause|: (3)",
-    #     input => $args{input},
-    #     schema => [$Type,
-    #                "$Clause|" => [$args{ok_values}[0], $args{nok_values}[0]]],
-    #     valid  => 1,
-    # };
-    # push @res, {
-    #     name  => "$Clause|: (4)",
-    #     input => $args{input},
-    #     schema => [$Type,
-    #                "$Clause|" => [$args{nok_values}[0], $args{nok_values}[1]]],
-    #     valid  => 0,
-    #     errors => 2,
-    # };
+    push @res, {
+        name  => "$Clause|: (0)",
+        input => $args{input},
+        schema => [$Type, "$Clause|" => []],
+        valid  => 1,
+    };
+    push @res, {
+        name  => "$Clause|: (1)",
+        input => $args{input},
+        schema => [$Type, "$Clause|" => $args{ok_values}],
+        valid  => 1,
+    };
+    push @res, {
+        name  => "$Clause|: (2)",
+        input => $args{input},
+        schema => [$Type,
+                   "$Clause|" => [$args{nok_values}[0], $args{ok_values}[0]]],
+        valid  => 1,
+    };
+    push @res, {
+        name  => "$Clause|: (3)",
+        input => $args{input},
+        schema => [$Type,
+                   "$Clause|" => [$args{ok_values}[0], $args{nok_values}[0]]],
+        valid  => 1,
+    };
+    push @res, {
+        name  => "$Clause|: (4)",
+        input => $args{input},
+        schema => [$Type,
+                   "$Clause|" => [$args{nok_values}[0], $args{nok_values}[1]]],
+        valid  => 0,
+        errors => 1,
+    };
 
     # XXX {min,max}_{ok,nok}
 
