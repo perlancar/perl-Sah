@@ -116,6 +116,11 @@ sub gen_multi_cval_tests {
     my %args = @_;
     my @res;
 
+    die "BUG: Need at least 2 values for ok_values"
+        unless @{$args{ok_values}}>1;
+    die "BUG: Need at least 2 values for nok_values"
+        unless @{$args{nok_values}}>1;
+
     push @res, {
         name  => "!$Clause: (1)",
         input => $args{input},
@@ -331,8 +336,8 @@ sub gen_Comparable_tests {
     local $Clause = "is";
     push @res, gen_multi_cval_tests(
         input      => $v,
-        ok_values  => [$v],
-        nok_values => [$v2],
+        ok_values  => [$v, $v],
+        nok_values => [$v2, $v2],
     );
 
     # in
