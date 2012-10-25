@@ -361,8 +361,6 @@ C<ELSE> result.
 
 Category: constraint.
 
-Attributes specific to this clause: C<cond_input>.
-
 A generic condition clause. C<COND>, C<THEN>, and C<ELSE> are either boolean
 values, expressions (if they are string) or a clause set (if they are hash) or a
 schema (if they are array). C<COND> is evaluated, if the result is true then
