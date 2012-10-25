@@ -520,13 +520,18 @@ Examples:
  // requires that array has elements 'x', 'y', and 'z'
  ["array", {"has&": ["x", "y", "z"]}]
 
- // requires that array does not have element 'x'
- ["array", {"!has": "x"}]
+ // requires that string does not have character 'x'
+ ["str", {"!has": "x"}]
 
 =head3 uniq : BOOL
 
-If set to 1, require that the array values be unique (like in a set). If set to
-0, require that there are duplicates in the array.
+If set to 1, require that the element values be unique (like in a set). If set
+to 0, require that there are duplicates in the elements. For example, given this
+schema:
+
+ ["array", "uniq", true]
+
+this data passes: C<< [1, 2, 3] >> but this one does not: C<< [1, 2, 1] >>.
 
 =head3 each_elem : SCHEMA
 
