@@ -1,16 +1,27 @@
 Revision history for Sah
 
+0.9.15   2012-10-25 (SHARYANTO)
+
+         No spec changes.
+
+         - spectest: Add tests for type 'array' (incomplete).
+
+
 0.9.14   2012-10-25 (SHARYANTO)
 
-         - Add spectest for type 'float'.
+         No spec changes.
+
+         - spectest: Add tests for type 'float'.
 
          - build: Move spectest to share/ so it gets installed.
 
 
 0.9.13   2012-10-25 (SHARYANTO)
 
-         No spec changes. Improve spectest: reenable "clause|" tests, add
-         {min,max}_{ok,nok} and .err_level=warn tests.
+         No spec changes.
+
+         - spectest: reenable "clause|" tests, add {min,max}_{ok,nok}
+           and .err_level=warn tests.
 
 
 0.9.12   2012-10-18 (SHARYANTO)
