@@ -2,57 +2,47 @@
 
 tests: 
   - 
-    input: '-1.1'
-    name: "type check: must accept -1.1"
-    schema: float
-    valid: 1
-  - 
-    input: -1
-    name: "type check: must accept -1"
-    schema: float
-    valid: 1
-  - 
     input: 0
     name: "type check: must accept 0"
-    schema: float
-    valid: 1
-  - 
-    input: 1
-    name: "type check: must accept 1"
-    schema: float
+    schema: str
     valid: 1
   - 
     input: '1.1'
     name: "type check: must accept 1.1"
-    schema: float
+    schema: str
     valid: 1
   - 
-    input: a
-    name: "type check: must reject a"
-    schema: float
-    valid: 0
+    input: ''
+    name: "type check: must accept "
+    schema: str
+    valid: 1
+  - 
+    input: "str\n"
+    name: "type check: must accept str\n"
+    schema: str
+    valid: 1
   - 
     input: []
 
     name: "type check: must reject []"
-    schema: float
+    schema: str
     valid: 0
   - 
     input: {}
 
     name: "type check: must reject {}"
-    schema: float
+    schema: str
     valid: 0
   - 
     input: ~
     name: must accept undefined value
-    schema: float
+    schema: str
     valid: 1
   - 
     input: ~
     name: req=0 must accept undefined value
     schema: 
-      - float
+      - str
       - req
       - 0
     valid: 1
@@ -60,443 +50,443 @@ tests:
     input: ~
     name: req=1 must reject undefined value
     schema: 
-      - float
+      - str
       - req
       - 1
     valid: 0
   - 
-    input: '1.1'
+    input: a
     name: forbidden=0 must accept defined value
     schema: 
-      - float
+      - str
       - forbidden
       - 0
     valid: 1
   - 
-    input: '1.1'
+    input: a
     name: forbidden=1 must reject defined value
     schema: 
-      - float
+      - str
       - forbidden
       - 1
     valid: 0
   - 
     input: ~
-    name: "default: must accept valid default 1.1"
+    name: "default: must accept valid default a"
     schema: 
-      - float*
+      - str*
       - default
-      - '1.1'
+      - a
     valid: 1
   - 
     input: ~
     name: "default: must reject invalid default []"
     schema: 
-      - float*
+      - str*
       - default
       - []
 
     valid: 0
   - 
-    input: '0.1'
-    name: .err_level=error (clause=min, ok)
+    input: a
+    name: .err_level=error (clause=is, ok)
     schema: 
-      - float
-      - min
-      - 0
+      - str
+      - is
+      - a
     valid: 1
   - 
-    input: '-0.1'
-    name: .err_level=error (clause=min, nok)
+    input: "a\n"
+    name: .err_level=error (clause=is, nok)
     schema: 
-      - float
-      - min
-      - 0
+      - str
+      - is
+      - a
     valid: 0
   - 
-    input: '0.1'
-    name: .err_level=warn (clause=min, ok)
+    input: a
+    name: .err_level=warn (clause=is, ok)
     schema: 
-      - float
-      - min
-      - 0
-      - min.err_level
+      - str
+      - is
+      - a
+      - is.err_level
       - warn
     valid: 1
   - 
-    input: '-0.1'
-    name: .err_level=warn (clause=min, nok)
+    input: "a\n"
+    name: .err_level=warn (clause=is, nok)
     schema: 
-      - float*
-      - min
-      - 0
-      - min.err_level
+      - str*
+      - is
+      - a
+      - is.err_level
       - warn
     valid: 1
     warnings: 1
   - 
-    input: '1.1'
+    input: a
     name: "is: must accept same value"
     schema: 
-      - float
+      - str
       - is
-      - '1.1'
+      - a
     valid: 1
   - 
-    input: '1.1'
+    input: a
     name: "is: must reject different value"
     schema: 
-      - float
+      - str
       - is
-      - '1.2'
+      - b
     valid: 0
   - 
-    input: '1.1'
+    input: a
     name: "!is: (nok)"
     schema: 
-      - float
+      - str
       - "!is"
-      - '1.1'
+      - a
     valid: 0
   - 
-    input: '1.1'
+    input: a
     name: "!is: (ok)"
     schema: 
-      - float
+      - str
       - "!is"
-      - '1.2'
+      - b
     valid: 1
   - 
-    input: '1.1'
+    input: a
     name: "is&: (no items)"
     schema: 
-      - float
+      - str
       - is&
       - []
 
     valid: 1
   - 
-    input: '1.1'
+    input: a
     name: "is&: (ok)"
     schema: 
-      - float
+      - str
       - is&
       - &1 
-        - '1.1'
-        - '1.1'
+        - a
+        - a
     valid: 1
   - 
     errors: 1
-    input: '1.1'
+    input: a
     name: "is&: (nok + ok)"
     schema: 
-      - float
+      - str
       - is&
       - 
-        - '1.2'
-        - '1.1'
+        - b
+        - a
     valid: 0
   - 
     errors: 1
-    input: '1.1'
+    input: a
     name: "is&: (ok + nok)"
     schema: 
-      - float
+      - str
       - is&
       - 
-        - '1.1'
-        - '1.2'
+        - a
+        - b
     valid: 0
   - 
     errors: 2
-    input: '1.1'
+    input: a
     name: "is&: (nok + nok)"
     schema: 
-      - float
+      - str
       - is&
       - 
-        - '1.2'
-        - '1.2'
+        - b
+        - b
     valid: 0
   - 
-    input: '1.1'
+    input: a
     name: "is|: (no items)"
     schema: 
-      - float
+      - str
       - is|
       - []
 
     valid: 1
   - 
-    input: '1.1'
+    input: a
     name: "is|: (ok)"
     schema: 
-      - float
+      - str
       - is|
       - *1
     valid: 1
   - 
-    input: '1.1'
+    input: a
     name: "is|: (nok + ok)"
     schema: 
-      - float
+      - str
       - is|
       - 
-        - '1.2'
-        - '1.1'
+        - b
+        - a
     valid: 1
   - 
-    input: '1.1'
+    input: a
     name: "is|: (ok + nok)"
     schema: 
-      - float
+      - str
       - is|
       - 
-        - '1.1'
-        - '1.2'
+        - a
+        - b
     valid: 1
   - 
     errors: 1
-    input: '1.1'
+    input: a
     name: "is|: (nok + nok)"
     schema: 
-      - float
+      - str
       - is|
       - 
-        - '1.2'
-        - '1.2'
+        - b
+        - b
     valid: 0
   - 
-    input: '1.1'
+    input: a
     name: is.min_ok (nok + nok)
     schema: 
-      - float
+      - str
       - is
       - 
-        - '1.2'
-        - '1.2'
+        - b
+        - b
       - is.is_multi
       - 1
       - is.min_ok
       - 1
     valid: 0
   - 
-    input: '1.1'
+    input: a
     name: is.min_ok (ok + nok)
     schema: 
-      - float
+      - str
       - is
       - 
-        - '1.1'
-        - '1.2'
+        - a
+        - b
       - is.is_multi
       - 1
       - is.max_ok
       - 1
     valid: 1
   - 
-    input: '1.1'
+    input: a
     name: is.min_ok (ok + ok)
     schema: 
-      - float
+      - str
       - is
       - 
-        - '1.1'
-        - '1.1'
+        - a
+        - a
       - is.is_multi
       - 1
       - is.min_ok
       - 1
     valid: 1
   - 
-    input: '1.1'
+    input: a
     name: is.max_ok (nok + nok)
     schema: 
-      - float
+      - str
       - is
       - 
-        - '1.2'
-        - '1.2'
+        - b
+        - b
       - is.is_multi
       - 1
       - is.max_ok
       - 1
     valid: 1
   - 
-    input: '1.1'
+    input: a
     name: is.max_ok (ok + nok)
     schema: 
-      - float
+      - str
       - is
       - 
-        - '1.1'
-        - '1.2'
+        - a
+        - b
       - is.is_multi
       - 1
       - is.max_ok
       - 1
     valid: 1
   - 
-    input: '1.1'
+    input: a
     name: is.max_ok (ok + ok)
     schema: 
-      - float
+      - str
       - is
       - 
-        - '1.1'
-        - '1.1'
+        - a
+        - a
       - is.is_multi
       - 1
       - is.max_ok
       - 1
     valid: 0
   - 
-    input: '1.1'
+    input: a
     name: is.min_nok (nok + nok)
     schema: 
-      - float
+      - str
       - is
       - 
-        - '1.2'
-        - '1.2'
+        - b
+        - b
       - is.is_multi
       - 1
       - is.min_nok
       - 1
     valid: 1
   - 
-    input: '1.1'
+    input: a
     name: is.min_nok (ok + nok)
     schema: 
-      - float
+      - str
       - is
       - 
-        - '1.1'
-        - '1.2'
+        - a
+        - b
       - is.is_multi
       - 1
       - is.min_nok
       - 1
     valid: 1
   - 
-    input: '1.1'
+    input: a
     name: is.min_nok (ok + ok)
     schema: 
-      - float
+      - str
       - is
       - 
-        - '1.1'
-        - '1.1'
+        - a
+        - a
       - is.is_multi
       - 1
       - is.min_nok
       - 1
     valid: 0
   - 
-    input: '1.1'
+    input: a
     name: is.max_nok (nok + nok)
     schema: 
-      - float
+      - str
       - is
       - 
-        - '1.2'
-        - '1.2'
+        - b
+        - b
       - is.is_multi
       - 1
       - is.max_nok
       - 1
     valid: 0
   - 
-    input: '1.1'
+    input: a
     name: is.max_nok (ok + nok)
     schema: 
-      - float
+      - str
       - is
       - 
-        - '1.1'
-        - '1.2'
+        - a
+        - b
       - is.is_multi
       - 1
       - is.max_nok
       - 1
     valid: 1
   - 
-    input: '1.1'
+    input: a
     name: is.max_nok (ok + ok)
     schema: 
-      - float
+      - str
       - is
       - 
-        - '1.1'
-        - '1.1'
+        - a
+        - a
       - is.is_multi
       - 1
       - is.max_nok
       - 1
     valid: 1
   - 
-    input: '1.1'
+    input: a
     name: "in: must accept valid choices"
     schema: 
-      - float
+      - str
       - in
       - &2 
-        - '1.1'
-        - '1.2'
+        - a
+        - b
     valid: 1
   - 
-    input: '1.1'
+    input: a
     name: "in: must reject empty choices"
     schema: 
-      - float
+      - str
       - in
       - []
 
     valid: 0
   - 
-    input: '1.1'
+    input: a
     name: "!in: (nok)"
     schema: 
-      - float
+      - str
       - "!in"
       - *2
     valid: 0
   - 
-    input: '1.1'
+    input: a
     name: "!in: (ok)"
     schema: 
-      - float
+      - str
       - "!in"
       - &3 []
 
     valid: 1
   - 
-    input: '1.1'
+    input: a
     name: "in&: (no items)"
     schema: 
-      - float
+      - str
       - in&
       - []
 
     valid: 1
   - 
-    input: '1.1'
+    input: a
     name: "in&: (ok)"
     schema: 
-      - float
+      - str
       - in&
       - &4 
         - *2
         - &6 
-          - '1.1'
-          - '1.2'
+          - a
+          - b
     valid: 1
   - 
     errors: 1
-    input: '1.1'
+    input: a
     name: "in&: (nok + ok)"
     schema: 
-      - float
+      - str
       - in&
       - 
         - *3
@@ -504,10 +494,10 @@ tests:
     valid: 0
   - 
     errors: 1
-    input: '1.1'
+    input: a
     name: "in&: (ok + nok)"
     schema: 
-      - float
+      - str
       - in&
       - 
         - *2
@@ -515,10 +505,10 @@ tests:
     valid: 0
   - 
     errors: 2
-    input: '1.1'
+    input: a
     name: "in&: (nok + nok)"
     schema: 
-      - float
+      - str
       - in&
       - 
         - *3
@@ -526,37 +516,37 @@ tests:
 
     valid: 0
   - 
-    input: '1.1'
+    input: a
     name: "in|: (no items)"
     schema: 
-      - float
+      - str
       - in|
       - []
 
     valid: 1
   - 
-    input: '1.1'
+    input: a
     name: "in|: (ok)"
     schema: 
-      - float
+      - str
       - in|
       - *4
     valid: 1
   - 
-    input: '1.1'
+    input: a
     name: "in|: (nok + ok)"
     schema: 
-      - float
+      - str
       - in|
       - 
         - *3
         - *2
     valid: 1
   - 
-    input: '1.1'
+    input: a
     name: "in|: (ok + nok)"
     schema: 
-      - float
+      - str
       - in|
       - 
         - *2
@@ -564,20 +554,20 @@ tests:
     valid: 1
   - 
     errors: 1
-    input: '1.1'
+    input: a
     name: "in|: (nok + nok)"
     schema: 
-      - float
+      - str
       - in|
       - 
         - *3
         - *5
     valid: 0
   - 
-    input: '1.1'
+    input: a
     name: in.min_ok (nok + nok)
     schema: 
-      - float
+      - str
       - in
       - 
         - *3
@@ -588,10 +578,10 @@ tests:
       - 1
     valid: 0
   - 
-    input: '1.1'
+    input: a
     name: in.min_ok (ok + nok)
     schema: 
-      - float
+      - str
       - in
       - 
         - *2
@@ -602,10 +592,10 @@ tests:
       - 1
     valid: 1
   - 
-    input: '1.1'
+    input: a
     name: in.min_ok (ok + ok)
     schema: 
-      - float
+      - str
       - in
       - 
         - *2
@@ -616,10 +606,10 @@ tests:
       - 1
     valid: 1
   - 
-    input: '1.1'
+    input: a
     name: in.max_ok (nok + nok)
     schema: 
-      - float
+      - str
       - in
       - 
         - *3
@@ -630,10 +620,10 @@ tests:
       - 1
     valid: 1
   - 
-    input: '1.1'
+    input: a
     name: in.max_ok (ok + nok)
     schema: 
-      - float
+      - str
       - in
       - 
         - *2
@@ -644,10 +634,10 @@ tests:
       - 1
     valid: 1
   - 
-    input: '1.1'
+    input: a
     name: in.max_ok (ok + ok)
     schema: 
-      - float
+      - str
       - in
       - 
         - *2
@@ -658,10 +648,10 @@ tests:
       - 1
     valid: 0
   - 
-    input: '1.1'
+    input: a
     name: in.min_nok (nok + nok)
     schema: 
-      - float
+      - str
       - in
       - 
         - *3
@@ -672,10 +662,10 @@ tests:
       - 1
     valid: 1
   - 
-    input: '1.1'
+    input: a
     name: in.min_nok (ok + nok)
     schema: 
-      - float
+      - str
       - in
       - 
         - *2
@@ -686,10 +676,10 @@ tests:
       - 1
     valid: 1
   - 
-    input: '1.1'
+    input: a
     name: in.min_nok (ok + ok)
     schema: 
-      - float
+      - str
       - in
       - 
         - *2
@@ -700,10 +690,10 @@ tests:
       - 1
     valid: 0
   - 
-    input: '1.1'
+    input: a
     name: in.max_nok (nok + nok)
     schema: 
-      - float
+      - str
       - in
       - 
         - *3
@@ -714,10 +704,10 @@ tests:
       - 1
     valid: 0
   - 
-    input: '1.1'
+    input: a
     name: in.max_nok (ok + nok)
     schema: 
-      - float
+      - str
       - in
       - 
         - *2
@@ -728,10 +718,10 @@ tests:
       - 1
     valid: 1
   - 
-    input: '1.1'
+    input: a
     name: in.max_nok (ok + ok)
     schema: 
-      - float
+      - str
       - in
       - 
         - *2
@@ -742,228 +732,228 @@ tests:
       - 1
     valid: 1
   - 
-    input: '2.1'
-    name: "min: 2.1 -3.1"
+    input: a
+    name: "min: a "
     schema: 
-      - float
+      - str
       - min
-      - '-3.1'
+      - ''
     valid: 1
   - 
-    input: '2.1'
-    name: "min: 2.1 2.1"
+    input: a
+    name: "min: a a"
     schema: 
-      - float
+      - str
       - min
-      - '2.1'
+      - a
     valid: 1
   - 
-    input: '2.1'
-    name: "min: 2.1 4.1 -> fail"
+    input: a
+    name: "min: a ab -> fail"
     schema: 
-      - float
+      - str
       - min
-      - '4.1'
+      - ab
     valid: 0
   - 
-    input: '2.1'
-    name: "xmin: 2.1 -3.1"
+    input: a
+    name: "xmin: a "
     schema: 
-      - float
+      - str
       - xmin
-      - '-3.1'
+      - ''
     valid: 1
   - 
-    input: '2.1'
-    name: "xmin: 2.1 2.1 -> fail"
+    input: a
+    name: "xmin: a a -> fail"
     schema: 
-      - float
+      - str
       - xmin
-      - '2.1'
+      - a
     valid: 0
   - 
-    input: '2.1'
-    name: "xmin: 2.1 4.1 -> fail"
+    input: a
+    name: "xmin: a ab -> fail"
     schema: 
-      - float
+      - str
       - xmin
-      - '4.1'
+      - ab
     valid: 0
   - 
-    input: '2.1'
-    name: "max: 2.1 -3.1 -> fail"
+    input: a
+    name: "max: a  -> fail"
     schema: 
-      - float
+      - str
       - max
-      - '-3.1'
+      - ''
     valid: 0
   - 
-    input: '2.1'
-    name: "max: 2.1 2.1"
+    input: a
+    name: "max: a a"
     schema: 
-      - float
+      - str
       - max
-      - '2.1'
+      - a
     valid: 1
   - 
-    input: '2.1'
-    name: "max: 2.1 4.1"
+    input: a
+    name: "max: a ab"
     schema: 
-      - float
+      - str
       - max
-      - '4.1'
+      - ab
     valid: 1
   - 
-    input: '2.1'
-    name: "xmax: 2.1 -3.1 -> fail"
+    input: a
+    name: "xmax: a  -> fail"
     schema: 
-      - float
+      - str
       - xmax
-      - '4.1'
+      - ab
     valid: 1
   - 
-    input: '2.1'
-    name: "xmax: 2.1 2.1 -> fail"
+    input: a
+    name: "xmax: a a -> fail"
     schema: 
-      - float
+      - str
       - xmax
-      - '2.1'
+      - a
     valid: 0
   - 
-    input: '2.1'
-    name: "xmax: 2.1 4.1"
+    input: a
+    name: "xmax: a ab"
     schema: 
-      - float
+      - str
       - xmax
-      - '4.1'
+      - ab
     valid: 1
   - 
-    input: '2.1'
-    name: "between: 2.1 -3.1 & 4.1"
+    input: a
+    name: "between: a  & ab"
     schema: 
-      - float
+      - str
       - between
       - 
-        - '-3.1'
-        - '4.1'
+        - ''
+        - ab
     valid: 1
   - 
-    input: '2.1'
-    name: "between: 2.1 -3.1 & 2.1"
+    input: a
+    name: "between: a  & a"
     schema: 
-      - float
+      - str
       - between
       - 
-        - '-3.1'
-        - '2.1'
+        - ''
+        - a
     valid: 1
   - 
-    input: '2.1'
-    name: "between: 2.1 2.1 & 2.1"
+    input: a
+    name: "between: a a & a"
     schema: 
-      - float
+      - str
       - between
       - 
-        - '2.1'
-        - '2.1'
+        - a
+        - a
     valid: 1
   - 
-    input: '4.1'
-    name: "between: 4.1 -3.1 & 2.1 -> fail"
+    input: ab
+    name: "between: ab  & a -> fail"
     schema: 
-      - float
+      - str
       - between
       - 
-        - '-3.1'
-        - '2.1'
+        - ''
+        - a
     valid: 0
   - 
-    input: '2.1'
-    name: "xbetween: 2.1 -3.1 & 4.1"
+    input: a
+    name: "xbetween: a  & ab"
     schema: 
-      - float
+      - str
       - xbetween
       - 
-        - '-3.1'
-        - '4.1'
+        - ''
+        - ab
     valid: 1
   - 
-    input: '2.1'
-    name: "xbetween: 2.1 -3.1 & 2.1 -> fail"
+    input: a
+    name: "xbetween: a  & a -> fail"
     schema: 
-      - float
+      - str
       - xbetween
       - 
-        - '-3.1'
-        - '2.1'
+        - ''
+        - a
     valid: 0
   - 
-    input: '2.1'
-    name: "xbetween: 2.1 2.1 & 2.1 -> fail"
+    input: a
+    name: "xbetween: a a & a -> fail"
     schema: 
-      - float
+      - str
       - xbetween
       - 
-        - '2.1'
-        - '2.1'
+        - a
+        - a
     valid: 0
   - 
-    input: '4.1'
-    name: "xbetween: 4.1 -3.1 & 2.1 -> fail"
+    input: ab
+    name: "xbetween: ab  & a -> fail"
     schema: 
-      - float
+      - str
       - xbetween
       - 
-        - '-3.1'
-        - '2.1'
+        - ''
+        - a
     valid: 0
   - 
-    input: '2.1'
+    input: a
     name: "!between: (nok)"
     schema: 
-      - float
+      - str
       - "!between"
       - &7 
-        - '-3.1'
-        - '2.1'
+        - ''
+        - a
     valid: 0
   - 
-    input: '2.1'
+    input: a
     name: "!between: (ok)"
     schema: 
-      - float
+      - str
       - "!between"
       - &8 
-        - '-3.1'
-        - '-3.1'
+        - ''
+        - ''
     valid: 1
   - 
-    input: '2.1'
+    input: a
     name: "between&: (no items)"
     schema: 
-      - float
+      - str
       - between&
       - []
 
     valid: 1
   - 
-    input: '2.1'
+    input: a
     name: "between&: (ok)"
     schema: 
-      - float
+      - str
       - between&
       - &9 
         - *7
         - &11 
-          - '2.1'
-          - '4.1'
+          - a
+          - ab
     valid: 1
   - 
     errors: 1
-    input: '2.1'
+    input: a
     name: "between&: (nok + ok)"
     schema: 
-      - float
+      - str
       - between&
       - 
         - *8
@@ -971,10 +961,10 @@ tests:
     valid: 0
   - 
     errors: 1
-    input: '2.1'
+    input: a
     name: "between&: (ok + nok)"
     schema: 
-      - float
+      - str
       - between&
       - 
         - *7
@@ -982,49 +972,49 @@ tests:
     valid: 0
   - 
     errors: 2
-    input: '2.1'
+    input: a
     name: "between&: (nok + nok)"
     schema: 
-      - float
+      - str
       - between&
       - 
         - *8
         - &10 
-          - '4.1'
-          - '4.1'
+          - ab
+          - ab
     valid: 0
   - 
-    input: '2.1'
+    input: a
     name: "between|: (no items)"
     schema: 
-      - float
+      - str
       - between|
       - []
 
     valid: 1
   - 
-    input: '2.1'
+    input: a
     name: "between|: (ok)"
     schema: 
-      - float
+      - str
       - between|
       - *9
     valid: 1
   - 
-    input: '2.1'
+    input: a
     name: "between|: (nok + ok)"
     schema: 
-      - float
+      - str
       - between|
       - 
         - *8
         - *7
     valid: 1
   - 
-    input: '2.1'
+    input: a
     name: "between|: (ok + nok)"
     schema: 
-      - float
+      - str
       - between|
       - 
         - *7
@@ -1032,20 +1022,20 @@ tests:
     valid: 1
   - 
     errors: 1
-    input: '2.1'
+    input: a
     name: "between|: (nok + nok)"
     schema: 
-      - float
+      - str
       - between|
       - 
         - *8
         - *10
     valid: 0
   - 
-    input: '2.1'
+    input: a
     name: between.min_ok (nok + nok)
     schema: 
-      - float
+      - str
       - between
       - 
         - *8
@@ -1056,10 +1046,10 @@ tests:
       - 1
     valid: 0
   - 
-    input: '2.1'
+    input: a
     name: between.min_ok (ok + nok)
     schema: 
-      - float
+      - str
       - between
       - 
         - *7
@@ -1070,10 +1060,10 @@ tests:
       - 1
     valid: 1
   - 
-    input: '2.1'
+    input: a
     name: between.min_ok (ok + ok)
     schema: 
-      - float
+      - str
       - between
       - 
         - *7
@@ -1084,10 +1074,10 @@ tests:
       - 1
     valid: 1
   - 
-    input: '2.1'
+    input: a
     name: between.max_ok (nok + nok)
     schema: 
-      - float
+      - str
       - between
       - 
         - *8
@@ -1098,10 +1088,10 @@ tests:
       - 1
     valid: 1
   - 
-    input: '2.1'
+    input: a
     name: between.max_ok (ok + nok)
     schema: 
-      - float
+      - str
       - between
       - 
         - *7
@@ -1112,10 +1102,10 @@ tests:
       - 1
     valid: 1
   - 
-    input: '2.1'
+    input: a
     name: between.max_ok (ok + ok)
     schema: 
-      - float
+      - str
       - between
       - 
         - *7
@@ -1126,10 +1116,10 @@ tests:
       - 1
     valid: 0
   - 
-    input: '2.1'
+    input: a
     name: between.min_nok (nok + nok)
     schema: 
-      - float
+      - str
       - between
       - 
         - *8
@@ -1140,10 +1130,10 @@ tests:
       - 1
     valid: 1
   - 
-    input: '2.1'
+    input: a
     name: between.min_nok (ok + nok)
     schema: 
-      - float
+      - str
       - between
       - 
         - *7
@@ -1154,10 +1144,10 @@ tests:
       - 1
     valid: 1
   - 
-    input: '2.1'
+    input: a
     name: between.min_nok (ok + ok)
     schema: 
-      - float
+      - str
       - between
       - 
         - *7
@@ -1168,10 +1158,10 @@ tests:
       - 1
     valid: 0
   - 
-    input: '2.1'
+    input: a
     name: between.max_nok (nok + nok)
     schema: 
-      - float
+      - str
       - between
       - 
         - *8
@@ -1182,10 +1172,10 @@ tests:
       - 1
     valid: 0
   - 
-    input: '2.1'
+    input: a
     name: between.max_nok (ok + nok)
     schema: 
-      - float
+      - str
       - between
       - 
         - *7
@@ -1196,10 +1186,10 @@ tests:
       - 1
     valid: 1
   - 
-    input: '2.1'
+    input: a
     name: between.max_nok (ok + ok)
     schema: 
-      - float
+      - str
       - between
       - 
         - *7
@@ -1209,3 +1199,109 @@ tests:
       - between.max_nok
       - 1
     valid: 1
+  - 
+    input: a
+    name: len (ok)
+    schema: 
+      - str
+      - len
+      - 1
+    valid: 1
+  - 
+    input: a
+    name: len (nok)
+    schema: 
+      - str
+      - len
+      - 3
+    valid: 0
+  - 
+    input: a
+    name: min_len (ok)
+    schema: 
+      - str
+      - min_len
+      - 1
+    valid: 1
+  - 
+    input: a
+    name: min_len (nok)
+    schema: 
+      - str
+      - min_len
+      - 3
+    valid: 0
+  - 
+    input: a
+    name: max_len (ok)
+    schema: 
+      - str
+      - min_len
+      - 1
+    valid: 1
+  - 
+    input: abc
+    name: max_len (nok)
+    schema: 
+      - str
+      - max_len
+      - 1
+    valid: 0
+  - 
+    input: a
+    name: len_between (ok)
+    schema: 
+      - str
+      - len_between
+      - 
+        - 1
+        - 3
+    valid: 1
+  - 
+    input: abc
+    name: len_between (nok)
+    schema: 
+      - str
+      - len_between
+      - 
+        - 1
+        - 1
+    valid: 0
+  - 
+    input: abc
+    name: each_index (ok)
+    schema: 
+      - str
+      - each_index
+      - 
+        - int
+        - max
+        - 2
+    valid: 1
+  - 
+    input: abc
+    name: each_index (nok)
+    schema: 
+      - str
+      - each_index
+      - 
+        - int
+        - xmax
+        - 2
+    valid: 0
+  - 
+    input: abc
+    name: each_elem (ok)
+    schema: 
+      - str
+      - each_elem
+      - str
+    valid: 1
+  - 
+    input: abc
+    name: each_elem (nok)
+    schema: 
+      - str
+      - each_elem
+      - float
+    valid: 0
