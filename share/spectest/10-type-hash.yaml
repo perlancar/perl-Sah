@@ -2,57 +2,50 @@
 
 tests: 
   - 
-    input: '-1.1'
-    name: "type check: must accept -1.1"
-    schema: float
+    input: {}
+
+    name: "type check: must accept {}"
+    schema: hash
     valid: 1
   - 
-    input: -1
-    name: "type check: must accept -1"
-    schema: float
+    input: 
+      a: 1
+    name: "type check: must accept a: 1"
+    schema: hash
     valid: 1
   - 
-    input: 0
-    name: "type check: must accept 0"
-    schema: float
+    input: 
+      "": []
+
+    name: "type check: must accept \"\": []"
+    schema: hash
     valid: 1
   - 
     input: 1
-    name: "type check: must accept 1"
-    schema: float
-    valid: 1
-  - 
-    input: '1.1'
-    name: "type check: must accept 1.1"
-    schema: float
-    valid: 1
+    name: "type check: must reject 1"
+    schema: hash
+    valid: 0
   - 
     input: a
     name: "type check: must reject a"
-    schema: float
+    schema: hash
     valid: 0
   - 
     input: []
 
     name: "type check: must reject []"
-    schema: float
-    valid: 0
-  - 
-    input: {}
-
-    name: "type check: must reject {}"
-    schema: float
+    schema: hash
     valid: 0
   - 
     input: ~
     name: must accept undefined value
-    schema: float
+    schema: hash
     valid: 1
   - 
     input: ~
     name: req=0 must accept undefined value
     schema: 
-      - float
+      - hash
       - req
       - 0
     valid: 1
@@ -60,860 +53,801 @@ tests:
     input: ~
     name: req=1 must reject undefined value
     schema: 
-      - float
+      - hash
       - req
       - 1
     valid: 0
   - 
-    input: '1.1'
+    input: &1 {}
+
     name: forbidden=0 must accept defined value
     schema: 
-      - float
+      - hash
       - forbidden
       - 0
     valid: 1
   - 
-    input: '1.1'
+    input: *1
     name: forbidden=1 must reject defined value
     schema: 
-      - float
+      - hash
       - forbidden
       - 1
     valid: 0
   - 
     input: ~
-    name: "default: must accept valid default 1.1"
+    name: "default: must accept valid default {}"
     schema: 
-      - float*
+      - hash*
       - default
-      - '1.1'
+      - {}
+
     valid: 1
   - 
     input: ~
-    name: "default: must reject invalid default []"
+    name: "default: must reject invalid default a"
     schema: 
-      - float*
+      - hash*
       - default
-      - []
-
+      - a
     valid: 0
   - 
-    input: '0.1'
-    name: .err_level=error (clause=min, ok)
+    input: &3 
+      a: 0
+    name: .err_level=error (clause=is, ok)
     schema: 
-      - float
-      - min
-      - 0
+      - hash
+      - is
+      - &2 
+        a: 0
     valid: 1
   - 
-    input: '-0.1'
-    name: .err_level=error (clause=min, nok)
+    input: &4 
+      a: 1
+    name: .err_level=error (clause=is, nok)
     schema: 
-      - float
-      - min
-      - 0
+      - hash
+      - is
+      - *2
     valid: 0
   - 
-    input: '0.1'
-    name: .err_level=warn (clause=min, ok)
+    input: *3
+    name: .err_level=warn (clause=is, ok)
     schema: 
-      - float
-      - min
-      - 0
-      - min.err_level
+      - hash
+      - is
+      - *2
+      - is.err_level
       - warn
     valid: 1
   - 
-    input: '-0.1'
-    name: .err_level=warn (clause=min, nok)
+    input: *4
+    name: .err_level=warn (clause=is, nok)
     schema: 
-      - float*
-      - min
-      - 0
-      - min.err_level
+      - hash*
+      - is
+      - *2
+      - is.err_level
       - warn
     valid: 1
     warnings: 1
   - 
-    input: '1.1'
+    input: &5 {}
+
     name: "is: must accept same value"
     schema: 
-      - float
+      - hash
       - is
-      - '1.1'
+      - *5
     valid: 1
   - 
-    input: '1.1'
+    input: *5
     name: "is: must reject different value"
     schema: 
-      - float
+      - hash
       - is
-      - '1.2'
+      - &6 
+        a: 1
     valid: 0
   - 
-    input: '1.1'
+    input: *5
     name: "!is: (nok)"
     schema: 
-      - float
+      - hash
       - "!is"
-      - '1.1'
+      - *5
     valid: 0
   - 
-    input: '1.1'
+    input: *5
     name: "!is: (ok)"
     schema: 
-      - float
+      - hash
       - "!is"
-      - '1.2'
+      - *6
     valid: 1
   - 
-    input: '1.1'
+    input: *5
     name: "is&: (no items)"
     schema: 
-      - float
+      - hash
       - is&
       - []
 
     valid: 1
   - 
-    input: '1.1'
+    input: *5
     name: "is&: (ok)"
     schema: 
-      - float
+      - hash
       - is&
-      - &1 
-        - '1.1'
-        - '1.1'
+      - &7 
+        - *5
+        - *5
     valid: 1
   - 
     errors: 1
-    input: '1.1'
+    input: *5
     name: "is&: (nok + ok)"
     schema: 
-      - float
+      - hash
       - is&
       - 
-        - '1.2'
-        - '1.1'
+        - *6
+        - *5
     valid: 0
   - 
     errors: 1
-    input: '1.1'
+    input: *5
     name: "is&: (ok + nok)"
     schema: 
-      - float
+      - hash
       - is&
       - 
-        - '1.1'
-        - '1.2'
+        - *5
+        - *6
     valid: 0
   - 
     errors: 2
-    input: '1.1'
+    input: *5
     name: "is&: (nok + nok)"
     schema: 
-      - float
+      - hash
       - is&
       - 
-        - '1.2'
-        - '1.2'
+        - *6
+        - *6
     valid: 0
   - 
-    input: '1.1'
+    input: *5
     name: "is|: (no items)"
     schema: 
-      - float
+      - hash
       - is|
       - []
 
     valid: 1
   - 
-    input: '1.1'
+    input: *5
     name: "is|: (ok)"
     schema: 
-      - float
+      - hash
       - is|
-      - *1
+      - *7
     valid: 1
   - 
-    input: '1.1'
+    input: *5
     name: "is|: (nok + ok)"
     schema: 
-      - float
+      - hash
       - is|
       - 
-        - '1.2'
-        - '1.1'
+        - *6
+        - *5
     valid: 1
   - 
-    input: '1.1'
+    input: *5
     name: "is|: (ok + nok)"
     schema: 
-      - float
+      - hash
       - is|
       - 
-        - '1.1'
-        - '1.2'
+        - *5
+        - *6
     valid: 1
   - 
     errors: 1
-    input: '1.1'
+    input: *5
     name: "is|: (nok + nok)"
     schema: 
-      - float
+      - hash
       - is|
       - 
-        - '1.2'
-        - '1.2'
+        - *6
+        - *6
     valid: 0
   - 
-    input: '1.1'
+    input: *5
     name: is.min_ok (nok + nok)
     schema: 
-      - float
+      - hash
       - is
       - 
-        - '1.2'
-        - '1.2'
+        - *6
+        - *6
       - is.is_multi
       - 1
       - is.min_ok
       - 1
     valid: 0
   - 
-    input: '1.1'
+    input: *5
     name: is.min_ok (ok + nok)
     schema: 
-      - float
+      - hash
       - is
       - 
-        - '1.1'
-        - '1.2'
+        - *5
+        - *6
       - is.is_multi
       - 1
       - is.max_ok
       - 1
     valid: 1
   - 
-    input: '1.1'
+    input: *5
     name: is.min_ok (ok + ok)
     schema: 
-      - float
+      - hash
       - is
       - 
-        - '1.1'
-        - '1.1'
+        - *5
+        - *5
       - is.is_multi
       - 1
       - is.min_ok
       - 1
     valid: 1
   - 
-    input: '1.1'
+    input: *5
     name: is.max_ok (nok + nok)
     schema: 
-      - float
+      - hash
       - is
       - 
-        - '1.2'
-        - '1.2'
+        - *6
+        - *6
       - is.is_multi
       - 1
       - is.max_ok
       - 1
     valid: 1
   - 
-    input: '1.1'
+    input: *5
     name: is.max_ok (ok + nok)
     schema: 
-      - float
+      - hash
       - is
       - 
-        - '1.1'
-        - '1.2'
+        - *5
+        - *6
       - is.is_multi
       - 1
       - is.max_ok
       - 1
     valid: 1
   - 
-    input: '1.1'
+    input: *5
     name: is.max_ok (ok + ok)
     schema: 
-      - float
+      - hash
       - is
       - 
-        - '1.1'
-        - '1.1'
+        - *5
+        - *5
       - is.is_multi
       - 1
       - is.max_ok
       - 1
     valid: 0
   - 
-    input: '1.1'
+    input: *5
     name: is.min_nok (nok + nok)
     schema: 
-      - float
+      - hash
       - is
       - 
-        - '1.2'
-        - '1.2'
+        - *6
+        - *6
       - is.is_multi
       - 1
       - is.min_nok
       - 1
     valid: 1
   - 
-    input: '1.1'
+    input: *5
     name: is.min_nok (ok + nok)
     schema: 
-      - float
+      - hash
       - is
       - 
-        - '1.1'
-        - '1.2'
+        - *5
+        - *6
       - is.is_multi
       - 1
       - is.min_nok
       - 1
     valid: 1
   - 
-    input: '1.1'
+    input: *5
     name: is.min_nok (ok + ok)
     schema: 
-      - float
+      - hash
       - is
       - 
-        - '1.1'
-        - '1.1'
+        - *5
+        - *5
       - is.is_multi
       - 1
       - is.min_nok
       - 1
     valid: 0
   - 
-    input: '1.1'
+    input: *5
     name: is.max_nok (nok + nok)
     schema: 
-      - float
+      - hash
       - is
       - 
-        - '1.2'
-        - '1.2'
+        - *6
+        - *6
       - is.is_multi
       - 1
       - is.max_nok
       - 1
     valid: 0
   - 
-    input: '1.1'
+    input: *5
     name: is.max_nok (ok + nok)
     schema: 
-      - float
+      - hash
       - is
       - 
-        - '1.1'
-        - '1.2'
+        - *5
+        - *6
       - is.is_multi
       - 1
       - is.max_nok
       - 1
     valid: 1
   - 
-    input: '1.1'
+    input: *5
     name: is.max_nok (ok + ok)
     schema: 
-      - float
+      - hash
       - is
       - 
-        - '1.1'
-        - '1.1'
+        - *5
+        - *5
       - is.is_multi
       - 1
       - is.max_nok
       - 1
     valid: 1
   - 
-    input: '1.1'
+    input: *5
     name: "in: must accept valid choices"
     schema: 
-      - float
+      - hash
       - in
-      - &2 
-        - '1.1'
-        - '1.2'
+      - &8 
+        - *5
+        - *6
     valid: 1
   - 
-    input: '1.1'
+    input: *5
     name: "in: must reject empty choices"
     schema: 
-      - float
+      - hash
       - in
       - []
 
     valid: 0
   - 
-    input: '1.1'
+    input: *5
     name: "!in: (nok)"
     schema: 
-      - float
+      - hash
       - "!in"
-      - *2
+      - *8
     valid: 0
   - 
-    input: '1.1'
+    input: *5
     name: "!in: (ok)"
     schema: 
-      - float
+      - hash
       - "!in"
-      - &3 []
+      - &9 []
 
     valid: 1
   - 
-    input: '1.1'
+    input: *5
     name: "in&: (no items)"
     schema: 
-      - float
+      - hash
       - in&
       - []
 
     valid: 1
   - 
-    input: '1.1'
+    input: *5
     name: "in&: (ok)"
     schema: 
-      - float
+      - hash
       - in&
-      - &4 
-        - *2
-        - &6 
-          - '1.1'
-          - '1.2'
+      - &10 
+        - *8
+        - &12 
+          - {}
+
+          - 
+            a: 1
     valid: 1
   - 
     errors: 1
-    input: '1.1'
+    input: *5
     name: "in&: (nok + ok)"
     schema: 
-      - float
+      - hash
       - in&
       - 
-        - *3
-        - *2
+        - *9
+        - *8
     valid: 0
   - 
     errors: 1
-    input: '1.1'
+    input: *5
     name: "in&: (ok + nok)"
     schema: 
-      - float
+      - hash
       - in&
       - 
-        - *2
-        - *3
+        - *8
+        - *9
     valid: 0
   - 
     errors: 2
-    input: '1.1'
+    input: *5
     name: "in&: (nok + nok)"
     schema: 
-      - float
+      - hash
       - in&
       - 
-        - *3
-        - &5 []
+        - *9
+        - &11 []
 
     valid: 0
   - 
-    input: '1.1'
+    input: *5
     name: "in|: (no items)"
     schema: 
-      - float
+      - hash
       - in|
       - []
 
     valid: 1
   - 
-    input: '1.1'
+    input: *5
     name: "in|: (ok)"
     schema: 
-      - float
+      - hash
       - in|
-      - *4
+      - *10
     valid: 1
   - 
-    input: '1.1'
+    input: *5
     name: "in|: (nok + ok)"
     schema: 
-      - float
+      - hash
       - in|
       - 
-        - *3
-        - *2
+        - *9
+        - *8
     valid: 1
   - 
-    input: '1.1'
+    input: *5
     name: "in|: (ok + nok)"
     schema: 
-      - float
+      - hash
       - in|
       - 
-        - *2
-        - *3
+        - *8
+        - *9
     valid: 1
   - 
     errors: 1
-    input: '1.1'
+    input: *5
     name: "in|: (nok + nok)"
     schema: 
-      - float
+      - hash
       - in|
       - 
-        - *3
-        - *5
+        - *9
+        - *11
     valid: 0
   - 
-    input: '1.1'
+    input: *5
     name: in.min_ok (nok + nok)
     schema: 
-      - float
+      - hash
       - in
       - 
-        - *3
-        - *5
+        - *9
+        - *11
       - in.is_multi
       - 1
       - in.min_ok
       - 1
     valid: 0
   - 
-    input: '1.1'
+    input: *5
     name: in.min_ok (ok + nok)
     schema: 
-      - float
+      - hash
       - in
       - 
-        - *2
-        - *5
+        - *8
+        - *11
       - in.is_multi
       - 1
       - in.max_ok
       - 1
     valid: 1
   - 
-    input: '1.1'
+    input: *5
     name: in.min_ok (ok + ok)
     schema: 
-      - float
+      - hash
       - in
       - 
-        - *2
-        - *6
+        - *8
+        - *12
       - in.is_multi
       - 1
       - in.min_ok
       - 1
     valid: 1
   - 
-    input: '1.1'
+    input: *5
     name: in.max_ok (nok + nok)
     schema: 
-      - float
+      - hash
       - in
       - 
-        - *3
-        - *5
+        - *9
+        - *11
       - in.is_multi
       - 1
       - in.max_ok
       - 1
     valid: 1
   - 
-    input: '1.1'
+    input: *5
     name: in.max_ok (ok + nok)
     schema: 
-      - float
+      - hash
       - in
       - 
-        - *2
-        - *5
+        - *8
+        - *11
       - in.is_multi
       - 1
       - in.max_ok
       - 1
     valid: 1
   - 
-    input: '1.1'
+    input: *5
     name: in.max_ok (ok + ok)
     schema: 
-      - float
+      - hash
       - in
       - 
-        - *2
-        - *6
+        - *8
+        - *12
       - in.is_multi
       - 1
       - in.max_ok
       - 1
     valid: 0
   - 
-    input: '1.1'
+    input: *5
     name: in.min_nok (nok + nok)
     schema: 
-      - float
+      - hash
       - in
       - 
-        - *3
-        - *5
+        - *9
+        - *11
       - in.is_multi
       - 1
       - in.min_nok
       - 1
     valid: 1
   - 
-    input: '1.1'
+    input: *5
     name: in.min_nok (ok + nok)
     schema: 
-      - float
+      - hash
       - in
       - 
-        - *2
-        - *5
+        - *8
+        - *11
       - in.is_multi
       - 1
       - in.min_nok
       - 1
     valid: 1
   - 
-    input: '1.1'
+    input: *5
     name: in.min_nok (ok + ok)
     schema: 
-      - float
+      - hash
       - in
       - 
-        - *2
-        - *6
+        - *8
+        - *12
       - in.is_multi
       - 1
       - in.min_nok
       - 1
     valid: 0
   - 
-    input: '1.1'
+    input: *5
     name: in.max_nok (nok + nok)
     schema: 
-      - float
+      - hash
       - in
       - 
-        - *3
-        - *5
+        - *9
+        - *11
       - in.is_multi
       - 1
       - in.max_nok
       - 1
     valid: 0
   - 
-    input: '1.1'
+    input: *5
     name: in.max_nok (ok + nok)
     schema: 
-      - float
+      - hash
       - in
       - 
-        - *2
-        - *5
+        - *8
+        - *11
       - in.is_multi
       - 1
       - in.max_nok
       - 1
     valid: 1
   - 
-    input: '1.1'
+    input: *5
     name: in.max_nok (ok + ok)
     schema: 
-      - float
+      - hash
       - in
       - 
-        - *2
-        - *6
+        - *8
+        - *12
       - in.is_multi
       - 1
       - in.max_nok
       - 1
     valid: 1
   - 
-    input: '2.1'
-    name: "min: 2.1 -3.1"
+    input: &13 
+      a: 1
+    name: len (ok)
     schema: 
-      - float
-      - min
-      - '-3.1'
+      - hash
+      - len
+      - 1
     valid: 1
   - 
-    input: '2.1'
-    name: "min: 2.1 2.1"
+    input: *13
+    name: len (nok)
     schema: 
-      - float
-      - min
-      - '2.1'
+      - hash
+      - len
+      - 2
+    valid: 0
+  - 
+    input: *13
+    name: min_len (ok)
+    schema: 
+      - hash
+      - min_len
+      - 1
     valid: 1
   - 
-    input: '-3.1'
-    name: "min: -3.1 2.1 -> fail"
+    input: *13
+    name: min_len (nok)
     schema: 
-      - float
-      - min
-      - '2.1'
+      - hash
+      - min_len
+      - 2
     valid: 0
   - 
-    input: '2.1'
-    name: "xmin: 2.1 -3.1"
+    input: *13
+    name: max_len (ok)
     schema: 
-      - float
-      - xmin
-      - '-3.1'
+      - hash
+      - min_len
+      - 1
     valid: 1
   - 
-    input: '2.1'
-    name: "xmin: 2.1 2.1 -> fail"
+    input: &14 
+      a: 1
+      b: '1.1'
+    name: max_len (nok)
     schema: 
-      - float
-      - xmin
-      - '2.1'
+      - hash
+      - max_len
+      - 1
     valid: 0
   - 
-    input: '-3.1'
-    name: "xmin: -3.1 2.1 -> fail"
+    input: *13
+    name: len_between (ok)
     schema: 
-      - float
-      - xmin
-      - '2.1'
-    valid: 0
-  - 
-    input: '2.1'
-    name: "max: 2.1 -3.1 -> fail"
-    schema: 
-      - float
-      - max
-      - '-3.1'
-    valid: 0
-  - 
-    input: '2.1'
-    name: "max: 2.1 2.1"
-    schema: 
-      - float
-      - max
-      - '2.1'
-    valid: 1
-  - 
-    input: '-3.1'
-    name: "max: -3.1 2.1"
-    schema: 
-      - float
-      - max
-      - '2.1'
-    valid: 1
-  - 
-    input: '2.1'
-    name: "xmax: 2.1 -3.1 -> fail"
-    schema: 
-      - float
-      - xmax
-      - '-3.1'
-    valid: 0
-  - 
-    input: '2.1'
-    name: "xmax: 2.1 2.1 -> fail"
-    schema: 
-      - float
-      - xmax
-      - '2.1'
-    valid: 0
-  - 
-    input: '-3.1'
-    name: "xmax: -3.1 2.1"
-    schema: 
-      - float
-      - xmax
-      - '2.1'
-    valid: 1
-  - 
-    input: '2.1'
-    name: "between: 2.1 -3.1 & 4.1"
-    schema: 
-      - float
-      - between
+      - hash
+      - len_between
       - 
-        - '-3.1'
-        - '4.1'
+        - 1
+        - 2
     valid: 1
   - 
-    input: '2.1'
-    name: "between: 2.1 -3.1 & 2.1"
+    input: *14
+    name: len_between (nok)
     schema: 
-      - float
-      - between
+      - hash
+      - len_between
       - 
-        - '-3.1'
-        - '2.1'
-    valid: 1
-  - 
-    input: '2.1'
-    name: "between: 2.1 2.1 & 2.1"
-    schema: 
-      - float
-      - between
-      - 
-        - '2.1'
-        - '2.1'
-    valid: 1
-  - 
-    input: '-3.1'
-    name: "between: -3.1 2.1 & 4.1 -> fail"
-    schema: 
-      - float
-      - between
-      - 
-        - '2.1'
-        - '4.1'
+        - 1
+        - 1
     valid: 0
   - 
-    input: '2.1'
-    name: "xbetween: 2.1 -3.1 & 4.1"
+    input: *14
+    name: each_index (ok)
     schema: 
-      - float
-      - xbetween
+      - hash
+      - each_index
       - 
-        - '-3.1'
-        - '4.1'
+        - str
+        - len
+        - 1
     valid: 1
   - 
-    input: '2.1'
-    name: "xbetween: 2.1 -3.1 & 2.1 -> fail"
+    input: *14
+    name: each_index (nok)
     schema: 
-      - float
-      - xbetween
+      - hash
+      - each_index
       - 
-        - '-3.1'
-        - '2.1'
+        - str
+        - len
+        - 2
     valid: 0
   - 
-    input: '2.1'
-    name: "xbetween: 2.1 2.1 & 2.1 -> fail"
+    input: *14
+    name: each_elem (ok)
     schema: 
+      - hash
+      - each_elem
       - float
-      - xbetween
-      - 
-        - '2.1'
-        - '2.1'
-    valid: 0
+    valid: 1
   - 
-    input: '-3.1'
-    name: "xbetween: -3.1 2.1 & 4.1 -> fail"
+    input: *14
+    name: each_elem (nok)
     schema: 
-      - float
-      - xbetween
-      - 
-        - '2.1'
-        - '4.1'
+      - hash
+      - each_elem
+      - int
     valid: 0
