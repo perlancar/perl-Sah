@@ -1,5 +1,21 @@
 Revision history for Sah
 
+0.9.16   2012-10-26 (SHARYANTO)
+
+         - normalize_schema(): Extras are now always normalized to {} so before
+           "int" => ["int", {}] and now => ["int", {}, {}]. (I think it's more
+           proper, normalized form doesn't change when extras {} exist, and more
+           clearly make the normalized form stand out visually).
+
+         - bool: Add clause 'is_true' (I think it'll be more portable than using
+           'is').
+
+         - array and hash no longer assume the Sortable role (actually it was a
+           typo, it never was).
+
+         - spectest: Add more tests (str, hash, bool, any, all).
+
+
 0.9.15   2012-10-25 (SHARYANTO)
 
          No spec changes.
