@@ -937,11 +937,79 @@ sub gen_bool_tests {
     );
 }
 
+sub gen_any_tests {
+    my %args = @_;
+    my @res;
+
+    local $Type = "any";
+
+    (
+        {
+            name   => 'of (nok + nok)',
+            input  => 3,
+            schema => [$Type => of => [[int => div_by=>2], [int => div_by=>5]]],
+            valid  => 0,
+        },
+        {
+            name   => 'of (ok + nok)',
+            input  => 2,
+            schema => [$Type => of => [[int => div_by=>2], [int => div_by=>5]]],
+            valid  => 1,
+        },
+        {
+            name   => 'of (nok + ok)',
+            input  => 5,
+            schema => [$Type => of => [[int => div_by=>2], [int => div_by=>5]]],
+            valid  => 1,
+        },
+        {
+            name   => 'of (ok + ok)',
+            input  => 10,
+            schema => [$Type => of => [[int => div_by=>2], [int => div_by=>5]]],
+            valid  => 1,
+        },
+    );
+}
+
+sub gen_all_tests {
+    my %args = @_;
+    my @res;
+
+    local $Type = "all";
+
+    (
+        {
+            name   => 'of (nok + nok)',
+            input  => 3,
+            schema => [$Type => of => [[int => div_by=>2], [int => div_by=>5]]],
+            valid  => 0,
+        },
+        {
+            name   => 'of (ok + nok)',
+            input  => 2,
+            schema => [$Type => of => [[int => div_by=>2], [int => div_by=>5]]],
+            valid  => 0,
+        },
+        {
+            name   => 'of (nok + ok)',
+            input  => 5,
+            schema => [$Type => of => [[int => div_by=>2], [int => div_by=>5]]],
+            valid  => 0,
+        },
+        {
+            name   => 'of (ok + ok)',
+            input  => 10,
+            schema => [$Type => of => [[int => div_by=>2], [int => div_by=>5]]],
+            valid  => 1,
+        },
+    );
+}
+
 {
     my $now = localtime();
     local $YAML::Syck::Headless = 1;
     local $YAML::Syck::ImplicitTyping = 1;
-    for my $type (qw(int float array str hash bool)) {
+    for my $type (qw(int float array str hash bool any all)) {
         my $f = "gen_${type}_tests";
         no strict 'refs';
         write_file(
