@@ -707,8 +707,8 @@ valid but 1, 3, 5 are not.
 =head1 TYPE: str
 
 C<str> stores strings (text). This type assumes the Comparable, Sortable, and
-HasElems roles (the elements are individual characters). Default encoding is
-utf8.
+HasElems roles (the elements are individual characters, the indices are integers
+from 0 to (length of string)-1). Default encoding is utf8.
 
 =head2 Clauses
 
@@ -761,8 +761,8 @@ Boolean type. This type assumes the Comparable and Sortable roles.
 
 =head1 TYPE: array
 
-Array type. This type assumes the Comparable, Sortable, and HasElems roles (the
-elements are indexed by integers starting from 0).
+Array type. This type assumes the Comparable and HasElems roles (the elements
+are indexed by integers starting from 0).
 
 =head2 Clauses
 
@@ -796,8 +796,8 @@ This is just an alias to C<each_elem>.
 
 =head1 TYPE: hash
 
-Hash (a.k.a. dictionary) type. This type assumes the Comparable, Sortable, and
-HasElems roles (the elements are indexed by strings).
+Hash (a.k.a. dictionary) type. This type assumes the Comparable and HasElems
+roles (the elements are hash values, the indices are hash keys).
 
 =head2 Properties
 
