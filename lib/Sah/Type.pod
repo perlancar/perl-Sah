@@ -758,6 +758,14 @@ string.
 
 Boolean type. This type assumes the Comparable and Sortable roles.
 
+=head2 Clauses
+
+=head3 is_true => BOOL
+
+Check that value is true. This is a more portable way than comparing to a value
+using C<is>. To check that value is false, set this clause to a false value.
+Alternatively you can also use C<< "!is_true": 1 >>.
+
 
 =head1 TYPE: array
 

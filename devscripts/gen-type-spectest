@@ -681,26 +681,26 @@ sub gen_int_tests {
         ),
 
         {
-            name   => 'mod: (1)',
+            name   => 'mod: (nok)',
             input  => 10,
             schema => [int => mod => [3, 2]],
             valid  => 0,
         },
         {
-            name   => 'mod: (2)',
+            name   => 'mod: (ok)',
             input  => 11,
             schema => [int => mod => [3, 2]],
             valid  => 1,
         },
 
         {
-            name   => 'div_by: (1)',
+            name   => 'div_by: (nok)',
             input  => 7,
             schema => [int => div_by => 3],
             valid  => 0,
         },
         {
-            name   => 'div_by: (2)',
+            name   => 'div_by: (ok)',
             input  => 6,
             schema => [int => div_by => 3],
             valid  => 1,
@@ -897,6 +897,43 @@ sub gen_bool_tests {
         gen_Sortable_tests(
             values => [0, 1, 1],
         ),
+
+        {
+            name   => 'is_true: 1 (ok)',
+            input  => 1,
+            schema => [$Type => is_true => 1],
+            valid  => 1,
+        },
+        {
+            name   => 'is_true: 1 (nok)',
+            input  => 0,
+            schema => [$Type => is_true => 1],
+            valid  => 0,
+        },
+        {
+            name   => 'is_true: 0 (ok)',
+            input  => 0,
+            schema => [$Type => is_true => 0],
+            valid  => 1,
+        },
+        {
+            name   => 'is_true: 0 (nok)',
+            input  => 1,
+            schema => [$Type => is_true => 0],
+            valid  => 0,
+        },
+        {
+            name   => 'is_true: undef (ok 1)',
+            input  => 0,
+            schema => [$Type => is_true => undef],
+            valid  => 1,
+        },
+        {
+            name   => 'is_true: undef (ok 2)',
+            input  => 1,
+            schema => [$Type => is_true => undef],
+            valid  => 1,
+        },
     );
 }
 
