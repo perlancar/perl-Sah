@@ -551,10 +551,11 @@ sub gen_HasElems_tests {
 
     die "BUG: Please supply two values" unless @{$args{values}} == 2;
 
-    my $v1 = $args{values}[0][0];
-    my $l1 = $args{values}[0][1];
-    my $v2 = $args{values}[1][0];
-    my $l2 = $args{values}[1][1];
+    my $v1  = $args{values}[0][0];
+    my $l1  = $args{values}[0][1];
+    my $v2  = $args{values}[1][0];
+    my $l2  = $args{values}[1][1];
+    my $el2 = $args{values}[1][2];
 
     die "BUG: First value's length must be less than second value's"
         unless $l1 < $l2;
@@ -608,14 +609,41 @@ sub gen_HasElems_tests {
             schema => [$Type, len_between => [$l1, $l1]],
             valid  => 0,
         },
+
         # XXX has
-        # XXX each_index
-        # XXX each_elem
+
+        {
+            name   => "each_index (ok)",
+            input  => $el2,
+            schema => [$Type, each_index => $args{ok_each_index}],
+            valid  => 1,
+        },
+        {
+            name   => "each_index (nok)",
+            input  => $el2,
+            schema => [$Type, each_index => $args{nok_each_index}],
+            valid  => 0,
+        },
+        {
+            name   => "each_elem (ok)",
+            input  => $v2,
+            schema => [$Type, each_elem => $args{ok_each_elem}],
+            valid  => 1,
+        },
+        {
+            name   => "each_elem (nok)",
+            input  => $v2,
+            schema => [$Type, each_elem => $args{nok_each_elem}],
+            valid  => 0,
+        },
+
         # XXX check_each_index
         # XXX check_each_elem
         # XXX uniq
         # XXX exists
     );
+
+    # XXX multi vals for all clauses
 
     @res;
 }
@@ -747,8 +775,13 @@ sub gen_array_tests {
         #),
 
         gen_HasElems_tests(
-            # two values, each value is [INPUT_VAL, INPUT_LEN]
-            values => [ [["a"], 1], [["b", "c"], 2] ],
+            # two values, each value is [INPUT_VAL, INPUT_LEN, INPUT_ELEMS]
+            values => [ [[1], 1], [[1, 1.2, [0, 1]], 2] ],
+            # will be tested on the second value
+            ok_each_elem   => "float",
+            nok_each_elem  => "int",
+            ok_each_index  => [int =>  max => 1],
+            nok_each_index => [int => xmax => 1],
         ),
     );
 }
