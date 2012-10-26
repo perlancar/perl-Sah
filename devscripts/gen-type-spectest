@@ -551,11 +551,10 @@ sub gen_HasElems_tests {
 
     die "BUG: Please supply two values" unless @{$args{values}} == 2;
 
-    my $v1  = $args{values}[0][0];
-    my $l1  = $args{values}[0][1];
-    my $v2  = $args{values}[1][0];
-    my $l2  = $args{values}[1][1];
-    my $el2 = $args{values}[1][2];
+    my $v1 = $args{values}[0][0];
+    my $l1 = $args{values}[0][1];
+    my $v2 = $args{values}[1][0];
+    my $l2 = $args{values}[1][1];
 
     die "BUG: First value's length must be less than second value's"
         unless $l1 < $l2;
@@ -614,13 +613,13 @@ sub gen_HasElems_tests {
 
         {
             name   => "each_index (ok)",
-            input  => $el2,
+            input  => $v2,
             schema => [$Type, each_index => $args{ok_each_index}],
             valid  => 1,
         },
         {
             name   => "each_index (nok)",
-            input  => $el2,
+            input  => $v2,
             schema => [$Type, each_index => $args{nok_each_index}],
             valid  => 0,
         },
@@ -769,20 +768,60 @@ sub gen_array_tests {
             values => [[1], [2]],
         ),
 
-        # currently we don't do array sortable in perl
-        #gen_Sortable_tests(
-        #    values => [[-1], [2], [2, 1]],
-        #),
-
         gen_HasElems_tests(
-            # two values, each value is [INPUT_VAL, INPUT_LEN, INPUT_ELEMS]
-            values => [ [[1], 1], [[1, 1.2, [0, 1]], 2] ],
+            # two values, each value is [VAL, LEN].
+            values => [ [[1], 1], [[1, 1.2], 2] ],
             # will be tested on the second value
-            ok_each_elem   => "float",
-            nok_each_elem  => "int",
             ok_each_index  => [int =>  max => 1],
             nok_each_index => [int => xmax => 1],
+            ok_each_elem   => "float",
+            nok_each_elem  => "int",
         ),
+    );
+}
+
+sub gen_str_tests {
+    my %args = @_;
+    my @res;
+
+    local $Type = "str";
+
+    (
+        gen_type_check_tests(
+            accept => [0, 1.1, "", "str\n"],
+            reject => [[], {}],
+        ),
+        gen_BaseType_tests(
+            value => "a",
+            ok_defaults  => ["a"],
+            nok_defaults => [[]],
+        ),
+        gen_err_level_tests(
+            clause    => 'is',
+            cval      => "a",
+            ok_value  => "a",
+            nok_value => "a\n",
+        ),
+        gen_Comparable_tests(
+            values => ["a", "b"],
+        ),
+
+        gen_Sortable_tests(
+            values => ["", "a", "ab"],
+        ),
+
+        gen_HasElems_tests(
+            # two values, each value is [VAL, LEN]
+            values => [ ["a", 1], ["abc", 3] ],
+            # will be tested on the second value
+            ok_each_index  => [int =>  max => 2],
+            nok_each_index => [int => xmax => 2],
+            ok_each_elem   => "str",
+            nok_each_elem  => "float",
+        ),
+
+        # XXX match
+        # XXX is_re
     );
 }
 
@@ -790,7 +829,7 @@ sub gen_array_tests {
     my $now = localtime();
     local $YAML::Syck::Headless = 1;
     local $YAML::Syck::ImplicitTyping = 1;
-    for my $type (qw(int float array)) {
+    for my $type (qw(int float array str)) {
         my $f = "gen_${type}_tests";
         no strict 'refs';
         write_file(
