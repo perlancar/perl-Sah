@@ -11,11 +11,11 @@ tests:
 
   - name: 'string: type name must be valid (ok)'
     input:  'int'
-    result: [int, {}]
+    result: [int, {}, {}]
 
   - name: 'string: type name must be valid (ok, has namespace)'
     input:  'foo::bar'
-    result: ['foo::bar', {}]
+    result: ['foo::bar', {}, {}]
 
   - name: 'string: type name must be valid (fail, has whitespace)'
     input:  'foo bar'
@@ -27,7 +27,7 @@ tests:
 
   - name: 'string: * suffix is allowed and normalized to req clause'
     input:  'int*'
-    result: [int, {req: Yes}]
+    result: [int, {req: Yes}, {}]
 
   - name: 'string: multiple * suffix is not allowed'
     input:  'int**'
@@ -39,7 +39,7 @@ tests:
 
   - name: 'array: type name must be valid (ok)'
     input: [int]
-    result: [int, {}]
+    result: [int, {}, {}]
 
   - name: 'array: type name must be valid (fail, has whitespace)'
     input: ['foo bar']
@@ -47,15 +47,15 @@ tests:
 
   - name: 'array: * suffix is allowed and normalized to req clause'
     input:  ['int*']
-    result: [int, {req: Yes}]
+    result: [int, {req: Yes}, {}]
 
   - name: 'array: clause set must be hash (ok, empty)'
     input:  [int, {}]
-    result: [int, {}]
+    result: [int, {}, {}]
 
   - name: 'array: clause set must be hash (ok, has some clauses)'
     input:  [int, {foo: 1, bar: 2}]
-    result: [int, {foo: 1, bar: 2}]
+    result: [int, {foo: 1, bar: 2}, {}]
 
   - name: 'array: clause set must be hash (fail, string)'
     input:  [int, foo]
@@ -75,15 +75,15 @@ tests:
 
   - name: 'array: * suffix is allowed and normalized to req clause (2-element-array schema)'
     input:  ['int*', {foo: 1}]
-    result: [int, {foo: 1, req: Yes}]
+    result: [int, {foo: 1, req: Yes}, {}]
 
   - name: 'array: * suffix is allowed and normalized to req clause (overrides existing req clause)'
     input:  ['int*', {foo: 1, req: No}]
-    result: [int, {foo: 1, req: Yes}]
+    result: [int, {foo: 1, req: Yes}, {}]
 
   - name: 'array: clause attribute name must be valid (ok)'
     input:  [int, {'foo.bar': 1, 'foo.bar.baz': 2}]
-    result: [int, {'foo.bar': 1, 'foo.bar.baz': 2}]
+    result: [int, {'foo.bar': 1, 'foo.bar.baz': 2}, {}]
 
   - name: 'array: clause attribute name must be valid (fail, has whitespace)'
     input:  [int, {'foo.bar baz': 1}]
@@ -91,7 +91,7 @@ tests:
 
   - name: 'array: setting attribute on clause "" is permitted'
     input:  [int, {'.bar': 1, '.bar.baz': 2}]
-    result: [int, {'.bar': 1, '.bar.baz': 2}]
+    result: [int, {'.bar': 1, '.bar.baz': 2}, {}]
 
   - name: 'array: setting value attribute on clause "" using syntax "" is not permitted'
     input:  [int, {'': 1}]
@@ -99,11 +99,11 @@ tests:
 
   - name: 'array: flattened clause set is permitted'
     input:  ['int', a, 1, b, 2]
-    result: [int, {a: 1, b: 2}]
+    result: [int, {a: 1, b: 2}, {}]
 
   - name: 'array: flattened clause set is permitted (with * suffix)'
     input:  ['int*', a, 1, b, 2]
-    result: [int, {req: Yes, a: 1, b: 2}]
+    result: [int, {req: Yes, a: 1, b: 2}, {}]
 
   - name: 'array: flattened clause set is permitted (fail, odd number of elements)'
     input:  ['int', a, 1, b, 2, c]
@@ -111,11 +111,11 @@ tests:
 
   - name: 'array: expression (clause=) is allowed on clause and normalized'
     input:  ['int', {'foo=': 2}]
-    result: ['int', {'foo': 2, 'foo.is_expr': 1}]
+    result: ['int', {'foo': 2, 'foo.is_expr': 1}, {}]
 
   - name: 'array: expression (clause=) is allowed on clause.attr and normalized'
     input:  ['int', {'foo.bar=': 2}]
-    result: ['int', {'foo.bar': 2, 'foo.bar.is_expr': 1}]
+    result: ['int', {'foo.bar': 2, 'foo.bar.is_expr': 1}, {}]
 
   - name: 'array: expression (clause=) must not conflict with literal value (fail)'
     input:  ['int', {'foo=': 2, foo: 3}]
@@ -127,7 +127,7 @@ tests:
 
   - name: 'array: !clause is normalized'
     input:  ['int', {'!foo': 2}]
-    result: [int, {foo: 2, 'foo.max_ok': 0}]
+    result: [int, {foo: 2, 'foo.max_ok': 0}, {}]
 
   - name: 'array: !clause.attr is not allowed'
     input:  ['int', {'!foo.bar': 2}]
@@ -135,7 +135,7 @@ tests:
 
   - name: 'array: clause| is normalized'
     input:  ['int', {'foo|': [1, 2, 3]}]
-    result: [int, {'foo': [1, 2, 3], 'foo.is_multi': 1, 'foo.min_ok': 1}]
+    result: [int, {'foo': [1, 2, 3], 'foo.is_multi': 1, 'foo.min_ok': 1}, {}]
 
   - name: 'array: clause.attr| is not allowed'
     input:  ['int', {'foo.bar|': [1, 2, 3]}]
@@ -147,7 +147,7 @@ tests:
 
   - name: 'array: clause& is normalized'
     input:  ['int', {'foo&': [1, 2, 3]}]
-    result: [int, {'foo': [1, 2, 3], 'foo.is_multi': 1}]
+    result: [int, {'foo': [1, 2, 3], 'foo.is_multi': 1}, {}]
 
   - name: 'array: clause.attr& is not allowed'
     input:  ['int', {'foo.bar&': [1, 2, 3]}]
@@ -207,7 +207,7 @@ tests:
 
   - name: 'array: merge prefix in clause is allowed'
     input:  [foo, {'merge.normal.a': 1, 'merge.add.a': 2, 'merge.concat.a': 3, 'merge.subtract.a': 4, 'merge.delete.a': 5, 'merge.keep.a': 6}]
-    result: [foo, {'merge.normal.a': 1, 'merge.add.a': 2, 'merge.concat.a': 3, 'merge.subtract.a': 4, 'merge.delete.a': 5, 'merge.keep.a': 6}]
+    result: [foo, {'merge.normal.a': 1, 'merge.add.a': 2, 'merge.concat.a': 3, 'merge.subtract.a': 4, 'merge.delete.a': 5, 'merge.keep.a': 6}, {}]
 
   #- name: 'array: merge prefix in clause is allowed (fail, unknown merging prefix)'
   #  input:  [foo, {'merge.foo.a': 1}]
