@@ -83,13 +83,13 @@ Type name must match this regular expression:
 
  \A[A-Za-z_][A-Za-z0-9_]+(::[A-Za-z_][A-Za-z0-9_]+)*\z
 
-A type can have B<clauses>. Most clauses declare constraints (so, B<metadata
-clauses>). B<Metadata clauses> are like functions, they accept an argument, are
-evaluated against data and return a value. The returned value need not strictly
-be boolean, but for the clause to succeed, the return value must evaluate to
-true. The notion of true/false follows Perl's notion: undefined value, empty
-string (C<"">), the string C<"0">, and number 0 are considered false. Everything
-else is true.
+A type can have B<clauses>. Most clauses declare constraints (thus, B<constraint
+clauses>). B<Constraint clauses> are like functions, they accept an argument,
+are evaluated against data and return a value. The returned value need not
+strictly be boolean, but for the clause to succeed, the return value must
+evaluate to true. The notion of true/false follows Perl's notion: undefined
+value, empty string (C<"">), the string C<"0">, and number 0 are considered
+false. Everything else is true.
 
 For the schema to succeed, all constraint clauses must evaluate to true.
 

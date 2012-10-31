@@ -70,8 +70,9 @@ However, if C<vocal> changes its implementation or structure to:
  // the new vocal
  ["str", {"match": "\\A[aeiou]\\z"}]
 
-then B<vocal> will break. To force B<consonant> to fail (so its author can
-update it):
+then B<consonant> will silently break because of clash (overriding) in the
+C<match> clause. To force B<consonant> to fail (so its author can update it,
+should the authors of C<vocal> and C<consonant> are two different persons):
 
  // the new vocal
  ["str", {"schema_v": 2, "match": "\\A[aeiou]\\z"}]
@@ -81,7 +82,7 @@ by C<consonant>, having the default value of C<base_v>). C<consonant>'s author
 might then update its own implementation to match C<vocal>:
 
  // the adjusted consonant
- ["str", {"base_v":2, "cset":{"match":"\\A[a-z]\\z"}, "match.max_ok":0}]
+ ["vocal", {"base_v":2, "cset":{"match":"\\A[a-z]\\z"}, "match.max_ok":0}]
 
 Notice the matching of C<consonant>'s C<base_v> against C<vocal>'s C<schema_v>.
 C<consonant> might also add its own C<< "schema_v":2 >> so other schemas
