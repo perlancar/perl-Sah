@@ -671,16 +671,16 @@ C<int> stores real (floating-point) numbers. This type is derived from C<num>.
 
 Require that number is a NaN (e.g. "NaN" or "-NaN" in Perl).
 
-=head2 is_inf : BOOL
+=head3 is_inf : BOOL
 
 Require that number is a positive or negative infinity (e.g. "Inf" or
 "-Infinity" in Perl).
 
-=head2 is_pos_inf : BOOL
+=head3 is_pos_inf : BOOL
 
 Require that number is a positive infinity (e.g. "Inf" or "+Infinity" in Perl).
 
-=head2 is_neg_inf : BOOL
+=head3 is_neg_inf : BOOL
 
 Require that number is a negative infinity (e.g. "-Inf" or "-Infinity" in Perl).
 
