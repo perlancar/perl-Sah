@@ -824,7 +824,25 @@ sub gen_str_tests {
             nok_each_elem  => "float",
         ),
 
-        # XXX match
+        {
+            name   => 'match: (ok)',
+            input  => "a",
+            schema => [str => match => "[abc]"],
+            valid  => 1,
+        },
+        {
+            name   => 'match: (nok)',
+            input  => "z",
+            schema => [str => match => "[abc]"],
+            valid  => 0,
+        },
+        {
+            name   => 'match: (nok, invalid regex)',
+            input  => "a",
+            schema => [str => match => "("],
+            dies   => 1,
+        },
+
         # XXX is_re
     );
 }
