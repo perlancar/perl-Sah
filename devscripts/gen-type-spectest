@@ -843,7 +843,31 @@ sub gen_str_tests {
             dies   => 1,
         },
 
-        # XXX is_re
+        {
+            name   => 'is_re: 1 (ok)',
+            input  => "a",
+            schema => [str => is_re => 1],
+            valid  => 1,
+        },
+        {
+            name   => 'is_re: 1 (nok)',
+            input  => "a(",
+            schema => [str => is_re => 1],
+            valid  => 0,
+        },
+        {
+            name   => 'is_re: 0 (ok)',
+            input  => "a(",
+            schema => [str => is_re => 0],
+            valid  => 1,
+        },
+        {
+            name   => 'is_re: 0 (nok)',
+            input  => "a",
+            schema => [str => is_re => 0],
+            valid  => 0,
+        },
+
     );
 }
 
