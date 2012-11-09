@@ -874,10 +874,11 @@ sub gen_str_tests {
 sub gen_hash_tests {
     my %args = @_;
     my @res;
+    my ($sch, $sch2);
 
     local $Type = "hash";
 
-    (
+    push @res, (
         gen_type_check_tests(
             accept => [{}, {a=>1}, {""=>[]}],
             reject => [1, "a", []],
@@ -905,8 +906,88 @@ sub gen_hash_tests {
             nok_each_index => [str => len=>2],
             ok_each_elem   => "float",
             nok_each_elem  => "int",
-        ),
+        )
     );
+
+    $sch  = [hash => {keys => {a=>"int", b=>"float*"}}];
+    $sch2 = [hash => {keys => {a=>"int", b=>"float*"}}];
+
+    push @res, (
+        {
+            name   => 'keys: (ok, empty)',
+            input  => {},
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'keys: (ok, only a, a valid 1)',
+            input  => {a=>undef},
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'keys: (ok, only a, a valid 2)',
+            input  => {a=>1},
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'keys: (nok, only a, a invalid)',
+            input  => {a=>1.1},
+            schema => $sch,
+            valid  => 0,
+        },
+        {
+            name   => 'keys: (ok, only a, valid 2)',
+            input  => {a=>1},
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'keys: (ok, a & b, valid)',
+            input  => {a=>1, b=>1.1},
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'keys: (nok, a & b, b invalid)',
+            input  => {a=>1, b=>undef},
+            schema => $sch,
+            valid  => 0,
+        },
+        {
+            name   => 'keys: (nok, a & b, a invalid)',
+            input  => {a=>1.1, b=>1.1},
+            schema => $sch,
+            valid  => 0,
+        },
+        {
+            name   => 'keys: (nok, a & b, a & b invalid)',
+            input  => {a=>1.1, b=>undef},
+            schema => $sch,
+            valid  => 0,
+        },
+        {
+            name   => 'keys: (nok, extra)',
+            input  => {a=>1, b=>1.1, c=>1},
+            schema => $sch,
+            valid  => 0,
+        },
+        {
+            name   => 'keys: (ok, extra, restrict=0)',
+            input  => {a=>1, b=>1.1, c=>1},
+            schema => $sch,
+            valid  => 0,
+        },
+
+        # XXX re_keys
+        # XXX req_keys
+        # XXX allowed_keys
+        # XXX allowed_keys_re
+
+    );
+
+    @res;
 }
 
 sub gen_bool_tests {
