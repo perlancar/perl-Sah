@@ -979,13 +979,49 @@ sub gen_hash_tests {
             schema => $sch,
             valid  => 0,
         },
-
-        # XXX re_keys
-        # XXX req_keys
-        # XXX allowed_keys
-        # XXX allowed_keys_re
-
     );
+
+
+    $sch = [hash => {keys => {a=>"int", b=>["int", default=>2]}}];
+    push @res, (
+        {
+            name   => 'keys (create_default=1) 1',
+            input  => {},
+            schema => $sch,
+            valid  => 1,
+            output => {b=>2},
+        },
+        {
+            name   => 'keys (create_default=1) 2',
+            input  => {b=>undef},
+            schema => $sch,
+            valid  => 1,
+            output => {b=>2},
+        },
+    );
+    $sch = [hash => {keys => {a=>"int", b=>["int", default=>2]},
+                     "keys.create_default" => 0}];
+    push @res, (
+        {
+            name   => 'keys (create_default=0) 1',
+            input  => {},
+            schema => $sch,
+            valid  => 1,
+            output => {},
+        },
+        {
+            name   => 'keys (create_default=0) 2',
+            input  => {b=>undef},
+            schema => $sch,
+            valid  => 1,
+            output => {b=>2},
+        },
+    );
+
+    # XXX re_keys
+    # XXX req_keys
+    # XXX allowed_keys
+    # XXX allowed_keys_re
 
     @res;
 }

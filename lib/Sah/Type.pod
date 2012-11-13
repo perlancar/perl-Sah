@@ -822,7 +822,8 @@ Alias for C<HasElems>' C<elems>.
 
 =head3 keys : HASH
 
-Attributes: C<restrict> (bool, default: 1)
+Attributes: C<restrict> (bool, default: 1), C<create_default> (bool, default:
+1).
 
 Specify schema for specific pair value. Also, by default, restrict keys of hash
 to the list specified in this clause, except if the C<.restrict> attribute is
@@ -850,6 +851,23 @@ Another example:
 The above schema specifies a hash with definition for the value of its C<a>,
 C<b>, and C<c> keys. But other keys like C<d> are allowed since the C<keys>
 clause is set to not restrict keys.
+
+The C<.create_default> attribute regulates whether keys should be created with
+default values if they do not exist in the data. For example:
+
+ ["hash", "keys": {"a": "int", "b": ["int", "default": 2]}]
+
+Given data C<{}>, by default it will be given defaults so it becomes C<{"b":
+2}>. C<a> is not created because it does not have a default value. However, if
+C<.create_default> is set to false:
+
+ ["hash",
+     "keys", {"a": "int", "b": ["int", "default": 2]},
+     "keys.create_default", 0
+ ]
+
+then C<{}> will still become C<{}> after validation. C<{"b": null}> will still
+become C<{"b": 2}>, of course.
 
 =head3 re_keys : HASH
 
