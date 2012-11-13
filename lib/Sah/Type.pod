@@ -456,6 +456,34 @@ by C<array>, C<hash>, and also C<str>.
 
 =head3 elems : ARRAY
 
+Attributes: C<create_default> (bool, default: 1).
+
+Specify schemas for each element of the array. Example:
+
+ ["array", "elems", ["int*", "float"]]
+
+Valid values include C<[1]>, C<[1, undef]>, C<[1, 1.1]>, C<[1, 1.1, "foo"]>.
+Invalid values include C<[]> (first element is a required int), C<[1, "foo"]>
+(second element does not validate).
+
+If there are not enough elements in the data, they will be assumed to be C<null>
+(undefined value). Extra elements in the data are ignored.
+
+The C<.create_default> attribute regulates whether missing elements should be
+set with default values if they do not exist in the data. Example:
+
+ ["array", "elems", ["int*", ["float", "default", 2]]]
+
+In the last example, C<[1]> will become C<[1, 2]> after validation. However
+with:
+
+ ["array",
+     "elems", ["int*", ["float", "default", 2]],
+     "elems.create_default", 0]
+
+C<[1]> will still become C<[1]> after validation. In both cases, C<[1, undef]>
+will become C<[1, 2]>.
+
 =head3 indices : ARRAY
 
 =head2 Clauses
@@ -866,8 +894,8 @@ C<.create_default> is set to false:
      "keys.create_default", 0
  ]
 
-then C<{}> will still become C<{}> after validation. C<{"b": null}> will still
-become C<{"b": 2}>, of course.
+then C<{}> will still become C<{}> after validation. In both cases, C<{"b":
+null}> will still become C<{"b": 2}>.
 
 =head3 re_keys : HASH
 
