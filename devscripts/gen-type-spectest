@@ -752,7 +752,7 @@ sub gen_array_tests {
 
     local $Type = "array";
 
-    (
+    push @res, (
         gen_type_check_tests(
             accept => [[], [1, "a"], [[]]],
             reject => [1, "a", {}],
@@ -782,6 +782,67 @@ sub gen_array_tests {
             nok_each_elem  => "int",
         ),
     );
+
+    my $sch = [array => {elems => ["int", ["int", default=>2]]}];
+    push @res, (
+        {
+            name   => 'elems (nok, first elem required)',
+            input  => [],
+            schema => $sch,
+            valid  => 0,
+        },
+        {
+            name   => 'elems (ok, missing elem set to undef)',
+            input  => [1],
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'elems (ok, second elem optional)',
+            input  => [1, undef],
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'elems (ok 2)',
+            input  => [1, 1.1],
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'elems (ok, extra elems ignored)',
+            input  => [1, 1.1, undef],
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'elems (ok, extra elems ignored 2)',
+            input  => [1, 1.1, "foo"],
+            schema => $sch,
+            valid  => 1,
+        },
+    );
+
+    $sch = [array => {elems => ["int", ["int", default=>2]],
+                      "elems.create_default"=>0}];
+    push @res, (
+        {
+            name   => 'elems (ok, create_default=0)',
+            input  => [1],
+            schema => $sch,
+            valid  => 1,
+            output => [1],
+        },
+        {
+            name   => 'elems (ok 2, create_default=0)',
+            input  => [1, undef],
+            schema => $sch,
+            valid  => 1,
+            output => [1, 2],
+        },
+    );
+
+    @res;
 }
 
 sub gen_str_tests {
@@ -790,7 +851,7 @@ sub gen_str_tests {
 
     local $Type = "str";
 
-    (
+    push @res, (
         gen_type_check_tests(
             accept => [0, 1.1, "", "str\n"],
             reject => [[], {}],
@@ -869,6 +930,8 @@ sub gen_str_tests {
         },
 
     );
+
+    @res;
 }
 
 sub gen_hash_tests {
