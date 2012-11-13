@@ -1,5 +1,14 @@
 Revision history for Sah
 
+0.9.17   2012-11-13 (SHARYANTO)
+
+         - Add hash's keys.create_default attribute.
+
+         - Add array's elems.create_default attribute.
+
+         - Add more spectests.
+
+
 0.9.16   2012-10-26 (SHARYANTO)
 
          - normalize_schema(): Extras are now always normalized to {} so before
