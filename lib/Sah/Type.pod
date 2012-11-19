@@ -456,34 +456,6 @@ by C<array>, C<hash>, and also C<str>.
 
 =head3 elems : ARRAY
 
-Attributes: C<create_default> (bool, default: 1).
-
-Specify schemas for each element of the array. Example:
-
- ["array", "elems", ["int*", "float"]]
-
-Valid values include C<[1]>, C<[1, undef]>, C<[1, 1.1]>, C<[1, 1.1, "foo"]>.
-Invalid values include C<[]> (first element is a required int), C<[1, "foo"]>
-(second element does not validate).
-
-If there are not enough elements in the data, they will be assumed to be C<null>
-(undefined value). Extra elements in the data are ignored.
-
-The C<.create_default> attribute regulates whether missing elements should be
-set with default values if they do not exist in the data. Example:
-
- ["array", "elems", ["int*", ["float", "default", 2]]]
-
-In the last example, C<[1]> will become C<[1, 2]> after validation. However
-with:
-
- ["array",
-     "elems", ["int*", ["float", "default", 2]],
-     "elems.create_default", 0]
-
-C<[1]> will still become C<[1]> after validation. In both cases, C<[1, undef]>
-will become C<[1, 2]>.
-
 =head3 indices : ARRAY
 
 =head2 Clauses
@@ -805,26 +777,41 @@ are indexed by integers starting from 0).
 
 =head3 elems => ARRAY_OF_SCHEMA
 
-Specify that corresponding array element must validate to the schema. Example:
 
- // Rinci function result envelope
- ["array", {
-     "elems": [
-         ["int", "between", [100, 999]],
-         "str",
-         "any",
-         "defhash"
-     ]
- }]
 
-The above schema validates result envelope, which is an array (see
-L<Rinci::function>). The first element (the status) must be a 3-digit integer.
-The second element (the error message) is a string. The third element (the
-actual result) can be anything. The fourth element (result metadata) is a hash
-containing extra data. Examples of valid data including:
 
- [404, "Not found"]
- [200, "OK", [1, 2, 3, 4], {"cmdline.pager": "less"}]
+
+
+
+=head3 elems : ARRAY
+
+Attributes: C<create_default> (bool, default: 1).
+
+Specify schemas for each element of the array. Example:
+
+ ["array", "elems", ["int*", "float"]]
+
+Valid values include C<[1]>, C<[1, undef]>, C<[1, 1.1]>, C<[1, 1.1, "foo"]>.
+Invalid values include C<[]> (first element is a required int), C<[1, "foo"]>
+(second element does not validate).
+
+If there are not enough elements in the data, they will be assumed to be C<null>
+(undefined value). Extra elements in the data are ignored.
+
+The C<.create_default> attribute regulates whether missing elements should be
+set with default values if they do not exist in the data. Example:
+
+ ["array", "elems", ["int*", ["float", "default", 2]]]
+
+In the last example, C<[1]> will become C<[1, 2]> after validation. However
+with:
+
+ ["array",
+     "elems", ["int*", ["float", "default", 2]],
+     "elems.create_default", 0]
+
+C<[1]> will still become C<[1]> after validation. In both cases, C<[1, undef]>
+will become C<[1, 2]>.
 
 =head3 of : SCHEMA
 
