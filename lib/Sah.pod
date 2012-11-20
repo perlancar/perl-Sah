@@ -252,6 +252,28 @@ are respectively equivalent to:
  "CLAUSENAME.ATTRNAME1.is_expr": 1
  "CLAUSENAME.ATTRNAME1": EXPR
 
+=item * C<(LANG)> suffix (value for alternate languages)
+
+ "CLAUSENAME(LANG)": VAL
+
+ "CLAUSENAME.ATTRNAME1(LANG)": VAL
+
+are respectively equivalent to:
+
+ "CLAUSENAME.alt.lang.LANG": VAL
+
+ "CLAUSENAME.ATTRNAME1.alt.lang.LANG": VAL
+
+Examples:
+
+ "name(id_ID)": "bilangan bulat positif"
+ "name(en_US)": ["positive integer", "positive integers"]
+
+are equivalent to:
+
+ "name.alt.lang.id_ID": "bilangan bulat positif"
+ "name.alt.lang.en_US": ["positive integer", "positive integers"]
+
 =back
 
 Every clause has a B<priority> between 0 and 100 to determine the order of

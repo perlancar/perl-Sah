@@ -124,24 +124,28 @@ From DefHash. Set default language for this schema. Language-dependant attribute
 values (e.g. C<summary>, C<description>) will be assumed to be in the default
 language.
 
-=head3 name : STR
+=head3 name : STR or [STR, STR]
 
 Priority: 2 (very high), after C<default>.
 
 Category: metadata.
 
-From DefHash. A short (usually single-word, without any formatting) to name the
-schema, useful for identifying the schema when used as a type for human
-compiler.
+From DefHash. A short noun (usually one or two words, without any formatting) to
+name the schema, useful for compiler that transform the schema to human
+description text.
 
-To store translations, you can use the C<alt.lang.*> clause attributes.
+Aside from string, it can also be a two-element string to set the singular and
+plural form of the noun.
+
+To store translations, you can use the C<alt.lang.*> clause attributes (or its
+shortcut form using C<(LANG)> suffix).
 
 Example:
 
  ["int", {
-     "name.alt.lang.en_US": "pos_int",
-     "name.alt.lang.id_ID": "bil_pos",
-     "min": 0
+     "min": 0,
+     "name": ["positive integer", "positive integers"],
+     "name(id_ID)": "bilangan positif"
  }]
 
 See also: C<summary>, C<description>, C<tags>.
@@ -153,20 +157,21 @@ Priority: 2 (very high), after C<default>.
 Category: metadata.
 
 From DefHash. A one-line text (about 72 characters maximum, without any
-formatting) to describe the schema. This is useful, e.g. for manually describe a
-schema instead of using the human compiler. It can also be used in form field
+formatting) to describe the schema. This is useful, e.g. for manually describing
+a schema instead of using the human compiler. It can also be used in form field
 labels.
 
-To store translations, you can use the C<alt.lang.*> clause attributes.
+To store translations, you can use the C<alt.lang.*> clause attributes (or its
+shortcut form using C<(LANG)> suffix).
 
 Example:
 
  // definition for 'single_dice_throw' schema/type
  ["int", {
      "req": 1,
-     "summary.alt.lang.en_US":
+     "summary":
          "A number representing result of single dice throw (1-6)",
-     "summary.alt.lang.id_ID":
+     "summary(id_ID)":
          "Bilangan yang menyatakan hasil lempar sebuah dadu (1-6)",
      "between": [1, 6]
  }]
@@ -185,7 +190,8 @@ Category: metadata.
 From DefHash. A longer text (a paragraph or more) to describe the schema, useful
 e.g. for help/usage text. Text should be in Markdown format.
 
-To store translations, you can use the C<alt.lang.*> clause attributes.
+To store translations, you can use the C<alt.lang.*> clause attributes (or its
+shortcut form using C<(LANG)> suffix).
 
 Example (using Perl syntax because it supports heredoc):
 
