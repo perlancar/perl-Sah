@@ -1,5 +1,10 @@
 Revision history for Sah
 
+0.9.18   2012-11-20 (SHARYANTO)
+
+         No spec changes. Fix some typos in POD and spectest.
+
+
 0.9.17   2012-11-13 (SHARYANTO)
 
          - Add hash's keys.create_default attribute.
