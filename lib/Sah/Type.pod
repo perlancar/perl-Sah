@@ -777,14 +777,6 @@ are indexed by integers starting from 0).
 
 =head3 elems => ARRAY_OF_SCHEMA
 
-
-
-
-
-
-
-=head3 elems : ARRAY
-
 Attributes: C<create_default> (bool, default: 1).
 
 Specify schemas for each element of the array. Example:
