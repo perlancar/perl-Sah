@@ -783,11 +783,11 @@ sub gen_array_tests {
         ),
     );
 
-    my $sch = [array => {elems => ["int", ["int", default=>2]]}];
+    my $sch = [array => {elems => ["int*", ["float", default=>2]]}];
     push @res, (
         {
             name   => 'elems (nok, first elem required)',
-            input  => [],
+            input  => [undef, 1],
             schema => $sch,
             valid  => 0,
         },
