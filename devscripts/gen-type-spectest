@@ -221,7 +221,7 @@ sub gen_multi_cval_tests {
         input => $args{input},
         schema => [$Type,
                    "$Clause" => [$args{ok_values}[0], $args{nok_values}[1]],
-                   "$Clause.is_multi" => 1, "$Clause.max_ok" => 1],
+                   "$Clause.is_multi" => 1, "$Clause.min_ok" => 1],
         valid  => 1,
     };
     push @res, {
