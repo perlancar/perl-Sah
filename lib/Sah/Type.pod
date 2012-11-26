@@ -289,6 +289,27 @@ in the C<else> section of the C<if_clause> clause.
 
 To force failure, you can use C<< "!ok": 1 >>.
 
+=head3 clause : [CNAME, CVAL] -> ANY
+
+Priority: 50 (normal)
+
+Return value: clause return value
+
+Category: constraint.
+
+Evaluate a clause named C<CNAME> with its value C<CVAL>. Example:
+
+ ["int", {"clause": ["min": 0]}] // equivalent to ["int", {"min": 0}]
+
+Putting other clauses inside the C<clause> clause is useful when combined with
+the C<.op> attribute, example:
+
+ ["int", "clause", [["div_by", 5], ["between", [1, 10]]], "clause.op", "or"]
+
+The above schema requires data to be divisible by 5 I<or> between 1 and 10.
+
+See also: C<cset>.
+
 =head3 cset : HASH -> INT
 
 Priority: 50 (normal)
@@ -307,6 +328,8 @@ if clause is successful. Otherwise false (0) will be returned. Example:
 
  // require that either data is between 1 and 10, or 90 and 100
  ["int", "cset|", [{"min": 1, "max": 10}, {"min": 90, "max": 100}]]
+
+See also: C<clause>.
 
 =head3 check : EXPR -> ANY
 
