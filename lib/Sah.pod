@@ -215,9 +215,8 @@ For convenience, there are also some shortcuts:
 
 is equivalent to:
 
- "CLAUSENAME": [VAL, ...],
- "CLAUSENAME.is_multi": 1,
- "CLAUSENAME.max_nok":  0
+ "CLAUSENAME":    [VAL, ...],
+ "CLAUSENAME.op": "and"
 
 =item * C<|> suffix (multiple clause values, only one must succeed)
 
@@ -225,9 +224,8 @@ is equivalent to:
 
 is equivalent to:
 
- "CLAUSENAME": [VAL, ...],
- "CLAUSENAME.is_multi": 1,
- "CLAUSENAME.min_ok":   1
+ "CLAUSENAME":    [VAL, ...],
+ "CLAUSENAME.op": "or"
 
 =item * C<!> prefix (negation)
 
@@ -236,7 +234,7 @@ is equivalent to:
 is a shortcut for this:
 
  "CLAUSENAME": VAL,
- "CLAUSENAME.max_ok": 0
+ "CLAUSENAME.op": "not"
 
 =item * C<=> suffix (expression)
 
@@ -329,91 +327,48 @@ Example:
 
 The above schema requires an integer which is divisible by 2, 3, I<and> 5.
 
-=item * min_ok, max_ok, min_nok, max_nok : INT
+=item * op : STR
 
-In a clause which uses multiple values (see previous C<is_multi> attribute),
-these attributes regulate the {minimum, maximum} number of values that must
-{pass, fail} the check for the whole clause to pass.
+Specify operator for (multiple) clause values. Possible values for this
+attribute include: C<and>, C<or>, C<none>, C<not>. Except for C<not>, the
+presence of C<op> signifies that clause contains multiple values instead of a
+single one.
 
-Analogously, in a clause set, these attributes regulate the {minimum, maximum}
-number of clauses that must {pass, fail} the check for the whole clause set to
-pass.
+There are shortcuts for C<and>, C<or>, and C<not>; see L</"CLAUSE AND CLAUSE
+SET">.
 
-C<min_ok>'s default is undef. You can use this attribute to only require certain
-number of (instead of all) passing checks.
-
+C<and> specifies that all clause values must succeed for the clause to succeed.
 Example:
 
- ["str", {"cset": {"min_len": 8, "match": "\\W"}, "cset.min_ok": 1}]
+ ["str", {"clause": [["min_len", 8], ["match", "\\W"]], "clause.op": "and"}]
 
 The above schema requires a string to be at least 8 characters long, I<or>
 contains a non-word character. Strings that would validate include: C<abcdefgh>
 or C<$> or C<$abcdefg>. Strings that would not validate include: C<abcd> (fails
-both C<min_len> and C<match> clauses). Without the .min_ok attribute, by default
-all checks in the C<cset> clause must pass.
+both C<min_len> and C<match> clauses) or C<abcdefgh> (fails the C<match>
+clause).
 
-Another example:
+C<or> specifies that any one of clause values must succeed for the clause to
+succeed. Example:
 
- ["str", {"match.is_multi": 1, "match": [RE1, RE2, RE3], "match.min_ok": 2}]
+ ["str", {"match": [RE1, RE2, RE3], "match.op": "or"}]
 
-The above schema specifies that string must match at least two of RE1/RE2/RE3.
+The above schema specifies that string can match any of the regexes RE1/RE2/RE3.
 
-C<max_ok>'s default is undef. You can use this attribute to require a number of
-failures in the checks.
+C<none> specifies that all clause values must fail for the clause to succeed.
+For example:
 
-Example:
+ ["str", {"match": [RE1, RE2, RE3], "match.op": "none"}]
 
- ["str", "min_len", 8, "match", "\\W", ".min_ok", 1, ".max_ok": 1]
-
-The above schema states that string must either be longer than 8 characters or
-contains a non-word character, I<but not both>. Strings that would validate
-include: C<abcdefgh> or C<$>. Strings that would not validate include:
-C<$abcdefg> (match both clauses, so max_ok is not satisfied).
-
-Another example:
-
- ["str", {"match.is_multi": 1, "match": [RE1, RE2, RE3], "match.max_ok": 1}]
-
-The above schema specifies that string must not match more than one of
+The above schema specifies that string must not match any of the regexes
 RE1/RE2/RE3.
 
-C<min_nok>'s default is undef. You can use this attribute to require a certain
-number of failures.
+C<not> reverts the success status of clause (in other words,
+clause must fail for validation to succeed). Example:
 
-Example:
+ ["str", {"match": RE, "match.op", "not"}]
 
- ["str", {"cset": {"min_len": 8, "match": "\\W"}, "cset.min_nok": 1}]
-
-The above schema requires a string to be shorter than 8 characters or devoid of
-non-word characters. Strings that would validate include: C<abcdefghi> (fails
-the C<match> clause), C<$abcd> (fails C<min_len> clause), or C<a> (fails both
-clauses). Strings that would not validate include: C<$abcdefg>.
-
-Another example:
-
- ["str", {"match.is_multi": 1, "match": [RE1, RE2, RE3], "match.min_nok": 1}]
-
-The above schema specifies that string must fail at least one regex match.
-
-C<max_nok>'s default is undef, but when none of the {min,max}_{ok,nok} is
-defined, the default behavior is to require all clauses to succeed, in other
-words, as if C<max_nok> were 0. You can use this clause to tolerate a certain
-number of failures in the checks.
-
-Example:
-
- ["str", {"cset": {"min_len": 8, "match": "\\W"}, "cset.max_nok": 1}]
-
-The above schema states that string must either be longer than 8 characters or
-contains two non-word characters, I<or both>. Strings that would validate
-include: C<abcdefgh>, C<$$>, C<$abcdefgh>. Strings that would not validate
-include: C<abcd> (fails both C<min_len> and C<match> clauses).
-
-Another example:
-
- ["str", {"match.is_multi": 1, "match": [RE1, RE2, RE3], "match.max_nok": 1}]
-
-The above schema specifies that string can fail at most one regex match.
+The above schema specifies not string must not match regex RE.
 
 =item * is_expr : BOOL
 
@@ -450,8 +405,7 @@ fail. Example:
  // string must not match any of the blacklist
  ["str", {
      "contains.is_expr": 1,
-     "contains.is_multi": 1,
-     "contains.max_ok": 0,
+     "contains.op": "none",
      "contains": "get_blacklist()"
  }]
 
@@ -490,17 +444,6 @@ more attributes with language code suffixes. For example:
  ["str", {"match":                "[^A-Za-z0-9_-]",
           "match.err_msg":        "Must not contain naughty characters",
           "match.err_msg.id_ID": "Tidak boleh mengandung karakter aneh-aneh"
- }]
-
-=item * ok_err_msg[.LANGCODE]
-
-Just like C<err_msg>, but this error message will be used when clause succeeds
-and there is C<.min_nok> or C<.max_ok> attributes defined. You can add
-translations by adding more attributes with language code suffix. For example:
-
- ["str", {"!in": ["root", "admin"], // shortcut for "in": ... + "in.max_ok": 0
-          "in.ok_err_msg":       "Sorry, username is reserved",
-          "in.ok_err_msg.id_ID": "Maaf, nama user dilarang digunakan"
  }]
 
 =item * human[.LANGCODE]
