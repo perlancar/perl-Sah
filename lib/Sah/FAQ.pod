@@ -46,7 +46,7 @@ started in 2009 and deprecated in 2011 in favor of "Sah".
 
 =item * JSON schema's syntax is simpler.
 
-It's metaschema (schema for the schema) is only about 130 lines. There are no
+Its metaschema (schema for the schema) is only about 130 lines. There are no
 shortcut forms.
 
 =item * JSON schema's features are more limited.
