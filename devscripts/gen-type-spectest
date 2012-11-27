@@ -113,7 +113,7 @@ sub gen_BaseType_tests {
     @res;
 }
 
-sub gen_multi_cval_tests {
+sub gen_op_attr_tests {
     my %args = @_;
     my @res;
 
@@ -123,50 +123,63 @@ sub gen_multi_cval_tests {
         unless @{$args{nok_values}}>1;
 
     push @res, {
-        name  => "!$Clause: (nok)",
-        input => $args{input},
+        name   => "!$Clause (nok)",
+        input  => $args{input},
         schema => [$Type, "!$Clause" => $args{ok_values}[0]],
         valid  => 0,
     };
     push @res, {
-        name  => "!$Clause: (ok)",
-        input => $args{input},
+        name   => "!$Clause (ok)",
+        input  => $args{input},
         schema => [$Type, "!$Clause" => $args{nok_values}[0]],
         valid  => 1,
     };
 
     push @res, {
-        name  => "$Clause&: (no items)",
-        input => $args{input},
+        name   => "$Clause.op=not (nok)",
+        input  => $args{input},
+        schema => [$Type, $Clause=>$args{ok_values}[0], "$Clause.op"=>"not"],
+        valid  => 0,
+    };
+    push @res, {
+        name   => "$Clause.op=not (ok)",
+        input  => $args{input},
+        schema => [$Type, $Clause=>$args{nok_values}[0], "$Clause.op"=>"not"],
+        valid  => 1,
+    };
+
+    push @res, {
+        name   => "$Clause& (no items)",
+        input  => $args{input},
         schema => [$Type, "$Clause&" => []],
         valid  => 1,
     };
     push @res, {
-        name  => "$Clause&: (ok)",
-        input => $args{input},
+        name   => "$Clause& (ok)",
+        input  => $args{input},
         schema => [$Type,
                    "$Clause&" => $args{ok_values}],
         valid  => 1,
     };
     push @res, {
-        name  => "$Clause&: (nok + ok)",
-        input => $args{input},
+        name   => "$Clause& (nok + ok)",
+        input  => $args{input},
         schema => [$Type,
                    "$Clause&" => [$args{nok_values}[0], $args{ok_values}[0]]],
         valid  => 0,
         errors => 1,
     };
     push @res, {
-        name  => "$Clause&: (ok + nok)",
-        input => $args{input},
+        name   => "$Clause& (ok + nok)",
+        input  => $args{input},
         schema => [$Type,
                    "$Clause&" => [$args{ok_values}[0], $args{nok_values}[0]]],
         valid  => 0,
         errors => 1,
     };
     push @res, {
-        name  => "$Clause&: (nok + nok)",
-        input => $args{input},
+        name   => "$Clause& (nok + nok)",
+        input  => $args{input},
         schema => [$Type,
                    "$Clause&" => [$args{nok_values}[0], $args{nok_values}[1]]],
         valid  => 0,
@@ -174,34 +187,77 @@ sub gen_multi_cval_tests {
     };
 
     push @res, {
-        name  => "$Clause|: (no items)",
-        input => $args{input},
+        name   => "$Clause.op=and (no items)",
+        input  => $args{input},
+        schema => [$Type, $Clause=>[], "$Clause.op"=>"and"],
+        valid  => 1,
+    };
+    push @res, {
+        name   => "$Clause.op=and (ok)",
+        input  => $args{input},
+        schema => [$Type, $Clause=>$args{ok_values}, "$Clause.op"=>"and"],
+        valid  => 1,
+    };
+    push @res, {
+        name   => "$Clause.op=and (nok + ok)",
+        input  => $args{input},
+        schema => [$Type,
+                   $Clause=>[$args{nok_values}[0], $args{ok_values}[0]],
+                   "$Clause.op"=>"and",
+               ],
+        valid  => 0,
+        errors => 1,
+    };
+    push @res, {
+        name   => "$Clause.op=and (ok + nok)",
+        input  => $args{input},
+        schema => [$Type,
+                   $Clause=>[$args{ok_values}[0], $args{nok_values}[0]],
+                   "$Clause.op"=>"and",
+               ],
+        valid  => 0,
+        errors => 1,
+    };
+    push @res, {
+        name   => "$Clause.op=and (nok + nok)",
+        input  => $args{input},
+        schema => [$Type,
+                   $Clause=>[$args{nok_values}[0], $args{nok_values}[1]],
+                   "$Clause.op"=>"and",
+               ],
+        valid  => 0,
+        errors => 2,
+    };
+
+    push @res, {
+        name   => "$Clause| (no items)",
+        input  => $args{input},
         schema => [$Type, "$Clause|" => []],
         valid  => 1,
     };
     push @res, {
-        name  => "$Clause|: (ok)",
-        input => $args{input},
+        name   => "$Clause| (ok)",
+        input  => $args{input},
         schema => [$Type, "$Clause|" => $args{ok_values}],
         valid  => 1,
     };
     push @res, {
-        name  => "$Clause|: (nok + ok)",
-        input => $args{input},
+        name   => "$Clause| (nok + ok)",
+        input  => $args{input},
         schema => [$Type,
                    "$Clause|" => [$args{nok_values}[0], $args{ok_values}[0]]],
         valid  => 1,
     };
     push @res, {
-        name  => "$Clause|: (ok + nok)",
-        input => $args{input},
+        name   => "$Clause| (ok + nok)",
+        input  => $args{input},
         schema => [$Type,
                    "$Clause|" => [$args{ok_values}[0], $args{nok_values}[0]]],
         valid  => 1,
     };
     push @res, {
-        name  => "$Clause|: (nok + nok)",
-        input => $args{input},
+        name   => "$Clause| (nok + nok)",
+        input  => $args{input},
         schema => [$Type,
                    "$Clause|" => [$args{nok_values}[0], $args{nok_values}[1]]],
         valid  => 0,
@@ -209,103 +265,84 @@ sub gen_multi_cval_tests {
     };
 
     push @res, {
-        name  => "$Clause.min_ok (nok + nok)",
-        input => $args{input},
+        name   => "$Clause.op=or (no items)",
+        input  => $args{input},
+        schema => [$Type, $Clause => [], "$Clause.op"=>"or"],
+        valid  => 1,
+    };
+    push @res, {
+        name   => "$Clause.op=or (ok)",
+        input  => $args{input},
+        schema => [$Type, $Clause=>$args{ok_values}, "$Clause.op"=>"or"],
+        valid  => 1,
+    };
+    push @res, {
+        name   => "$Clause.op=or (nok + ok)",
+        input  => $args{input},
         schema => [$Type,
-                   "$Clause" => [$args{nok_values}[0], $args{nok_values}[1]],
-                   "$Clause.is_multi" => 1, "$Clause.min_ok" => 1],
+                   $Clause=>[$args{nok_values}[0], $args{ok_values}[0]],
+                   "$Clause.op"=>"or",
+               ],
+        valid  => 1,
+    };
+    push @res, {
+        name   => "$Clause.op=or (ok + nok)",
+        input  => $args{input},
+        schema => [$Type,
+                   $Clause=>[$args{ok_values}[0], $args{nok_values}[0]],
+                   "$Clause.op"=>"or",
+               ],
+        valid  => 1,
+    };
+    push @res, {
+        name   => "$Clause.op=or (nok + nok)",
+        input  => $args{input},
+        schema => [$Type,
+                   $Clause=>[$args{nok_values}[0], $args{nok_values}[1]],
+                   "$Clause.op"=>"or",
+               ],
         valid  => 0,
-    };
-    push @res, {
-        name  => "$Clause.min_ok (ok + nok)",
-        input => $args{input},
-        schema => [$Type,
-                   "$Clause" => [$args{ok_values}[0], $args{nok_values}[1]],
-                   "$Clause.is_multi" => 1, "$Clause.min_ok" => 1],
-        valid  => 1,
-    };
-    push @res, {
-        name  => "$Clause.min_ok (ok + ok)",
-        input => $args{input},
-        schema => [$Type,
-                   "$Clause" => [$args{ok_values}[0], $args{ok_values}[1]],
-                   "$Clause.is_multi" => 1, "$Clause.min_ok" => 1],
-        valid  => 1,
+        errors => 1,
     };
 
     push @res, {
-        name  => "$Clause.max_ok (nok + nok)",
-        input => $args{input},
-        schema => [$Type,
-                   "$Clause" => [$args{nok_values}[0], $args{nok_values}[1]],
-                   "$Clause.is_multi" => 1, "$Clause.max_ok" => 1],
+        name   => "$Clause.op=none (empty items)",
+        input  => $args{input},
+        schema => [$Type, $Clause=>[], "$Clause.op"=>"none"],
         valid  => 1,
     };
     push @res, {
-        name  => "$Clause.max_ok (ok + nok)",
-        input => $args{input},
+        name   => "$Clause.op=none (nok + nok)",
+        input  => $args{input},
         schema => [$Type,
-                   "$Clause" => [$args{ok_values}[0], $args{nok_values}[1]],
-                   "$Clause.is_multi" => 1, "$Clause.max_ok" => 1],
+                   $Clause=>[$args{nok_values}[0], $args{nok_values}[1]],
+                   "$Clause.op"=>"none"],
         valid  => 1,
     };
     push @res, {
-        name  => "$Clause.max_ok (ok + ok)",
-        input => $args{input},
+        name   => "$Clause.op=none (nok + ok)",
+        input  => $args{input},
         schema => [$Type,
-                   "$Clause" => [$args{ok_values}[0], $args{ok_values}[1]],
-                   "$Clause.is_multi" => 1, "$Clause.max_ok" => 1],
+                   $Clause=>[$args{nok_values}[0], $args{ok_values}[0]],
+                   "$Clause.op"=>"none"],
         valid  => 0,
-    };
-
-    push @res, {
-        name  => "$Clause.min_nok (nok + nok)",
-        input => $args{input},
-        schema => [$Type,
-                   "$Clause" => [$args{nok_values}[0], $args{nok_values}[1]],
-                   "$Clause.is_multi" => 1, "$Clause.min_nok" => 1],
-        valid  => 1,
+        errors => 1,
     };
     push @res, {
-        name  => "$Clause.min_nok (ok + nok)",
-        input => $args{input},
+        name   => "$Clause.op=none (ok + nok)",
+        input  => $args{input},
         schema => [$Type,
-                   "$Clause" => [$args{ok_values}[0], $args{nok_values}[1]],
-                   "$Clause.is_multi" => 1, "$Clause.min_nok" => 1],
-        valid  => 1,
-    };
-    push @res, {
-        name  => "$Clause.min_nok (ok + ok)",
-        input => $args{input},
-        schema => [$Type,
-                   "$Clause" => [$args{ok_values}[0], $args{ok_values}[1]],
-                   "$Clause.is_multi" => 1, "$Clause.min_nok" => 1],
+                   $Clause=>[$args{ok_values}[0], $args{nok_values}[0]],
+                   "$Clause.op"=>"none"],
         valid  => 0,
+        errors => 1,
     };
-
     push @res, {
-        name  => "$Clause.max_nok (nok + nok)",
-        input => $args{input},
-        schema => [$Type,
-                   "$Clause" => [$args{nok_values}[0], $args{nok_values}[1]],
-                   "$Clause.is_multi" => 1, "$Clause.max_nok" => 1],
+        name   => "$Clause.op=none (ok + ok)",
+        input  => $args{input},
+        schema => [$Type, $Clause=>$args{ok_values}, "$Clause.op"=>"none"],
         valid  => 0,
-    };
-    push @res, {
-        name  => "$Clause.max_nok (ok + nok)",
-        input => $args{input},
-        schema => [$Type,
-                   "$Clause" => [$args{ok_values}[0], $args{nok_values}[1]],
-                   "$Clause.is_multi" => 1, "$Clause.max_nok" => 1],
-        valid  => 1,
-    };
-    push @res, {
-        name  => "$Clause.max_nok (ok + ok)",
-        input => $args{input},
-        schema => [$Type,
-                   "$Clause" => [$args{ok_values}[0], $args{ok_values}[1]],
-                   "$Clause.is_multi" => 1, "$Clause.max_nok" => 1],
-        valid  => 1,
+        errors => 2,
     };
 
     @res;
@@ -366,7 +403,7 @@ sub gen_Comparable_tests {
         valid  => 0,
     };
     local $Clause = "is";
-    push @res, gen_multi_cval_tests(
+    push @res, gen_op_attr_tests(
         input      => $v,
         ok_values  => [$v, $v],
         nok_values => [$v2, $v2],
@@ -386,7 +423,7 @@ sub gen_Comparable_tests {
         valid  => 0,
     };
     local $Clause = "in";
-    push @res, gen_multi_cval_tests(
+    push @res, gen_op_attr_tests(
         input      => $v,
         ok_values  => [$args{values}, clone($args{values})],
         nok_values => [[], []],
@@ -535,16 +572,16 @@ sub gen_Sortable_tests {
     );
 
     # disabled temporarily because failing for bool, even though i've adjust
-    # ok_values & nok_values
+    # stuffs
     #local $Clause = "between";
-    #push @res, gen_multi_cval_tests(
+    #push @res, gen_op_attr_tests(
     #    input      => $v1,
     #    # i know, lame, it's because bool only has two possible values
     #    ok_values  => [[$v1, clone($v1)], [$v1, clone($v1)]],
     #    nok_values => [[$v2, clone($v2)], [$v2, clone($v2)]],
     #);
 
-    # XXX multi cval for xbetween
+    # XXX op attr for xbetween
 
     @res;
 }
@@ -708,8 +745,8 @@ sub gen_int_tests {
 
     );
 
-    # XXX multi_cval for mod
-    # XXX multi_cval for div_by
+    # XXX op attr for mod
+    # XXX op attr for div_by
     # XXX div_by 0
 }
 
