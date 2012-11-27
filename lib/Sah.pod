@@ -446,6 +446,13 @@ more attributes with language code suffixes. For example:
           "match.err_msg.id_ID": "Tidak boleh mengandung karakter aneh-aneh"
  }]
 
+Another example:
+
+ ["str", {"!in": ["root", "admin"],
+          "in.err_msg":       "Sorry, username is reserved",
+          "in.err_msg.id_ID": "Maaf, nama user dilarang digunakan"
+ }]
+
 =item * human[.LANGCODE]
 
 This is also ignored when validating data, but will be used by the human
