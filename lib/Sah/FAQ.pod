@@ -7,6 +7,8 @@ package Sah::FAQ; # just to make PodWeaver happy
 
 =head1 GENERAL
 
+=head2 General
+
 =head3 Why use a schema (a.k.a "Turing tarpit")? Why not use pure Perl?
 
 Schema language is a specialized language (DSL) that should be more concise to
@@ -52,6 +54,8 @@ shortcut forms.
 =item * JSON schema's features are more limited.
 
 No expression, no function.
+
+=back
 
 =head3 Comparison to Data::Rx?
 
