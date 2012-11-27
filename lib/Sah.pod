@@ -495,11 +495,6 @@ C<of> clause, C<$a> will not be set.
 
 Refer to each clause's documentation to find out what value the clause returns.
 
-=back
-
-Aside from the above general attributes, each clause might recognize its own
-specific attributes. See documentation of respective clauses.
-
 =item * c.COMPILER
 
 This is a namespace for specifying compiler options. Each compiler will have its
@@ -512,6 +507,11 @@ options. For example:
    "soundex": "E460",
    "c.js.ignore_missing_clause_handler": true
  }]
+
+=back
+
+Aside from the above general attributes, each clause might recognize its own
+specific attributes. See documentation of respective clauses.
 
 =head2 Clause set merging
 
