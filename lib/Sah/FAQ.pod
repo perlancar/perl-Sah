@@ -95,7 +95,7 @@ optional.
 
 In general I am against compiler configuration which changes language behavior.
 In this case, it makes a simple schema like C<int> to have ambiguous meaning (is
-undefined value allowed? Ir not allowed? It depends on compiler configuration).
+undefined value allowed? Or not allowed? It depends on compiler configuration).
 
 =head3 How to express "not-something"? Why isn't there a C<not> or C<not_in> clause?
 
