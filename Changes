@@ -1,5 +1,21 @@
 Revision history for Sah
 
+0.9.22   2012-11-28 (SHARYANTO)
+
+         [NEW FEATURES]
+
+         - Add clause 'clause'.
+
+         [INCOMPATIBLE CHANGES]
+
+         - Rename clause 'cset' to 'clset' to make it less ambiguous (since we
+           also use the notation 'cname' [clname], 'cval' [clvar]).
+
+         [BUG FIXES]
+
+         - Fix typos and grammar.
+
+
 0.9.21   2012-11-27 (SHARYANTO)
 
          No spec changes. Forgot to update spectest.
