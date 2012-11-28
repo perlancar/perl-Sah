@@ -289,6 +289,27 @@ in the C<else> section of the C<if_clause> clause.
 
 To force failure, you can use C<< "!ok": 1 >>.
 
+=head3 clause : [CLNAME, CLVAL] -> ANY
+
+Priority: 50 (normal)
+
+Return value: clause return value.
+
+Category: constraint.
+
+Evaluate a clause. Example:
+
+ ["int", "clause", ["div_by", 2]] // equivalent to ["int", "div_by", 2]
+
+This clause is useful when combined with the C<.op> attribute. Example:
+
+ ["int", "clause|", [["div_by", 2], ["xmin", 10]]]
+ // equivalent to:
+ // ["int", "clause", [["div_by", 2], ["xmin", 10]], "clause.op", "or"]
+
+The above schema says that the integer needs to be divisible by 2 or larger than
+10.
+
 =head3 clset : HASH -> INT
 
 Priority: 50 (normal)
