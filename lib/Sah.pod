@@ -317,16 +317,6 @@ Example:
  // that "min" is evaluated first
  ["int*", {"min=": "some expr", "min.prio": 1, "max": 10}]
 
-=item * is_multi : BOOL (default: 0)
-
-This attribute can be used to signify that clause contain multiple (an array of)
-values instead of a single value. Each value will be tested against the clause.
-Example:
-
- ["int*", {"div_by.is_multi": 1, "div_by": [2, 3, 5]}]
-
-The above schema requires an integer which is divisible by 2, 3, I<and> 5.
-
 =item * op : STR
 
 Specify operator for (multiple) clause values. Possible values for this
@@ -395,12 +385,12 @@ attributes, especially clauses that accept argument containing schemas as
 dynamically generated schemas needs the compiler to embed an interpreter or
 compiler in the generated code.
 
-When C<is_expr> attribute is true, and C<is_multi> is also true, then the
-expression is expected to return an array of values. Otherwise, the clause will
-fail. Example:
+When C<is_expr> attribute is true, and C<op> is also one that requires multiple
+clause values (like C<and>, C<or>, C<none>), then the expression is expected to
+return an array of values. Otherwise, the clause will fail. Example:
 
  // number which must be divisible by 2, 3, 5
- ["int", {"div_by.is_expr": 1, "div_by.is_multi": 1, "div_by": "[2, 3, 5]"}]
+ ["int", {"div_by.is_expr": 1, "div_by.op": "and", "div_by": "[2, 3, 5]"}]
 
  // string must not match any of the blacklist
  ["str", {
