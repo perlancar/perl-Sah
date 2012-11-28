@@ -407,7 +407,7 @@ C<err_level> is set to C<warn>, however, this only generates a warning and does
 not cause the validation to fail.
 
  // password
- ["str*", {"cset&": [
+ ["str*", {"clset&": [
    {"min_len": 4},
    {"min_len": 8,
     "min_len.err_level": "warn",
@@ -510,25 +510,25 @@ child schema's clause set contains merge prefixes (explained later) in its keys.
 For example:
 
  // schema1
- [TYPE1, CSET1]
+ [TYPE1, CLSET1]
 
  // schema2, based on schema1
- [schema1, CSET2]
+ [schema1, CLSET2]
 
  // schema3, based on schema2
- [schema2, CSET3]
+ [schema2, CLSET3]
 
 When compiling/evaluating C<schema2>, Sah will check against C<TYPE1> and
-C<CSET1> and then C<CSET2>. However, when C<CSET2> contains a merge prefix
+C<CLSET1> and then C<CLSET2>. However, when C<CLSET2> contains a merge prefix
 (marked with an asterisk here for illustration), then Sah will check against
-C<TYPE1> and C<< merge(CSET1, *CSET2) >>.
+C<TYPE1> and C<< merge(CLSET1, *CLSET2) >>.
 
 When compiling/evaluating C<schema3>, Sah will check against C<TYPE1> and
-C<CSET1> and then C<CSET2> and then C<CSET3>. However, when C<CSET2> contains a
-merge prefix, then Sah will check against C<TYPE1>, C<< merge(CSET1, *CSET2) >>,
-and then C<CSET3>. When C<CSET2> and C<CSET3> contains merge prefixes, Sah will
-check against C<TYPE1> and C<< merge(CSET1, *CSET2, *CSET3) >>. So merging will
-be done from left to right.
+C<CLSET1> and then C<CLSET2> and then C<CLSET3>. However, when C<CLSET2>
+contains a merge prefix, then Sah will check against C<TYPE1>, C<< merge(CLSET1,
+*CLSET2) >>, and then C<CLSET3>. When C<CLSET2> and C<CLSET3> contains merge
+prefixes, Sah will check against C<TYPE1> and C<< merge(CLSET1, *CLSET2,
+*CLSET3) >>. So merging will be done from left to right.
 
 The base schema's clause set must not contain any merge prefixes.
 

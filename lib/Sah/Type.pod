@@ -82,7 +82,7 @@ by C<consonant>, having the default value of C<base_v>). C<consonant>'s author
 might then update its own implementation to match C<vocal>:
 
  // the adjusted consonant
- ["vocal", {"base_v":2, "cset":{"match":"\\A[a-z]\\z"}, "match.op":"not"}]
+ ["vocal", {"base_v":2, "clset":{"match":"\\A[a-z]\\z"}, "match.op":"not"}]
 
 Notice the matching of C<consonant>'s C<base_v> against C<vocal>'s C<schema_v>.
 C<consonant> might also add its own C<< "schema_v":2 >> so other schemas
@@ -289,7 +289,7 @@ in the C<else> section of the C<if_clause> clause.
 
 To force failure, you can use C<< "!ok": 1 >>.
 
-=head3 cset : HASH -> INT
+=head3 clset : HASH -> INT
 
 Priority: 50 (normal)
 
@@ -303,10 +303,10 @@ if clause is successful. Otherwise false (0) will be returned. Example:
 
  // require that data is between 1 and 10.
  // equivalent to ["int", "min", 1, "max", 10]
- ["int", "cset", {"min": 1, "max": 10}]
+ ["int", "clset", {"min": 1, "max": 10}]
 
  // require that either data is between 1 and 10, or 90 and 100
- ["int", "cset|", [{"min": 1, "max": 10}, {"min": 90, "max": 100}]]
+ ["int", "clset|", [{"min": 1, "max": 10}, {"min": 90, "max": 100}]]
 
 =head3 check : EXPR -> ANY
 

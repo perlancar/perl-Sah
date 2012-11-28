@@ -120,7 +120,7 @@ You can't do this since it will cause a conflict:
 
 However, you can do this:
 
- ["str ", {"cset&": [{"in": ["a","b","c"]}, {"!in": ["x","y","z"]}]}]
+ ["str ", {"clset&": [{"in": ["a","b","c"]}, {"!in": ["x","y","z"]}]}]
 
 =head3 How to express mutual failure ("if A fails, B must also fails")?
 
