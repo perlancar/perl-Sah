@@ -110,6 +110,23 @@ sub gen_BaseType_tests {
         };
     }
 
+    # clause
+    push @res, {
+        name   => "clause (ok)",
+        input  => $args{value},
+        schema => ["$Type*", clause=>$args{ok_clauses}[0]],
+        valid  => 1,
+    };
+    push @res, {
+        name   => "clause (nok)",
+        input  => $args{value},
+        schema => ["$Type*", clause=>$args{nok_clauses}[0]],
+        valid  => 0,
+        errors => 1,
+    };
+
+    # XXX clause 'clause' + .op and/or/none/no
+
     @res;
 }
 
@@ -703,6 +720,8 @@ sub gen_int_tests {
             value => 2,
             ok_defaults  => [1],
             nok_defaults => [[]],
+            ok_clauses   => [[min=>1], [max=>2]],
+            nok_clauses  => [[min=>3], [xmax=>2]],
         ),
         gen_err_level_tests(
             clause    => 'div_by',
@@ -765,6 +784,8 @@ sub gen_float_tests {
             value => 1.1,
             ok_defaults  => [1.1],
             nok_defaults => [[]],
+            ok_clauses   => [[min=>1], [min=>1.1]],
+            nok_clauses  => [[min=>2], [max=>1]],
         ),
         gen_err_level_tests(
             clause    => 'min',
@@ -798,6 +819,8 @@ sub gen_array_tests {
             value => [],
             ok_defaults  => [[]],
             nok_defaults => ["a"],
+            ok_clauses   => [[min_len=>0], [max_len=>1]],
+            nok_clauses  => [[min_len=>1], [min_len=>2]],
         ),
         gen_err_level_tests(
             clause    => 'is',
@@ -897,6 +920,8 @@ sub gen_str_tests {
             value => "a",
             ok_defaults  => ["a"],
             nok_defaults => [[]],
+            ok_clauses   => [[match=>"a"], [len=>1]],
+            nok_clauses  => [[match=>"b"], [len=>2]],
         ),
         gen_err_level_tests(
             clause    => 'is',
@@ -987,6 +1012,8 @@ sub gen_hash_tests {
             value => {},
             ok_defaults  => [{}],
             nok_defaults => ["a"],
+            ok_clauses   => [[min_len=>0], [max_len=>1]],
+            nok_clauses  => [[min_len=>1], [max_len=>0]],
         ),
         gen_err_level_tests(
             clause    => 'is',
@@ -1143,6 +1170,8 @@ sub gen_bool_tests {
             value => 1,
             ok_defaults  => [1],
             nok_defaults => [[]],
+            ok_clauses   => [[is_true=>undef], [is_true=>1]],
+            nok_clauses  => [[is_true=>0], [is=>0]],
         ),
         gen_err_level_tests(
             clause    => 'is',
