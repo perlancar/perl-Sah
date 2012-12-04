@@ -53,6 +53,21 @@ sub gen_type_check_tests {
 }
 
 # req, forbidden, default
+#
+# args:
+#
+# - value -> used to test 'forbidden'. must be a valid value.
+#
+# - ok_defaults -> used to test 'default' and that default values are still
+# validated, min 1 value
+#
+# - nok_defaults -> see above
+#
+# - ok_clauses -> used to test 'clause' and 'clset'. minimal 2 values, clauses
+# must be different
+#
+# - nok_clauses -> see above.
+#
 sub gen_BaseType_tests {
     my %args = @_;
     my @res;
@@ -116,16 +131,61 @@ sub gen_BaseType_tests {
         input  => $args{value},
         schema => ["$Type*", clause=>$args{ok_clauses}[0]],
         valid  => 1,
-    };
+    } if $args{ok_clauses};
     push @res, {
         name   => "clause (nok)",
         input  => $args{value},
         schema => ["$Type*", clause=>$args{nok_clauses}[0]],
         valid  => 0,
         errors => 1,
-    };
+    } if $args{ok_clauses};
 
-    # XXX clause 'clause' + .op and/or/none/no
+    # XXX clause 'clause' + .op and/or/none
+
+    push @res, {
+        name   => "clset (empty = ok)",
+        input  => $args{value},
+        schema => ["$Type*", clset=>{}],
+        valid  => 1,
+    };
+    push @res, {
+        name   => "clset (ok + ok = ok)",
+        input  => $args{value},
+        schema => ["$Type*", clset=>{
+            $args{ok_clauses}[0][0] => $args{ok_clauses}[0][1],
+            $args{ok_clauses}[1][0] => $args{ok_clauses}[1][1],
+        }],
+        valid  => 1,
+    } if $args{ok_clauses};
+    push @res, {
+        name   => "clset (ok + nok = nok)",
+        input  => $args{value},
+        schema => ["$Type*", clset=>{
+            $args{ok_clauses}[0][0]  => $args{ok_clauses}[0][1],
+            $args{nok_clauses}[1][0] => $args{nok_clauses}[1][1],
+        }],
+        valid  => 0,
+    } if $args{ok_clauses};
+    push @res, {
+        name   => "clset (nok + ok = nok)",
+        input  => $args{value},
+        schema => ["$Type*", clset=>{
+            $args{nok_clauses}[0][0] => $args{nok_clauses}[0][1],
+            $args{ok_clauses}[1][0]  => $args{ok_clauses}[1][1],
+        }],
+        valid  => 0,
+    } if $args{ok_clauses};
+    push @res, {
+        name   => "clset (nok + nok = nok)",
+        input  => $args{value},
+        schema => ["$Type*", clset=>{
+            $args{nok_clauses}[0][0] => $args{nok_clauses}[0][1],
+            $args{nok_clauses}[1][0] => $args{nok_clauses}[1][1],
+        }],
+        valid  => 0,
+    } if $args{ok_clauses};
+
+    # XXX clause 'clset' + .op and/or/none
 
     @res;
 }
@@ -784,7 +844,7 @@ sub gen_float_tests {
             value => 1.1,
             ok_defaults  => [1.1],
             nok_defaults => [[]],
-            ok_clauses   => [[min=>1], [min=>1.1]],
+            ok_clauses   => [[min=>1], [max=>1.1]],
             nok_clauses  => [[min=>2], [max=>1]],
         ),
         gen_err_level_tests(
@@ -816,11 +876,11 @@ sub gen_array_tests {
             reject => [1, "a", {}],
         ),
         gen_BaseType_tests(
-            value => [],
+            value => [1],
             ok_defaults  => [[]],
             nok_defaults => ["a"],
             ok_clauses   => [[min_len=>0], [max_len=>1]],
-            nok_clauses  => [[min_len=>1], [min_len=>2]],
+            nok_clauses  => [[min_len=>1], [max_len=>0]],
         ),
         gen_err_level_tests(
             clause    => 'is',
@@ -1170,8 +1230,9 @@ sub gen_bool_tests {
             value => 1,
             ok_defaults  => [1],
             nok_defaults => [[]],
-            ok_clauses   => [[is_true=>undef], [is_true=>1]],
-            nok_clauses  => [[is_true=>0], [is=>0]],
+            # perl-specific, no real bool value
+            #ok_clauses   => [[is_true=>1], [is=>1]],
+            #nok_clauses  => [[is_true=>0], [is=>0]],
         ),
         gen_err_level_tests(
             clause    => 'is',
