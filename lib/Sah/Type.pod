@@ -329,6 +329,8 @@ if clause is successful. Otherwise false (0) will be returned. Example:
  // require that either data is between 1 and 10, or 90 and 100
  ["int", "clset|", [{"min": 1, "max": 10}, {"min": 90, "max": 100}]]
 
+See also: C<clause>.
+
 =head3 check : EXPR -> ANY
 
 Priority: 50 (normal)
