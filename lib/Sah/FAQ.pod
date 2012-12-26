@@ -122,7 +122,7 @@ However, you can do this:
 
  ["str ", {"clset&": [{"in": ["a","b","c"]}, {"!in": ["x","y","z"]}]}]
 
-=head3 How to express mutual failure ("if A fails, B must also fails")?
+=head3 How to express mutual failure ("if A fails, B must also fail")?
 
 You can use C<if> clause and negate the clauses. For example:
 
