@@ -155,9 +155,21 @@ sub gen_BaseType_tests {
         dies   => 1,
     };
     push @res, {
+        name   => "clset (dies, unknown attr)",
+        input  => $args{value},
+        schema => ["$Type*", clset=>{min_len=>1, "min_len.foo"=>1}],
+        dies   => 1,
+    };
+    push @res, {
         name   => "clset (empty = ok)",
         input  => $args{value},
         schema => ["$Type*", clset=>{}],
+        valid  => 1,
+    };
+    push @res, {
+        name   => "clset (ignored clause/attr = ok)",
+        input  => $args{value},
+        schema => ["$Type*", clset=>{_foo=>1, "foo._bar"=>2}],
         valid  => 1,
     };
     push @res, {
