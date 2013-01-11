@@ -127,7 +127,7 @@ sub gen_BaseType_tests {
 
     # clause
     push @res, {
-        name   => "clause (nok, unknown clause)",
+        name   => "clause (dies, unknown clause)",
         input  => $args{value},
         schema => ["$Type*", clause=>"foo"],
         dies   => 1,
@@ -148,6 +148,12 @@ sub gen_BaseType_tests {
 
     # XXX clause 'clause' + .op and/or/none
 
+    push @res, {
+        name   => "clset (dies, unknown clause)",
+        input  => $args{value},
+        schema => ["$Type*", clset=>{foo=>1}],
+        dies   => 1,
+    };
     push @res, {
         name   => "clset (empty = ok)",
         input  => $args{value},
@@ -1026,7 +1032,7 @@ sub gen_str_tests {
             valid  => 0,
         },
         {
-            name   => 'match: (nok, invalid regex)',
+            name   => 'match: (dies, invalid regex)',
             input  => "a",
             schema => [str => match => "("],
             dies   => 1,
