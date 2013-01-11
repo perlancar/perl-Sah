@@ -784,6 +784,25 @@ sub gen_HasElems_tests {
         # XXX exists
     );
 
+    if ($args{elems_test}) {
+        for ($args{elems_test}) {
+            push @res, (
+                {
+                    name   => 'elems (ok)',
+                    input  => $_->{value},
+                    schema => [$Type, elems => $_->{ok}],
+                    valid  => 1,
+                },
+                {
+                    name   => 'elems (nok)',
+                    input  => $_->{value},
+                    schema => [$Type, elems => $_->{nok}],
+                    valid  => 0,
+                },
+            );
+        }
+    }
+
     # XXX multi vals for all clauses
 
     @res;
@@ -924,6 +943,7 @@ sub gen_array_tests {
             nok_each_index => [int => xmax => 1],
             ok_each_elem   => "float",
             nok_each_elem  => "int",
+            elems_test     => {value=>[1, 1.2], ok=>["int","float"], nok=>["int","int"]},
         ),
     );
 
@@ -1029,6 +1049,7 @@ sub gen_str_tests {
             nok_each_index => [int => xmax => 2],
             ok_each_elem   => "str",
             nok_each_elem  => "float",
+            elems_test     => {value=>"abc", ok=>["str","str","str"], nok=>["str","str",[str=>is=>"d"]]},
         ),
 
         {
@@ -1117,6 +1138,8 @@ sub gen_hash_tests {
             nok_each_index => [str => len=>2],
             ok_each_elem   => "float",
             nok_each_elem  => "int",
+            # currently no elems test yet, elems clause value is currently
+            # array, while indexes of hash are strings.
         )
     );
 
