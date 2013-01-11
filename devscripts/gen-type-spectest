@@ -1118,11 +1118,11 @@ sub gen_hash_tests {
             reject => [1, "a", []],
         ),
         gen_BaseType_tests(
-            value => {},
+            value => {a=>1},
             ok_defaults  => [{}],
             nok_defaults => ["a"],
-            ok_clauses   => [[min_len=>0], [max_len=>1]],
-            nok_clauses  => [[min_len=>1], [max_len=>0]],
+            ok_clauses   => [[min_len=>1], [max_len=>1]],
+            nok_clauses  => [[min_len=>2], [max_len=>0]],
         ),
         gen_err_level_tests(
             clause    => 'is',
