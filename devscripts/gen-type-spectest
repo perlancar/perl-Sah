@@ -284,7 +284,7 @@ sub gen_op_attr_tests {
         schema => [$Type,
                    "$Clause&" => [$args{nok_values}[0], $args{nok_values}[1]]],
         valid  => 0,
-        errors => 2,
+        errors => 1,
     };
 
     push @res, {
@@ -327,7 +327,7 @@ sub gen_op_attr_tests {
                    "$Clause.op"=>"and",
                ],
         valid  => 0,
-        errors => 2,
+        errors => 1,
     };
 
     push @res, {
@@ -443,7 +443,7 @@ sub gen_op_attr_tests {
         input  => $args{input},
         schema => [$Type, $Clause=>$args{ok_values}, "$Clause.op"=>"none"],
         valid  => 0,
-        errors => 2,
+        errors => 1,
     };
 
     @res;
