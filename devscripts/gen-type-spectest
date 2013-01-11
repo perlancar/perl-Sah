@@ -127,6 +127,12 @@ sub gen_BaseType_tests {
 
     # clause
     push @res, {
+        name   => "clause (nok, unknown clause)",
+        input  => $args{value},
+        schema => ["$Type*", clause=>"foo"],
+        dies   => 1,
+    };
+    push @res, {
         name   => "clause (ok)",
         input  => $args{value},
         schema => ["$Type*", clause=>$args{ok_clauses}[0]],
