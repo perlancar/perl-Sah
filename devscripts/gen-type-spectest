@@ -129,7 +129,7 @@ sub gen_BaseType_tests {
     push @res, {
         name   => "clause (dies, unknown clause)",
         input  => $args{value},
-        schema => ["$Type*", clause=>"foo"],
+        schema => ["$Type*", clause=>[foo => 1]],
         dies   => 1,
     };
     push @res, {
