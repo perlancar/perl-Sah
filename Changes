@@ -1,6 +1,11 @@
 Revision history for Sah
 
-0.9.23   2013-01-11 (SHARYANTO) (not yet released)
+0.9.24   2013-01-30 (SHARYANTO)
+
+         No spec changes. Fixes on spectest.
+
+
+0.9.23   2013-01-11 (SHARYANTO)
 
          No spec changes. Add tests to spectest, including tests for 'clause'
          and 'clset' clauses and for array's 'elems' clause. Fix a couple of
