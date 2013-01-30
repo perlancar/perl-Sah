@@ -96,17 +96,29 @@ tests:
     schema: 
       - hash*
       - clause
-      - foo
+      - 
+        - foo
+        - 1
   - 
     input: *1
     name: clause (ok)
     schema: 
       - hash*
       - clause
-      - 
+      - &2 
         - min_len
         - 1
     valid: 1
+  - 
+    input: *1
+    name: clause (ok) + clause nok = nok
+    schema: 
+      - hash*
+      - clause
+      - *2
+      - max_len
+      - 0
+    valid: 0
   - 
     errors: 1
     input: *1
@@ -168,6 +180,17 @@ tests:
     valid: 1
   - 
     input: *1
+    name: clset (ok) + clause nok = nok
+    schema: 
+      - hash*
+      - clset
+      - 
+        min_len: 1
+      - max_len
+      - 0
+    valid: 0
+  - 
+    input: *1
     name: clset (ok + nok = nok)
     schema: 
       - hash*
@@ -197,101 +220,101 @@ tests:
         min_len: 2
     valid: 0
   - 
-    input: &3 
+    input: &4 
       a: 0
     name: .err_level=error (clause=is, ok)
     schema: 
       - hash
       - is
-      - &2 
+      - &3 
         a: 0
     valid: 1
   - 
-    input: &4 
+    input: &5 
       a: 1
     name: .err_level=error (clause=is, nok)
     schema: 
       - hash
       - is
-      - *2
+      - *3
     valid: 0
   - 
-    input: *3
+    input: *4
     name: .err_level=warn (clause=is, ok)
     schema: 
       - hash
       - is
-      - *2
+      - *3
       - is.err_level
       - warn
     valid: 1
   - 
-    input: *4
+    input: *5
     name: .err_level=warn (clause=is, nok)
     schema: 
       - hash*
       - is
-      - *2
+      - *3
       - is.err_level
       - warn
     valid: 1
     warnings: 1
   - 
-    input: &5 {}
+    input: &6 {}
 
     name: "is: must accept same value"
     schema: 
       - hash
       - is
-      - *5
+      - *6
     valid: 1
   - 
-    input: *5
+    input: *6
     name: "is: must reject different value"
     schema: 
       - hash
       - is
-      - &6 
+      - &7 
         a: 1
     valid: 0
   - 
-    input: *5
+    input: *6
     name: "!is (nok)"
     schema: 
       - hash
       - "!is"
-      - *5
+      - *6
     valid: 0
   - 
-    input: *5
+    input: *6
     name: "!is (ok)"
     schema: 
       - hash
       - "!is"
-      - *6
+      - *7
     valid: 1
   - 
-    input: *5
+    input: *6
     name: is.op=not (nok)
     schema: 
       - hash
       - is
-      - *5
+      - *6
       - is.op
       - not
     valid: 0
   - 
-    input: *5
+    input: *6
     name: is.op=not (ok)
     schema: 
       - hash
       - is
-      - *6
+      - *7
       - is.op
       - not
     valid: 1
   - 
-    input: *5
+    input: *6
     name: is& (no items)
     schema: 
       - hash
@@ -300,50 +323,50 @@ tests:
 
     valid: 1
   - 
-    input: *5
+    input: *6
     name: is& (ok)
     schema: 
       - hash
       - is&
-      - &7 
-        - *5
-        - *5
+      - &8 
+        - *6
+        - *6
     valid: 1
   - 
     errors: 1
-    input: *5
+    input: *6
     name: is& (nok + ok)
     schema: 
       - hash
       - is&
       - 
+        - *7
         - *6
-        - *5
     valid: 0
   - 
     errors: 1
-    input: *5
+    input: *6
     name: is& (ok + nok)
     schema: 
       - hash
       - is&
       - 
-        - *5
         - *6
+        - *7
     valid: 0
   - 
     errors: 1
-    input: *5
+    input: *6
     name: is& (nok + nok)
     schema: 
       - hash
       - is&
       - 
-        - *6
-        - *6
+        - *7
+        - *7
     valid: 0
   - 
-    input: *5
+    input: *6
     name: is.op=and (no items)
     schema: 
       - hash
@@ -354,56 +377,56 @@ tests:
       - and
     valid: 1
   - 
-    input: *5
+    input: *6
     name: is.op=and (ok)
     schema: 
       - hash
       - is
-      - *7
+      - *8
       - is.op
       - and
     valid: 1
   - 
     errors: 1
-    input: *5
+    input: *6
     name: is.op=and (nok + ok)
     schema: 
       - hash
       - is
       - 
+        - *7
         - *6
-        - *5
       - is.op
       - and
     valid: 0
   - 
     errors: 1
-    input: *5
+    input: *6
     name: is.op=and (ok + nok)
     schema: 
       - hash
       - is
       - 
-        - *5
         - *6
+        - *7
       - is.op
       - and
     valid: 0
   - 
     errors: 1
-    input: *5
+    input: *6
     name: is.op=and (nok + nok)
     schema: 
       - hash
       - is
       - 
-        - *6
-        - *6
+        - *7
+        - *7
       - is.op
       - and
     valid: 0
   - 
-    input: *5
+    input: *6
     name: is| (no items)
     schema: 
       - hash
@@ -412,46 +435,46 @@ tests:
 
     valid: 1
   - 
-    input: *5
+    input: *6
     name: is| (ok)
     schema: 
       - hash
       - is|
-      - *7
+      - *8
     valid: 1
   - 
-    input: *5
+    input: *6
     name: is| (nok + ok)
     schema: 
       - hash
       - is|
       - 
+        - *7
         - *6
-        - *5
     valid: 1
   - 
-    input: *5
+    input: *6
     name: is| (ok + nok)
     schema: 
       - hash
       - is|
       - 
-        - *5
         - *6
+        - *7
     valid: 1
   - 
     errors: 1
-    input: *5
+    input: *6
     name: is| (nok + nok)
     schema: 
       - hash
       - is|
       - 
-        - *6
-        - *6
+        - *7
+        - *7
     valid: 0
   - 
-    input: *5
+    input: *6
     name: is.op=or (no items)
     schema: 
       - hash
@@ -462,54 +485,54 @@ tests:
       - or
     valid: 1
   - 
-    input: *5
+    input: *6
     name: is.op=or (ok)
     schema: 
       - hash
       - is
-      - *7
+      - *8
       - is.op
       - or
     valid: 1
   - 
-    input: *5
+    input: *6
     name: is.op=or (nok + ok)
     schema: 
       - hash
       - is
       - 
+        - *7
         - *6
-        - *5
       - is.op
       - or
     valid: 1
   - 
-    input: *5
+    input: *6
     name: is.op=or (ok + nok)
     schema: 
       - hash
       - is
       - 
-        - *5
         - *6
+        - *7
       - is.op
       - or
     valid: 1
   - 
     errors: 1
-    input: *5
+    input: *6
     name: is.op=or (nok + nok)
     schema: 
       - hash
       - is
       - 
-        - *6
-        - *6
+        - *7
+        - *7
       - is.op
       - or
     valid: 0
   - 
-    input: *5
+    input: *6
     name: is.op=none (empty items)
     schema: 
       - hash
@@ -520,66 +543,66 @@ tests:
       - none
     valid: 1
   - 
-    input: *5
+    input: *6
     name: is.op=none (nok + nok)
     schema: 
       - hash
       - is
       - 
-        - *6
-        - *6
+        - *7
+        - *7
       - is.op
       - none
     valid: 1
   - 
     errors: 1
-    input: *5
+    input: *6
     name: is.op=none (nok + ok)
     schema: 
       - hash
       - is
       - 
+        - *7
         - *6
-        - *5
       - is.op
       - none
     valid: 0
   - 
     errors: 1
-    input: *5
+    input: *6
     name: is.op=none (ok + nok)
     schema: 
       - hash
       - is
       - 
-        - *5
         - *6
+        - *7
       - is.op
       - none
     valid: 0
   - 
     errors: 1
-    input: *5
+    input: *6
     name: is.op=none (ok + ok)
     schema: 
       - hash
       - is
-      - *7
+      - *8
       - is.op
       - none
     valid: 0
   - 
-    input: *5
+    input: *6
     name: "in: must accept valid choices"
     schema: 
       - hash
       - in
-      - &8 
-        - *5
+      - &9 
         - *6
+        - *7
     valid: 1
   - 
-    input: *5
+    input: *6
     name: "in: must reject empty choices"
     schema: 
       - hash
@@ -588,44 +611,44 @@ tests:
 
     valid: 0
   - 
-    input: *5
+    input: *6
     name: "!in (nok)"
     schema: 
       - hash
       - "!in"
-      - *8
+      - *9
     valid: 0
   - 
-    input: *5
+    input: *6
     name: "!in (ok)"
     schema: 
       - hash
       - "!in"
-      - &9 []
+      - &10 []
 
     valid: 1
   - 
-    input: *5
+    input: *6
     name: in.op=not (nok)
-    schema: 
-      - hash
-      - in
-      - *8
-      - in.op
-      - not
-    valid: 0
-  - 
-    input: *5
-    name: in.op=not (ok)
     schema: 
       - hash
       - in
       - *9
       - in.op
       - not
+    valid: 0
+  - 
+    input: *6
+    name: in.op=not (ok)
+    schema: 
+      - hash
+      - in
+      - *10
+      - in.op
+      - not
     valid: 1
   - 
-    input: *5
+    input: *6
     name: in& (no items)
     schema: 
       - hash
@@ -634,13 +657,13 @@ tests:
 
     valid: 1
   - 
-    input: *5
+    input: *6
     name: in& (ok)
     schema: 
       - hash
       - in&
-      - &10 
-        - *8
+      - &11 
+        - *9
         - 
           - {}
 
@@ -649,40 +672,40 @@ tests:
     valid: 1
   - 
     errors: 1
-    input: *5
+    input: *6
     name: in& (nok + ok)
     schema: 
       - hash
       - in&
       - 
+        - *10
         - *9
-        - *8
     valid: 0
   - 
     errors: 1
-    input: *5
+    input: *6
     name: in& (ok + nok)
     schema: 
       - hash
       - in&
       - 
-        - *8
         - *9
+        - *10
     valid: 0
   - 
     errors: 1
-    input: *5
+    input: *6
     name: in& (nok + nok)
     schema: 
       - hash
       - in&
       - 
-        - *9
-        - &11 []
+        - *10
+        - &12 []
 
     valid: 0
   - 
-    input: *5
+    input: *6
     name: in.op=and (no items)
     schema: 
       - hash
@@ -693,56 +716,56 @@ tests:
       - and
     valid: 1
   - 
-    input: *5
+    input: *6
     name: in.op=and (ok)
     schema: 
       - hash
       - in
-      - *10
+      - *11
       - in.op
       - and
     valid: 1
   - 
     errors: 1
-    input: *5
+    input: *6
     name: in.op=and (nok + ok)
     schema: 
       - hash
       - in
       - 
+        - *10
         - *9
-        - *8
       - in.op
       - and
     valid: 0
   - 
     errors: 1
-    input: *5
+    input: *6
     name: in.op=and (ok + nok)
     schema: 
       - hash
       - in
       - 
-        - *8
         - *9
+        - *10
       - in.op
       - and
     valid: 0
   - 
     errors: 1
-    input: *5
+    input: *6
     name: in.op=and (nok + nok)
     schema: 
       - hash
       - in
       - 
-        - *9
-        - *11
+        - *10
+        - *12
       - in.op
       - and
     valid: 0
   - 
-    input: *5
+    input: *6
     name: in| (no items)
     schema: 
       - hash
@@ -751,46 +774,46 @@ tests:
 
     valid: 1
   - 
-    input: *5
+    input: *6
     name: in| (ok)
     schema: 
       - hash
       - in|
-      - *10
+      - *11
     valid: 1
   - 
-    input: *5
+    input: *6
     name: in| (nok + ok)
     schema: 
       - hash
       - in|
       - 
+        - *10
         - *9
-        - *8
     valid: 1
   - 
-    input: *5
+    input: *6
     name: in| (ok + nok)
     schema: 
       - hash
       - in|
       - 
-        - *8
         - *9
+        - *10
     valid: 1
   - 
     errors: 1
-    input: *5
+    input: *6
     name: in| (nok + nok)
     schema: 
       - hash
       - in|
       - 
-        - *9
-        - *11
+        - *10
+        - *12
     valid: 0
   - 
-    input: *5
+    input: *6
     name: in.op=or (no items)
     schema: 
       - hash
@@ -801,54 +824,54 @@ tests:
       - or
     valid: 1
   - 
-    input: *5
+    input: *6
     name: in.op=or (ok)
     schema: 
       - hash
       - in
-      - *10
+      - *11
       - in.op
       - or
     valid: 1
   - 
-    input: *5
+    input: *6
     name: in.op=or (nok + ok)
     schema: 
       - hash
       - in
       - 
+        - *10
         - *9
-        - *8
       - in.op
       - or
     valid: 1
   - 
-    input: *5
+    input: *6
     name: in.op=or (ok + nok)
     schema: 
       - hash
       - in
       - 
-        - *8
         - *9
+        - *10
       - in.op
       - or
     valid: 1
   - 
     errors: 1
-    input: *5
+    input: *6
     name: in.op=or (nok + nok)
     schema: 
       - hash
       - in
       - 
-        - *9
-        - *11
+        - *10
+        - *12
       - in.op
       - or
     valid: 0
   - 
-    input: *5
+    input: *6
     name: in.op=none (empty items)
     schema: 
       - hash
@@ -859,56 +882,56 @@ tests:
       - none
     valid: 1
   - 
-    input: *5
+    input: *6
     name: in.op=none (nok + nok)
     schema: 
       - hash
       - in
       - 
-        - *9
-        - *11
+        - *10
+        - *12
       - in.op
       - none
     valid: 1
   - 
     errors: 1
-    input: *5
+    input: *6
     name: in.op=none (nok + ok)
     schema: 
       - hash
       - in
       - 
+        - *10
         - *9
-        - *8
       - in.op
       - none
     valid: 0
   - 
     errors: 1
-    input: *5
+    input: *6
     name: in.op=none (ok + nok)
     schema: 
       - hash
       - in
       - 
-        - *8
         - *9
+        - *10
       - in.op
       - none
     valid: 0
   - 
     errors: 1
-    input: *5
+    input: *6
     name: in.op=none (ok + ok)
     schema: 
       - hash
       - in
-      - *10
+      - *11
       - in.op
       - none
     valid: 0
   - 
-    input: &12 
+    input: &13 
       a: 1
     name: len (ok)
     schema: 
@@ -917,7 +940,7 @@ tests:
       - 1
     valid: 1
   - 
-    input: *12
+    input: *13
     name: len (nok)
     schema: 
       - hash
@@ -925,7 +948,7 @@ tests:
       - 2
     valid: 0
   - 
-    input: *12
+    input: *13
     name: min_len (ok)
     schema: 
       - hash
@@ -933,7 +956,7 @@ tests:
       - 1
     valid: 1
   - 
-    input: *12
+    input: *13
     name: min_len (nok)
     schema: 
       - hash
@@ -941,7 +964,7 @@ tests:
       - 2
     valid: 0
   - 
-    input: *12
+    input: *13
     name: max_len (ok)
     schema: 
       - hash
@@ -949,7 +972,7 @@ tests:
       - 1
     valid: 1
   - 
-    input: &13 
+    input: &14 
       a: 1
       b: '1.1'
     name: max_len (nok)
@@ -959,7 +982,7 @@ tests:
       - 1
     valid: 0
   - 
-    input: *12
+    input: *13
     name: len_between (ok)
     schema: 
       - hash
@@ -969,7 +992,7 @@ tests:
         - 2
     valid: 1
   - 
-    input: *13
+    input: *14
     name: len_between (nok)
     schema: 
       - hash
@@ -979,7 +1002,7 @@ tests:
         - 1
     valid: 0
   - 
-    input: *13
+    input: *14
     name: each_index (ok)
     schema: 
       - hash
@@ -990,7 +1013,7 @@ tests:
         - 1
     valid: 1
   - 
-    input: *13
+    input: *14
     name: each_index (nok)
     schema: 
       - hash
@@ -1001,7 +1024,7 @@ tests:
         - 2
     valid: 0
   - 
-    input: *13
+    input: *14
     name: each_elem (ok)
     schema: 
       - hash
@@ -1009,7 +1032,7 @@ tests:
       - float
     valid: 1
   - 
-    input: *13
+    input: *14
     name: each_elem (nok)
     schema: 
       - hash
@@ -1020,7 +1043,7 @@ tests:
     input: {}
 
     name: "keys: (ok, empty)"
-    schema: &14 
+    schema: &15 
       - hash
       - 
         keys: 
@@ -1031,53 +1054,53 @@ tests:
     input: 
       a: ~
     name: "keys: (ok, only a, a valid 1)"
-    schema: *14
+    schema: *15
     valid: 1
   - 
     input: 
       a: 1
     name: "keys: (ok, only a, a valid 2)"
-    schema: *14
+    schema: *15
     valid: 1
   - 
     input: 
       a: '1.1'
     name: "keys: (nok, only a, a invalid)"
-    schema: *14
+    schema: *15
     valid: 0
   - 
     input: 
       a: 1
     name: "keys: (ok, only a, valid 2)"
-    schema: *14
+    schema: *15
     valid: 1
   - 
     input: 
       a: 1
       b: '1.1'
     name: "keys: (ok, a & b, valid)"
-    schema: *14
+    schema: *15
     valid: 1
   - 
     input: 
       a: 1
       b: ~
     name: "keys: (nok, a & b, b invalid)"
-    schema: *14
+    schema: *15
     valid: 0
   - 
     input: 
       a: '1.1'
       b: '1.1'
     name: "keys: (nok, a & b, a invalid)"
-    schema: *14
+    schema: *15
     valid: 0
   - 
     input: 
       a: '1.1'
       b: ~
     name: "keys: (nok, a & b, a & b invalid)"
-    schema: *14
+    schema: *15
     valid: 0
   - 
     input: 
@@ -1085,7 +1108,7 @@ tests:
       b: '1.1'
       c: 1
     name: "keys: (nok, extra)"
-    schema: *14
+    schema: *15
     valid: 0
   - 
     input: 
@@ -1093,7 +1116,7 @@ tests:
       b: '1.1'
       c: 1
     name: "keys: (ok, extra, restrict=0)"
-    schema: *14
+    schema: *15
     valid: 0
   - 
     input: {}
@@ -1101,7 +1124,7 @@ tests:
     name: keys (create_default=1) 1
     output: 
       b: 2
-    schema: &15 
+    schema: &16 
       - hash
       - 
         keys: 
@@ -1117,7 +1140,7 @@ tests:
     name: keys (create_default=1) 2
     output: 
       b: 2
-    schema: *15
+    schema: *16
     valid: 1
   - 
     input: {}
@@ -1125,7 +1148,7 @@ tests:
     name: keys (create_default=0) 1
     output: {}
 
-    schema: &16 
+    schema: &17 
       - hash
       - 
         keys: 
@@ -1142,6 +1165,6 @@ tests:
     name: keys (create_default=0) 2
     output: 
       b: 2
-    schema: *16
+    schema: *17
     valid: 1
-version: v0.9.22 (generated by devscripts/gen-type-spectest on Fri Jan 11 13:35:48 2013)
+version: v0.9.23 (generated by devscripts/gen-type-spectest on Wed Jan 30 10:27:52 2013)

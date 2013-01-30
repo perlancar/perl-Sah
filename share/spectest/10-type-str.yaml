@@ -92,17 +92,29 @@ tests:
     schema: 
       - str*
       - clause
-      - foo
+      - 
+        - foo
+        - 1
   - 
     input: a
     name: clause (ok)
     schema: 
       - str*
       - clause
-      - 
+      - &1 
         - match
         - a
     valid: 1
+  - 
+    input: a
+    name: clause (ok) + clause nok = nok
+    schema: 
+      - str*
+      - clause
+      - *1
+      - len
+      - 2
+    valid: 0
   - 
     errors: 1
     input: a
@@ -162,6 +174,17 @@ tests:
         len: 1
         match: a
     valid: 1
+  - 
+    input: a
+    name: clset (ok) + clause nok = nok
+    schema: 
+      - str*
+      - clset
+      - 
+        match: a
+      - len
+      - 2
+    valid: 0
   - 
     input: a
     name: clset (ok + nok = nok)
@@ -296,7 +319,7 @@ tests:
     schema: 
       - str
       - is&
-      - &1 
+      - &2 
         - a
         - a
     valid: 1
@@ -350,7 +373,7 @@ tests:
     schema: 
       - str
       - is
-      - *1
+      - *2
       - is.op
       - and
     valid: 1
@@ -408,7 +431,7 @@ tests:
     schema: 
       - str
       - is|
-      - *1
+      - *2
     valid: 1
   - 
     input: a
@@ -458,7 +481,7 @@ tests:
     schema: 
       - str
       - is
-      - *1
+      - *2
       - is.op
       - or
     valid: 1
@@ -555,7 +578,7 @@ tests:
     schema: 
       - str
       - is
-      - *1
+      - *2
       - is.op
       - none
     valid: 0
@@ -565,7 +588,7 @@ tests:
     schema: 
       - str
       - in
-      - &2 
+      - &3 
         - a
         - b
     valid: 1
@@ -584,7 +607,7 @@ tests:
     schema: 
       - str
       - "!in"
-      - *2
+      - *3
     valid: 0
   - 
     input: a
@@ -592,7 +615,7 @@ tests:
     schema: 
       - str
       - "!in"
-      - &3 []
+      - &4 []
 
     valid: 1
   - 
@@ -601,7 +624,7 @@ tests:
     schema: 
       - str
       - in
-      - *2
+      - *3
       - in.op
       - not
     valid: 0
@@ -611,7 +634,7 @@ tests:
     schema: 
       - str
       - in
-      - *3
+      - *4
       - in.op
       - not
     valid: 1
@@ -630,8 +653,8 @@ tests:
     schema: 
       - str
       - in&
-      - &4 
-        - *2
+      - &5 
+        - *3
         - 
           - a
           - b
@@ -644,8 +667,8 @@ tests:
       - str
       - in&
       - 
+        - *4
         - *3
-        - *2
     valid: 0
   - 
     errors: 1
@@ -655,8 +678,8 @@ tests:
       - str
       - in&
       - 
-        - *2
         - *3
+        - *4
     valid: 0
   - 
     errors: 1
@@ -666,8 +689,8 @@ tests:
       - str
       - in&
       - 
-        - *3
-        - &5 []
+        - *4
+        - &6 []
 
     valid: 0
   - 
@@ -687,7 +710,7 @@ tests:
     schema: 
       - str
       - in
-      - *4
+      - *5
       - in.op
       - and
     valid: 1
@@ -699,8 +722,8 @@ tests:
       - str
       - in
       - 
+        - *4
         - *3
-        - *2
       - in.op
       - and
     valid: 0
@@ -712,8 +735,8 @@ tests:
       - str
       - in
       - 
-        - *2
         - *3
+        - *4
       - in.op
       - and
     valid: 0
@@ -725,8 +748,8 @@ tests:
       - str
       - in
       - 
-        - *3
-        - *5
+        - *4
+        - *6
       - in.op
       - and
     valid: 0
@@ -745,7 +768,7 @@ tests:
     schema: 
       - str
       - in|
-      - *4
+      - *5
     valid: 1
   - 
     input: a
@@ -754,8 +777,8 @@ tests:
       - str
       - in|
       - 
+        - *4
         - *3
-        - *2
     valid: 1
   - 
     input: a
@@ -764,8 +787,8 @@ tests:
       - str
       - in|
       - 
-        - *2
         - *3
+        - *4
     valid: 1
   - 
     errors: 1
@@ -775,8 +798,8 @@ tests:
       - str
       - in|
       - 
-        - *3
-        - *5
+        - *4
+        - *6
     valid: 0
   - 
     input: a
@@ -795,7 +818,7 @@ tests:
     schema: 
       - str
       - in
-      - *4
+      - *5
       - in.op
       - or
     valid: 1
@@ -806,8 +829,8 @@ tests:
       - str
       - in
       - 
+        - *4
         - *3
-        - *2
       - in.op
       - or
     valid: 1
@@ -818,8 +841,8 @@ tests:
       - str
       - in
       - 
-        - *2
         - *3
+        - *4
       - in.op
       - or
     valid: 1
@@ -831,8 +854,8 @@ tests:
       - str
       - in
       - 
-        - *3
-        - *5
+        - *4
+        - *6
       - in.op
       - or
     valid: 0
@@ -854,8 +877,8 @@ tests:
       - str
       - in
       - 
-        - *3
-        - *5
+        - *4
+        - *6
       - in.op
       - none
     valid: 1
@@ -867,8 +890,8 @@ tests:
       - str
       - in
       - 
+        - *4
         - *3
-        - *2
       - in.op
       - none
     valid: 0
@@ -880,8 +903,8 @@ tests:
       - str
       - in
       - 
-        - *2
         - *3
+        - *4
       - in.op
       - none
     valid: 0
@@ -892,7 +915,7 @@ tests:
     schema: 
       - str
       - in
-      - *4
+      - *5
       - in.op
       - none
     valid: 0
@@ -1234,4 +1257,4 @@ tests:
       - is_re
       - 0
     valid: 0
-version: v0.9.22 (generated by devscripts/gen-type-spectest on Fri Jan 11 13:35:48 2013)
+version: v0.9.23 (generated by devscripts/gen-type-spectest on Wed Jan 30 10:27:52 2013)
