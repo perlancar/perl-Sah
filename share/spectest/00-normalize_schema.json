@@ -1,12 +1,12 @@
 {
    "tests" : [
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : null,
          "name" : "schema must be defined"
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : "",
          "name" : "string: type name must not be blank"
       },
@@ -29,12 +29,12 @@
          ]
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : "foo bar",
          "name" : "string: type name must be valid (fail, has whitespace)"
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : "0int",
          "name" : "string: type name must be valid (fail, starts with number)"
       },
@@ -44,18 +44,18 @@
          "result" : [
             "int",
             {
-               "req" : "Yes"
+               "req" : true
             },
             {}
          ]
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : "int**",
          "name" : "string: multiple * suffix is not allowed"
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [],
          "name" : "array: must not be empty"
       },
@@ -71,7 +71,7 @@
          ]
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [
             "foo bar"
          ],
@@ -85,7 +85,7 @@
          "result" : [
             "int",
             {
-               "req" : "Yes"
+               "req" : true
             },
             {}
          ]
@@ -121,7 +121,7 @@
          ]
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [
             "int",
             "foo"
@@ -129,7 +129,7 @@
          "name" : "array: clause set must be hash (fail, string)"
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [
             "int",
             []
@@ -137,7 +137,7 @@
          "name" : "array: clause set must be hash (fail, array)"
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [
             "int",
             {
@@ -147,7 +147,7 @@
          "name" : "array: clause name must be valid (fail, has whitespace)"
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [
             "int",
             {
@@ -167,7 +167,7 @@
          "result" : [
             "int",
             {
-               "req" : "Yes",
+               "req" : true,
                "foo" : "1"
             },
             {}
@@ -177,7 +177,7 @@
          "input" : [
             "int*",
             {
-               "req" : "No",
+               "req" : false,
                "foo" : "1"
             }
          ],
@@ -185,7 +185,7 @@
          "result" : [
             "int",
             {
-               "req" : "Yes",
+               "req" : true,
                "foo" : "1"
             },
             {}
@@ -210,7 +210,7 @@
          ]
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [
             "int",
             {
@@ -238,7 +238,7 @@
          ]
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [
             "int",
             {
@@ -278,14 +278,14 @@
             "int",
             {
                "a" : "1",
-               "req" : "Yes",
+               "req" : true,
                "b" : "2"
             },
             {}
          ]
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [
             "int",
             "a",
@@ -331,7 +331,7 @@
          ]
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [
             "int",
             {
@@ -342,7 +342,7 @@
          "name" : "array: expression (clause=) must not conflict with literal value (fail)"
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [
             "int",
             {
@@ -370,7 +370,7 @@
          ]
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [
             "int",
             {
@@ -405,7 +405,7 @@
          ]
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [
             "int",
             {
@@ -419,7 +419,7 @@
          "name" : "array: clause.attr| is not allowed"
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [
             "int",
             {
@@ -454,7 +454,7 @@
          ]
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [
             "int",
             {
@@ -468,7 +468,7 @@
          "name" : "array: clause.attr& is not allowed"
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [
             "int",
             {
@@ -478,7 +478,7 @@
          "name" : "array: clause& value must be array (fail, not array)"
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [
             "int",
             {
@@ -488,7 +488,7 @@
          "name" : "array: !clause cannot be mixed with merge prefix"
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [
             "int",
             {
@@ -498,7 +498,7 @@
          "name" : "array: !clause cannot be mixed with expression"
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [
             "int",
             {
@@ -510,7 +510,7 @@
          "name" : "array: clause| cannot be mixed with merge prefix"
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [
             "int",
             {
@@ -522,7 +522,7 @@
          "name" : "array: clause| cannot be mixed with expression"
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [
             "int",
             {
@@ -532,7 +532,7 @@
          "name" : "array: clause& cannot be mixed with merge prefix"
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [
             "int",
             {
@@ -544,7 +544,7 @@
          "name" : "array: clause& cannot be mixed with expression"
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [
             "int",
             {
@@ -555,7 +555,7 @@
          "name" : "array: clause, !clause, clause&, and clause| must not conflict with one another (fail, c & !c)"
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [
             "int",
             {
@@ -568,7 +568,7 @@
          "name" : "array: clause, !clause, clause&, and clause| must not conflict with one another (fail, c & c|)"
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [
             "int",
             {
@@ -581,7 +581,7 @@
          "name" : "array: clause, !clause, clause&, and clause| must not conflict with one another (fail, c & c&)"
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [
             "int",
             {
@@ -594,7 +594,7 @@
          "name" : "array: clause, !clause, clause&, and clause| must not conflict with one another (fail, !c & c|)"
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [
             "int",
             {
@@ -607,7 +607,7 @@
          "name" : "array: clause, !clause, clause&, and clause| must not conflict with one another (fail, !c & c&)"
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [
             "int",
             {
@@ -682,7 +682,7 @@
          ]
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [
             "int",
             {
@@ -693,7 +693,7 @@
          "name" : "array: clause(LANG) shortcut must not conflict with existing attribute"
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [
             "int",
             {
@@ -703,7 +703,7 @@
          "name" : "array: invalid clause(LANG) shortcut is not allowed (1)"
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [
             "int",
             {
@@ -728,7 +728,7 @@
          ]
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [
             "int*",
             {},
@@ -754,7 +754,7 @@
          ]
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [
             "foo",
             {},
@@ -765,7 +765,7 @@
          "name" : "array: def in extras must be hash (fail)"
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : [
             "int",
             {},
@@ -775,7 +775,7 @@
          "name" : "array: extra elements are not permitted"
       },
       {
-         "dies" : "Yes",
+         "dies" : true,
          "input" : {
             "type" : "int"
          },
