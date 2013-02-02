@@ -1,0 +1,170 @@
+{
+   "tests" : [
+      {
+         "input" : [],
+         "name" : "no clause sets results in nothing done",
+         "result" : []
+      },
+      {
+         "input" : [
+            {
+               "a" : "1"
+            }
+         ],
+         "name" : "a single clause set results in nothing done",
+         "result" : [
+            {
+               "a" : "1"
+            }
+         ]
+      },
+      {
+         "input" : [
+            {
+               "a" : "1"
+            },
+            {
+               "b" : "2"
+            },
+            {}
+         ],
+         "name" : "no merge prefixes results in appending clause sets",
+         "result" : [
+            {
+               "a" : "1"
+            },
+            {
+               "b" : "2"
+            },
+            {}
+         ]
+      },
+      {
+         "input" : [
+            {
+               "o1" : "2",
+               "a" : "1"
+            },
+            {
+               "o2" : "4",
+               "merge.normal.a" : "3"
+            },
+            {}
+         ],
+         "name" : "normal mode merging replaces clauses on the left",
+         "result" : [
+            {
+               "o2" : "4",
+               "o1" : "2",
+               "a" : "3"
+            }
+         ]
+      },
+      {
+         "input" : [
+            {
+               "o1" : "2",
+               "a" : [
+                  "1"
+               ]
+            },
+            {
+               "o2" : "4",
+               "merge.add.a" : [
+                  "3"
+               ]
+            }
+         ],
+         "name" : "additive mode merging adds values (array)",
+         "result" : [
+            {
+               "o2" : "4",
+               "o1" : "2",
+               "a" : [
+                  "1",
+                  "3"
+               ]
+            }
+         ]
+      },
+      {
+         "input" : [
+            {
+               "o1" : "2",
+               "a" : "1"
+            },
+            {
+               "o2" : "4",
+               "merge.concat.a" : "3"
+            }
+         ],
+         "name" : "concative mode merging concatenates values (string)",
+         "result" : [
+            {
+               "o2" : "4",
+               "o1" : "2",
+               "a" : "13"
+            }
+         ]
+      },
+      {
+         "input" : [
+            {
+               "o1" : "2",
+               "a" : "1"
+            },
+            {
+               "o2" : "4",
+               "merge.subtract.a" : "3"
+            }
+         ],
+         "name" : "subtractive mode merging concatenates values (int)",
+         "result" : [
+            {
+               "o2" : "4",
+               "o1" : "2",
+               "a" : "-2"
+            }
+         ]
+      },
+      {
+         "input" : [
+            {
+               "o1" : "2",
+               "a" : "1"
+            },
+            {
+               "o2" : "4",
+               "merge.delete.a" : "3"
+            }
+         ],
+         "name" : "delete mode merging deletes values",
+         "result" : [
+            {
+               "o2" : "4",
+               "o1" : "2"
+            }
+         ]
+      },
+      {
+         "input" : [
+            {
+               "o1" : "2",
+               "merge.keep.a" : "1"
+            },
+            {
+               "o2" : "4",
+               "merge.normal.a" : "3"
+            }
+         ],
+         "name" : "keep mode prevents overriding of values",
+         "result" : [
+            {
+               "o2" : "4",
+               "o1" : "2",
+               "a" : "1"
+            }
+         ]
+      }
+   ]
+}

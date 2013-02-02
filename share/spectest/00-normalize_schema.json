@@ -1,0 +1,785 @@
+{
+   "tests" : [
+      {
+         "dies" : "Yes",
+         "input" : null,
+         "name" : "schema must be defined"
+      },
+      {
+         "dies" : "Yes",
+         "input" : "",
+         "name" : "string: type name must not be blank"
+      },
+      {
+         "input" : "int",
+         "name" : "string: type name must be valid (ok)",
+         "result" : [
+            "int",
+            {},
+            {}
+         ]
+      },
+      {
+         "input" : "foo::bar",
+         "name" : "string: type name must be valid (ok, has namespace)",
+         "result" : [
+            "foo::bar",
+            {},
+            {}
+         ]
+      },
+      {
+         "dies" : "Yes",
+         "input" : "foo bar",
+         "name" : "string: type name must be valid (fail, has whitespace)"
+      },
+      {
+         "dies" : "Yes",
+         "input" : "0int",
+         "name" : "string: type name must be valid (fail, starts with number)"
+      },
+      {
+         "input" : "int*",
+         "name" : "string: * suffix is allowed and normalized to req clause",
+         "result" : [
+            "int",
+            {
+               "req" : "Yes"
+            },
+            {}
+         ]
+      },
+      {
+         "dies" : "Yes",
+         "input" : "int**",
+         "name" : "string: multiple * suffix is not allowed"
+      },
+      {
+         "dies" : "Yes",
+         "input" : [],
+         "name" : "array: must not be empty"
+      },
+      {
+         "input" : [
+            "int"
+         ],
+         "name" : "array: type name must be valid (ok)",
+         "result" : [
+            "int",
+            {},
+            {}
+         ]
+      },
+      {
+         "dies" : "Yes",
+         "input" : [
+            "foo bar"
+         ],
+         "name" : "array: type name must be valid (fail, has whitespace)"
+      },
+      {
+         "input" : [
+            "int*"
+         ],
+         "name" : "array: * suffix is allowed and normalized to req clause",
+         "result" : [
+            "int",
+            {
+               "req" : "Yes"
+            },
+            {}
+         ]
+      },
+      {
+         "input" : [
+            "int",
+            {}
+         ],
+         "name" : "array: clause set must be hash (ok, empty)",
+         "result" : [
+            "int",
+            {},
+            {}
+         ]
+      },
+      {
+         "input" : [
+            "int",
+            {
+               "bar" : "2",
+               "foo" : "1"
+            }
+         ],
+         "name" : "array: clause set must be hash (ok, has some clauses)",
+         "result" : [
+            "int",
+            {
+               "bar" : "2",
+               "foo" : "1"
+            },
+            {}
+         ]
+      },
+      {
+         "dies" : "Yes",
+         "input" : [
+            "int",
+            "foo"
+         ],
+         "name" : "array: clause set must be hash (fail, string)"
+      },
+      {
+         "dies" : "Yes",
+         "input" : [
+            "int",
+            []
+         ],
+         "name" : "array: clause set must be hash (fail, array)"
+      },
+      {
+         "dies" : "Yes",
+         "input" : [
+            "int",
+            {
+               "foo bar" : "2"
+            }
+         ],
+         "name" : "array: clause name must be valid (fail, has whitespace)"
+      },
+      {
+         "dies" : "Yes",
+         "input" : [
+            "int",
+            {
+               "0foo" : "2"
+            }
+         ],
+         "name" : "array: clause name must be valid (fail, starts with number)"
+      },
+      {
+         "input" : [
+            "int*",
+            {
+               "foo" : "1"
+            }
+         ],
+         "name" : "array: * suffix is allowed and normalized to req clause (2-element-array schema)",
+         "result" : [
+            "int",
+            {
+               "req" : "Yes",
+               "foo" : "1"
+            },
+            {}
+         ]
+      },
+      {
+         "input" : [
+            "int*",
+            {
+               "req" : "No",
+               "foo" : "1"
+            }
+         ],
+         "name" : "array: * suffix is allowed and normalized to req clause (overrides existing req clause)",
+         "result" : [
+            "int",
+            {
+               "req" : "Yes",
+               "foo" : "1"
+            },
+            {}
+         ]
+      },
+      {
+         "input" : [
+            "int",
+            {
+               "foo.bar.baz" : "2",
+               "foo.bar" : "1"
+            }
+         ],
+         "name" : "array: clause attribute name must be valid (ok)",
+         "result" : [
+            "int",
+            {
+               "foo.bar.baz" : "2",
+               "foo.bar" : "1"
+            },
+            {}
+         ]
+      },
+      {
+         "dies" : "Yes",
+         "input" : [
+            "int",
+            {
+               "foo.bar baz" : "1"
+            }
+         ],
+         "name" : "array: clause attribute name must be valid (fail, has whitespace)"
+      },
+      {
+         "input" : [
+            "int",
+            {
+               ".bar.baz" : "2",
+               ".bar" : "1"
+            }
+         ],
+         "name" : "array: setting attribute on clause \"\" is permitted",
+         "result" : [
+            "int",
+            {
+               ".bar.baz" : "2",
+               ".bar" : "1"
+            },
+            {}
+         ]
+      },
+      {
+         "dies" : "Yes",
+         "input" : [
+            "int",
+            {
+               "" : "1"
+            }
+         ],
+         "name" : "array: setting value attribute on clause \"\" using syntax \"\" is not permitted"
+      },
+      {
+         "input" : [
+            "int",
+            "a",
+            "1",
+            "b",
+            "2"
+         ],
+         "name" : "array: flattened clause set is permitted",
+         "result" : [
+            "int",
+            {
+               "a" : "1",
+               "b" : "2"
+            },
+            {}
+         ]
+      },
+      {
+         "input" : [
+            "int*",
+            "a",
+            "1",
+            "b",
+            "2"
+         ],
+         "name" : "array: flattened clause set is permitted (with * suffix)",
+         "result" : [
+            "int",
+            {
+               "a" : "1",
+               "req" : "Yes",
+               "b" : "2"
+            },
+            {}
+         ]
+      },
+      {
+         "dies" : "Yes",
+         "input" : [
+            "int",
+            "a",
+            "1",
+            "b",
+            "2",
+            "c"
+         ],
+         "name" : "array: flattened clause set is permitted (fail, odd number of elements)"
+      },
+      {
+         "input" : [
+            "int",
+            {
+               "foo=" : "2"
+            }
+         ],
+         "name" : "array: expression (clause=) is allowed on clause and normalized",
+         "result" : [
+            "int",
+            {
+               "foo" : "2",
+               "foo.is_expr" : "1"
+            },
+            {}
+         ]
+      },
+      {
+         "input" : [
+            "int",
+            {
+               "foo.bar=" : "2"
+            }
+         ],
+         "name" : "array: expression (clause=) is allowed on clause.attr and normalized",
+         "result" : [
+            "int",
+            {
+               "foo.bar" : "2",
+               "foo.bar.is_expr" : "1"
+            },
+            {}
+         ]
+      },
+      {
+         "dies" : "Yes",
+         "input" : [
+            "int",
+            {
+               "foo=" : "2",
+               "foo" : "3"
+            }
+         ],
+         "name" : "array: expression (clause=) must not conflict with literal value (fail)"
+      },
+      {
+         "dies" : "Yes",
+         "input" : [
+            "int",
+            {
+               "foo.bar" : "3",
+               "foo.bar=" : "2"
+            }
+         ],
+         "name" : "array: expression (clause.attr=) must not conflict with literal value (fail)"
+      },
+      {
+         "input" : [
+            "int",
+            {
+               "!foo" : "2"
+            }
+         ],
+         "name" : "array: !clause is normalized",
+         "result" : [
+            "int",
+            {
+               "foo" : "2",
+               "foo.op" : "not"
+            },
+            {}
+         ]
+      },
+      {
+         "dies" : "Yes",
+         "input" : [
+            "int",
+            {
+               "!foo.bar" : "2"
+            }
+         ],
+         "name" : "array: !clause.attr is not allowed"
+      },
+      {
+         "input" : [
+            "int",
+            {
+               "foo|" : [
+                  "1",
+                  "2",
+                  "3"
+               ]
+            }
+         ],
+         "name" : "array: clause| is normalized",
+         "result" : [
+            "int",
+            {
+               "foo" : [
+                  "1",
+                  "2",
+                  "3"
+               ],
+               "foo.op" : "or"
+            },
+            {}
+         ]
+      },
+      {
+         "dies" : "Yes",
+         "input" : [
+            "int",
+            {
+               "foo.bar|" : [
+                  "1",
+                  "2",
+                  "3"
+               ]
+            }
+         ],
+         "name" : "array: clause.attr| is not allowed"
+      },
+      {
+         "dies" : "Yes",
+         "input" : [
+            "int",
+            {
+               "foo|" : "1"
+            }
+         ],
+         "name" : "array: clause| value must be array (fail, not array)"
+      },
+      {
+         "input" : [
+            "int",
+            {
+               "foo&" : [
+                  "1",
+                  "2",
+                  "3"
+               ]
+            }
+         ],
+         "name" : "array: clause& is normalized",
+         "result" : [
+            "int",
+            {
+               "foo" : [
+                  "1",
+                  "2",
+                  "3"
+               ],
+               "foo.op" : "and"
+            },
+            {}
+         ]
+      },
+      {
+         "dies" : "Yes",
+         "input" : [
+            "int",
+            {
+               "foo.bar&" : [
+                  "1",
+                  "2",
+                  "3"
+               ]
+            }
+         ],
+         "name" : "array: clause.attr& is not allowed"
+      },
+      {
+         "dies" : "Yes",
+         "input" : [
+            "int",
+            {
+               "foo&" : "1"
+            }
+         ],
+         "name" : "array: clause& value must be array (fail, not array)"
+      },
+      {
+         "dies" : "Yes",
+         "input" : [
+            "int",
+            {
+               "merge.normal.!a" : "1"
+            }
+         ],
+         "name" : "array: !clause cannot be mixed with merge prefix"
+      },
+      {
+         "dies" : "Yes",
+         "input" : [
+            "int",
+            {
+               "!a=" : "1"
+            }
+         ],
+         "name" : "array: !clause cannot be mixed with expression"
+      },
+      {
+         "dies" : "Yes",
+         "input" : [
+            "int",
+            {
+               "merge.normal.a|" : [
+                  "1"
+               ]
+            }
+         ],
+         "name" : "array: clause| cannot be mixed with merge prefix"
+      },
+      {
+         "dies" : "Yes",
+         "input" : [
+            "int",
+            {
+               "a|=" : [
+                  "1"
+               ]
+            }
+         ],
+         "name" : "array: clause| cannot be mixed with expression"
+      },
+      {
+         "dies" : "Yes",
+         "input" : [
+            "int",
+            {
+               "merge.normal.a&" : "1"
+            }
+         ],
+         "name" : "array: clause& cannot be mixed with merge prefix"
+      },
+      {
+         "dies" : "Yes",
+         "input" : [
+            "int",
+            {
+               "a&=" : [
+                  "1"
+               ]
+            }
+         ],
+         "name" : "array: clause& cannot be mixed with expression"
+      },
+      {
+         "dies" : "Yes",
+         "input" : [
+            "int",
+            {
+               "!foo" : "2",
+               "foo" : "1"
+            }
+         ],
+         "name" : "array: clause, !clause, clause&, and clause| must not conflict with one another (fail, c & !c)"
+      },
+      {
+         "dies" : "Yes",
+         "input" : [
+            "int",
+            {
+               "foo|" : [
+                  "3"
+               ],
+               "foo" : "1"
+            }
+         ],
+         "name" : "array: clause, !clause, clause&, and clause| must not conflict with one another (fail, c & c|)"
+      },
+      {
+         "dies" : "Yes",
+         "input" : [
+            "int",
+            {
+               "foo&" : [
+                  "4"
+               ],
+               "foo" : "1"
+            }
+         ],
+         "name" : "array: clause, !clause, clause&, and clause| must not conflict with one another (fail, c & c&)"
+      },
+      {
+         "dies" : "Yes",
+         "input" : [
+            "int",
+            {
+               "foo|" : [
+                  "3"
+               ],
+               "!foo" : "2"
+            }
+         ],
+         "name" : "array: clause, !clause, clause&, and clause| must not conflict with one another (fail, !c & c|)"
+      },
+      {
+         "dies" : "Yes",
+         "input" : [
+            "int",
+            {
+               "foo&" : [
+                  "4"
+               ],
+               "!foo" : "2"
+            }
+         ],
+         "name" : "array: clause, !clause, clause&, and clause| must not conflict with one another (fail, !c & c&)"
+      },
+      {
+         "dies" : "Yes",
+         "input" : [
+            "int",
+            {
+               "foo&" : [
+                  "4"
+               ],
+               "foo|" : [
+                  "3"
+               ]
+            }
+         ],
+         "name" : "array: clause, !clause, clause&, and clause| must not conflict with one another (fail, c| & c&)"
+      },
+      {
+         "input" : [
+            "foo",
+            {
+               "merge.keep.a" : "6",
+               "merge.normal.a" : "1",
+               "merge.delete.a" : "5",
+               "merge.subtract.a" : "4",
+               "merge.concat.a" : "3",
+               "merge.add.a" : "2"
+            }
+         ],
+         "name" : "array: merge prefix in clause is allowed",
+         "result" : [
+            "foo",
+            {
+               "merge.keep.a" : "6",
+               "merge.normal.a" : "1",
+               "merge.delete.a" : "5",
+               "merge.subtract.a" : "4",
+               "merge.concat.a" : "3",
+               "merge.add.a" : "2"
+            },
+            {}
+         ]
+      },
+      {
+         "input" : [
+            "int",
+            {
+               "foo(fr_FR)" : "2",
+               "foo(id_ID)" : "1"
+            }
+         ],
+         "name" : "array: clause(LANG) shortcut is allowed and normalized",
+         "result" : [
+            "int",
+            {
+               "foo.alt.lang.id_ID" : "1",
+               "foo.alt.lang.fr_FR" : "2"
+            },
+            {}
+         ]
+      },
+      {
+         "input" : [
+            "int",
+            {
+               "foo.bar(id_ID)" : "1"
+            }
+         ],
+         "name" : "array: clause.attr(LANG) shortcut is allowed and normalized",
+         "result" : [
+            "int",
+            {
+               "foo.bar.alt.lang.id_ID" : "1"
+            },
+            {}
+         ]
+      },
+      {
+         "dies" : "Yes",
+         "input" : [
+            "int",
+            {
+               "foo.alt.lang.id_ID" : "2",
+               "foo(id_ID)" : "1"
+            }
+         ],
+         "name" : "array: clause(LANG) shortcut must not conflict with existing attribute"
+      },
+      {
+         "dies" : "Yes",
+         "input" : [
+            "int",
+            {
+               "foo()" : "1"
+            }
+         ],
+         "name" : "array: invalid clause(LANG) shortcut is not allowed (1)"
+      },
+      {
+         "dies" : "Yes",
+         "input" : [
+            "int",
+            {
+               "foo(x-y)" : "1"
+            }
+         ],
+         "name" : "array: invalid clause(LANG) shortcut is not allowed (2)"
+      },
+      {
+         "input" : [
+            "int*",
+            {},
+            {}
+         ],
+         "name" : "array: extras must be hash (ok)",
+         "result" : [
+            "int",
+            {
+               "req" : "1"
+            },
+            {}
+         ]
+      },
+      {
+         "dies" : "Yes",
+         "input" : [
+            "int*",
+            {},
+            []
+         ],
+         "name" : "array: extras must be hash (fail, not hash)"
+      },
+      {
+         "input" : [
+            "foo",
+            {},
+            {
+               "def" : {}
+            }
+         ],
+         "name" : "array: def in extras must be hash (ok)",
+         "result" : [
+            "foo",
+            {},
+            {
+               "def" : {}
+            }
+         ]
+      },
+      {
+         "dies" : "Yes",
+         "input" : [
+            "foo",
+            {},
+            {
+               "def" : []
+            }
+         ],
+         "name" : "array: def in extras must be hash (fail)"
+      },
+      {
+         "dies" : "Yes",
+         "input" : [
+            "int",
+            {},
+            {},
+            "1"
+         ],
+         "name" : "array: extra elements are not permitted"
+      },
+      {
+         "dies" : "Yes",
+         "input" : {
+            "type" : "int"
+         },
+         "name" : "hash form (old DS syntax) is no longer recognized"
+      }
+   ]
+}
