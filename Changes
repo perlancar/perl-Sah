@@ -1,8 +1,16 @@
 Revision history for Sah
 
+0.9.25   2013-02-02 (SHARYANTO) (not yet released)
+
+         No spec changes. Convert spectest format from YAML to JSON due to
+         different Perl YAML implementations dumping/loading data differently
+         (YAML::Syck loads floats as strings ('1.23'), while YAML::XS causes
+         test failures).
+
+
 0.9.24   2013-01-30 (SHARYANTO)
 
-         No spec changes. Fixes on spectest.
+         No spec changes. Fixes for spectest.
 
 
 0.9.23   2013-01-11 (SHARYANTO)
