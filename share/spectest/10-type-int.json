@@ -1,0 +1,1496 @@
+{
+   "tests" : [
+      {
+         "input" : -1,
+         "name" : "type check: must accept -1",
+         "schema" : "int",
+         "valid" : 1
+      },
+      {
+         "input" : 0,
+         "name" : "type check: must accept 0",
+         "schema" : "int",
+         "valid" : 1
+      },
+      {
+         "input" : 1,
+         "name" : "type check: must accept 1",
+         "schema" : "int",
+         "valid" : 1
+      },
+      {
+         "input" : 1.1,
+         "name" : "type check: must reject 1.1",
+         "schema" : "int",
+         "valid" : 0
+      },
+      {
+         "input" : "a",
+         "name" : "type check: must reject a",
+         "schema" : "int",
+         "valid" : 0
+      },
+      {
+         "input" : [],
+         "name" : "type check: must reject []",
+         "schema" : "int",
+         "valid" : 0
+      },
+      {
+         "input" : {},
+         "name" : "type check: must reject {}",
+         "schema" : "int",
+         "valid" : 0
+      },
+      {
+         "input" : null,
+         "name" : "must accept undefined value",
+         "schema" : "int",
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "req=0 must accept undefined value",
+         "schema" : [
+            "int",
+            "req",
+            0
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "req=1 must reject undefined value",
+         "schema" : [
+            "int",
+            "req",
+            1
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 2,
+         "name" : "forbidden=0 must accept defined value",
+         "schema" : [
+            "int",
+            "forbidden",
+            0
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 2,
+         "name" : "forbidden=1 must reject defined value",
+         "schema" : [
+            "int",
+            "forbidden",
+            1
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : null,
+         "name" : "default: must accept valid default 1",
+         "schema" : [
+            "int*",
+            "default",
+            1
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "default: must reject invalid default []",
+         "schema" : [
+            "int*",
+            "default",
+            []
+         ],
+         "valid" : 0
+      },
+      {
+         "dies" : 1,
+         "input" : 2,
+         "name" : "clause (dies, unknown clause)",
+         "schema" : [
+            "int*",
+            "clause",
+            [
+               "foo",
+               1
+            ]
+         ]
+      },
+      {
+         "input" : 2,
+         "name" : "clause (ok)",
+         "schema" : [
+            "int*",
+            "clause",
+            [
+               "min",
+               1
+            ]
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 2,
+         "name" : "clause (ok) + clause nok = nok",
+         "schema" : [
+            "int*",
+            "clause",
+            [
+               "min",
+               1
+            ],
+            "xmax",
+            2
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : 2,
+         "name" : "clause (nok)",
+         "schema" : [
+            "int*",
+            "clause",
+            [
+               "min",
+               3
+            ]
+         ],
+         "valid" : 0
+      },
+      {
+         "dies" : 1,
+         "input" : 2,
+         "name" : "clset (dies, unknown clause)",
+         "schema" : [
+            "int*",
+            "clset",
+            {
+               "foo" : 1
+            }
+         ]
+      },
+      {
+         "dies" : 1,
+         "input" : 2,
+         "name" : "clset (dies, unknown attr)",
+         "schema" : [
+            "int*",
+            "clset",
+            {
+               "min_len" : 1,
+               "min_len.foo" : 1
+            }
+         ]
+      },
+      {
+         "input" : 2,
+         "name" : "clset (empty = ok)",
+         "schema" : [
+            "int*",
+            "clset",
+            {}
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 2,
+         "name" : "clset (ignored clause/attr = ok)",
+         "schema" : [
+            "int*",
+            "clset",
+            {
+               "foo._bar" : 2,
+               "_foo" : 1
+            }
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 2,
+         "name" : "clset (ok + ok = ok)",
+         "schema" : [
+            "int*",
+            "clset",
+            {
+               "min" : 1,
+               "max" : 2
+            }
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 2,
+         "name" : "clset (ok) + clause nok = nok",
+         "schema" : [
+            "int*",
+            "clset",
+            {
+               "min" : 1
+            },
+            "xmax",
+            2
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 2,
+         "name" : "clset (ok + nok = nok)",
+         "schema" : [
+            "int*",
+            "clset",
+            {
+               "min" : 1,
+               "xmax" : 2
+            }
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 2,
+         "name" : "clset (nok + ok = nok)",
+         "schema" : [
+            "int*",
+            "clset",
+            {
+               "min" : 3,
+               "max" : 2
+            }
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 2,
+         "name" : "clset (nok + nok = nok)",
+         "schema" : [
+            "int*",
+            "clset",
+            {
+               "min" : 3,
+               "xmax" : 2
+            }
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 9,
+         "name" : ".err_level=error (clause=div_by, ok)",
+         "schema" : [
+            "int",
+            "div_by",
+            3
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 8,
+         "name" : ".err_level=error (clause=div_by, nok)",
+         "schema" : [
+            "int",
+            "div_by",
+            3
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 9,
+         "name" : ".err_level=warn (clause=div_by, ok)",
+         "schema" : [
+            "int",
+            "div_by",
+            3,
+            "div_by.err_level",
+            "warn"
+         ],
+         "valid" : 1
+      },
+      {
+         "warnings" : 1,
+         "input" : 8,
+         "name" : ".err_level=warn (clause=div_by, nok)",
+         "schema" : [
+            "int*",
+            "div_by",
+            3,
+            "div_by.err_level",
+            "warn"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 1,
+         "name" : "is: must accept same value",
+         "schema" : [
+            "int",
+            "is",
+            1
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 1,
+         "name" : "is: must reject different value",
+         "schema" : [
+            "int",
+            "is",
+            2
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 1,
+         "name" : "!is (nok)",
+         "schema" : [
+            "int",
+            "!is",
+            1
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 1,
+         "name" : "!is (ok)",
+         "schema" : [
+            "int",
+            "!is",
+            2
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 1,
+         "name" : "is.op=not (nok)",
+         "schema" : [
+            "int",
+            "is",
+            1,
+            "is.op",
+            "not"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 1,
+         "name" : "is.op=not (ok)",
+         "schema" : [
+            "int",
+            "is",
+            2,
+            "is.op",
+            "not"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 1,
+         "name" : "is& (no items)",
+         "schema" : [
+            "int",
+            "is&",
+            []
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 1,
+         "name" : "is& (ok)",
+         "schema" : [
+            "int",
+            "is&",
+            [
+               1,
+               1
+            ]
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : 1,
+         "name" : "is& (nok + ok)",
+         "schema" : [
+            "int",
+            "is&",
+            [
+               2,
+               1
+            ]
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : 1,
+         "name" : "is& (ok + nok)",
+         "schema" : [
+            "int",
+            "is&",
+            [
+               1,
+               2
+            ]
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : 1,
+         "name" : "is& (nok + nok)",
+         "schema" : [
+            "int",
+            "is&",
+            [
+               2,
+               2
+            ]
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 1,
+         "name" : "is.op=and (no items)",
+         "schema" : [
+            "int",
+            "is",
+            [],
+            "is.op",
+            "and"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 1,
+         "name" : "is.op=and (ok)",
+         "schema" : [
+            "int",
+            "is",
+            [
+               1,
+               1
+            ],
+            "is.op",
+            "and"
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : 1,
+         "name" : "is.op=and (nok + ok)",
+         "schema" : [
+            "int",
+            "is",
+            [
+               2,
+               1
+            ],
+            "is.op",
+            "and"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : 1,
+         "name" : "is.op=and (ok + nok)",
+         "schema" : [
+            "int",
+            "is",
+            [
+               1,
+               2
+            ],
+            "is.op",
+            "and"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : 1,
+         "name" : "is.op=and (nok + nok)",
+         "schema" : [
+            "int",
+            "is",
+            [
+               2,
+               2
+            ],
+            "is.op",
+            "and"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 1,
+         "name" : "is| (no items)",
+         "schema" : [
+            "int",
+            "is|",
+            []
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 1,
+         "name" : "is| (ok)",
+         "schema" : [
+            "int",
+            "is|",
+            [
+               1,
+               1
+            ]
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 1,
+         "name" : "is| (nok + ok)",
+         "schema" : [
+            "int",
+            "is|",
+            [
+               2,
+               1
+            ]
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 1,
+         "name" : "is| (ok + nok)",
+         "schema" : [
+            "int",
+            "is|",
+            [
+               1,
+               2
+            ]
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : 1,
+         "name" : "is| (nok + nok)",
+         "schema" : [
+            "int",
+            "is|",
+            [
+               2,
+               2
+            ]
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 1,
+         "name" : "is.op=or (no items)",
+         "schema" : [
+            "int",
+            "is",
+            [],
+            "is.op",
+            "or"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 1,
+         "name" : "is.op=or (ok)",
+         "schema" : [
+            "int",
+            "is",
+            [
+               1,
+               1
+            ],
+            "is.op",
+            "or"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 1,
+         "name" : "is.op=or (nok + ok)",
+         "schema" : [
+            "int",
+            "is",
+            [
+               2,
+               1
+            ],
+            "is.op",
+            "or"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 1,
+         "name" : "is.op=or (ok + nok)",
+         "schema" : [
+            "int",
+            "is",
+            [
+               1,
+               2
+            ],
+            "is.op",
+            "or"
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : 1,
+         "name" : "is.op=or (nok + nok)",
+         "schema" : [
+            "int",
+            "is",
+            [
+               2,
+               2
+            ],
+            "is.op",
+            "or"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 1,
+         "name" : "is.op=none (empty items)",
+         "schema" : [
+            "int",
+            "is",
+            [],
+            "is.op",
+            "none"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 1,
+         "name" : "is.op=none (nok + nok)",
+         "schema" : [
+            "int",
+            "is",
+            [
+               2,
+               2
+            ],
+            "is.op",
+            "none"
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : 1,
+         "name" : "is.op=none (nok + ok)",
+         "schema" : [
+            "int",
+            "is",
+            [
+               2,
+               1
+            ],
+            "is.op",
+            "none"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : 1,
+         "name" : "is.op=none (ok + nok)",
+         "schema" : [
+            "int",
+            "is",
+            [
+               1,
+               2
+            ],
+            "is.op",
+            "none"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : 1,
+         "name" : "is.op=none (ok + ok)",
+         "schema" : [
+            "int",
+            "is",
+            [
+               1,
+               1
+            ],
+            "is.op",
+            "none"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 1,
+         "name" : "in: must accept valid choices",
+         "schema" : [
+            "int",
+            "in",
+            [
+               1,
+               2
+            ]
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 1,
+         "name" : "in: must reject empty choices",
+         "schema" : [
+            "int",
+            "in",
+            []
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 1,
+         "name" : "!in (nok)",
+         "schema" : [
+            "int",
+            "!in",
+            [
+               1,
+               2
+            ]
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 1,
+         "name" : "!in (ok)",
+         "schema" : [
+            "int",
+            "!in",
+            []
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 1,
+         "name" : "in.op=not (nok)",
+         "schema" : [
+            "int",
+            "in",
+            [
+               1,
+               2
+            ],
+            "in.op",
+            "not"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 1,
+         "name" : "in.op=not (ok)",
+         "schema" : [
+            "int",
+            "in",
+            [],
+            "in.op",
+            "not"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 1,
+         "name" : "in& (no items)",
+         "schema" : [
+            "int",
+            "in&",
+            []
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 1,
+         "name" : "in& (ok)",
+         "schema" : [
+            "int",
+            "in&",
+            [
+               [
+                  1,
+                  2
+               ],
+               [
+                  1,
+                  2
+               ]
+            ]
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : 1,
+         "name" : "in& (nok + ok)",
+         "schema" : [
+            "int",
+            "in&",
+            [
+               [],
+               [
+                  1,
+                  2
+               ]
+            ]
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : 1,
+         "name" : "in& (ok + nok)",
+         "schema" : [
+            "int",
+            "in&",
+            [
+               [
+                  1,
+                  2
+               ],
+               []
+            ]
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : 1,
+         "name" : "in& (nok + nok)",
+         "schema" : [
+            "int",
+            "in&",
+            [
+               [],
+               []
+            ]
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 1,
+         "name" : "in.op=and (no items)",
+         "schema" : [
+            "int",
+            "in",
+            [],
+            "in.op",
+            "and"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 1,
+         "name" : "in.op=and (ok)",
+         "schema" : [
+            "int",
+            "in",
+            [
+               [
+                  1,
+                  2
+               ],
+               [
+                  1,
+                  2
+               ]
+            ],
+            "in.op",
+            "and"
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : 1,
+         "name" : "in.op=and (nok + ok)",
+         "schema" : [
+            "int",
+            "in",
+            [
+               [],
+               [
+                  1,
+                  2
+               ]
+            ],
+            "in.op",
+            "and"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : 1,
+         "name" : "in.op=and (ok + nok)",
+         "schema" : [
+            "int",
+            "in",
+            [
+               [
+                  1,
+                  2
+               ],
+               []
+            ],
+            "in.op",
+            "and"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : 1,
+         "name" : "in.op=and (nok + nok)",
+         "schema" : [
+            "int",
+            "in",
+            [
+               [],
+               []
+            ],
+            "in.op",
+            "and"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 1,
+         "name" : "in| (no items)",
+         "schema" : [
+            "int",
+            "in|",
+            []
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 1,
+         "name" : "in| (ok)",
+         "schema" : [
+            "int",
+            "in|",
+            [
+               [
+                  1,
+                  2
+               ],
+               [
+                  1,
+                  2
+               ]
+            ]
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 1,
+         "name" : "in| (nok + ok)",
+         "schema" : [
+            "int",
+            "in|",
+            [
+               [],
+               [
+                  1,
+                  2
+               ]
+            ]
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 1,
+         "name" : "in| (ok + nok)",
+         "schema" : [
+            "int",
+            "in|",
+            [
+               [
+                  1,
+                  2
+               ],
+               []
+            ]
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : 1,
+         "name" : "in| (nok + nok)",
+         "schema" : [
+            "int",
+            "in|",
+            [
+               [],
+               []
+            ]
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 1,
+         "name" : "in.op=or (no items)",
+         "schema" : [
+            "int",
+            "in",
+            [],
+            "in.op",
+            "or"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 1,
+         "name" : "in.op=or (ok)",
+         "schema" : [
+            "int",
+            "in",
+            [
+               [
+                  1,
+                  2
+               ],
+               [
+                  1,
+                  2
+               ]
+            ],
+            "in.op",
+            "or"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 1,
+         "name" : "in.op=or (nok + ok)",
+         "schema" : [
+            "int",
+            "in",
+            [
+               [],
+               [
+                  1,
+                  2
+               ]
+            ],
+            "in.op",
+            "or"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 1,
+         "name" : "in.op=or (ok + nok)",
+         "schema" : [
+            "int",
+            "in",
+            [
+               [
+                  1,
+                  2
+               ],
+               []
+            ],
+            "in.op",
+            "or"
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : 1,
+         "name" : "in.op=or (nok + nok)",
+         "schema" : [
+            "int",
+            "in",
+            [
+               [],
+               []
+            ],
+            "in.op",
+            "or"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 1,
+         "name" : "in.op=none (empty items)",
+         "schema" : [
+            "int",
+            "in",
+            [],
+            "in.op",
+            "none"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 1,
+         "name" : "in.op=none (nok + nok)",
+         "schema" : [
+            "int",
+            "in",
+            [
+               [],
+               []
+            ],
+            "in.op",
+            "none"
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : 1,
+         "name" : "in.op=none (nok + ok)",
+         "schema" : [
+            "int",
+            "in",
+            [
+               [],
+               [
+                  1,
+                  2
+               ]
+            ],
+            "in.op",
+            "none"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : 1,
+         "name" : "in.op=none (ok + nok)",
+         "schema" : [
+            "int",
+            "in",
+            [
+               [
+                  1,
+                  2
+               ],
+               []
+            ],
+            "in.op",
+            "none"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : 1,
+         "name" : "in.op=none (ok + ok)",
+         "schema" : [
+            "int",
+            "in",
+            [
+               [
+                  1,
+                  2
+               ],
+               [
+                  1,
+                  2
+               ]
+            ],
+            "in.op",
+            "none"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 2,
+         "name" : "min: 2 -3",
+         "schema" : [
+            "int",
+            "min",
+            -3
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 2,
+         "name" : "min: 2 2",
+         "schema" : [
+            "int",
+            "min",
+            2
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : -3,
+         "name" : "min: -3 2 -> fail",
+         "schema" : [
+            "int",
+            "min",
+            2
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 2,
+         "name" : "xmin: 2 -3",
+         "schema" : [
+            "int",
+            "xmin",
+            -3
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 2,
+         "name" : "xmin: 2 2 -> fail",
+         "schema" : [
+            "int",
+            "xmin",
+            2
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : -3,
+         "name" : "xmin: -3 2 -> fail",
+         "schema" : [
+            "int",
+            "xmin",
+            2
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 2,
+         "name" : "max: 2 -3 -> fail",
+         "schema" : [
+            "int",
+            "max",
+            -3
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 2,
+         "name" : "max: 2 2",
+         "schema" : [
+            "int",
+            "max",
+            2
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : -3,
+         "name" : "max: -3 2",
+         "schema" : [
+            "int",
+            "max",
+            2
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 2,
+         "name" : "xmax: 2 -3 -> fail",
+         "schema" : [
+            "int",
+            "xmax",
+            -3
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 2,
+         "name" : "xmax: 2 2 -> fail",
+         "schema" : [
+            "int",
+            "xmax",
+            2
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : -3,
+         "name" : "xmax: -3 2",
+         "schema" : [
+            "int",
+            "xmax",
+            2
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 2,
+         "name" : "between: 2 -3 & 4",
+         "schema" : [
+            "int",
+            "between",
+            [
+               -3,
+               4
+            ]
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 2,
+         "name" : "between: 2 -3 & 2",
+         "schema" : [
+            "int",
+            "between",
+            [
+               -3,
+               2
+            ]
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 2,
+         "name" : "between: 2 2 & 2",
+         "schema" : [
+            "int",
+            "between",
+            [
+               2,
+               2
+            ]
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : -3,
+         "name" : "between: -3 2 & 4 -> fail",
+         "schema" : [
+            "int",
+            "between",
+            [
+               2,
+               4
+            ]
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "2",
+         "name" : "xbetween: 2 -3 & 4",
+         "schema" : [
+            "int",
+            "xbetween",
+            [
+               -3,
+               4
+            ]
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "2",
+         "name" : "xbetween: 2 -3 & 2 -> fail",
+         "schema" : [
+            "int",
+            "xbetween",
+            [
+               -3,
+               "2"
+            ]
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "2",
+         "name" : "xbetween: 2 2 & 2 -> fail",
+         "schema" : [
+            "int",
+            "xbetween",
+            [
+               "2",
+               "2"
+            ]
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : -3,
+         "name" : "xbetween: -3 2 & 4 -> fail",
+         "schema" : [
+            "int",
+            "xbetween",
+            [
+               "2",
+               "4"
+            ]
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 10,
+         "name" : "mod: (nok)",
+         "schema" : [
+            "int",
+            "mod",
+            [
+               3,
+               2
+            ]
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 11,
+         "name" : "mod: (ok)",
+         "schema" : [
+            "int",
+            "mod",
+            [
+               3,
+               2
+            ]
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 7,
+         "name" : "div_by: (nok)",
+         "schema" : [
+            "int",
+            "div_by",
+            3
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 6,
+         "name" : "div_by: (ok)",
+         "schema" : [
+            "int",
+            "div_by",
+            3
+         ],
+         "valid" : 1
+      }
+   ],
+   "version" : "v0.9.24 (generated by devscripts/gen-type-spectest on Sat Feb  2 10:46:49 2013)"
+}
