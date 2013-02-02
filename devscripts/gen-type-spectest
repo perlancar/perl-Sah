@@ -9,6 +9,7 @@ use vars qw($VERSION);
 use Data::Clone;
 use File::Slurp;
 use YAML::XS qw(Dump);
+use Data::Dump::OneLine qw(dump1);
 
 # VERSION
 unless (defined $VERSION) {
@@ -23,9 +24,7 @@ sub _l {
     my $d = shift;
     return "undefined value" if !defined($d);
     return $d unless ref($d);
-    my $res = Dump($_);
-    $res =~ s/\s+\z//s;
-    $res;
+    return dump1($d);
 }
 
 sub gen_type_check_tests {
