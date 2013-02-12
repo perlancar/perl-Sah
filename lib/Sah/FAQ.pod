@@ -112,7 +112,7 @@ syntax is provided. Examples:
  // a username that is not one of the forbidden/reserved ones
  ["str", {"!in": ["root", "admin", "superuser"]}]
 
-=head2 How to state C<in> as well as C<!in> in the same clause set?
+=head3 How to state C<in> as well as C<!in> in the same clause set?
 
 You can't do this since it will cause a conflict:
 
