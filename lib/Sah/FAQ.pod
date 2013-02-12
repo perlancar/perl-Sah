@@ -101,6 +101,30 @@ In general I am against compiler configuration which changes language behavior.
 In this case, it makes a simple schema like C<int> to have ambiguous meaning (is
 undefined value allowed? Or not allowed? It depends on compiler configuration).
 
+=head3 Why C<int> instead of C<integer>? Why C<req> instead of C<required>? C<str> instead of C<string>? Etc.
+
+This is also a design choice. To be consistent, either we abbreviate or we
+don't. Although there is very little reason to abbreviate when it comes to
+disk/memory size (compared to the eras of early Unix or C language), there are
+other limited resources to consider: source code column width (usually still
+around 80 characters in many best practices) and developer's time/energy (typing
+more takes more time and effort).
+
+I want to make it possible for short schemas to be specified on a single line.
+For example compare:
+
+ [integer => {required => 1, minimum => 0, maximum => 100, divisible_by => 2}]
+
+versus:
+
+ [int => {req=>1, min=>0, max=>100, div_by=>2}]
+
+The latter is not that much less readable than the first, but is less tedious to
+type, especially if you write lots of schemas.
+
+Therefore, the decision is to use commonly used (and unambiguous) abbreviations
+for type and clause names.
+
 =head3 How to express "not-something"? Why isn't there a C<not> or C<not_in> clause?
 
 There are generally no C<not_CLAUSE> clauses. Instead, a generic C<!CLAUSE>
