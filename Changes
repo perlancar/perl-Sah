@@ -1,6 +1,12 @@
 Revision history for Sah
 
-0.9.25   2013-02-02 (SHARYANTO) (not yet released)
+0.9.26   2013-02-13 (SHARYANTO)
+
+         No spec changes. Add FAQ entry on using abbreviations in type/clause
+         names.
+
+
+0.9.25   2013-02-02 (SHARYANTO)
 
          No spec changes. Convert spectest format from YAML to JSON due to
          different Perl YAML implementations dumping/loading data differently
