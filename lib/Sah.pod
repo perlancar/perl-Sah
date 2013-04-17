@@ -19,8 +19,8 @@ between revision before the spec stabilizes into 1.0 series.
 
 This document specifies Sah, a schema language for validating data structures.
 
-Data structures are written in pseudo-JSON (JSON with comments C<// ...>,
-ellipsis C<...>, or some JavaScript).
+In this document, schemas and data structures are mostly written in pseudo-JSON
+(JSON with comments C<// ...>, ellipsis C<...>, or some JavaScript).
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
