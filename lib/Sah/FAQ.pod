@@ -97,9 +97,10 @@ optional.
 
 =head3 How about adding a C<default_req> configuration in C<Data::Sah> then?
 
-In general I am against compiler configuration which changes language behavior.
-In this case, it makes a simple schema like C<int> to have ambiguous meaning (is
-undefined value allowed? Or not allowed? It depends on compiler configuration).
+In general I am against compiler configuration which changes language behavior
+(think PHP's C<register_globals> or <magic_quotes_*> settings). In this case, it
+makes a simple schema like C<int> to have ambiguous meaning (is undefined value
+allowed? Or not allowed? It depends on compiler configuration).
 
 =head3 Why C<int> instead of C<integer>? Why C<req> instead of C<required>? C<str> instead of C<string>? Etc.
 
