@@ -2,28 +2,28 @@ Revision history for Sah
 
 0.9.26   2013-02-13 (SHARYANTO)
 
-         No spec changes. Add FAQ entry on using abbreviations in type/clause
-         names.
+         - No spec changes. Add FAQ entry on using abbreviations in type/clause
+           names.
 
 
 0.9.25   2013-02-02 (SHARYANTO)
 
-         No spec changes. Convert spectest format from YAML to JSON due to
-         different Perl YAML implementations dumping/loading data differently
-         (YAML::Syck loads floats as strings ('1.23'), while YAML::XS causes
-         test failures).
+         - No spec changes. Convert spectest format from YAML to JSON due to
+           different Perl YAML implementations dumping/loading data differently
+           (YAML::Syck loads floats as strings ('1.23'), while YAML::XS causes
+           test failures).
 
 
 0.9.24   2013-01-30 (SHARYANTO)
 
-         No spec changes. Fixes for spectest.
+         - No spec changes. Fixes for spectest.
 
 
 0.9.23   2013-01-11 (SHARYANTO)
 
-         No spec changes. Add tests to spectest, including tests for 'clause'
-         and 'clset' clauses and for array's 'elems' clause. Fix a couple of
-         bugs in spectest.
+         - No spec changes. Add tests to spectest, including tests for 'clause'
+           and 'clset' clauses and for array's 'elems' clause. Fix a couple of
+           bugs in spectest.
 
 
 0.9.22   2012-11-28 (SHARYANTO)
@@ -44,7 +44,7 @@ Revision history for Sah
 
 0.9.21   2012-11-27 (SHARYANTO)
 
-         No spec changes. Forgot to update spectest.
+         - No spec changes. Forgot to update spectest.
 
 
 0.9.20   2012-11-27 (SHARYANTO)
@@ -74,13 +74,13 @@ Revision history for Sah
 
 0.9.19   2012-11-20 (SHARYANTO)
 
-         Introduce shortcut form CLAUSE(LANG) and C.ATTR(LANG) for
-         CLAUSE.alt.lang.LANG and C.ATTR.alt.lang.LANG.
+         - Introduce shortcut form CLAUSE(LANG) and C.ATTR(LANG) for
+           CLAUSE.alt.lang.LANG and C.ATTR.alt.lang.LANG.
 
 
 0.9.18   2012-11-20 (SHARYANTO)
 
-         No spec changes. Fix some typos in POD and spectest.
+         - No spec changes. Fix some typos in POD and spectest.
 
 
 0.9.17   2012-11-13 (SHARYANTO)
@@ -110,14 +110,14 @@ Revision history for Sah
 
 0.9.15   2012-10-25 (SHARYANTO)
 
-         No spec changes.
+         - No spec changes.
 
          - spectest: Add tests for type 'array' (incomplete).
 
 
 0.9.14   2012-10-25 (SHARYANTO)
 
-         No spec changes.
+         - No spec changes.
 
          - spectest: Add tests for type 'float'.
 
@@ -126,7 +126,7 @@ Revision history for Sah
 
 0.9.13   2012-10-25 (SHARYANTO)
 
-         No spec changes.
+         - No spec changes.
 
          - spectest: reenable "clause|" tests, add {min,max}_{ok,nok}
            and .err_level=warn tests.
@@ -188,7 +188,7 @@ Revision history for Sah
 
 0.9.8    2012-10-03 (SHARYANTO)
 
-         No functional changes. Fix examples and misplaced clauses.
+         - No functional changes. Fix examples and misplaced clauses.
 
 
 0.9.7    2012-10-03 (SHARYANTO)
@@ -348,4 +348,4 @@ Revision history for Sah
 
 0.9.0    2012-07-21 (SHARYANTO)
 
-         First release, split specification from Data-Sah.
+         - First release, split specification from Data-Sah.
