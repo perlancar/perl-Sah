@@ -932,11 +932,19 @@ the previous hash will not validate since the value for C<b> is required.
 
 =head3 allowed_keys : ARRAY
 
-Specify which keys are allowed.
+Specify which keys are allowed (can exist).
 
 =head3 allowed_keys_re : RE
 
 Like C<allowed_keys> but using regular expression.
+
+=head3 forbidden_keys : ARRAY
+
+Specify which keys are forbidden (must not exist).
+
+=head3 forbidden_keys_re : RE
+
+Like C<forbidden_keys> but using regular expression.
 
 =head3 each_key : SCHEMA
 
