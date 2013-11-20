@@ -4,30 +4,50 @@
          "input" : 0,
          "name" : "type check: must accept 0",
          "schema" : "bool",
+         "tags" : [
+            "type",
+            "type:bool"
+         ],
          "valid" : 1
       },
       {
          "input" : 1,
          "name" : "type check: must accept 1",
          "schema" : "bool",
+         "tags" : [
+            "type",
+            "type:bool"
+         ],
          "valid" : 1
       },
       {
          "input" : [],
          "name" : "type check: must reject []",
          "schema" : "bool",
+         "tags" : [
+            "type",
+            "type:bool"
+         ],
          "valid" : 0
       },
       {
          "input" : {},
          "name" : "type check: must reject {}",
          "schema" : "bool",
+         "tags" : [
+            "type",
+            "type:bool"
+         ],
          "valid" : 0
       },
       {
          "input" : null,
          "name" : "must accept undefined value",
          "schema" : "bool",
+         "tags" : [
+            "type",
+            "type:bool"
+         ],
          "valid" : 1
       },
       {
@@ -37,6 +57,10 @@
             "bool",
             "req",
             0
+         ],
+         "tags" : [
+            "type",
+            "type:bool"
          ],
          "valid" : 1
       },
@@ -48,6 +72,10 @@
             "req",
             1
          ],
+         "tags" : [
+            "type",
+            "type:bool"
+         ],
          "valid" : 0
       },
       {
@@ -57,6 +85,10 @@
             "bool",
             "forbidden",
             0
+         ],
+         "tags" : [
+            "type",
+            "type:bool"
          ],
          "valid" : 1
       },
@@ -68,6 +100,10 @@
             "forbidden",
             1
          ],
+         "tags" : [
+            "type",
+            "type:bool"
+         ],
          "valid" : 0
       },
       {
@@ -78,6 +114,10 @@
             "default",
             1
          ],
+         "tags" : [
+            "type",
+            "type:bool"
+         ],
          "valid" : 1
       },
       {
@@ -87,6 +127,10 @@
             "bool*",
             "default",
             []
+         ],
+         "tags" : [
+            "type",
+            "type:bool"
          ],
          "valid" : 0
       },
@@ -101,6 +145,10 @@
                "foo",
                1
             ]
+         ],
+         "tags" : [
+            "type",
+            "type:bool"
          ]
       },
       {
@@ -113,6 +161,10 @@
             {
                "foo" : 1
             }
+         ],
+         "tags" : [
+            "type",
+            "type:bool"
          ]
       },
       {
@@ -126,6 +178,10 @@
                "min_len" : 1,
                "min_len.foo" : 1
             }
+         ],
+         "tags" : [
+            "type",
+            "type:bool"
          ]
       },
       {
@@ -135,6 +191,10 @@
             "bool*",
             "clset",
             {}
+         ],
+         "tags" : [
+            "type",
+            "type:bool"
          ],
          "valid" : 1
       },
@@ -149,6 +209,10 @@
                "_foo" : 1
             }
          ],
+         "tags" : [
+            "type",
+            "type:bool"
+         ],
          "valid" : 1
       },
       {
@@ -159,6 +223,10 @@
             "is",
             1
          ],
+         "tags" : [
+            "type",
+            "type:bool"
+         ],
          "valid" : 1
       },
       {
@@ -168,6 +236,10 @@
             "bool",
             "is",
             1
+         ],
+         "tags" : [
+            "type",
+            "type:bool"
          ],
          "valid" : 0
       },
@@ -180,6 +252,10 @@
             1,
             "is.err_level",
             "warn"
+         ],
+         "tags" : [
+            "type",
+            "type:bool"
          ],
          "valid" : 1
       },
@@ -194,6 +270,10 @@
             "is.err_level",
             "warn"
          ],
+         "tags" : [
+            "type",
+            "type:bool"
+         ],
          "valid" : 1
       },
       {
@@ -203,6 +283,10 @@
             "bool",
             "is",
             0
+         ],
+         "tags" : [
+            "type",
+            "type:bool"
          ],
          "valid" : 1
       },
@@ -214,6 +298,10 @@
             "is",
             1
          ],
+         "tags" : [
+            "type",
+            "type:bool"
+         ],
          "valid" : 0
       },
       {
@@ -224,6 +312,14 @@
             "!is",
             0
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:not",
+            "opshortcut"
+         ],
          "valid" : 0
       },
       {
@@ -233,6 +329,14 @@
             "bool",
             "!is",
             1
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:not",
+            "opshortcut"
          ],
          "valid" : 1
       },
@@ -246,6 +350,13 @@
             "is.op",
             "not"
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:not"
+         ],
          "valid" : 0
       },
       {
@@ -258,6 +369,13 @@
             "is.op",
             "not"
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:not"
+         ],
          "valid" : 1
       },
       {
@@ -267,6 +385,14 @@
             "bool",
             "is&",
             []
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:and",
+            "opshortcut"
          ],
          "valid" : 1
       },
@@ -280,6 +406,14 @@
                0,
                0
             ]
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:and",
+            "opshortcut"
          ],
          "valid" : 1
       },
@@ -295,6 +429,14 @@
                0
             ]
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
          "valid" : 0
       },
       {
@@ -308,6 +450,14 @@
                0,
                1
             ]
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:and",
+            "opshortcut"
          ],
          "valid" : 0
       },
@@ -323,6 +473,14 @@
                1
             ]
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
          "valid" : 0
       },
       {
@@ -334,6 +492,10 @@
             [],
             "is.op",
             "and"
+         ],
+         "tags" : [
+            "type",
+            "type:bool"
          ],
          "valid" : 1
       },
@@ -349,6 +511,13 @@
             ],
             "is.op",
             "and"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:and"
          ],
          "valid" : 1
       },
@@ -366,6 +535,13 @@
             "is.op",
             "and"
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:and"
+         ],
          "valid" : 0
       },
       {
@@ -381,6 +557,13 @@
             ],
             "is.op",
             "and"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:and"
          ],
          "valid" : 0
       },
@@ -398,6 +581,13 @@
             "is.op",
             "and"
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:and"
+         ],
          "valid" : 0
       },
       {
@@ -407,6 +597,14 @@
             "bool",
             "is|",
             []
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:or",
+            "opshortcut"
          ],
          "valid" : 1
       },
@@ -421,6 +619,14 @@
                0
             ]
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
          "valid" : 1
       },
       {
@@ -434,6 +640,14 @@
                0
             ]
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
          "valid" : 1
       },
       {
@@ -446,6 +660,14 @@
                0,
                1
             ]
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:or",
+            "opshortcut"
          ],
          "valid" : 1
       },
@@ -461,6 +683,14 @@
                1
             ]
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
          "valid" : 0
       },
       {
@@ -472,6 +702,13 @@
             [],
             "is.op",
             "or"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:or"
          ],
          "valid" : 1
       },
@@ -488,6 +725,13 @@
             "is.op",
             "or"
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:or"
+         ],
          "valid" : 1
       },
       {
@@ -503,6 +747,13 @@
             "is.op",
             "or"
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:or"
+         ],
          "valid" : 1
       },
       {
@@ -517,6 +768,13 @@
             ],
             "is.op",
             "or"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:or"
          ],
          "valid" : 1
       },
@@ -534,6 +792,13 @@
             "is.op",
             "or"
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:or"
+         ],
          "valid" : 0
       },
       {
@@ -545,6 +810,13 @@
             [],
             "is.op",
             "none"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:none"
          ],
          "valid" : 1
       },
@@ -560,6 +832,13 @@
             ],
             "is.op",
             "none"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:none"
          ],
          "valid" : 1
       },
@@ -577,6 +856,13 @@
             "is.op",
             "none"
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:none"
+         ],
          "valid" : 0
       },
       {
@@ -592,6 +878,13 @@
             ],
             "is.op",
             "none"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:none"
          ],
          "valid" : 0
       },
@@ -609,6 +902,13 @@
             "is.op",
             "none"
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:none"
+         ],
          "valid" : 0
       },
       {
@@ -622,6 +922,10 @@
                1
             ]
          ],
+         "tags" : [
+            "type",
+            "type:bool"
+         ],
          "valid" : 1
       },
       {
@@ -631,6 +935,10 @@
             "bool",
             "in",
             []
+         ],
+         "tags" : [
+            "type",
+            "type:bool"
          ],
          "valid" : 0
       },
@@ -645,6 +953,14 @@
                1
             ]
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:not",
+            "opshortcut"
+         ],
          "valid" : 0
       },
       {
@@ -654,6 +970,14 @@
             "bool",
             "!in",
             []
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:not",
+            "opshortcut"
          ],
          "valid" : 1
       },
@@ -670,6 +994,13 @@
             "in.op",
             "not"
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:not"
+         ],
          "valid" : 0
       },
       {
@@ -682,6 +1013,13 @@
             "in.op",
             "not"
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:not"
+         ],
          "valid" : 1
       },
       {
@@ -691,6 +1029,14 @@
             "bool",
             "in&",
             []
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:and",
+            "opshortcut"
          ],
          "valid" : 1
       },
@@ -711,6 +1057,14 @@
                ]
             ]
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
          "valid" : 1
       },
       {
@@ -727,6 +1081,14 @@
                   1
                ]
             ]
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:and",
+            "opshortcut"
          ],
          "valid" : 0
       },
@@ -745,6 +1107,14 @@
                []
             ]
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
          "valid" : 0
       },
       {
@@ -759,6 +1129,14 @@
                []
             ]
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
          "valid" : 0
       },
       {
@@ -770,6 +1148,10 @@
             [],
             "in.op",
             "and"
+         ],
+         "tags" : [
+            "type",
+            "type:bool"
          ],
          "valid" : 1
       },
@@ -792,6 +1174,13 @@
             "in.op",
             "and"
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:and"
+         ],
          "valid" : 1
       },
       {
@@ -810,6 +1199,13 @@
             ],
             "in.op",
             "and"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:and"
          ],
          "valid" : 0
       },
@@ -830,6 +1226,13 @@
             "in.op",
             "and"
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:and"
+         ],
          "valid" : 0
       },
       {
@@ -846,6 +1249,13 @@
             "in.op",
             "and"
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:and"
+         ],
          "valid" : 0
       },
       {
@@ -855,6 +1265,14 @@
             "bool",
             "in|",
             []
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:or",
+            "opshortcut"
          ],
          "valid" : 1
       },
@@ -875,6 +1293,14 @@
                ]
             ]
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
          "valid" : 1
       },
       {
@@ -890,6 +1316,14 @@
                   1
                ]
             ]
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:or",
+            "opshortcut"
          ],
          "valid" : 1
       },
@@ -907,6 +1341,14 @@
                []
             ]
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
          "valid" : 1
       },
       {
@@ -921,6 +1363,14 @@
                []
             ]
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
          "valid" : 0
       },
       {
@@ -932,6 +1382,13 @@
             [],
             "in.op",
             "or"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:or"
          ],
          "valid" : 1
       },
@@ -954,6 +1411,13 @@
             "in.op",
             "or"
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:or"
+         ],
          "valid" : 1
       },
       {
@@ -971,6 +1435,13 @@
             ],
             "in.op",
             "or"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:or"
          ],
          "valid" : 1
       },
@@ -990,6 +1461,13 @@
             "in.op",
             "or"
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:or"
+         ],
          "valid" : 1
       },
       {
@@ -1006,6 +1484,13 @@
             "in.op",
             "or"
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:or"
+         ],
          "valid" : 0
       },
       {
@@ -1017,6 +1502,13 @@
             [],
             "in.op",
             "none"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:none"
          ],
          "valid" : 1
       },
@@ -1032,6 +1524,13 @@
             ],
             "in.op",
             "none"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:none"
          ],
          "valid" : 1
       },
@@ -1052,6 +1551,13 @@
             "in.op",
             "none"
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:none"
+         ],
          "valid" : 0
       },
       {
@@ -1070,6 +1576,13 @@
             ],
             "in.op",
             "none"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:none"
          ],
          "valid" : 0
       },
@@ -1093,6 +1606,13 @@
             "in.op",
             "none"
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:none"
+         ],
          "valid" : 0
       },
       {
@@ -1102,6 +1622,10 @@
             "bool",
             "min",
             0
+         ],
+         "tags" : [
+            "type",
+            "type:bool"
          ],
          "valid" : 1
       },
@@ -1113,6 +1637,10 @@
             "min",
             1
          ],
+         "tags" : [
+            "type",
+            "type:bool"
+         ],
          "valid" : 1
       },
       {
@@ -1122,6 +1650,10 @@
             "bool",
             "min",
             1
+         ],
+         "tags" : [
+            "type",
+            "type:bool"
          ],
          "valid" : 0
       },
@@ -1133,6 +1665,10 @@
             "xmin",
             0
          ],
+         "tags" : [
+            "type",
+            "type:bool"
+         ],
          "valid" : 1
       },
       {
@@ -1142,6 +1678,10 @@
             "bool",
             "xmin",
             1
+         ],
+         "tags" : [
+            "type",
+            "type:bool"
          ],
          "valid" : 0
       },
@@ -1153,6 +1693,10 @@
             "xmin",
             1
          ],
+         "tags" : [
+            "type",
+            "type:bool"
+         ],
          "valid" : 0
       },
       {
@@ -1162,6 +1706,10 @@
             "bool",
             "max",
             0
+         ],
+         "tags" : [
+            "type",
+            "type:bool"
          ],
          "valid" : 0
       },
@@ -1173,6 +1721,10 @@
             "max",
             1
          ],
+         "tags" : [
+            "type",
+            "type:bool"
+         ],
          "valid" : 1
       },
       {
@@ -1182,6 +1734,10 @@
             "bool",
             "max",
             1
+         ],
+         "tags" : [
+            "type",
+            "type:bool"
          ],
          "valid" : 1
       },
@@ -1193,6 +1749,10 @@
             "xmax",
             0
          ],
+         "tags" : [
+            "type",
+            "type:bool"
+         ],
          "valid" : 0
       },
       {
@@ -1202,6 +1762,10 @@
             "bool",
             "xmax",
             1
+         ],
+         "tags" : [
+            "type",
+            "type:bool"
          ],
          "valid" : 0
       },
@@ -1213,18 +1777,9 @@
             "xmax",
             1
          ],
-         "valid" : 1
-      },
-      {
-         "input" : 1,
-         "name" : "between: 1 0 & 1",
-         "schema" : [
-            "bool",
-            "between",
-            [
-               0,
-               1
-            ]
+         "tags" : [
+            "type",
+            "type:bool"
          ],
          "valid" : 1
       },
@@ -1238,6 +1793,27 @@
                0,
                1
             ]
+         ],
+         "tags" : [
+            "type",
+            "type:bool"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 1,
+         "name" : "between: 1 0 & 1",
+         "schema" : [
+            "bool",
+            "between",
+            [
+               0,
+               1
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:bool"
          ],
          "valid" : 1
       },
@@ -1252,6 +1828,10 @@
                1
             ]
          ],
+         "tags" : [
+            "type",
+            "type:bool"
+         ],
          "valid" : 1
       },
       {
@@ -1264,6 +1844,10 @@
                1,
                1
             ]
+         ],
+         "tags" : [
+            "type",
+            "type:bool"
          ],
          "valid" : 0
       },
@@ -1278,6 +1862,10 @@
                1
             ]
          ],
+         "tags" : [
+            "type",
+            "type:bool"
+         ],
          "valid" : 0
       },
       {
@@ -1290,6 +1878,10 @@
                0,
                "1"
             ]
+         ],
+         "tags" : [
+            "type",
+            "type:bool"
          ],
          "valid" : 0
       },
@@ -1304,6 +1896,10 @@
                "1"
             ]
          ],
+         "tags" : [
+            "type",
+            "type:bool"
+         ],
          "valid" : 0
       },
       {
@@ -1317,6 +1913,749 @@
                "1"
             ]
          ],
+         "tags" : [
+            "type",
+            "type:bool"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 0,
+         "name" : "!between (nok)",
+         "schema" : [
+            "bool",
+            "!between",
+            [
+               0,
+               0
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:not",
+            "opshortcut"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 0,
+         "name" : "!between (ok)",
+         "schema" : [
+            "bool",
+            "!between",
+            [
+               "1",
+               "1"
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:not",
+            "opshortcut"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 0,
+         "name" : "between.op=not (nok)",
+         "schema" : [
+            "bool",
+            "between",
+            [
+               0,
+               0
+            ],
+            "between.op",
+            "not"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:not"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 0,
+         "name" : "between.op=not (ok)",
+         "schema" : [
+            "bool",
+            "between",
+            [
+               "1",
+               "1"
+            ],
+            "between.op",
+            "not"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:not"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 0,
+         "name" : "between& (no items)",
+         "schema" : [
+            "bool",
+            "between&",
+            []
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 0,
+         "name" : "between& (ok)",
+         "schema" : [
+            "bool",
+            "between&",
+            [
+               [
+                  0,
+                  0
+               ],
+               [
+                  0,
+                  0
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : 0,
+         "name" : "between& (nok + ok)",
+         "schema" : [
+            "bool",
+            "between&",
+            [
+               [
+                  "1",
+                  "1"
+               ],
+               [
+                  0,
+                  0
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : 0,
+         "name" : "between& (ok + nok)",
+         "schema" : [
+            "bool",
+            "between&",
+            [
+               [
+                  0,
+                  0
+               ],
+               [
+                  "1",
+                  "1"
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : 0,
+         "name" : "between& (nok + nok)",
+         "schema" : [
+            "bool",
+            "between&",
+            [
+               [
+                  "1",
+                  "1"
+               ],
+               [
+                  "1",
+                  "1"
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 0,
+         "name" : "between.op=and (no items)",
+         "schema" : [
+            "bool",
+            "between",
+            [],
+            "between.op",
+            "and"
+         ],
+         "tags" : [
+            "type",
+            "type:bool"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 0,
+         "name" : "between.op=and (ok)",
+         "schema" : [
+            "bool",
+            "between",
+            [
+               [
+                  0,
+                  0
+               ],
+               [
+                  0,
+                  0
+               ]
+            ],
+            "between.op",
+            "and"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:and"
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : 0,
+         "name" : "between.op=and (nok + ok)",
+         "schema" : [
+            "bool",
+            "between",
+            [
+               [
+                  "1",
+                  "1"
+               ],
+               [
+                  0,
+                  0
+               ]
+            ],
+            "between.op",
+            "and"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:and"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : 0,
+         "name" : "between.op=and (ok + nok)",
+         "schema" : [
+            "bool",
+            "between",
+            [
+               [
+                  0,
+                  0
+               ],
+               [
+                  "1",
+                  "1"
+               ]
+            ],
+            "between.op",
+            "and"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:and"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : 0,
+         "name" : "between.op=and (nok + nok)",
+         "schema" : [
+            "bool",
+            "between",
+            [
+               [
+                  "1",
+                  "1"
+               ],
+               [
+                  "1",
+                  "1"
+               ]
+            ],
+            "between.op",
+            "and"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:and"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 0,
+         "name" : "between| (no items)",
+         "schema" : [
+            "bool",
+            "between|",
+            []
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 0,
+         "name" : "between| (ok)",
+         "schema" : [
+            "bool",
+            "between|",
+            [
+               [
+                  0,
+                  0
+               ],
+               [
+                  0,
+                  0
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 0,
+         "name" : "between| (nok + ok)",
+         "schema" : [
+            "bool",
+            "between|",
+            [
+               [
+                  "1",
+                  "1"
+               ],
+               [
+                  0,
+                  0
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 0,
+         "name" : "between| (ok + nok)",
+         "schema" : [
+            "bool",
+            "between|",
+            [
+               [
+                  0,
+                  0
+               ],
+               [
+                  "1",
+                  "1"
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : 0,
+         "name" : "between| (nok + nok)",
+         "schema" : [
+            "bool",
+            "between|",
+            [
+               [
+                  "1",
+                  "1"
+               ],
+               [
+                  "1",
+                  "1"
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 0,
+         "name" : "between.op=or (no items)",
+         "schema" : [
+            "bool",
+            "between",
+            [],
+            "between.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:or"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 0,
+         "name" : "between.op=or (ok)",
+         "schema" : [
+            "bool",
+            "between",
+            [
+               [
+                  0,
+                  0
+               ],
+               [
+                  0,
+                  0
+               ]
+            ],
+            "between.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:or"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 0,
+         "name" : "between.op=or (nok + ok)",
+         "schema" : [
+            "bool",
+            "between",
+            [
+               [
+                  "1",
+                  "1"
+               ],
+               [
+                  0,
+                  0
+               ]
+            ],
+            "between.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:or"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 0,
+         "name" : "between.op=or (ok + nok)",
+         "schema" : [
+            "bool",
+            "between",
+            [
+               [
+                  0,
+                  0
+               ],
+               [
+                  "1",
+                  "1"
+               ]
+            ],
+            "between.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:or"
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : 0,
+         "name" : "between.op=or (nok + nok)",
+         "schema" : [
+            "bool",
+            "between",
+            [
+               [
+                  "1",
+                  "1"
+               ],
+               [
+                  "1",
+                  "1"
+               ]
+            ],
+            "between.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:or"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 0,
+         "name" : "between.op=none (empty items)",
+         "schema" : [
+            "bool",
+            "between",
+            [],
+            "between.op",
+            "none"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:none"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 0,
+         "name" : "between.op=none (nok + nok)",
+         "schema" : [
+            "bool",
+            "between",
+            [
+               [
+                  "1",
+                  "1"
+               ],
+               [
+                  "1",
+                  "1"
+               ]
+            ],
+            "between.op",
+            "none"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:none"
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : 0,
+         "name" : "between.op=none (nok + ok)",
+         "schema" : [
+            "bool",
+            "between",
+            [
+               [
+                  "1",
+                  "1"
+               ],
+               [
+                  0,
+                  0
+               ]
+            ],
+            "between.op",
+            "none"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:none"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : 0,
+         "name" : "between.op=none (ok + nok)",
+         "schema" : [
+            "bool",
+            "between",
+            [
+               [
+                  0,
+                  0
+               ],
+               [
+                  "1",
+                  "1"
+               ]
+            ],
+            "between.op",
+            "none"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:none"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : 0,
+         "name" : "between.op=none (ok + ok)",
+         "schema" : [
+            "bool",
+            "between",
+            [
+               [
+                  0,
+                  0
+               ],
+               [
+                  0,
+                  0
+               ]
+            ],
+            "between.op",
+            "none"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:none"
+         ],
          "valid" : 0
       },
       {
@@ -1326,6 +2665,11 @@
             "bool",
             "is_true",
             1
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is_true"
          ],
          "valid" : 1
       },
@@ -1337,6 +2681,11 @@
             "is_true",
             1
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is_true"
+         ],
          "valid" : 0
       },
       {
@@ -1346,6 +2695,11 @@
             "bool",
             "is_true",
             0
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is_true"
          ],
          "valid" : 1
       },
@@ -1357,6 +2711,11 @@
             "is_true",
             0
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is_true"
+         ],
          "valid" : 0
       },
       {
@@ -1366,6 +2725,11 @@
             "bool",
             "is_true",
             null
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is_true"
          ],
          "valid" : 1
       },
@@ -1377,8 +2741,13 @@
             "is_true",
             null
          ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is_true"
+         ],
          "valid" : 1
       }
    ],
-   "version" : "v0.9.24 (generated by devscripts/gen-type-spectest on Sat Feb  2 10:46:49 2013)"
+   "version" : "v0.9.27 (generated by devscripts/gen-type-spectest on Wed Nov 20 23:01:59 2013)"
 }

@@ -4,6 +4,10 @@
          "input" : {},
          "name" : "type check: must accept {}",
          "schema" : "hash",
+         "tags" : [
+            "type",
+            "type:hash"
+         ],
          "valid" : 1
       },
       {
@@ -12,6 +16,10 @@
          },
          "name" : "type check: must accept { a => 1 }",
          "schema" : "hash",
+         "tags" : [
+            "type",
+            "type:hash"
+         ],
          "valid" : 1
       },
       {
@@ -20,30 +28,50 @@
          },
          "name" : "type check: must accept { \"\" => [] }",
          "schema" : "hash",
+         "tags" : [
+            "type",
+            "type:hash"
+         ],
          "valid" : 1
       },
       {
          "input" : 1,
          "name" : "type check: must reject 1",
          "schema" : "hash",
+         "tags" : [
+            "type",
+            "type:hash"
+         ],
          "valid" : 0
       },
       {
          "input" : "a",
          "name" : "type check: must reject a",
          "schema" : "hash",
+         "tags" : [
+            "type",
+            "type:hash"
+         ],
          "valid" : 0
       },
       {
          "input" : [],
          "name" : "type check: must reject []",
          "schema" : "hash",
+         "tags" : [
+            "type",
+            "type:hash"
+         ],
          "valid" : 0
       },
       {
          "input" : null,
          "name" : "must accept undefined value",
          "schema" : "hash",
+         "tags" : [
+            "type",
+            "type:hash"
+         ],
          "valid" : 1
       },
       {
@@ -54,6 +82,10 @@
             "req",
             0
          ],
+         "tags" : [
+            "type",
+            "type:hash"
+         ],
          "valid" : 1
       },
       {
@@ -63,6 +95,10 @@
             "hash",
             "req",
             1
+         ],
+         "tags" : [
+            "type",
+            "type:hash"
          ],
          "valid" : 0
       },
@@ -76,6 +112,10 @@
             "forbidden",
             0
          ],
+         "tags" : [
+            "type",
+            "type:hash"
+         ],
          "valid" : 1
       },
       {
@@ -88,6 +128,10 @@
             "forbidden",
             1
          ],
+         "tags" : [
+            "type",
+            "type:hash"
+         ],
          "valid" : 0
       },
       {
@@ -98,6 +142,10 @@
             "default",
             {}
          ],
+         "tags" : [
+            "type",
+            "type:hash"
+         ],
          "valid" : 1
       },
       {
@@ -107,6 +155,10 @@
             "hash*",
             "default",
             "a"
+         ],
+         "tags" : [
+            "type",
+            "type:hash"
          ],
          "valid" : 0
       },
@@ -123,6 +175,10 @@
                "foo",
                1
             ]
+         ],
+         "tags" : [
+            "type",
+            "type:hash"
          ]
       },
       {
@@ -137,6 +193,10 @@
                "min_len",
                1
             ]
+         ],
+         "tags" : [
+            "type",
+            "type:hash"
          ],
          "valid" : 1
       },
@@ -155,6 +215,10 @@
             "max_len",
             0
          ],
+         "tags" : [
+            "type",
+            "type:hash"
+         ],
          "valid" : 0
       },
       {
@@ -171,6 +235,10 @@
                2
             ]
          ],
+         "tags" : [
+            "type",
+            "type:hash"
+         ],
          "valid" : 0
       },
       {
@@ -185,6 +253,10 @@
             {
                "foo" : 1
             }
+         ],
+         "tags" : [
+            "type",
+            "type:hash"
          ]
       },
       {
@@ -200,6 +272,10 @@
                "min_len" : 1,
                "min_len.foo" : 1
             }
+         ],
+         "tags" : [
+            "type",
+            "type:hash"
          ]
       },
       {
@@ -211,6 +287,10 @@
             "hash*",
             "clset",
             {}
+         ],
+         "tags" : [
+            "type",
+            "type:hash"
          ],
          "valid" : 1
       },
@@ -227,6 +307,10 @@
                "_foo" : 1
             }
          ],
+         "tags" : [
+            "type",
+            "type:hash"
+         ],
          "valid" : 1
       },
       {
@@ -241,6 +325,10 @@
                "max_len" : 1,
                "min_len" : 1
             }
+         ],
+         "tags" : [
+            "type",
+            "type:hash"
          ],
          "valid" : 1
       },
@@ -258,6 +346,10 @@
             "max_len",
             0
          ],
+         "tags" : [
+            "type",
+            "type:hash"
+         ],
          "valid" : 0
       },
       {
@@ -272,6 +364,10 @@
                "max_len" : 0,
                "min_len" : 1
             }
+         ],
+         "tags" : [
+            "type",
+            "type:hash"
          ],
          "valid" : 0
       },
@@ -288,6 +384,10 @@
                "min_len" : 2
             }
          ],
+         "tags" : [
+            "type",
+            "type:hash"
+         ],
          "valid" : 0
       },
       {
@@ -303,6 +403,10 @@
                "min_len" : 2
             }
          ],
+         "tags" : [
+            "type",
+            "type:hash"
+         ],
          "valid" : 0
       },
       {
@@ -317,6 +421,10 @@
                "a" : 0
             }
          ],
+         "tags" : [
+            "type",
+            "type:hash"
+         ],
          "valid" : 1
       },
       {
@@ -330,6 +438,10 @@
             {
                "a" : 0
             }
+         ],
+         "tags" : [
+            "type",
+            "type:hash"
          ],
          "valid" : 0
       },
@@ -346,6 +458,10 @@
             },
             "is.err_level",
             "warn"
+         ],
+         "tags" : [
+            "type",
+            "type:hash"
          ],
          "valid" : 1
       },
@@ -364,6 +480,10 @@
             "is.err_level",
             "warn"
          ],
+         "tags" : [
+            "type",
+            "type:hash"
+         ],
          "valid" : 1
       },
       {
@@ -373,6 +493,10 @@
             "hash",
             "is",
             {}
+         ],
+         "tags" : [
+            "type",
+            "type:hash"
          ],
          "valid" : 1
       },
@@ -386,6 +510,10 @@
                "a" : 1
             }
          ],
+         "tags" : [
+            "type",
+            "type:hash"
+         ],
          "valid" : 0
       },
       {
@@ -395,6 +523,14 @@
             "hash",
             "!is",
             {}
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:is",
+            "op",
+            "op:not",
+            "opshortcut"
          ],
          "valid" : 0
       },
@@ -408,6 +544,14 @@
                "a" : 1
             }
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:is",
+            "op",
+            "op:not",
+            "opshortcut"
+         ],
          "valid" : 1
       },
       {
@@ -419,6 +563,13 @@
             {},
             "is.op",
             "not"
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:is",
+            "op",
+            "op:not"
          ],
          "valid" : 0
       },
@@ -434,6 +585,13 @@
             "is.op",
             "not"
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:is",
+            "op",
+            "op:not"
+         ],
          "valid" : 1
       },
       {
@@ -443,6 +601,14 @@
             "hash",
             "is&",
             []
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:is",
+            "op",
+            "op:and",
+            "opshortcut"
          ],
          "valid" : 1
       },
@@ -456,6 +622,14 @@
                {},
                {}
             ]
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:is",
+            "op",
+            "op:and",
+            "opshortcut"
          ],
          "valid" : 1
       },
@@ -473,6 +647,14 @@
                {}
             ]
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:is",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
          "valid" : 0
       },
       {
@@ -488,6 +670,14 @@
                   "a" : 1
                }
             ]
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:is",
+            "op",
+            "op:and",
+            "opshortcut"
          ],
          "valid" : 0
       },
@@ -507,6 +697,14 @@
                }
             ]
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:is",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
          "valid" : 0
       },
       {
@@ -518,6 +716,10 @@
             [],
             "is.op",
             "and"
+         ],
+         "tags" : [
+            "type",
+            "type:hash"
          ],
          "valid" : 1
       },
@@ -533,6 +735,13 @@
             ],
             "is.op",
             "and"
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:is",
+            "op",
+            "op:and"
          ],
          "valid" : 1
       },
@@ -552,6 +761,13 @@
             "is.op",
             "and"
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:is",
+            "op",
+            "op:and"
+         ],
          "valid" : 0
       },
       {
@@ -569,6 +785,13 @@
             ],
             "is.op",
             "and"
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:is",
+            "op",
+            "op:and"
          ],
          "valid" : 0
       },
@@ -590,6 +813,13 @@
             "is.op",
             "and"
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:is",
+            "op",
+            "op:and"
+         ],
          "valid" : 0
       },
       {
@@ -599,6 +829,14 @@
             "hash",
             "is|",
             []
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:is",
+            "op",
+            "op:or",
+            "opshortcut"
          ],
          "valid" : 1
       },
@@ -612,6 +850,14 @@
                {},
                {}
             ]
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:is",
+            "op",
+            "op:or",
+            "opshortcut"
          ],
          "valid" : 1
       },
@@ -628,6 +874,14 @@
                {}
             ]
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:is",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
          "valid" : 1
       },
       {
@@ -642,6 +896,14 @@
                   "a" : 1
                }
             ]
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:is",
+            "op",
+            "op:or",
+            "opshortcut"
          ],
          "valid" : 1
       },
@@ -661,6 +923,14 @@
                }
             ]
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:is",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
          "valid" : 0
       },
       {
@@ -672,6 +942,13 @@
             [],
             "is.op",
             "or"
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:is",
+            "op",
+            "op:or"
          ],
          "valid" : 1
       },
@@ -687,6 +964,13 @@
             ],
             "is.op",
             "or"
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:is",
+            "op",
+            "op:or"
          ],
          "valid" : 1
       },
@@ -705,6 +989,13 @@
             "is.op",
             "or"
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:is",
+            "op",
+            "op:or"
+         ],
          "valid" : 1
       },
       {
@@ -721,6 +1012,13 @@
             ],
             "is.op",
             "or"
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:is",
+            "op",
+            "op:or"
          ],
          "valid" : 1
       },
@@ -742,6 +1040,13 @@
             "is.op",
             "or"
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:is",
+            "op",
+            "op:or"
+         ],
          "valid" : 0
       },
       {
@@ -753,6 +1058,13 @@
             [],
             "is.op",
             "none"
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:is",
+            "op",
+            "op:none"
          ],
          "valid" : 1
       },
@@ -773,6 +1085,13 @@
             "is.op",
             "none"
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:is",
+            "op",
+            "op:none"
+         ],
          "valid" : 1
       },
       {
@@ -790,6 +1109,13 @@
             ],
             "is.op",
             "none"
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:is",
+            "op",
+            "op:none"
          ],
          "valid" : 0
       },
@@ -809,6 +1135,13 @@
             "is.op",
             "none"
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:is",
+            "op",
+            "op:none"
+         ],
          "valid" : 0
       },
       {
@@ -825,6 +1158,13 @@
             "is.op",
             "none"
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:is",
+            "op",
+            "op:none"
+         ],
          "valid" : 0
       },
       {
@@ -840,6 +1180,10 @@
                }
             ]
          ],
+         "tags" : [
+            "type",
+            "type:hash"
+         ],
          "valid" : 1
       },
       {
@@ -849,6 +1193,10 @@
             "hash",
             "in",
             []
+         ],
+         "tags" : [
+            "type",
+            "type:hash"
          ],
          "valid" : 0
       },
@@ -865,6 +1213,14 @@
                }
             ]
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:in",
+            "op",
+            "op:not",
+            "opshortcut"
+         ],
          "valid" : 0
       },
       {
@@ -874,6 +1230,14 @@
             "hash",
             "!in",
             []
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:in",
+            "op",
+            "op:not",
+            "opshortcut"
          ],
          "valid" : 1
       },
@@ -892,6 +1256,13 @@
             "in.op",
             "not"
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:in",
+            "op",
+            "op:not"
+         ],
          "valid" : 0
       },
       {
@@ -904,6 +1275,13 @@
             "in.op",
             "not"
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:in",
+            "op",
+            "op:not"
+         ],
          "valid" : 1
       },
       {
@@ -913,6 +1291,14 @@
             "hash",
             "in&",
             []
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:in",
+            "op",
+            "op:and",
+            "opshortcut"
          ],
          "valid" : 1
       },
@@ -937,6 +1323,14 @@
                ]
             ]
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:in",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
          "valid" : 1
       },
       {
@@ -955,6 +1349,14 @@
                   }
                ]
             ]
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:in",
+            "op",
+            "op:and",
+            "opshortcut"
          ],
          "valid" : 0
       },
@@ -975,6 +1377,14 @@
                []
             ]
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:in",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
          "valid" : 0
       },
       {
@@ -989,6 +1399,14 @@
                []
             ]
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:in",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
          "valid" : 0
       },
       {
@@ -1000,6 +1418,10 @@
             [],
             "in.op",
             "and"
+         ],
+         "tags" : [
+            "type",
+            "type:hash"
          ],
          "valid" : 1
       },
@@ -1026,6 +1448,13 @@
             "in.op",
             "and"
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:in",
+            "op",
+            "op:and"
+         ],
          "valid" : 1
       },
       {
@@ -1046,6 +1475,13 @@
             ],
             "in.op",
             "and"
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:in",
+            "op",
+            "op:and"
          ],
          "valid" : 0
       },
@@ -1068,6 +1504,13 @@
             "in.op",
             "and"
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:in",
+            "op",
+            "op:and"
+         ],
          "valid" : 0
       },
       {
@@ -1084,6 +1527,13 @@
             "in.op",
             "and"
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:in",
+            "op",
+            "op:and"
+         ],
          "valid" : 0
       },
       {
@@ -1093,6 +1543,14 @@
             "hash",
             "in|",
             []
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:in",
+            "op",
+            "op:or",
+            "opshortcut"
          ],
          "valid" : 1
       },
@@ -1117,6 +1575,14 @@
                ]
             ]
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:in",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
          "valid" : 1
       },
       {
@@ -1134,6 +1600,14 @@
                   }
                ]
             ]
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:in",
+            "op",
+            "op:or",
+            "opshortcut"
          ],
          "valid" : 1
       },
@@ -1153,6 +1627,14 @@
                []
             ]
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:in",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
          "valid" : 1
       },
       {
@@ -1167,6 +1649,14 @@
                []
             ]
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:in",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
          "valid" : 0
       },
       {
@@ -1178,6 +1668,13 @@
             [],
             "in.op",
             "or"
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:in",
+            "op",
+            "op:or"
          ],
          "valid" : 1
       },
@@ -1204,6 +1701,13 @@
             "in.op",
             "or"
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:in",
+            "op",
+            "op:or"
+         ],
          "valid" : 1
       },
       {
@@ -1223,6 +1727,13 @@
             ],
             "in.op",
             "or"
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:in",
+            "op",
+            "op:or"
          ],
          "valid" : 1
       },
@@ -1244,6 +1755,13 @@
             "in.op",
             "or"
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:in",
+            "op",
+            "op:or"
+         ],
          "valid" : 1
       },
       {
@@ -1260,6 +1778,13 @@
             "in.op",
             "or"
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:in",
+            "op",
+            "op:or"
+         ],
          "valid" : 0
       },
       {
@@ -1271,6 +1796,13 @@
             [],
             "in.op",
             "none"
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:in",
+            "op",
+            "op:none"
          ],
          "valid" : 1
       },
@@ -1286,6 +1818,13 @@
             ],
             "in.op",
             "none"
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:in",
+            "op",
+            "op:none"
          ],
          "valid" : 1
       },
@@ -1308,6 +1847,13 @@
             "in.op",
             "none"
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:in",
+            "op",
+            "op:none"
+         ],
          "valid" : 0
       },
       {
@@ -1328,6 +1874,13 @@
             ],
             "in.op",
             "none"
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:in",
+            "op",
+            "op:none"
          ],
          "valid" : 0
       },
@@ -1355,6 +1908,13 @@
             "in.op",
             "none"
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:in",
+            "op",
+            "op:none"
+         ],
          "valid" : 0
       },
       {
@@ -1366,6 +1926,10 @@
             "hash",
             "len",
             1
+         ],
+         "tags" : [
+            "type",
+            "type:hash"
          ],
          "valid" : 1
       },
@@ -1379,6 +1943,10 @@
             "len",
             2
          ],
+         "tags" : [
+            "type",
+            "type:hash"
+         ],
          "valid" : 0
       },
       {
@@ -1390,6 +1958,10 @@
             "hash",
             "min_len",
             1
+         ],
+         "tags" : [
+            "type",
+            "type:hash"
          ],
          "valid" : 1
       },
@@ -1403,6 +1975,10 @@
             "min_len",
             2
          ],
+         "tags" : [
+            "type",
+            "type:hash"
+         ],
          "valid" : 0
       },
       {
@@ -1414,6 +1990,10 @@
             "hash",
             "min_len",
             1
+         ],
+         "tags" : [
+            "type",
+            "type:hash"
          ],
          "valid" : 1
       },
@@ -1427,6 +2007,10 @@
             "hash",
             "max_len",
             1
+         ],
+         "tags" : [
+            "type",
+            "type:hash"
          ],
          "valid" : 0
       },
@@ -1443,6 +2027,10 @@
                2
             ]
          ],
+         "tags" : [
+            "type",
+            "type:hash"
+         ],
          "valid" : 1
       },
       {
@@ -1458,6 +2046,10 @@
                1,
                1
             ]
+         ],
+         "tags" : [
+            "type",
+            "type:hash"
          ],
          "valid" : 0
       },
@@ -1476,6 +2068,10 @@
                1
             ]
          ],
+         "tags" : [
+            "type",
+            "type:hash"
+         ],
          "valid" : 1
       },
       {
@@ -1493,6 +2089,10 @@
                2
             ]
          ],
+         "tags" : [
+            "type",
+            "type:hash"
+         ],
          "valid" : 0
       },
       {
@@ -1505,6 +2105,10 @@
             "hash",
             "each_elem",
             "float"
+         ],
+         "tags" : [
+            "type",
+            "type:hash"
          ],
          "valid" : 1
       },
@@ -1519,6 +2123,10 @@
             "each_elem",
             "int"
          ],
+         "tags" : [
+            "type",
+            "type:hash"
+         ],
          "valid" : 0
       },
       {
@@ -1532,6 +2140,11 @@
                   "b" : "float*"
                }
             }
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:keys"
          ],
          "valid" : 1
       },
@@ -1549,6 +2162,11 @@
                }
             }
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:keys"
+         ],
          "valid" : 1
       },
       {
@@ -1564,6 +2182,11 @@
                   "b" : "float*"
                }
             }
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:keys"
          ],
          "valid" : 1
       },
@@ -1581,6 +2204,11 @@
                }
             }
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:keys"
+         ],
          "valid" : 0
       },
       {
@@ -1596,6 +2224,11 @@
                   "b" : "float*"
                }
             }
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:keys"
          ],
          "valid" : 1
       },
@@ -1614,6 +2247,11 @@
                }
             }
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:keys"
+         ],
          "valid" : 1
       },
       {
@@ -1630,6 +2268,11 @@
                   "b" : "float*"
                }
             }
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:keys"
          ],
          "valid" : 0
       },
@@ -1648,6 +2291,11 @@
                }
             }
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:keys"
+         ],
          "valid" : 0
       },
       {
@@ -1664,6 +2312,11 @@
                   "b" : "float*"
                }
             }
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:keys"
          ],
          "valid" : 0
       },
@@ -1683,6 +2336,11 @@
                }
             }
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:keys"
+         ],
          "valid" : 0
       },
       {
@@ -1700,6 +2358,11 @@
                   "b" : "float*"
                }
             }
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:keys"
          ],
          "valid" : 0
       },
@@ -1721,6 +2384,11 @@
                   ]
                }
             }
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:keys"
          ],
          "valid" : 1
       },
@@ -1745,6 +2413,11 @@
                }
             }
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:keys"
+         ],
          "valid" : 1
       },
       {
@@ -1764,6 +2437,11 @@
                },
                "keys.create_default" : 0
             }
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:keys"
          ],
          "valid" : 1
       },
@@ -1789,8 +2467,393 @@
                "keys.create_default" : 0
             }
          ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:keys"
+         ],
          "valid" : 1
+      },
+      {
+         "input" : {},
+         "name" : "req_keys: (ok, empty req_keys, empty keys in input)",
+         "schema" : [
+            "hash",
+            {
+               "req_keys" : []
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:req_keys"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : {
+            "a" : 1
+         },
+         "name" : "req_keys: (ok, empty req_keys, extra keys in input)",
+         "schema" : [
+            "hash",
+            {
+               "req_keys" : []
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:req_keys"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : {
+            "a" : 1,
+            "b" : 1
+         },
+         "name" : "req_keys: (ok)",
+         "schema" : [
+            "hash",
+            {
+               "req_keys" : [
+                  "a",
+                  "b"
+               ]
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:req_keys"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : {
+            "c" : 1,
+            "a" : 1,
+            "b" : 1
+         },
+         "name" : "req_keys: (ok, extra keys in input)",
+         "schema" : [
+            "hash",
+            {
+               "req_keys" : [
+                  "a",
+                  "b"
+               ]
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:req_keys"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : {
+            "c" : 1,
+            "b" : 1
+         },
+         "name" : "req_keys: (nok, missing req keys in input)",
+         "schema" : [
+            "hash",
+            {
+               "req_keys" : [
+                  "a",
+                  "b"
+               ]
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:req_keys"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : {
+            "c" : 1,
+            "a" : 1,
+            "b" : 1
+         },
+         "name" : "req_keys_re: (ok)",
+         "schema" : [
+            "hash",
+            {
+               "req_keys_re" : "^(a|b)$"
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:req_keys_re"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : {
+            "c" : 1,
+            "b" : 1
+         },
+         "name" : "req_keys_re: (nok)",
+         "schema" : [
+            "hash",
+            {
+               "req_keys_re" : "^(a|b)$"
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:req_keys_re"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : {},
+         "name" : "allowed_keys: (ok, empty keys in input)",
+         "schema" : [
+            "hash",
+            {
+               "allowed_keys" : [
+                  "a",
+                  "b",
+                  "c"
+               ]
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:allowed_keys"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : {
+            "a" : 1,
+            "b" : null
+         },
+         "name" : "allowed_keys: (ok)",
+         "schema" : [
+            "hash",
+            {
+               "allowed_keys" : [
+                  "a",
+                  "b",
+                  "c"
+               ]
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:allowed_keys"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : {
+            "a" : 1,
+            "d" : null
+         },
+         "name" : "allowed_keys: (nok, keys outside allowed list)",
+         "schema" : [
+            "hash",
+            {
+               "allowed_keys" : [
+                  "a",
+                  "b",
+                  "c"
+               ]
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:allowed_keys"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : {},
+         "name" : "allowed_keys_re: (ok, empty keys in input)",
+         "schema" : [
+            "hash",
+            {
+               "allowed_keys_re" : "^(a|b|c)$"
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:allowed_keys_re"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : {
+            "a" : 1,
+            "b" : null
+         },
+         "name" : "allowed_keys_re: (ok)",
+         "schema" : [
+            "hash",
+            {
+               "allowed_keys_re" : "^(a|b|c)$"
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:allowed_keys_re"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : {
+            "a" : 1,
+            "d" : null
+         },
+         "name" : "allowed_keys_re: (nok, keys outside allowed regex)",
+         "schema" : [
+            "hash",
+            {
+               "allowed_keys_re" : "^(a|b|c)$"
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:allowed_keys_re"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : {},
+         "name" : "forbidden_keys: (ok, empty keys in input)",
+         "schema" : [
+            "hash",
+            {
+               "forbidden_keys" : [
+                  "a",
+                  "b",
+                  "c"
+               ]
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:forbidden_keys"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : {
+            "e" : null,
+            "d" : 1
+         },
+         "name" : "forbidden_keys: (ok)",
+         "schema" : [
+            "hash",
+            {
+               "forbidden_keys" : [
+                  "a",
+                  "b",
+                  "c"
+               ]
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:forbidden_keys"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : {
+            "a" : 1,
+            "d" : null
+         },
+         "name" : "forbidden_keys: (nok, keys in forbidden list)",
+         "schema" : [
+            "hash",
+            {
+               "forbidden_keys" : [
+                  "a",
+                  "b",
+                  "c"
+               ]
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:forbidden_keys"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : {},
+         "name" : "forbidden_keys_re: (ok, empty keys in input)",
+         "schema" : [
+            "hash",
+            {
+               "forbidden_keys_re" : "^(a|b|c)$"
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:forbidden_keys_re"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : {
+            "e" : null,
+            "d" : 1
+         },
+         "name" : "forbidden_keys_re: (ok)",
+         "schema" : [
+            "hash",
+            {
+               "forbidden_keys_re" : "^(a|b|c)$"
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:forbidden_keys_re"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : {
+            "a" : 1,
+            "d" : null
+         },
+         "name" : "forbidden_keys_re: (nok, keys in forbidden regex)",
+         "schema" : [
+            "hash",
+            {
+               "forbidden_keys_re" : "^(a|b|c)$"
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:forbidden_keys_re"
+         ],
+         "valid" : 0
       }
    ],
-   "version" : "v0.9.24 (generated by devscripts/gen-type-spectest on Sat Feb  2 10:46:49 2013)"
+   "version" : "v0.9.27 (generated by devscripts/gen-type-spectest on Wed Nov 20 23:01:59 2013)"
 }
