@@ -253,12 +253,14 @@ sub gen_op_attr_tests {
         input  => $args{input},
         schema => [$Type, "!$Clause" => $args{ok_values}[0]],
         valid  => 0,
+        tags   => ["clause:$Clause", "op", "op:not", "opshortcut"],
     };
     push @res, {
         name   => "!$Clause (ok)",
         input  => $args{input},
         schema => [$Type, "!$Clause" => $args{nok_values}[0]],
         valid  => 1,
+        tags   => ["clause:$Clause", "op", "op:not", "opshortcut"],
     };
 
     push @res, {
@@ -266,12 +268,14 @@ sub gen_op_attr_tests {
         input  => $args{input},
         schema => [$Type, $Clause=>$args{ok_values}[0], "$Clause.op"=>"not"],
         valid  => 0,
+        tags   => ["clause:$Clause", "op", "op:not"],
     };
     push @res, {
         name   => "$Clause.op=not (ok)",
         input  => $args{input},
         schema => [$Type, $Clause=>$args{nok_values}[0], "$Clause.op"=>"not"],
         valid  => 1,
+        tags   => ["clause:$Clause", "op", "op:not"],
     };
 
     push @res, {
@@ -279,6 +283,7 @@ sub gen_op_attr_tests {
         input  => $args{input},
         schema => [$Type, "$Clause&" => []],
         valid  => 1,
+        tags   => ["clause:$Clause", "op", "op:and", "opshortcut"],
     };
     push @res, {
         name   => "$Clause& (ok)",
@@ -286,6 +291,7 @@ sub gen_op_attr_tests {
         schema => [$Type,
                    "$Clause&" => $args{ok_values}],
         valid  => 1,
+        tags   => ["clause:$Clause", "op", "op:and", "opshortcut"],
     };
     push @res, {
         name   => "$Clause& (nok + ok)",
@@ -294,6 +300,7 @@ sub gen_op_attr_tests {
                    "$Clause&" => [$args{nok_values}[0], $args{ok_values}[0]]],
         valid  => 0,
         errors => 1,
+        tags   => ["clause:$Clause", "op", "op:and", "opshortcut"],
     };
     push @res, {
         name   => "$Clause& (ok + nok)",
@@ -302,6 +309,7 @@ sub gen_op_attr_tests {
                    "$Clause&" => [$args{ok_values}[0], $args{nok_values}[0]]],
         valid  => 0,
         errors => 1,
+        tags   => ["clause:$Clause", "op", "op:and", "opshortcut"],
     };
     push @res, {
         name   => "$Clause& (nok + nok)",
@@ -310,6 +318,7 @@ sub gen_op_attr_tests {
                    "$Clause&" => [$args{nok_values}[0], $args{nok_values}[1]]],
         valid  => 0,
         errors => 1,
+        tags   => ["clause:$Clause", "op", "op:and", "opshortcut"],
     };
 
     push @res, {
@@ -323,6 +332,7 @@ sub gen_op_attr_tests {
         input  => $args{input},
         schema => [$Type, $Clause=>$args{ok_values}, "$Clause.op"=>"and"],
         valid  => 1,
+        tags   => ["clause:$Clause", "op", "op:and"],
     };
     push @res, {
         name   => "$Clause.op=and (nok + ok)",
@@ -333,6 +343,7 @@ sub gen_op_attr_tests {
                ],
         valid  => 0,
         errors => 1,
+        tags   => ["clause:$Clause", "op", "op:and"],
     };
     push @res, {
         name   => "$Clause.op=and (ok + nok)",
@@ -343,6 +354,7 @@ sub gen_op_attr_tests {
                ],
         valid  => 0,
         errors => 1,
+        tags   => ["clause:$Clause", "op", "op:and"],
     };
     push @res, {
         name   => "$Clause.op=and (nok + nok)",
@@ -353,6 +365,7 @@ sub gen_op_attr_tests {
                ],
         valid  => 0,
         errors => 1,
+        tags   => ["clause:$Clause", "op", "op:and"],
     };
 
     push @res, {
@@ -360,12 +373,14 @@ sub gen_op_attr_tests {
         input  => $args{input},
         schema => [$Type, "$Clause|" => []],
         valid  => 1,
+        tags   => ["clause:$Clause", "op", "op:or", "opshortcut"],
     };
     push @res, {
         name   => "$Clause| (ok)",
         input  => $args{input},
         schema => [$Type, "$Clause|" => $args{ok_values}],
         valid  => 1,
+        tags   => ["clause:$Clause", "op", "op:or", "opshortcut"],
     };
     push @res, {
         name   => "$Clause| (nok + ok)",
@@ -373,6 +388,7 @@ sub gen_op_attr_tests {
         schema => [$Type,
                    "$Clause|" => [$args{nok_values}[0], $args{ok_values}[0]]],
         valid  => 1,
+        tags   => ["clause:$Clause", "op", "op:or", "opshortcut"],
     };
     push @res, {
         name   => "$Clause| (ok + nok)",
@@ -380,6 +396,7 @@ sub gen_op_attr_tests {
         schema => [$Type,
                    "$Clause|" => [$args{ok_values}[0], $args{nok_values}[0]]],
         valid  => 1,
+        tags   => ["clause:$Clause", "op", "op:or", "opshortcut"],
     };
     push @res, {
         name   => "$Clause| (nok + nok)",
@@ -388,6 +405,7 @@ sub gen_op_attr_tests {
                    "$Clause|" => [$args{nok_values}[0], $args{nok_values}[1]]],
         valid  => 0,
         errors => 1,
+        tags   => ["clause:$Clause", "op", "op:or", "opshortcut"],
     };
 
     push @res, {
@@ -395,12 +413,14 @@ sub gen_op_attr_tests {
         input  => $args{input},
         schema => [$Type, $Clause => [], "$Clause.op"=>"or"],
         valid  => 1,
+        tags   => ["clause:$Clause", "op", "op:or"],
     };
     push @res, {
         name   => "$Clause.op=or (ok)",
         input  => $args{input},
         schema => [$Type, $Clause=>$args{ok_values}, "$Clause.op"=>"or"],
         valid  => 1,
+        tags   => ["clause:$Clause", "op", "op:or"],
     };
     push @res, {
         name   => "$Clause.op=or (nok + ok)",
@@ -410,6 +430,7 @@ sub gen_op_attr_tests {
                    "$Clause.op"=>"or",
                ],
         valid  => 1,
+        tags   => ["clause:$Clause", "op", "op:or"],
     };
     push @res, {
         name   => "$Clause.op=or (ok + nok)",
@@ -419,6 +440,7 @@ sub gen_op_attr_tests {
                    "$Clause.op"=>"or",
                ],
         valid  => 1,
+        tags   => ["clause:$Clause", "op", "op:or"],
     };
     push @res, {
         name   => "$Clause.op=or (nok + nok)",
@@ -429,6 +451,7 @@ sub gen_op_attr_tests {
                ],
         valid  => 0,
         errors => 1,
+        tags   => ["clause:$Clause", "op", "op:or"],
     };
 
     push @res, {
@@ -436,6 +459,7 @@ sub gen_op_attr_tests {
         input  => $args{input},
         schema => [$Type, $Clause=>[], "$Clause.op"=>"none"],
         valid  => 1,
+        tags   => ["clause:$Clause", "op", "op:none"],
     };
     push @res, {
         name   => "$Clause.op=none (nok + nok)",
@@ -444,6 +468,7 @@ sub gen_op_attr_tests {
                    $Clause=>[$args{nok_values}[0], $args{nok_values}[1]],
                    "$Clause.op"=>"none"],
         valid  => 1,
+        tags   => ["clause:$Clause", "op", "op:none"],
     };
     push @res, {
         name   => "$Clause.op=none (nok + ok)",
@@ -453,6 +478,7 @@ sub gen_op_attr_tests {
                    "$Clause.op"=>"none"],
         valid  => 0,
         errors => 1,
+        tags   => ["clause:$Clause", "op", "op:none"],
     };
     push @res, {
         name   => "$Clause.op=none (ok + nok)",
@@ -462,6 +488,7 @@ sub gen_op_attr_tests {
                    "$Clause.op"=>"none"],
         valid  => 0,
         errors => 1,
+        tags   => ["clause:$Clause", "op", "op:none"],
     };
     push @res, {
         name   => "$Clause.op=none (ok + ok)",
@@ -469,6 +496,7 @@ sub gen_op_attr_tests {
         schema => [$Type, $Clause=>$args{ok_values}, "$Clause.op"=>"none"],
         valid  => 0,
         errors => 1,
+        tags   => ["clause:$Clause", "op", "op:none"],
     };
 
     @res;
@@ -697,15 +725,13 @@ sub gen_Sortable_tests {
 
     );
 
-    # disabled temporarily because failing for bool, even though i've adjust
-    # stuffs
-    #local $Clause = "between";
-    #push @res, gen_op_attr_tests(
-    #    input      => $v1,
-    #    # i know, lame, it's because bool only has two possible values
-    #    ok_values  => [[$v1, clone($v1)], [$v1, clone($v1)]],
-    #    nok_values => [[$v2, clone($v2)], [$v2, clone($v2)]],
-    #);
+    local $Clause = "between";
+    push @res, gen_op_attr_tests(
+        input      => $v1,
+        # i know, lame, it's because bool only has two possible values
+        ok_values  => [[$v1, clone($v1)], [$v1, clone($v1)]],
+        nok_values => [[$v2, clone($v2)], [$v2, clone($v2)]],
+    );
 
     # XXX op attr for xbetween
 
@@ -869,12 +895,14 @@ sub gen_int_tests {
             input  => 10,
             schema => [int => mod => [3, 2]],
             valid  => 0,
+            tags   => ['clause:mod'],
         },
         {
             name   => 'mod: (ok)',
             input  => 11,
             schema => [int => mod => [3, 2]],
             valid  => 1,
+            tags   => ['clause:mod'],
         },
 
         {
@@ -882,12 +910,14 @@ sub gen_int_tests {
             input  => 7,
             schema => [int => div_by => 3],
             valid  => 0,
+            tags   => ['clause:div_by'],
         },
         {
             name   => 'div_by: (ok)',
             input  => 6,
             schema => [int => div_by => 3],
             valid  => 1,
+            tags   => ['clause:div_by'],
         },
 
     );
@@ -981,36 +1011,42 @@ sub gen_array_tests {
             input  => [undef, 1],
             schema => $sch,
             valid  => 0,
+            tags   => ['clause:elems'],
         },
         {
             name   => 'elems (ok, missing elem set to undef)',
             input  => [1],
             schema => $sch,
             valid  => 1,
+            tags   => ['clause:elems'],
         },
         {
             name   => 'elems (ok, second elem optional)',
             input  => [1, undef],
             schema => $sch,
             valid  => 1,
+            tags   => ['clause:elems'],
         },
         {
             name   => 'elems (ok 2)',
             input  => [1, 1.1],
             schema => $sch,
             valid  => 1,
+            tags   => ['clause:elems'],
         },
         {
             name   => 'elems (ok, extra elems ignored)',
             input  => [1, 1.1, undef],
             schema => $sch,
             valid  => 1,
+            tags   => ['clause:elems'],
         },
         {
             name   => 'elems (ok, extra elems ignored 2)',
             input  => [1, 1.1, "foo"],
             schema => $sch,
             valid  => 1,
+            tags   => ['clause:elems'],
         },
     );
 
@@ -1023,6 +1059,7 @@ sub gen_array_tests {
             schema => $sch,
             valid  => 1,
             output => [1],
+            tags   => ['clause:elems'],
         },
         {
             name   => 'elems (ok 2, create_default=0)',
@@ -1030,6 +1067,7 @@ sub gen_array_tests {
             schema => $sch,
             valid  => 1,
             output => [1, 2],
+            tags   => ['clause:elems'],
         },
     );
 
@@ -1086,18 +1124,21 @@ sub gen_str_tests {
             input  => "a",
             schema => [str => match => "[abc]"],
             valid  => 1,
+            tags   => ['clause:match'],
         },
         {
             name   => 'match: (nok)',
             input  => "z",
             schema => [str => match => "[abc]"],
             valid  => 0,
+            tags   => ['clause:match'],
         },
         {
             name   => 'match: (dies, invalid regex)',
             input  => "a",
             schema => [str => match => "("],
             dies   => 1,
+            tags   => ['clause:match'],
         },
 
         {
@@ -1105,24 +1146,28 @@ sub gen_str_tests {
             input  => "a",
             schema => [str => is_re => 1],
             valid  => 1,
+            tags   => ['clause:is_re'],
         },
         {
             name   => 'is_re: 1 (nok)',
             input  => "a(",
             schema => [str => is_re => 1],
             valid  => 0,
+            tags   => ['clause:is_re'],
         },
         {
             name   => 'is_re: 0 (ok)',
             input  => "a(",
             schema => [str => is_re => 0],
             valid  => 1,
+            tags   => ['clause:is_re'],
         },
         {
             name   => 'is_re: 0 (nok)',
             input  => "a",
             schema => [str => is_re => 0],
             valid  => 0,
+            tags   => ['clause:is_re'],
         },
 
     );
@@ -1181,66 +1226,77 @@ sub gen_hash_tests {
             input  => {},
             schema => $sch,
             valid  => 1,
+            tags   => ['clause:keys'],
         },
         {
             name   => 'keys: (ok, only a, a valid 1)',
             input  => {a=>undef},
             schema => $sch,
             valid  => 1,
+            tags   => ['clause:keys'],
         },
         {
             name   => 'keys: (ok, only a, a valid 2)',
             input  => {a=>1},
             schema => $sch,
             valid  => 1,
+            tags   => ['clause:keys'],
         },
         {
             name   => 'keys: (nok, only a, a invalid)',
             input  => {a=>1.1},
             schema => $sch,
             valid  => 0,
+            tags   => ['clause:keys'],
         },
         {
             name   => 'keys: (ok, only a, valid 2)',
             input  => {a=>1},
             schema => $sch,
             valid  => 1,
+            tags   => ['clause:keys'],
         },
         {
             name   => 'keys: (ok, a & b, valid)',
             input  => {a=>1, b=>1.1},
             schema => $sch,
             valid  => 1,
+            tags   => ['clause:keys'],
         },
         {
             name   => 'keys: (nok, a & b, b invalid)',
             input  => {a=>1, b=>undef},
             schema => $sch,
             valid  => 0,
+            tags   => ['clause:keys'],
         },
         {
             name   => 'keys: (nok, a & b, a invalid)',
             input  => {a=>1.1, b=>1.1},
             schema => $sch,
             valid  => 0,
+            tags   => ['clause:keys'],
         },
         {
             name   => 'keys: (nok, a & b, a & b invalid)',
             input  => {a=>1.1, b=>undef},
             schema => $sch,
             valid  => 0,
+            tags   => ['clause:keys'],
         },
         {
             name   => 'keys: (nok, extra)',
             input  => {a=>1, b=>1.1, c=>1},
             schema => $sch,
             valid  => 0,
+            tags   => ['clause:keys'],
         },
         {
             name   => 'keys: (ok, extra, restrict=0)',
             input  => {a=>1, b=>1.1, c=>1},
             schema => $sch,
             valid  => 0,
+            tags   => ['clause:keys'],
         },
     );
 
@@ -1253,6 +1309,7 @@ sub gen_hash_tests {
             schema => $sch,
             valid  => 1,
             output => {b=>2},
+            tags   => ['clause:keys'],
         },
         {
             name   => 'keys (create_default=1) 2',
@@ -1260,6 +1317,7 @@ sub gen_hash_tests {
             schema => $sch,
             valid  => 1,
             output => {b=>2},
+            tags   => ['clause:keys'],
         },
     );
     $sch = [hash => {keys => {a=>"int", b=>["int", default=>2]},
@@ -1271,6 +1329,7 @@ sub gen_hash_tests {
             schema => $sch,
             valid  => 1,
             output => {},
+            tags   => ['clause:keys'],
         },
         {
             name   => 'keys (create_default=0) 2',
@@ -1278,6 +1337,7 @@ sub gen_hash_tests {
             schema => $sch,
             valid  => 1,
             output => {b=>2},
+            tags   => ['clause:keys'],
         },
     );
 
@@ -1291,30 +1351,35 @@ sub gen_hash_tests {
             input  => {},
             schema => $sch,
             valid  => 1,
+            tags   => ['clause:req_keys'],
         },
         {
             name   => 'req_keys: (ok, empty req_keys, extra keys in input)',
             input  => {a=>1},
             schema => $sch,
             valid  => 1,
+            tags   => ['clause:req_keys'],
         },
         {
             name   => 'req_keys: (ok)',
             input  => {a=>1, b=>1},
             schema => $sch2,
             valid  => 1,
+            tags   => ['clause:req_keys'],
         },
         {
             name   => 'req_keys: (ok, extra keys in input)',
             input  => {a=>1, b=>1, c=>1},
             schema => $sch2,
             valid  => 1,
+            tags   => ['clause:req_keys'],
         },
         {
             name   => 'req_keys: (nok, missing req keys in input)',
             input  => {b=>1, c=>1},
             schema => $sch2,
             valid  => 0,
+            tags   => ['clause:req_keys'],
         },
     );
 
@@ -1363,36 +1428,42 @@ sub gen_bool_tests {
             input  => 1,
             schema => [$Type => is_true => 1],
             valid  => 1,
+            tags   => ['clause:is_true'],
         },
         {
             name   => 'is_true: 1 (nok)',
             input  => 0,
             schema => [$Type => is_true => 1],
             valid  => 0,
+            tags   => ['clause:is_true'],
         },
         {
             name   => 'is_true: 0 (ok)',
             input  => 0,
             schema => [$Type => is_true => 0],
             valid  => 1,
+            tags   => ['clause:is_true'],
         },
         {
             name   => 'is_true: 0 (nok)',
             input  => 1,
             schema => [$Type => is_true => 0],
             valid  => 0,
+            tags   => ['clause:is_true'],
         },
         {
             name   => 'is_true: undef (ok 1)',
             input  => 0,
             schema => [$Type => is_true => undef],
             valid  => 1,
+            tags   => ['clause:is_true'],
         },
         {
             name   => 'is_true: undef (ok 2)',
             input  => 1,
             schema => [$Type => is_true => undef],
             valid  => 1,
+            tags   => ['clause:is_true'],
         },
     );
 }
