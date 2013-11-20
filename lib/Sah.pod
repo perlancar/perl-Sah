@@ -454,7 +454,7 @@ compiler to supply description. You can add translations by adding more
 attributes.
 
  ["str", {"match":             "[^A-Za-z0-9_-]",
-          "match.human"        "Must not contain naughty characters",
+          "match.human":       "Must not contain naughty characters",
           "match.human.id_ID": "Tidak boleh mengandung karakter aneh-aneh"
  }]
 
@@ -473,10 +473,10 @@ used by referring to the variable in expression. Example:
 
  ["any", {
      "of": [
-         ["str*":    {"min_len": 1, "max_len": 10}], // 1
-         ["str*":    {"min_len": 11}],               // 2
-         ["array*":  {}],                            // 3
-         ["hash*":   {}]                             // 4
+         ["str*",    {"min_len": 1, "max_len": 10}], // 1
+         ["str*",    {"min_len": 11}],               // 2
+         ["array*",  {}],                            // 3
+         ["hash*",   {}]                             // 4
      ],
     "of.result_var": "a"
  }]
