@@ -917,7 +917,7 @@ match any keys in C<re_keys>).
 
 =head3 req_keys : ARRAY
 
-Specify which keys are required to be present. Note that the values for those
+Specify which keys are required to be exist. Note that the values for those
 keys are not required to be defined (use C<keys> for that). Example:
 
  ["hash", "req_keys", ["a", "b"]]
@@ -930,9 +930,27 @@ this schema:
 
 the previous hash will not validate since the value for C<b> is required.
 
+See also: C<allowed_keys>, C<forbidden_keys>.
+
+=head3 req_keys_re : RE
+
+Like C<req_keys> but using regular expression. Example:
+
+ ["hash", "req_keys_re", "^(a|b)$"]
+
+will require keys "a" and "b" to exist.
+
 =head3 allowed_keys : ARRAY
 
-Specify which keys are allowed (can exist).
+Specify which keys are allowed (can exist). Unlike C<req_keys>, keys specified
+in the value need not exist. Example:
+
+ ["hash", "allowed_keys", ["a", "b"]]
+
+Then hashes C<{}>, C<{"a":1}>, C<{"a":1,"b":2}> all pass, but C<{"a":1,"c":3}>
+fails because it contains keys outside the allowed list.
+
+See also: C<req_keys>, C<forbidden_keys>.
 
 =head3 allowed_keys_re : RE
 
@@ -940,7 +958,14 @@ Like C<allowed_keys> but using regular expression.
 
 =head3 forbidden_keys : ARRAY
 
-Specify which keys are forbidden (must not exist).
+Specify which keys are forbidden (must not exist). Example:
+
+ ["hash", "forbidden_keys", ["a", "b"]]
+
+Then hashes C<{}>, C<{"c":1}> all pass, but C<{"a":1,"c":3}> fails because it
+contains keys in the forbidden list.
+
+See also: C<req_keys>, C<allowed_keys>.
 
 =head3 forbidden_keys_re : RE
 
