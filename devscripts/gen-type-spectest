@@ -859,13 +859,22 @@ sub gen_HasElems_tests {
     @res;
 }
 
+sub insert_type_tags {
+    my $res = shift;
+
+    for (@$res) {
+        $_->{tags} //= [];
+        unshift @{ $_->{tags} }, 'type', "type:$Type";
+    }
+}
+
 sub gen_int_tests {
     my %args = @_;
     my @res;
 
     local $Type = "int";
 
-    (
+    push @res, (
         gen_type_check_tests(
             accept => [-1, 0, 1],
             reject => [1.1, "a", [], {}], # XXX -Inf, NaN, Inf
@@ -925,6 +934,9 @@ sub gen_int_tests {
     # XXX op attr for mod
     # XXX op attr for div_by
     # XXX div_by 0
+
+    insert_type_tags(\@res);
+    @res;
 }
 
 sub gen_float_tests {
@@ -933,7 +945,7 @@ sub gen_float_tests {
 
     local $Type = "float";
 
-    (
+    push @res, (
         gen_type_check_tests(
             accept => [-1.1, -1, 0, 1, 1.1], # XXX -Inf, NaN, Inf
             reject => ["a", [], {}],
@@ -960,6 +972,9 @@ sub gen_float_tests {
 
         # is_{nan,inf,pos_inf,neg_inf} is currently tested in perl compiler
     );
+
+    insert_type_tags(\@res);
+    @res;
 }
 
 sub gen_array_tests {
@@ -1071,6 +1086,7 @@ sub gen_array_tests {
         },
     );
 
+    insert_type_tags(\@res);
     @res;
 }
 
@@ -1172,6 +1188,7 @@ sub gen_str_tests {
 
     );
 
+    insert_type_tags(\@res);
     @res;
 }
 
@@ -1483,6 +1500,7 @@ sub gen_hash_tests {
         },
     );
 
+    insert_type_tags(\@res);
     @res;
 }
 
@@ -1494,7 +1512,7 @@ sub gen_bool_tests {
 
     local $Type = "bool";
 
-    (
+    push @res, (
         gen_type_check_tests(
             accept => [0, 1],
             reject => [[], {}], # in perl, "a", -2, 3.4 are ok
@@ -1563,6 +1581,9 @@ sub gen_bool_tests {
             tags   => ['clause:is_true'],
         },
     );
+
+    insert_type_tags(\@res);
+    @res;
 }
 
 sub gen_any_tests {
@@ -1571,7 +1592,7 @@ sub gen_any_tests {
 
     local $Type = "any";
 
-    (
+    push @res, (
         {
             name   => 'of (nok + nok)',
             input  => 3,
@@ -1597,6 +1618,9 @@ sub gen_any_tests {
             valid  => 1,
         },
     );
+
+    insert_type_tags(\@res);
+    @res;
 }
 
 sub gen_all_tests {
@@ -1605,7 +1629,7 @@ sub gen_all_tests {
 
     local $Type = "all";
 
-    (
+    push @res, (
         {
             name   => 'of (nok + nok)',
             input  => 3,
@@ -1631,6 +1655,9 @@ sub gen_all_tests {
             valid  => 1,
         },
     );
+
+    insert_type_tags(\@res);
+    @res;
 }
 
 {
