@@ -1400,6 +1400,24 @@ sub gen_hash_tests {
         },
     );
 
+    $sch = [hash => {req_keys_re => '^(a|b)$'}];
+    push @res, (
+        {
+            name   => 'req_keys_re: (ok)',
+            input  => {a=>1, b=>1, c=>1},
+            schema => $sch,
+            valid  => 1,
+            tags   => ['clause:req_keys_re'],
+        },
+        {
+            name   => 'req_keys_re: (nok)',
+            input  => {b=>1, c=>1},
+            schema => $sch,
+            valid  => 0,
+            tags   => ['clause:req_keys_re'],
+        },
+    );
+
     $sch = [hash => {allowed_keys => [qw/a b c/]}];
     push @res, (
         {
