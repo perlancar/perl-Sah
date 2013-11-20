@@ -1383,8 +1383,105 @@ sub gen_hash_tests {
         },
     );
 
-    # XXX allowed_keys
-    # XXX allowed_keys_re
+    $sch = [hash => {allowed_keys => [qw/a b c/]}];
+    push @res, (
+        {
+            name   => 'allowed_keys: (ok, empty keys in input)',
+            input  => {},
+            schema => $sch,
+            valid  => 1,
+            tags   => ['clause:allowed_keys'],
+        },
+        {
+            name   => 'allowed_keys: (ok)',
+            input  => {a=>1, b=>undef},
+            schema => $sch,
+            valid  => 1,
+            tags   => ['clause:allowed_keys'],
+        },
+        {
+            name   => 'allowed_keys: (nok, keys outside allowed list)',
+            input  => {a=>1, d=>undef},
+            schema => $sch,
+            valid  => 0,
+            tags   => ['clause:allowed_keys'],
+        },
+    );
+
+    $sch = [hash => {allowed_keys_re => '^(a|b|c)$'}];
+    push @res, (
+        {
+            name   => 'allowed_keys_re: (ok, empty keys in input)',
+            input  => {},
+            schema => $sch,
+            valid  => 1,
+            tags   => ['clause:allowed_keys_re'],
+        },
+        {
+            name   => 'allowed_keys_re: (ok)',
+            input  => {a=>1, b=>undef},
+            schema => $sch,
+            valid  => 1,
+            tags   => ['clause:allowed_keys_re'],
+        },
+        {
+            name   => 'allowed_keys_re: (nok, keys outside allowed regex)',
+            input  => {a=>1, d=>undef},
+            schema => $sch,
+            valid  => 0,
+            tags   => ['clause:allowed_keys_re'],
+        },
+    );
+
+    $sch = [hash => {forbidden_keys => [qw/a b c/]}];
+    push @res, (
+        {
+            name   => 'forbidden_keys: (ok, empty keys in input)',
+            input  => {},
+            schema => $sch,
+            valid  => 1,
+            tags   => ['clause:forbidden_keys'],
+        },
+        {
+            name   => 'forbidden_keys: (ok)',
+            input  => {d=>1, e=>undef},
+            schema => $sch,
+            valid  => 1,
+            tags   => ['clause:forbidden_keys'],
+        },
+        {
+            name   => 'forbidden_keys: (nok, keys in forbidden list)',
+            input  => {a=>1, d=>undef},
+            schema => $sch,
+            valid  => 0,
+            tags   => ['clause:forbidden_keys'],
+        },
+    );
+
+    $sch = [hash => {forbidden_keys_re => '^(a|b|c)$'}];
+    push @res, (
+        {
+            name   => 'forbidden_keys_re: (ok, empty keys in input)',
+            input  => {},
+            schema => $sch,
+            valid  => 1,
+            tags   => ['clause:forbidden_keys_re'],
+        },
+        {
+            name   => 'forbidden_keys_re: (ok)',
+            input  => {d=>1, e=>undef},
+            schema => $sch,
+            valid  => 1,
+            tags   => ['clause:forbidden_keys_re'],
+        },
+        {
+            name   => 'forbidden_keys_re: (nok, keys in forbidden regex)',
+            input  => {a=>1, d=>undef},
+            schema => $sch,
+            valid  => 0,
+            tags   => ['clause:forbidden_keys_re'],
+        },
+    );
 
     @res;
 }
