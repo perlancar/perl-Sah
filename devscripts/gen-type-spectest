@@ -1282,7 +1282,42 @@ sub gen_hash_tests {
     );
 
     # XXX re_keys
-    # XXX req_keys
+
+    $sch  = [hash => {req_keys => []}];
+    $sch2 = [hash => {req_keys => [qw/a b/]}];
+    push @res, (
+        {
+            name   => 'req_keys: (ok, empty req_keys, empty keys in input)',
+            input  => {},
+            schema => $sch,
+            vald   => 1,
+        },
+        {
+            name   => 'req_keys: (ok, empty req_keys, extra keys in input)',
+            input  => {a=>1},
+            schema => $sch,
+            vald   => 1,
+        },
+        {
+            name   => 'req_keys: (ok)',
+            input  => {a=>1, b=>1},
+            schema => $sch2,
+            vald   => 1,
+        },
+        {
+            name   => 'req_keys: (ok, extra keys in input)',
+            input  => {a=>1, b=>1, c=>1},
+            schema => $sch2,
+            vald   => 1,
+        },
+        {
+            name   => 'req_keys: (nok, missing req keys in input)',
+            input  => {b=>1, c=>1},
+            schema => $sch2,
+            vald   => 0,
+        },
+    );
+
     # XXX allowed_keys
     # XXX allowed_keys_re
 
