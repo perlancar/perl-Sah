@@ -1290,31 +1290,31 @@ sub gen_hash_tests {
             name   => 'req_keys: (ok, empty req_keys, empty keys in input)',
             input  => {},
             schema => $sch,
-            vald   => 1,
+            valid  => 1,
         },
         {
             name   => 'req_keys: (ok, empty req_keys, extra keys in input)',
             input  => {a=>1},
             schema => $sch,
-            vald   => 1,
+            valid  => 1,
         },
         {
             name   => 'req_keys: (ok)',
             input  => {a=>1, b=>1},
             schema => $sch2,
-            vald   => 1,
+            valid  => 1,
         },
         {
             name   => 'req_keys: (ok, extra keys in input)',
             input  => {a=>1, b=>1, c=>1},
             schema => $sch2,
-            vald   => 1,
+            valid  => 1,
         },
         {
             name   => 'req_keys: (nok, missing req keys in input)',
             input  => {b=>1, c=>1},
             schema => $sch2,
-            vald   => 0,
+            valid  => 0,
         },
     );
 
