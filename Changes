@@ -1,5 +1,12 @@
 Revision history for Sah
 
+0.9.28   2013-11-21 (SHARYANTO)
+
+         - No spec changes. Rebuild with updated
+           Dist::Zilla::Plugin::ShareDir::Tarball (0.9.27 temporarily reverts to
+           using ShareDir due to garbled shared-files.tar.gz problem).
+
+
 0.9.27   2013-11-20 (SHARYANTO)
 
          [NEW FEATURES]
