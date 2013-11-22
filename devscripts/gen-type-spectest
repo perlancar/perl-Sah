@@ -80,6 +80,26 @@ sub gen_BaseType_tests {
         valid  => 1,
     };
 
+    # defhash_v
+    push @res, {
+        name   => "defhash_v",
+        schema => [$Type, defhash_v=>1],
+        input  => undef,
+        valid  => 1,
+        tags   => ['clause:defhash_v'],
+    };
+
+    # v
+    push @res, {
+        name   => "v",
+        schema => [$Type, v=>1],
+        input  => undef,
+        valid  => 1,
+        tags   => ['clause:v'],
+    };
+
+    # schema_v & base_v is tested in 02-schema_versioning.json
+
     # req
     push @res, {
         name   => "req=0 must accept undefined value",

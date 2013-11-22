@@ -1,0 +1,25 @@
+{
+   "tests" : [
+      {
+         "name"  : "schema_v and base_v must match (ok, implicit)",
+         "schema": ["vocal", {"match":"\\A[a-z]\\z", "in.op": "not"}, {"def": {"vocal": ["str", {"in": ["a", "e", "i", "o", "u"]}]}}],
+         "dies"  : 0,
+         "valid_inputs": ["b", "z"],
+         "invalid_inputs": ["a", "e", "i", "o", "u"],
+         "tags": []
+      },
+      {
+         "name"  : "schema_v and base_v must match (ok, explicit)",
+         "schema": ["vocal", {"base_v": 2, "match":"\\A[a-z]\\z", "in.op": "not"}, {"def": {"vocal": ["str", {"schema_v": 2, "in": ["a", "e", "i", "o", "u"]}]}}],
+         "dies"  : 0,
+         "valid_inputs": ["b", "z"],
+         "invalid_inputs": ["a", "e", "i", "o", "u"],
+         "tags": []
+      },
+      {
+         "name"  : "schema_v and base_v must match (nok)",
+         "schema": ["vocal", {"match":"\\A[a-z]\\z", "in.op": "not"}, {"def": {"vocal": ["str", {"schema_v": 2, "in": ["a", "e", "i", "o", "u"]}]}}],
+         "dies"  : 1
+      }
+   ]
+}
