@@ -98,13 +98,28 @@ Used to store compiler-specific options in its attributes. Example:
 
  "c.perl.use_defined_or": 0
 
+=head3 ok : ANY -> true
+
+Priority: 1 (very high). This is processed before all other clauses.
+
+Return value: true (always succeeds).
+
+Category: constraint.
+
+Will do nothing. This clause is just a convenience if you want to do nothing (or
+perhaps just use the attributes of this clause to do things). It is the default
+in the C<else> section of the C<if_clause> clause.
+
+To force failure, you can use C<< "!ok": true >>.
+
 =head3 default : ANY
 
 Attributes specific to this clause: C<temp> (bool, default 0, if set to true
 then default value will only be used during validation and at the end data will
 not use this value).
 
-Priority: 1 (very high). This is processed before all other clauses.
+Priority: 1 (very high). This is processed before all other clauses except
+C<ok>.
 
 Category: default.
 
@@ -274,20 +289,6 @@ Run expression(s), usually to preprocess data before further checking. Data is
 referred to in expression by variable C<$_>. Prefiltered value should persist
 until the end of all other clauses (until the end of clause set), after which
 the old value can be restored.
-
-=head3 ok : ANY -> true
-
-Priority: 50 (normal)
-
-Return value: true (always succeeds).
-
-Category: constraint.
-
-Will do nothing. This clause is just a convenience if you want to do nothing (or
-perhaps just use the attributes of this clause to do things). It is the default
-in the C<else> section of the C<if_clause> clause.
-
-To force failure, you can use C<< "!ok": 1 >>.
 
 =head3 clause : [CLNAME, CLVAL] -> ANY
 
