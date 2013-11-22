@@ -77,6 +77,129 @@
       },
       {
          "input" : null,
+         "name" : "defhash_v",
+         "schema" : [
+            "array",
+            "defhash_v",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:array",
+            "clause:defhash_v"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "v",
+         "schema" : [
+            "array",
+            "v",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:array",
+            "clause:v"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "c",
+         "schema" : [
+            "array",
+            "c.foo.bar",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:array",
+            "clause:c"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "default_lang",
+         "schema" : [
+            "array",
+            "default_lang",
+            "id_ID"
+         ],
+         "tags" : [
+            "type",
+            "type:array",
+            "clause:default_lang"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "name",
+         "schema" : [
+            "array",
+            "name",
+            "some name"
+         ],
+         "tags" : [
+            "type",
+            "type:array",
+            "clause:name"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "summary",
+         "schema" : [
+            "array",
+            "summary",
+            "some summary"
+         ],
+         "tags" : [
+            "type",
+            "type:array",
+            "clause:summary"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "description",
+         "schema" : [
+            "array",
+            "description",
+            "some description and `markdown`"
+         ],
+         "tags" : [
+            "type",
+            "type:array",
+            "clause:description"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "tags",
+         "schema" : [
+            "array",
+            "tags",
+            [
+               "some",
+               "tags"
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:array",
+            "clause:tags"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
          "name" : "req=0 must accept undefined value",
          "schema" : [
             "array",
@@ -85,7 +208,8 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:req"
          ],
          "valid" : 1
       },
@@ -99,7 +223,8 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:req"
          ],
          "valid" : 0
       },
@@ -115,7 +240,8 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:forbidden"
          ],
          "valid" : 1
       },
@@ -131,7 +257,8 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:forbidden"
          ],
          "valid" : 0
       },
@@ -145,7 +272,8 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:default"
          ],
          "valid" : 1
       },
@@ -159,7 +287,8 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:default"
          ],
          "valid" : 0
       },
@@ -179,7 +308,8 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:clause"
          ]
       },
       {
@@ -197,7 +327,8 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:clause"
          ],
          "valid" : 1
       },
@@ -218,7 +349,8 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:clause"
          ],
          "valid" : 0
       },
@@ -238,7 +370,8 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:clause"
          ],
          "valid" : 0
       },
@@ -257,7 +390,8 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:clset"
          ]
       },
       {
@@ -276,7 +410,8 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:clset"
          ]
       },
       {
@@ -310,7 +445,8 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:clset"
          ],
          "valid" : 1
       },
@@ -329,7 +465,8 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:clset"
          ],
          "valid" : 1
       },
@@ -349,7 +486,8 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:clset"
          ],
          "valid" : 0
       },
@@ -368,7 +506,8 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:clset"
          ],
          "valid" : 0
       },
@@ -387,7 +526,8 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:clset"
          ],
          "valid" : 0
       },
@@ -406,7 +546,42 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:clset"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : null,
+         "name" : "ok",
+         "schema" : [
+            "array",
+            {
+               "ok" : 1
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:array",
+            "clause:ok"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "ok + op not (nok)",
+         "schema" : [
+            "array",
+            {
+               "ok!" : 1
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:array",
+            "clause:ok",
+            "op",
+            "op:not"
          ],
          "valid" : 0
       },
@@ -420,7 +595,9 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "attr",
+            "attr:err_level"
          ],
          "valid" : 1
       },
@@ -436,7 +613,9 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "attr",
+            "attr:err_level"
          ],
          "valid" : 0
       },
@@ -452,7 +631,9 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "attr",
+            "attr:err_level"
          ],
          "valid" : 1
       },
@@ -471,7 +652,9 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "attr",
+            "attr:err_level"
          ],
          "valid" : 1
       },
@@ -489,7 +672,8 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:is"
          ],
          "valid" : 1
       },
@@ -507,7 +691,8 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:is"
          ],
          "valid" : 0
       },
@@ -1283,7 +1468,8 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:in"
          ],
          "valid" : 1
       },
@@ -1299,7 +1485,8 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:in"
          ],
          "valid" : 0
       },
@@ -2134,7 +2321,8 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:len"
          ],
          "valid" : 1
       },
@@ -2150,7 +2338,8 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:len"
          ],
          "valid" : 0
       },
@@ -2166,7 +2355,8 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:min_len"
          ],
          "valid" : 1
       },
@@ -2182,7 +2372,8 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:min_len"
          ],
          "valid" : 0
       },
@@ -2198,7 +2389,8 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:max_len"
          ],
          "valid" : 1
       },
@@ -2215,7 +2407,8 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:max_len"
          ],
          "valid" : 0
       },
@@ -2234,7 +2427,8 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:len_between"
          ],
          "valid" : 1
       },
@@ -2254,7 +2448,8 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:len_between"
          ],
          "valid" : 0
       },
@@ -2275,7 +2470,8 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:each_index"
          ],
          "valid" : 1
       },
@@ -2296,7 +2492,8 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:each_index"
          ],
          "valid" : 0
       },
@@ -2313,7 +2510,8 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:each_elem"
          ],
          "valid" : 1
       },
@@ -2330,9 +2528,192 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:each_elem"
          ],
          "valid" : 0
+      },
+      {
+         "invalid_inputs" : [
+            [
+               1,
+               1,
+               1,
+               1
+            ]
+         ],
+         "name" : "check_each_index",
+         "valid_inputs" : [
+            [],
+            [
+               1
+            ],
+            [
+               1,
+               1
+            ],
+            [
+               1,
+               1,
+               1
+            ]
+         ],
+         "schema" : [
+            "array",
+            "check_each_index",
+            "$_ <= 2"
+         ],
+         "tags" : [
+            "type",
+            "type:array",
+            "clause:check_each_index"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            [
+               1
+            ],
+            [
+               2,
+               1
+            ]
+         ],
+         "name" : "check_each_elem",
+         "valid_inputs" : [
+            [],
+            [
+               3
+            ],
+            [
+               3,
+               2
+            ]
+         ],
+         "schema" : [
+            "array",
+            "check_each_elem",
+            "$_ >= 2"
+         ],
+         "tags" : [
+            "type",
+            "type:array",
+            "clause:check_each_elem"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            [
+               1,
+               1
+            ]
+         ],
+         "name" : "uniq=1",
+         "valid_inputs" : [
+            [],
+            [
+               1
+            ],
+            [
+               1,
+               2
+            ]
+         ],
+         "schema" : [
+            "array",
+            "uniq",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:array",
+            "clause:uniq"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            [],
+            [
+               1
+            ],
+            [
+               1,
+               2
+            ]
+         ],
+         "name" : "uniq=0",
+         "valid_inputs" : [
+            [
+               1,
+               1
+            ]
+         ],
+         "schema" : [
+            "array",
+            "uniq",
+            0
+         ],
+         "tags" : [
+            "type",
+            "type:array",
+            "clause:uniq"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            [],
+            [
+               1
+            ],
+            [
+               1,
+               2
+            ]
+         ],
+         "name" : "!uniq=1",
+         "valid_inputs" : [
+            [
+               1,
+               1
+            ]
+         ],
+         "schema" : [
+            "array",
+            "!uniq",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:array",
+            "clause:uniq",
+            "op",
+            "op:not",
+            "opshortcut"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            [],
+            [
+               3
+            ]
+         ],
+         "name" : "exists",
+         "valid_inputs" : [
+            [
+               1
+            ],
+            [
+               3,
+               1
+            ]
+         ],
+         "schema" : "$_ <= 2",
+         "tags" : [
+            "type",
+            "type:array",
+            "clause:exists"
+         ]
       },
       {
          "input" : [
@@ -2350,7 +2731,8 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:elems"
          ],
          "valid" : 1
       },
@@ -2370,9 +2752,248 @@
          ],
          "tags" : [
             "type",
-            "type:array"
+            "type:array",
+            "clause:elems"
          ],
          "valid" : 0
+      },
+      {
+         "invalid_inputs" : [
+            [],
+            [
+               3
+            ]
+         ],
+         "name" : "has",
+         "valid_inputs" : [
+            [
+               1,
+               2,
+               3
+            ],
+            [
+               1,
+               3
+            ]
+         ],
+         "schema" : [
+            "array",
+            "has",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:array",
+            "clause:has"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            [
+               1,
+               2,
+               3
+            ],
+            [
+               1,
+               3
+            ]
+         ],
+         "name" : "has + op.not",
+         "valid_inputs" : [
+            [],
+            [
+               3
+            ]
+         ],
+         "schema" : [
+            "array",
+            "!has",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:array",
+            "clause:has",
+            "op",
+            "op:not",
+            "opshortcut"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            [],
+            [
+               3
+            ]
+         ],
+         "name" : "has + op.or",
+         "valid_inputs" : [
+            [
+               1,
+               2,
+               3
+            ],
+            [
+               1,
+               3
+            ]
+         ],
+         "schema" : [
+            "array",
+            "has|",
+            [
+               1,
+               2
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:array",
+            "clause:has",
+            "op",
+            "op:or",
+            "opshortcut"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            [
+               1,
+               3
+            ],
+            [],
+            [
+               3
+            ]
+         ],
+         "name" : "has + op.and",
+         "valid_inputs" : [
+            1,
+            2,
+            3
+         ],
+         "schema" : [
+            "array",
+            "has&",
+            [
+               1,
+               2
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:array",
+            "clause:has",
+            "op",
+            "op:and",
+            "opshortcut"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            [],
+            [
+               1
+            ]
+         ],
+         "name" : "prop:len",
+         "valid_inputs" : [
+            [
+               1,
+               1
+            ],
+            [
+               1,
+               2
+            ]
+         ],
+         "schema" : [
+            "array",
+            "prop",
+            [
+               "len",
+               [
+                  "int",
+                  "is",
+                  2
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:array",
+            "prop:len"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            [],
+            [
+               1
+            ],
+            [
+               1,
+               1
+            ]
+         ],
+         "name" : "prop:indices",
+         "valid_inputs" : [
+            [
+               1,
+               1,
+               1
+            ]
+         ],
+         "schema" : [
+            "array",
+            "prop",
+            [
+               "indices",
+               [
+                  "array",
+                  "has",
+                  2
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:array",
+            "prop:indices"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            [],
+            [
+               "b"
+            ]
+         ],
+         "name" : "prop:elems",
+         "valid_inputs" : [
+            [
+               "a",
+               "b"
+            ]
+         ],
+         "schema" : [
+            "array",
+            "prop",
+            [
+               "elems",
+               [
+                  "array",
+                  "has",
+                  "a"
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:array",
+            "prop:elems"
+         ]
       },
       {
          "input" : [
@@ -2592,5 +3213,5 @@
          "valid" : 1
       }
    ],
-   "version" : "v0.9.27 (generated by devscripts/gen-type-spectest on Wed Nov 20 23:01:59 2013)"
+   "version" : "v0.9.28 (generated by devscripts/gen-type-spectest on Fri Nov 22 23:39:26 2013)"
 }

@@ -76,6 +76,129 @@
       },
       {
          "input" : null,
+         "name" : "defhash_v",
+         "schema" : [
+            "hash",
+            "defhash_v",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:defhash_v"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "v",
+         "schema" : [
+            "hash",
+            "v",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:v"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "c",
+         "schema" : [
+            "hash",
+            "c.foo.bar",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:c"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "default_lang",
+         "schema" : [
+            "hash",
+            "default_lang",
+            "id_ID"
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:default_lang"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "name",
+         "schema" : [
+            "hash",
+            "name",
+            "some name"
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:name"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "summary",
+         "schema" : [
+            "hash",
+            "summary",
+            "some summary"
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:summary"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "description",
+         "schema" : [
+            "hash",
+            "description",
+            "some description and `markdown`"
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:description"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "tags",
+         "schema" : [
+            "hash",
+            "tags",
+            [
+               "some",
+               "tags"
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:tags"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
          "name" : "req=0 must accept undefined value",
          "schema" : [
             "hash",
@@ -84,7 +207,8 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:req"
          ],
          "valid" : 1
       },
@@ -98,7 +222,8 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:req"
          ],
          "valid" : 0
       },
@@ -114,7 +239,8 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:forbidden"
          ],
          "valid" : 1
       },
@@ -130,7 +256,8 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:forbidden"
          ],
          "valid" : 0
       },
@@ -144,7 +271,8 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:default"
          ],
          "valid" : 1
       },
@@ -158,7 +286,8 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:default"
          ],
          "valid" : 0
       },
@@ -178,7 +307,8 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:clause"
          ]
       },
       {
@@ -196,7 +326,8 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:clause"
          ],
          "valid" : 1
       },
@@ -217,7 +348,8 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:clause"
          ],
          "valid" : 0
       },
@@ -237,7 +369,8 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:clause"
          ],
          "valid" : 0
       },
@@ -256,7 +389,8 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:clset"
          ]
       },
       {
@@ -275,7 +409,8 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:clset"
          ]
       },
       {
@@ -309,7 +444,8 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:clset"
          ],
          "valid" : 1
       },
@@ -328,7 +464,8 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:clset"
          ],
          "valid" : 1
       },
@@ -348,7 +485,8 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:clset"
          ],
          "valid" : 0
       },
@@ -367,7 +505,8 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:clset"
          ],
          "valid" : 0
       },
@@ -386,7 +525,8 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:clset"
          ],
          "valid" : 0
       },
@@ -405,7 +545,42 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:clset"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : null,
+         "name" : "ok",
+         "schema" : [
+            "hash",
+            {
+               "ok" : 1
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:ok"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "ok + op not (nok)",
+         "schema" : [
+            "hash",
+            {
+               "ok!" : 1
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:ok",
+            "op",
+            "op:not"
          ],
          "valid" : 0
       },
@@ -423,7 +598,9 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "attr",
+            "attr:err_level"
          ],
          "valid" : 1
       },
@@ -441,7 +618,9 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "attr",
+            "attr:err_level"
          ],
          "valid" : 0
       },
@@ -461,7 +640,9 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "attr",
+            "attr:err_level"
          ],
          "valid" : 1
       },
@@ -482,7 +663,9 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "attr",
+            "attr:err_level"
          ],
          "valid" : 1
       },
@@ -496,7 +679,8 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:is"
          ],
          "valid" : 1
       },
@@ -512,7 +696,8 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:is"
          ],
          "valid" : 0
       },
@@ -1182,7 +1367,8 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:in"
          ],
          "valid" : 1
       },
@@ -1196,7 +1382,8 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:in"
          ],
          "valid" : 0
       },
@@ -1929,7 +2116,8 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:len"
          ],
          "valid" : 1
       },
@@ -1945,7 +2133,8 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:len"
          ],
          "valid" : 0
       },
@@ -1961,7 +2150,8 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:min_len"
          ],
          "valid" : 1
       },
@@ -1977,7 +2167,8 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:min_len"
          ],
          "valid" : 0
       },
@@ -1993,7 +2184,8 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:max_len"
          ],
          "valid" : 1
       },
@@ -2010,7 +2202,8 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:max_len"
          ],
          "valid" : 0
       },
@@ -2029,7 +2222,8 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:len_between"
          ],
          "valid" : 1
       },
@@ -2049,7 +2243,8 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:len_between"
          ],
          "valid" : 0
       },
@@ -2070,7 +2265,8 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:each_index"
          ],
          "valid" : 1
       },
@@ -2091,7 +2287,52 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:each_index"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : {
+            "a" : 1,
+            "b" : 1.1
+         },
+         "name" : "each_key (ok)",
+         "schema" : [
+            "hash",
+            "each_key",
+            [
+               "str",
+               "len",
+               1
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:each_key"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : {
+            "a" : 1,
+            "b" : 1.1
+         },
+         "name" : "each_key (nok)",
+         "schema" : [
+            "hash",
+            "each_key",
+            [
+               "str",
+               "len",
+               2
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:each_key"
          ],
          "valid" : 0
       },
@@ -2108,7 +2349,8 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:each_elem"
          ],
          "valid" : 1
       },
@@ -2125,9 +2367,580 @@
          ],
          "tags" : [
             "type",
-            "type:hash"
+            "type:hash",
+            "clause:each_elem"
          ],
          "valid" : 0
+      },
+      {
+         "input" : {
+            "a" : 1,
+            "b" : 1.1
+         },
+         "name" : "each_value (ok)",
+         "schema" : [
+            "hash",
+            "each_value",
+            "float"
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:each_value"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : {
+            "a" : 1,
+            "b" : 1.1
+         },
+         "name" : "each_value (nok)",
+         "schema" : [
+            "hash",
+            "each_value",
+            "int"
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:each_value"
+         ],
+         "valid" : 0
+      },
+      {
+         "invalid_inputs" : [
+            {
+               "a" : 1,
+               "b" : 2
+            },
+            {
+               "1" : "a"
+            }
+         ],
+         "name" : "check_each_index",
+         "valid_inputs" : [
+            {},
+            {
+               "a" : 1
+            }
+         ],
+         "schema" : [
+            "hash",
+            "check_each_index",
+            "$_ eq \"a\""
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:check_each_index"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            {
+               "a" : 1,
+               "b" : 2
+            },
+            {
+               "1" : "a"
+            }
+         ],
+         "name" : "check_each_key",
+         "valid_inputs" : [
+            {},
+            {
+               "a" : 1
+            }
+         ],
+         "schema" : [
+            "hash",
+            "check_each_key",
+            "$_ eq \"a\""
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:check_each_key"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            {
+               "1" : "a",
+               "2" : "b"
+            },
+            {
+               "a" : 1
+            }
+         ],
+         "name" : "check_each_elem",
+         "valid_inputs" : [
+            {},
+            {
+               "1" : "a"
+            }
+         ],
+         "schema" : [
+            "hash",
+            "check_each_elem",
+            "$_ eq \"a\""
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:check_each_elem"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            {
+               "1" : "a",
+               "2" : "b"
+            },
+            {
+               "a" : 1
+            }
+         ],
+         "name" : "check_each_value",
+         "valid_inputs" : [
+            {},
+            {
+               "1" : "a"
+            }
+         ],
+         "schema" : [
+            "hash",
+            "check_each_value",
+            "$_ eq \"a\""
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:check_each_value"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            {
+               "a" : 1,
+               "b" : 1
+            }
+         ],
+         "name" : "uniq=1",
+         "valid_inputs" : [
+            {},
+            {
+               "a" : 1,
+               "b" : 2
+            }
+         ],
+         "schema" : [
+            "hash",
+            "uniq",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:uniq"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            {},
+            {
+               "a" : 1,
+               "b" : 2
+            }
+         ],
+         "name" : "uniq=0",
+         "valid_inputs" : [
+            {
+               "a" : 1,
+               "b" : 1
+            }
+         ],
+         "schema" : [
+            "hash",
+            "uniq",
+            0
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:uniq"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            {},
+            {
+               "a" : 1,
+               "b" : 2
+            }
+         ],
+         "name" : "!uniq=1",
+         "valid_inputs" : [
+            {
+               "a" : 1,
+               "b" : 1
+            }
+         ],
+         "schema" : [
+            "hash",
+            "!uniq",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:uniq",
+            "op",
+            "op:not",
+            "opshortcut"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            {},
+            {
+               "2" : "b"
+            }
+         ],
+         "name" : "exists",
+         "valid_inputs" : [
+            {
+               "1" : "a"
+            },
+            {
+               "1" : "a",
+               "2" : "b"
+            }
+         ],
+         "schema" : "$_ eq \"a\"",
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:exists"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            {},
+            {
+               "3" : "c"
+            }
+         ],
+         "name" : "has",
+         "valid_inputs" : [
+            {
+               "1" : "a",
+               "3" : "c",
+               "2" : "b"
+            },
+            {
+               "3" : "c",
+               "2" : "b"
+            }
+         ],
+         "schema" : [
+            "hash",
+            "has",
+            "a"
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:has"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            {
+               "1" : "a",
+               "3" : "c",
+               "2" : "b"
+            },
+            {
+               "3" : "c",
+               "2" : "b"
+            }
+         ],
+         "name" : "has + op.not",
+         "valid_inputs" : [
+            {},
+            {
+               "3" : "c"
+            }
+         ],
+         "schema" : [
+            "hash",
+            "!has",
+            "a"
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:has",
+            "op",
+            "op:not",
+            "opshortcut"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            {},
+            {
+               "3" : "c"
+            }
+         ],
+         "name" : "has + op.or",
+         "valid_inputs" : [
+            {
+               "1" : "a",
+               "3" : "c",
+               "2" : "b"
+            },
+            {
+               "3" : "c",
+               "2" : "b"
+            }
+         ],
+         "schema" : [
+            "hash",
+            "has|",
+            [
+               "a",
+               "b"
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:has",
+            "op",
+            "op:or",
+            "opshortcut"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            {
+               "3" : "c",
+               "2" : "b"
+            },
+            {},
+            {
+               "3" : "c"
+            }
+         ],
+         "name" : "has + op.and",
+         "valid_inputs" : {
+            "1" : "a",
+            "3" : "c",
+            "2" : "b"
+         },
+         "schema" : [
+            "hash",
+            "has&",
+            [
+               "a",
+               "b"
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:has",
+            "op",
+            "op:and",
+            "opshortcut"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            {},
+            {
+               "a" : 1
+            }
+         ],
+         "name" : "prop:len",
+         "valid_inputs" : [
+            {
+               "a" : 1,
+               "b" : 2
+            }
+         ],
+         "schema" : [
+            "hash",
+            "prop",
+            [
+               "len",
+               [
+                  "int",
+                  "is",
+                  2
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "prop:len"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            {},
+            {
+               "b" : 2
+            },
+            {
+               "1" : "a"
+            }
+         ],
+         "name" : "prop:indices",
+         "valid_inputs" : [
+            {
+               "a" : 1
+            },
+            {
+               "a" : 1,
+               "b" : 2
+            }
+         ],
+         "schema" : [
+            "hash",
+            "prop",
+            [
+               "indices",
+               [
+                  "array",
+                  "has",
+                  "a"
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "prop:indices"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            {},
+            {
+               "b" : 2
+            },
+            {
+               "1" : "a"
+            }
+         ],
+         "name" : "prop:keys",
+         "valid_inputs" : [
+            {
+               "a" : 1
+            },
+            {
+               "a" : 1,
+               "b" : 2
+            }
+         ],
+         "schema" : [
+            "hash",
+            "prop",
+            [
+               "keys",
+               [
+                  "array",
+                  "has",
+                  "a"
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "prop:keys"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            {},
+            {
+               "a" : 1
+            },
+            {
+               "b" : 2
+            }
+         ],
+         "name" : "prop:elems",
+         "valid_inputs" : [
+            {
+               "1" : "a"
+            },
+            {
+               "1" : "a",
+               "2" : "b"
+            }
+         ],
+         "schema" : [
+            "hash",
+            "prop",
+            [
+               "elems",
+               [
+                  "array",
+                  "has",
+                  "a"
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "prop:elems"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            {},
+            {
+               "a" : 1
+            },
+            {
+               "b" : 2
+            }
+         ],
+         "name" : "prop:values",
+         "valid_inputs" : [
+            {
+               "1" : "a"
+            },
+            {
+               "1" : "a",
+               "2" : "b"
+            }
+         ],
+         "schema" : [
+            "hash",
+            "prop",
+            [
+               "values",
+               [
+                  "array",
+                  "has",
+                  "a"
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "prop:values"
+         ]
       },
       {
          "input" : {},
@@ -2475,6 +3288,40 @@
          "valid" : 1
       },
       {
+         "invalid_inputs" : [
+            {
+               "a" : "x"
+            },
+            {
+               "b" : "x"
+            }
+         ],
+         "name" : "re_keys",
+         "valid_inputs" : [
+            {},
+            {
+               "a" : 1
+            },
+            {
+               "b" : 1,
+               "x" : "x"
+            }
+         ],
+         "schema" : [
+            "hash",
+            {
+               "re_keys" : {
+                  "[ab]" : "int"
+               }
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:re_keys"
+         ]
+      },
+      {
          "input" : {},
          "name" : "req_keys: (ok, empty req_keys, empty keys in input)",
          "schema" : [
@@ -2572,45 +3419,6 @@
             "type",
             "type:hash",
             "clause:req_keys"
-         ],
-         "valid" : 0
-      },
-      {
-         "input" : {
-            "c" : 1,
-            "a" : 1,
-            "b" : 1
-         },
-         "name" : "req_keys_re: (ok)",
-         "schema" : [
-            "hash",
-            {
-               "req_keys_re" : "^(a|b)$"
-            }
-         ],
-         "tags" : [
-            "type",
-            "type:hash",
-            "clause:req_keys_re"
-         ],
-         "valid" : 1
-      },
-      {
-         "input" : {
-            "c" : 1,
-            "b" : 1
-         },
-         "name" : "req_keys_re: (nok)",
-         "schema" : [
-            "hash",
-            {
-               "req_keys_re" : "^(a|b)$"
-            }
-         ],
-         "tags" : [
-            "type",
-            "type:hash",
-            "clause:req_keys_re"
          ],
          "valid" : 0
       },
@@ -2853,7 +3661,77 @@
             "clause:forbidden_keys_re"
          ],
          "valid" : 0
+      },
+      {
+         "invalid_inputs" : [
+            {},
+            {
+               "y" : "x"
+            }
+         ],
+         "name" : "prop:keys",
+         "valid_inputs" : [
+            {
+               "x" : 1
+            },
+            {
+               "y" : 1,
+               "x" : 1
+            }
+         ],
+         "schema" : [
+            "hash",
+            "prop",
+            [
+               "keys",
+               [
+                  "array",
+                  "has",
+                  "x"
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "prop:keys"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            {},
+            {
+               "x" : "y"
+            }
+         ],
+         "name" : "prop:values",
+         "valid_inputs" : [
+            {
+               "k" : "x"
+            },
+            {
+               "k2" : "y",
+               "k" : "x"
+            }
+         ],
+         "schema" : [
+            "hash",
+            "prop",
+            [
+               "values",
+               [
+                  "array",
+                  "has",
+                  "x"
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "prop:values"
+         ]
       }
    ],
-   "version" : "v0.9.27 (generated by devscripts/gen-type-spectest on Wed Nov 20 23:01:59 2013)"
+   "version" : "v0.9.28 (generated by devscripts/gen-type-spectest on Fri Nov 22 23:39:26 2013)"
 }

@@ -1,52 +1,92 @@
 {
    "tests" : [
       {
-         "input" : 0,
-         "name" : "type check: must accept 0",
-         "schema" : "bool",
+         "input" : -1.1,
+         "name" : "type check: must accept -1.1",
+         "schema" : "num",
          "tags" : [
             "type",
-            "type:bool"
+            "type:num"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : -1,
+         "name" : "type check: must accept -1",
+         "schema" : "num",
+         "tags" : [
+            "type",
+            "type:num"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 0,
+         "name" : "type check: must accept 0",
+         "schema" : "num",
+         "tags" : [
+            "type",
+            "type:num"
          ],
          "valid" : 1
       },
       {
          "input" : 1,
          "name" : "type check: must accept 1",
-         "schema" : "bool",
+         "schema" : "num",
          "tags" : [
             "type",
-            "type:bool"
+            "type:num"
          ],
          "valid" : 1
       },
       {
-         "input" : [],
-         "name" : "type check: must reject []",
-         "schema" : "bool",
+         "input" : 1.1,
+         "name" : "type check: must accept 1.1",
+         "schema" : "num",
          "tags" : [
             "type",
-            "type:bool"
+            "type:num"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "type check: must reject a",
+         "schema" : "num",
+         "tags" : [
+            "type",
+            "type:num"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : [],
+         "name" : "type check: must reject []",
+         "schema" : "num",
+         "tags" : [
+            "type",
+            "type:num"
          ],
          "valid" : 0
       },
       {
          "input" : {},
          "name" : "type check: must reject {}",
-         "schema" : "bool",
+         "schema" : "num",
          "tags" : [
             "type",
-            "type:bool"
+            "type:num"
          ],
          "valid" : 0
       },
       {
          "input" : null,
          "name" : "must accept undefined value",
-         "schema" : "bool",
+         "schema" : "num",
          "tags" : [
             "type",
-            "type:bool"
+            "type:num"
          ],
          "valid" : 1
       },
@@ -54,13 +94,13 @@
          "input" : null,
          "name" : "defhash_v",
          "schema" : [
-            "bool",
+            "num",
             "defhash_v",
             1
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:defhash_v"
          ],
          "valid" : 1
@@ -69,13 +109,13 @@
          "input" : null,
          "name" : "v",
          "schema" : [
-            "bool",
+            "num",
             "v",
             1
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:v"
          ],
          "valid" : 1
@@ -84,13 +124,13 @@
          "input" : null,
          "name" : "c",
          "schema" : [
-            "bool",
+            "num",
             "c.foo.bar",
             1
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:c"
          ],
          "valid" : 1
@@ -99,13 +139,13 @@
          "input" : null,
          "name" : "default_lang",
          "schema" : [
-            "bool",
+            "num",
             "default_lang",
             "id_ID"
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:default_lang"
          ],
          "valid" : 1
@@ -114,13 +154,13 @@
          "input" : null,
          "name" : "name",
          "schema" : [
-            "bool",
+            "num",
             "name",
             "some name"
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:name"
          ],
          "valid" : 1
@@ -129,13 +169,13 @@
          "input" : null,
          "name" : "summary",
          "schema" : [
-            "bool",
+            "num",
             "summary",
             "some summary"
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:summary"
          ],
          "valid" : 1
@@ -144,13 +184,13 @@
          "input" : null,
          "name" : "description",
          "schema" : [
-            "bool",
+            "num",
             "description",
             "some description and `markdown`"
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:description"
          ],
          "valid" : 1
@@ -159,7 +199,7 @@
          "input" : null,
          "name" : "tags",
          "schema" : [
-            "bool",
+            "num",
             "tags",
             [
                "some",
@@ -168,7 +208,7 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:tags"
          ],
          "valid" : 1
@@ -177,13 +217,13 @@
          "input" : null,
          "name" : "req=0 must accept undefined value",
          "schema" : [
-            "bool",
+            "num",
             "req",
             0
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:req"
          ],
          "valid" : 1
@@ -192,58 +232,58 @@
          "input" : null,
          "name" : "req=1 must reject undefined value",
          "schema" : [
-            "bool",
+            "num",
             "req",
             1
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:req"
          ],
          "valid" : 0
       },
       {
-         "input" : 1,
+         "input" : 1.1,
          "name" : "forbidden=0 must accept defined value",
          "schema" : [
-            "bool",
+            "num",
             "forbidden",
             0
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:forbidden"
          ],
          "valid" : 1
       },
       {
-         "input" : 1,
+         "input" : 1.1,
          "name" : "forbidden=1 must reject defined value",
          "schema" : [
-            "bool",
+            "num",
             "forbidden",
             1
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:forbidden"
          ],
          "valid" : 0
       },
       {
          "input" : null,
-         "name" : "default: must accept valid default 1",
+         "name" : "default: must accept valid default 1.1",
          "schema" : [
-            "bool*",
+            "num*",
             "default",
-            1
+            1.1
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:default"
          ],
          "valid" : 1
@@ -252,23 +292,23 @@
          "input" : null,
          "name" : "default: must reject invalid default []",
          "schema" : [
-            "bool*",
+            "num*",
             "default",
             []
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:default"
          ],
          "valid" : 0
       },
       {
          "dies" : 1,
-         "input" : 1,
+         "input" : 1.1,
          "name" : "clause (dies, unknown clause)",
          "schema" : [
-            "bool*",
+            "num*",
             "clause",
             [
                "foo",
@@ -277,16 +317,73 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:clause"
          ]
       },
       {
+         "input" : 1.1,
+         "name" : "clause (ok)",
+         "schema" : [
+            "num*",
+            "clause",
+            [
+               "min",
+               1
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:clause"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 1.1,
+         "name" : "clause (ok) + clause nok = nok",
+         "schema" : [
+            "num*",
+            "clause",
+            [
+               "min",
+               1
+            ],
+            "max",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:clause"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : 1.1,
+         "name" : "clause (nok)",
+         "schema" : [
+            "num*",
+            "clause",
+            [
+               "min",
+               2
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:clause"
+         ],
+         "valid" : 0
+      },
+      {
          "dies" : 1,
-         "input" : 1,
+         "input" : 1.1,
          "name" : "clset (dies, unknown clause)",
          "schema" : [
-            "bool*",
+            "num*",
             "clset",
             {
                "foo" : 1
@@ -294,16 +391,16 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:clset"
          ]
       },
       {
          "dies" : 1,
-         "input" : 1,
+         "input" : 1.1,
          "name" : "clset (dies, unknown attr)",
          "schema" : [
-            "bool*",
+            "num*",
             "clset",
             {
                "min_len" : 1,
@@ -312,29 +409,29 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:clset"
          ]
       },
       {
-         "input" : 1,
+         "input" : 1.1,
          "name" : "clset (empty = ok)",
          "schema" : [
-            "bool*",
+            "num*",
             "clset",
             {}
          ],
          "tags" : [
             "type",
-            "type:bool"
+            "type:num"
          ],
          "valid" : 1
       },
       {
-         "input" : 1,
+         "input" : 1.1,
          "name" : "clset (ignored clause/attr = ok)",
          "schema" : [
-            "bool*",
+            "num*",
             "clset",
             {
                "foo._bar" : 2,
@@ -343,23 +440,114 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:clset"
          ],
          "valid" : 1
       },
       {
+         "input" : 1.1,
+         "name" : "clset (ok + ok = ok)",
+         "schema" : [
+            "num*",
+            "clset",
+            {
+               "min" : 1,
+               "max" : 1.1
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:clset"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 1.1,
+         "name" : "clset (ok) + clause nok = nok",
+         "schema" : [
+            "num*",
+            "clset",
+            {
+               "min" : 1
+            },
+            "max",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:clset"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 1.1,
+         "name" : "clset (ok + nok = nok)",
+         "schema" : [
+            "num*",
+            "clset",
+            {
+               "min" : 1,
+               "max" : 1
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:clset"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 1.1,
+         "name" : "clset (nok + ok = nok)",
+         "schema" : [
+            "num*",
+            "clset",
+            {
+               "min" : 2,
+               "max" : 1.1
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:clset"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 1.1,
+         "name" : "clset (nok + nok = nok)",
+         "schema" : [
+            "num*",
+            "clset",
+            {
+               "min" : 2,
+               "max" : 1
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:clset"
+         ],
+         "valid" : 0
+      },
+      {
          "input" : null,
          "name" : "ok",
          "schema" : [
-            "bool",
+            "num",
             {
                "ok" : 1
             }
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:ok"
          ],
          "valid" : 1
@@ -368,14 +556,14 @@
          "input" : null,
          "name" : "ok + op not (nok)",
          "schema" : [
-            "bool",
+            "num",
             {
                "ok!" : 1
             }
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:ok",
             "op",
             "op:not"
@@ -383,50 +571,50 @@
          "valid" : 0
       },
       {
-         "input" : 1,
-         "name" : ".err_level=error (clause=is, ok)",
+         "input" : 0.1,
+         "name" : ".err_level=error (clause=min, ok)",
          "schema" : [
-            "bool",
-            "is",
-            1
+            "num",
+            "min",
+            0
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "attr",
             "attr:err_level"
          ],
          "valid" : 1
       },
       {
-         "input" : 0,
-         "name" : ".err_level=error (clause=is, nok)",
+         "input" : -0.1,
+         "name" : ".err_level=error (clause=min, nok)",
          "schema" : [
-            "bool",
-            "is",
-            1
+            "num",
+            "min",
+            0
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "attr",
             "attr:err_level"
          ],
          "valid" : 0
       },
       {
-         "input" : 1,
-         "name" : ".err_level=warn (clause=is, ok)",
+         "input" : 0.1,
+         "name" : ".err_level=warn (clause=min, ok)",
          "schema" : [
-            "bool",
-            "is",
-            1,
-            "is.err_level",
+            "num",
+            "min",
+            0,
+            "min.err_level",
             "warn"
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "attr",
             "attr:err_level"
          ],
@@ -434,64 +622,64 @@
       },
       {
          "warnings" : 1,
-         "input" : 0,
-         "name" : ".err_level=warn (clause=is, nok)",
+         "input" : -0.1,
+         "name" : ".err_level=warn (clause=min, nok)",
          "schema" : [
-            "bool*",
-            "is",
-            1,
-            "is.err_level",
+            "num*",
+            "min",
+            0,
+            "min.err_level",
             "warn"
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "attr",
             "attr:err_level"
          ],
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "is: must accept same value",
          "schema" : [
-            "bool",
+            "num",
             "is",
-            0
+            1.1
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:is"
          ],
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "is: must reject different value",
          "schema" : [
-            "bool",
+            "num",
             "is",
-            1
+            1.2
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:is"
          ],
          "valid" : 0
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "!is (nok)",
          "schema" : [
-            "bool",
+            "num",
             "!is",
-            0
+            1.1
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:is",
             "op",
             "op:not",
@@ -500,16 +688,16 @@
          "valid" : 0
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "!is (ok)",
          "schema" : [
-            "bool",
+            "num",
             "!is",
-            1
+            1.2
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:is",
             "op",
             "op:not",
@@ -518,18 +706,18 @@
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "is.op=not (nok)",
          "schema" : [
-            "bool",
+            "num",
             "is",
-            0,
+            1.1,
             "is.op",
             "not"
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:is",
             "op",
             "op:not"
@@ -537,18 +725,18 @@
          "valid" : 0
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "is.op=not (ok)",
          "schema" : [
-            "bool",
+            "num",
             "is",
-            1,
+            1.2,
             "is.op",
             "not"
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:is",
             "op",
             "op:not"
@@ -556,16 +744,16 @@
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "is& (no items)",
          "schema" : [
-            "bool",
+            "num",
             "is&",
             []
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:is",
             "op",
             "op:and",
@@ -574,19 +762,19 @@
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "is& (ok)",
          "schema" : [
-            "bool",
+            "num",
             "is&",
             [
-               0,
-               0
+               1.1,
+               1.1
             ]
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:is",
             "op",
             "op:and",
@@ -596,19 +784,19 @@
       },
       {
          "errors" : 1,
-         "input" : 0,
+         "input" : 1.1,
          "name" : "is& (nok + ok)",
          "schema" : [
-            "bool",
+            "num",
             "is&",
             [
-               1,
-               0
+               1.2,
+               1.1
             ]
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:is",
             "op",
             "op:and",
@@ -618,19 +806,19 @@
       },
       {
          "errors" : 1,
-         "input" : 0,
+         "input" : 1.1,
          "name" : "is& (ok + nok)",
          "schema" : [
-            "bool",
+            "num",
             "is&",
             [
-               0,
-               1
+               1.1,
+               1.2
             ]
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:is",
             "op",
             "op:and",
@@ -640,19 +828,19 @@
       },
       {
          "errors" : 1,
-         "input" : 0,
+         "input" : 1.1,
          "name" : "is& (nok + nok)",
          "schema" : [
-            "bool",
+            "num",
             "is&",
             [
-               1,
-               1
+               1.2,
+               1.2
             ]
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:is",
             "op",
             "op:and",
@@ -661,10 +849,10 @@
          "valid" : 0
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "is.op=and (no items)",
          "schema" : [
-            "bool",
+            "num",
             "is",
             [],
             "is.op",
@@ -672,26 +860,26 @@
          ],
          "tags" : [
             "type",
-            "type:bool"
+            "type:num"
          ],
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "is.op=and (ok)",
          "schema" : [
-            "bool",
+            "num",
             "is",
             [
-               0,
-               0
+               1.1,
+               1.1
             ],
             "is.op",
             "and"
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:is",
             "op",
             "op:and"
@@ -700,21 +888,21 @@
       },
       {
          "errors" : 1,
-         "input" : 0,
+         "input" : 1.1,
          "name" : "is.op=and (nok + ok)",
          "schema" : [
-            "bool",
+            "num",
             "is",
             [
-               1,
-               0
+               1.2,
+               1.1
             ],
             "is.op",
             "and"
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:is",
             "op",
             "op:and"
@@ -723,21 +911,21 @@
       },
       {
          "errors" : 1,
-         "input" : 0,
+         "input" : 1.1,
          "name" : "is.op=and (ok + nok)",
          "schema" : [
-            "bool",
+            "num",
             "is",
             [
-               0,
-               1
+               1.1,
+               1.2
             ],
             "is.op",
             "and"
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:is",
             "op",
             "op:and"
@@ -746,21 +934,21 @@
       },
       {
          "errors" : 1,
-         "input" : 0,
+         "input" : 1.1,
          "name" : "is.op=and (nok + nok)",
          "schema" : [
-            "bool",
+            "num",
             "is",
             [
-               1,
-               1
+               1.2,
+               1.2
             ],
             "is.op",
             "and"
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:is",
             "op",
             "op:and"
@@ -768,16 +956,16 @@
          "valid" : 0
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "is| (no items)",
          "schema" : [
-            "bool",
+            "num",
             "is|",
             []
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:is",
             "op",
             "op:or",
@@ -786,19 +974,19 @@
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "is| (ok)",
          "schema" : [
-            "bool",
+            "num",
             "is|",
             [
-               0,
-               0
+               1.1,
+               1.1
             ]
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:is",
             "op",
             "op:or",
@@ -807,19 +995,19 @@
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "is| (nok + ok)",
          "schema" : [
-            "bool",
+            "num",
             "is|",
             [
-               1,
-               0
+               1.2,
+               1.1
             ]
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:is",
             "op",
             "op:or",
@@ -828,19 +1016,19 @@
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "is| (ok + nok)",
          "schema" : [
-            "bool",
+            "num",
             "is|",
             [
-               0,
-               1
+               1.1,
+               1.2
             ]
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:is",
             "op",
             "op:or",
@@ -850,19 +1038,19 @@
       },
       {
          "errors" : 1,
-         "input" : 0,
+         "input" : 1.1,
          "name" : "is| (nok + nok)",
          "schema" : [
-            "bool",
+            "num",
             "is|",
             [
-               1,
-               1
+               1.2,
+               1.2
             ]
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:is",
             "op",
             "op:or",
@@ -871,10 +1059,10 @@
          "valid" : 0
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "is.op=or (no items)",
          "schema" : [
-            "bool",
+            "num",
             "is",
             [],
             "is.op",
@@ -882,7 +1070,7 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:is",
             "op",
             "op:or"
@@ -890,21 +1078,21 @@
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "is.op=or (ok)",
          "schema" : [
-            "bool",
+            "num",
             "is",
             [
-               0,
-               0
+               1.1,
+               1.1
             ],
             "is.op",
             "or"
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:is",
             "op",
             "op:or"
@@ -912,21 +1100,21 @@
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "is.op=or (nok + ok)",
          "schema" : [
-            "bool",
+            "num",
             "is",
             [
-               1,
-               0
+               1.2,
+               1.1
             ],
             "is.op",
             "or"
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:is",
             "op",
             "op:or"
@@ -934,21 +1122,21 @@
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "is.op=or (ok + nok)",
          "schema" : [
-            "bool",
+            "num",
             "is",
             [
-               0,
-               1
+               1.1,
+               1.2
             ],
             "is.op",
             "or"
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:is",
             "op",
             "op:or"
@@ -957,21 +1145,21 @@
       },
       {
          "errors" : 1,
-         "input" : 0,
+         "input" : 1.1,
          "name" : "is.op=or (nok + nok)",
          "schema" : [
-            "bool",
+            "num",
             "is",
             [
-               1,
-               1
+               1.2,
+               1.2
             ],
             "is.op",
             "or"
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:is",
             "op",
             "op:or"
@@ -979,10 +1167,10 @@
          "valid" : 0
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "is.op=none (empty items)",
          "schema" : [
-            "bool",
+            "num",
             "is",
             [],
             "is.op",
@@ -990,7 +1178,7 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:is",
             "op",
             "op:none"
@@ -998,21 +1186,21 @@
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "is.op=none (nok + nok)",
          "schema" : [
-            "bool",
+            "num",
             "is",
             [
-               1,
-               1
+               1.2,
+               1.2
             ],
             "is.op",
             "none"
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:is",
             "op",
             "op:none"
@@ -1021,21 +1209,21 @@
       },
       {
          "errors" : 1,
-         "input" : 0,
+         "input" : 1.1,
          "name" : "is.op=none (nok + ok)",
          "schema" : [
-            "bool",
+            "num",
             "is",
             [
-               1,
-               0
+               1.2,
+               1.1
             ],
             "is.op",
             "none"
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:is",
             "op",
             "op:none"
@@ -1044,21 +1232,21 @@
       },
       {
          "errors" : 1,
-         "input" : 0,
+         "input" : 1.1,
          "name" : "is.op=none (ok + nok)",
          "schema" : [
-            "bool",
+            "num",
             "is",
             [
-               0,
-               1
+               1.1,
+               1.2
             ],
             "is.op",
             "none"
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:is",
             "op",
             "op:none"
@@ -1067,21 +1255,21 @@
       },
       {
          "errors" : 1,
-         "input" : 0,
+         "input" : 1.1,
          "name" : "is.op=none (ok + ok)",
          "schema" : [
-            "bool",
+            "num",
             "is",
             [
-               0,
-               0
+               1.1,
+               1.1
             ],
             "is.op",
             "none"
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:is",
             "op",
             "op:none"
@@ -1089,52 +1277,52 @@
          "valid" : 0
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "in: must accept valid choices",
          "schema" : [
-            "bool",
+            "num",
             "in",
             [
-               0,
-               1
+               1.1,
+               1.2
             ]
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:in"
          ],
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "in: must reject empty choices",
          "schema" : [
-            "bool",
+            "num",
             "in",
             []
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:in"
          ],
          "valid" : 0
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "!in (nok)",
          "schema" : [
-            "bool",
+            "num",
             "!in",
             [
-               0,
-               1
+               1.1,
+               1.2
             ]
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:in",
             "op",
             "op:not",
@@ -1143,16 +1331,16 @@
          "valid" : 0
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "!in (ok)",
          "schema" : [
-            "bool",
+            "num",
             "!in",
             []
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:in",
             "op",
             "op:not",
@@ -1161,21 +1349,21 @@
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "in.op=not (nok)",
          "schema" : [
-            "bool",
+            "num",
             "in",
             [
-               0,
-               1
+               1.1,
+               1.2
             ],
             "in.op",
             "not"
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:in",
             "op",
             "op:not"
@@ -1183,10 +1371,10 @@
          "valid" : 0
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "in.op=not (ok)",
          "schema" : [
-            "bool",
+            "num",
             "in",
             [],
             "in.op",
@@ -1194,7 +1382,7 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:in",
             "op",
             "op:not"
@@ -1202,16 +1390,16 @@
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "in& (no items)",
          "schema" : [
-            "bool",
+            "num",
             "in&",
             []
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:in",
             "op",
             "op:and",
@@ -1220,25 +1408,25 @@
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "in& (ok)",
          "schema" : [
-            "bool",
+            "num",
             "in&",
             [
                [
-                  0,
-                  1
+                  1.1,
+                  1.2
                ],
                [
-                  0,
-                  1
+                  1.1,
+                  1.2
                ]
             ]
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:in",
             "op",
             "op:and",
@@ -1248,22 +1436,22 @@
       },
       {
          "errors" : 1,
-         "input" : 0,
+         "input" : 1.1,
          "name" : "in& (nok + ok)",
          "schema" : [
-            "bool",
+            "num",
             "in&",
             [
                [],
                [
-                  0,
-                  1
+                  1.1,
+                  1.2
                ]
             ]
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:in",
             "op",
             "op:and",
@@ -1273,22 +1461,22 @@
       },
       {
          "errors" : 1,
-         "input" : 0,
+         "input" : 1.1,
          "name" : "in& (ok + nok)",
          "schema" : [
-            "bool",
+            "num",
             "in&",
             [
                [
-                  0,
-                  1
+                  1.1,
+                  1.2
                ],
                []
             ]
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:in",
             "op",
             "op:and",
@@ -1298,10 +1486,10 @@
       },
       {
          "errors" : 1,
-         "input" : 0,
+         "input" : 1.1,
          "name" : "in& (nok + nok)",
          "schema" : [
-            "bool",
+            "num",
             "in&",
             [
                [],
@@ -1310,7 +1498,7 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:in",
             "op",
             "op:and",
@@ -1319,10 +1507,10 @@
          "valid" : 0
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "in.op=and (no items)",
          "schema" : [
-            "bool",
+            "num",
             "in",
             [],
             "in.op",
@@ -1330,24 +1518,24 @@
          ],
          "tags" : [
             "type",
-            "type:bool"
+            "type:num"
          ],
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "in.op=and (ok)",
          "schema" : [
-            "bool",
+            "num",
             "in",
             [
                [
-                  0,
-                  1
+                  1.1,
+                  1.2
                ],
                [
-                  0,
-                  1
+                  1.1,
+                  1.2
                ]
             ],
             "in.op",
@@ -1355,7 +1543,7 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:in",
             "op",
             "op:and"
@@ -1364,16 +1552,16 @@
       },
       {
          "errors" : 1,
-         "input" : 0,
+         "input" : 1.1,
          "name" : "in.op=and (nok + ok)",
          "schema" : [
-            "bool",
+            "num",
             "in",
             [
                [],
                [
-                  0,
-                  1
+                  1.1,
+                  1.2
                ]
             ],
             "in.op",
@@ -1381,7 +1569,7 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:in",
             "op",
             "op:and"
@@ -1390,15 +1578,15 @@
       },
       {
          "errors" : 1,
-         "input" : 0,
+         "input" : 1.1,
          "name" : "in.op=and (ok + nok)",
          "schema" : [
-            "bool",
+            "num",
             "in",
             [
                [
-                  0,
-                  1
+                  1.1,
+                  1.2
                ],
                []
             ],
@@ -1407,7 +1595,7 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:in",
             "op",
             "op:and"
@@ -1416,10 +1604,10 @@
       },
       {
          "errors" : 1,
-         "input" : 0,
+         "input" : 1.1,
          "name" : "in.op=and (nok + nok)",
          "schema" : [
-            "bool",
+            "num",
             "in",
             [
                [],
@@ -1430,7 +1618,7 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:in",
             "op",
             "op:and"
@@ -1438,16 +1626,16 @@
          "valid" : 0
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "in| (no items)",
          "schema" : [
-            "bool",
+            "num",
             "in|",
             []
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:in",
             "op",
             "op:or",
@@ -1456,25 +1644,25 @@
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "in| (ok)",
          "schema" : [
-            "bool",
+            "num",
             "in|",
             [
                [
-                  0,
-                  1
+                  1.1,
+                  1.2
                ],
                [
-                  0,
-                  1
+                  1.1,
+                  1.2
                ]
             ]
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:in",
             "op",
             "op:or",
@@ -1483,22 +1671,22 @@
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "in| (nok + ok)",
          "schema" : [
-            "bool",
+            "num",
             "in|",
             [
                [],
                [
-                  0,
-                  1
+                  1.1,
+                  1.2
                ]
             ]
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:in",
             "op",
             "op:or",
@@ -1507,22 +1695,22 @@
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "in| (ok + nok)",
          "schema" : [
-            "bool",
+            "num",
             "in|",
             [
                [
-                  0,
-                  1
+                  1.1,
+                  1.2
                ],
                []
             ]
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:in",
             "op",
             "op:or",
@@ -1532,10 +1720,10 @@
       },
       {
          "errors" : 1,
-         "input" : 0,
+         "input" : 1.1,
          "name" : "in| (nok + nok)",
          "schema" : [
-            "bool",
+            "num",
             "in|",
             [
                [],
@@ -1544,7 +1732,7 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:in",
             "op",
             "op:or",
@@ -1553,10 +1741,10 @@
          "valid" : 0
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "in.op=or (no items)",
          "schema" : [
-            "bool",
+            "num",
             "in",
             [],
             "in.op",
@@ -1564,7 +1752,7 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:in",
             "op",
             "op:or"
@@ -1572,19 +1760,19 @@
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "in.op=or (ok)",
          "schema" : [
-            "bool",
+            "num",
             "in",
             [
                [
-                  0,
-                  1
+                  1.1,
+                  1.2
                ],
                [
-                  0,
-                  1
+                  1.1,
+                  1.2
                ]
             ],
             "in.op",
@@ -1592,7 +1780,7 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:in",
             "op",
             "op:or"
@@ -1600,16 +1788,16 @@
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "in.op=or (nok + ok)",
          "schema" : [
-            "bool",
+            "num",
             "in",
             [
                [],
                [
-                  0,
-                  1
+                  1.1,
+                  1.2
                ]
             ],
             "in.op",
@@ -1617,7 +1805,7 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:in",
             "op",
             "op:or"
@@ -1625,15 +1813,15 @@
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "in.op=or (ok + nok)",
          "schema" : [
-            "bool",
+            "num",
             "in",
             [
                [
-                  0,
-                  1
+                  1.1,
+                  1.2
                ],
                []
             ],
@@ -1642,7 +1830,7 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:in",
             "op",
             "op:or"
@@ -1651,10 +1839,10 @@
       },
       {
          "errors" : 1,
-         "input" : 0,
+         "input" : 1.1,
          "name" : "in.op=or (nok + nok)",
          "schema" : [
-            "bool",
+            "num",
             "in",
             [
                [],
@@ -1665,7 +1853,7 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:in",
             "op",
             "op:or"
@@ -1673,10 +1861,10 @@
          "valid" : 0
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "in.op=none (empty items)",
          "schema" : [
-            "bool",
+            "num",
             "in",
             [],
             "in.op",
@@ -1684,7 +1872,7 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:in",
             "op",
             "op:none"
@@ -1692,10 +1880,10 @@
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : 1.1,
          "name" : "in.op=none (nok + nok)",
          "schema" : [
-            "bool",
+            "num",
             "in",
             [
                [],
@@ -1706,7 +1894,7 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:in",
             "op",
             "op:none"
@@ -1715,16 +1903,16 @@
       },
       {
          "errors" : 1,
-         "input" : 0,
+         "input" : 1.1,
          "name" : "in.op=none (nok + ok)",
          "schema" : [
-            "bool",
+            "num",
             "in",
             [
                [],
                [
-                  0,
-                  1
+                  1.1,
+                  1.2
                ]
             ],
             "in.op",
@@ -1732,7 +1920,7 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:in",
             "op",
             "op:none"
@@ -1741,15 +1929,15 @@
       },
       {
          "errors" : 1,
-         "input" : 0,
+         "input" : 1.1,
          "name" : "in.op=none (ok + nok)",
          "schema" : [
-            "bool",
+            "num",
             "in",
             [
                [
-                  0,
-                  1
+                  1.1,
+                  1.2
                ],
                []
             ],
@@ -1758,7 +1946,7 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:in",
             "op",
             "op:none"
@@ -1767,19 +1955,19 @@
       },
       {
          "errors" : 1,
-         "input" : 0,
+         "input" : 1.1,
          "name" : "in.op=none (ok + ok)",
          "schema" : [
-            "bool",
+            "num",
             "in",
             [
                [
-                  0,
-                  1
+                  1.1,
+                  1.2
                ],
                [
-                  0,
-                  1
+                  1.1,
+                  1.2
                ]
             ],
             "in.op",
@@ -1787,7 +1975,7 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:in",
             "op",
             "op:none"
@@ -1795,343 +1983,343 @@
          "valid" : 0
       },
       {
-         "input" : 1,
-         "name" : "min: 1 0",
+         "input" : 2.1,
+         "name" : "min: 2.1 -3.1",
          "schema" : [
-            "bool",
+            "num",
             "min",
-            0
+            -3.1
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:min"
          ],
          "valid" : 1
       },
       {
-         "input" : 1,
-         "name" : "min: 1 1",
+         "input" : 2.1,
+         "name" : "min: 2.1 2.1",
          "schema" : [
-            "bool",
+            "num",
             "min",
-            1
+            2.1
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:min"
          ],
          "valid" : 1
       },
       {
-         "input" : 0,
-         "name" : "min: 0 1 -> fail",
+         "input" : -3.1,
+         "name" : "min: -3.1 2.1 -> fail",
          "schema" : [
-            "bool",
+            "num",
             "min",
-            1
+            2.1
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:min"
          ],
          "valid" : 0
       },
       {
-         "input" : 1,
-         "name" : "xmin: 1 0",
+         "input" : 2.1,
+         "name" : "xmin: 2.1 -3.1",
          "schema" : [
-            "bool",
+            "num",
             "xmin",
-            0
+            -3.1
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:xmin"
          ],
          "valid" : 1
       },
       {
-         "input" : 1,
-         "name" : "xmin: 1 1 -> fail",
+         "input" : 2.1,
+         "name" : "xmin: 2.1 2.1 -> fail",
          "schema" : [
-            "bool",
+            "num",
             "xmin",
-            1
+            2.1
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:xmin"
          ],
          "valid" : 0
       },
       {
-         "input" : 0,
-         "name" : "xmin: 0 1 -> fail",
+         "input" : -3.1,
+         "name" : "xmin: -3.1 2.1 -> fail",
          "schema" : [
-            "bool",
+            "num",
             "xmin",
-            1
+            2.1
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:xmin"
          ],
          "valid" : 0
       },
       {
-         "input" : 1,
-         "name" : "max: 1 0 -> fail",
+         "input" : 2.1,
+         "name" : "max: 2.1 -3.1 -> fail",
          "schema" : [
-            "bool",
+            "num",
             "max",
-            0
+            -3.1
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:max"
          ],
          "valid" : 0
       },
       {
-         "input" : 1,
-         "name" : "max: 1 1",
+         "input" : 2.1,
+         "name" : "max: 2.1 2.1",
          "schema" : [
-            "bool",
+            "num",
             "max",
-            1
+            2.1
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:max"
          ],
          "valid" : 1
       },
       {
-         "input" : 0,
-         "name" : "max: 0 1",
+         "input" : -3.1,
+         "name" : "max: -3.1 2.1",
          "schema" : [
-            "bool",
+            "num",
             "max",
-            1
+            2.1
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:max"
          ],
          "valid" : 1
       },
       {
-         "input" : 1,
-         "name" : "xmax: 1 0 -> fail",
+         "input" : 2.1,
+         "name" : "xmax: 2.1 -3.1 -> fail",
          "schema" : [
-            "bool",
+            "num",
             "xmax",
-            0
+            -3.1
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:xmax"
          ],
          "valid" : 0
       },
       {
-         "input" : 1,
-         "name" : "xmax: 1 1 -> fail",
+         "input" : 2.1,
+         "name" : "xmax: 2.1 2.1 -> fail",
          "schema" : [
-            "bool",
+            "num",
             "xmax",
-            1
+            2.1
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:xmax"
          ],
          "valid" : 0
       },
       {
-         "input" : 0,
-         "name" : "xmax: 0 1",
+         "input" : -3.1,
+         "name" : "xmax: -3.1 2.1",
          "schema" : [
-            "bool",
+            "num",
             "xmax",
-            1
+            2.1
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:xmax"
          ],
          "valid" : 1
       },
       {
-         "input" : 1,
-         "name" : "between: 1 0 & 1",
+         "input" : 2.1,
+         "name" : "between: 2.1 -3.1 & 4.1",
          "schema" : [
-            "bool",
+            "num",
             "between",
             [
-               0,
-               1
+               -3.1,
+               4.1
             ]
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:between"
          ],
          "valid" : 1
       },
       {
-         "input" : 1,
-         "name" : "between: 1 0 & 1",
+         "input" : 2.1,
+         "name" : "between: 2.1 -3.1 & 2.1",
          "schema" : [
-            "bool",
+            "num",
             "between",
             [
-               0,
-               1
+               -3.1,
+               2.1
             ]
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:between"
          ],
          "valid" : 1
       },
       {
-         "input" : 1,
-         "name" : "between: 1 1 & 1",
+         "input" : 2.1,
+         "name" : "between: 2.1 2.1 & 2.1",
          "schema" : [
-            "bool",
+            "num",
             "between",
             [
-               1,
-               1
+               2.1,
+               2.1
             ]
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:between"
          ],
          "valid" : 1
       },
       {
-         "input" : 0,
-         "name" : "between: 0 1 & 1 -> fail",
+         "input" : -3.1,
+         "name" : "between: -3.1 2.1 & 4.1 -> fail",
          "schema" : [
-            "bool",
+            "num",
             "between",
             [
-               1,
-               1
+               2.1,
+               4.1
             ]
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:between"
          ],
          "valid" : 0
       },
       {
-         "input" : "1",
-         "name" : "xbetween: 1 0 & 1",
+         "input" : "2.1",
+         "name" : "xbetween: 2.1 -3.1 & 4.1",
          "schema" : [
-            "bool",
+            "num",
             "xbetween",
             [
-               0,
-               1
+               -3.1,
+               4.1
             ]
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
+            "clause:xbetween"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "2.1",
+         "name" : "xbetween: 2.1 -3.1 & 2.1 -> fail",
+         "schema" : [
+            "num",
+            "xbetween",
+            [
+               -3.1,
+               "2.1"
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:num",
             "clause:xbetween"
          ],
          "valid" : 0
       },
       {
-         "input" : "1",
-         "name" : "xbetween: 1 0 & 1 -> fail",
+         "input" : "2.1",
+         "name" : "xbetween: 2.1 2.1 & 2.1 -> fail",
          "schema" : [
-            "bool",
+            "num",
             "xbetween",
             [
-               0,
-               "1"
+               "2.1",
+               "2.1"
             ]
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:xbetween"
          ],
          "valid" : 0
       },
       {
-         "input" : "1",
-         "name" : "xbetween: 1 1 & 1 -> fail",
+         "input" : -3.1,
+         "name" : "xbetween: -3.1 2.1 & 4.1 -> fail",
          "schema" : [
-            "bool",
+            "num",
             "xbetween",
             [
-               "1",
-               "1"
+               "2.1",
+               "4.1"
             ]
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:xbetween"
          ],
          "valid" : 0
       },
       {
-         "input" : 0,
-         "name" : "xbetween: 0 1 & 1 -> fail",
-         "schema" : [
-            "bool",
-            "xbetween",
-            [
-               "1",
-               "1"
-            ]
-         ],
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:xbetween"
-         ],
-         "valid" : 0
-      },
-      {
-         "input" : 0,
+         "input" : -3.1,
          "name" : "!between (nok)",
          "schema" : [
-            "bool",
+            "num",
             "!between",
             [
-               0,
-               0
+               -3.1,
+               -3.1
             ]
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:between",
             "op",
             "op:not",
@@ -2140,19 +2328,19 @@
          "valid" : 0
       },
       {
-         "input" : 0,
+         "input" : -3.1,
          "name" : "!between (ok)",
          "schema" : [
-            "bool",
+            "num",
             "!between",
             [
-               "1",
-               "1"
+               "2.1",
+               "2.1"
             ]
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:between",
             "op",
             "op:not",
@@ -2161,21 +2349,21 @@
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : -3.1,
          "name" : "between.op=not (nok)",
          "schema" : [
-            "bool",
+            "num",
             "between",
             [
-               0,
-               0
+               -3.1,
+               -3.1
             ],
             "between.op",
             "not"
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:between",
             "op",
             "op:not"
@@ -2183,21 +2371,21 @@
          "valid" : 0
       },
       {
-         "input" : 0,
+         "input" : -3.1,
          "name" : "between.op=not (ok)",
          "schema" : [
-            "bool",
+            "num",
             "between",
             [
-               "1",
-               "1"
+               "2.1",
+               "2.1"
             ],
             "between.op",
             "not"
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:between",
             "op",
             "op:not"
@@ -2205,16 +2393,16 @@
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : -3.1,
          "name" : "between& (no items)",
          "schema" : [
-            "bool",
+            "num",
             "between&",
             []
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:between",
             "op",
             "op:and",
@@ -2223,25 +2411,25 @@
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : -3.1,
          "name" : "between& (ok)",
          "schema" : [
-            "bool",
+            "num",
             "between&",
             [
                [
-                  0,
-                  0
+                  -3.1,
+                  -3.1
                ],
                [
-                  0,
-                  0
+                  -3.1,
+                  -3.1
                ]
             ]
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:between",
             "op",
             "op:and",
@@ -2251,25 +2439,25 @@
       },
       {
          "errors" : 1,
-         "input" : 0,
+         "input" : -3.1,
          "name" : "between& (nok + ok)",
          "schema" : [
-            "bool",
+            "num",
             "between&",
             [
                [
-                  "1",
-                  "1"
+                  "2.1",
+                  "2.1"
                ],
                [
-                  0,
-                  0
+                  -3.1,
+                  -3.1
                ]
             ]
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:between",
             "op",
             "op:and",
@@ -2279,25 +2467,25 @@
       },
       {
          "errors" : 1,
-         "input" : 0,
+         "input" : -3.1,
          "name" : "between& (ok + nok)",
          "schema" : [
-            "bool",
+            "num",
             "between&",
             [
                [
-                  0,
-                  0
+                  -3.1,
+                  -3.1
                ],
                [
-                  "1",
-                  "1"
+                  "2.1",
+                  "2.1"
                ]
             ]
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:between",
             "op",
             "op:and",
@@ -2307,25 +2495,25 @@
       },
       {
          "errors" : 1,
-         "input" : 0,
+         "input" : -3.1,
          "name" : "between& (nok + nok)",
          "schema" : [
-            "bool",
+            "num",
             "between&",
             [
                [
-                  "1",
-                  "1"
+                  "2.1",
+                  "2.1"
                ],
                [
-                  "1",
-                  "1"
+                  "2.1",
+                  "2.1"
                ]
             ]
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:between",
             "op",
             "op:and",
@@ -2334,10 +2522,10 @@
          "valid" : 0
       },
       {
-         "input" : 0,
+         "input" : -3.1,
          "name" : "between.op=and (no items)",
          "schema" : [
-            "bool",
+            "num",
             "between",
             [],
             "between.op",
@@ -2345,24 +2533,24 @@
          ],
          "tags" : [
             "type",
-            "type:bool"
+            "type:num"
          ],
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : -3.1,
          "name" : "between.op=and (ok)",
          "schema" : [
-            "bool",
+            "num",
             "between",
             [
                [
-                  0,
-                  0
+                  -3.1,
+                  -3.1
                ],
                [
-                  0,
-                  0
+                  -3.1,
+                  -3.1
                ]
             ],
             "between.op",
@@ -2370,7 +2558,7 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:between",
             "op",
             "op:and"
@@ -2379,19 +2567,19 @@
       },
       {
          "errors" : 1,
-         "input" : 0,
+         "input" : -3.1,
          "name" : "between.op=and (nok + ok)",
          "schema" : [
-            "bool",
+            "num",
             "between",
             [
                [
-                  "1",
-                  "1"
+                  "2.1",
+                  "2.1"
                ],
                [
-                  0,
-                  0
+                  -3.1,
+                  -3.1
                ]
             ],
             "between.op",
@@ -2399,7 +2587,7 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:between",
             "op",
             "op:and"
@@ -2408,19 +2596,19 @@
       },
       {
          "errors" : 1,
-         "input" : 0,
+         "input" : -3.1,
          "name" : "between.op=and (ok + nok)",
          "schema" : [
-            "bool",
+            "num",
             "between",
             [
                [
-                  0,
-                  0
+                  -3.1,
+                  -3.1
                ],
                [
-                  "1",
-                  "1"
+                  "2.1",
+                  "2.1"
                ]
             ],
             "between.op",
@@ -2428,7 +2616,7 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:between",
             "op",
             "op:and"
@@ -2437,19 +2625,19 @@
       },
       {
          "errors" : 1,
-         "input" : 0,
+         "input" : -3.1,
          "name" : "between.op=and (nok + nok)",
          "schema" : [
-            "bool",
+            "num",
             "between",
             [
                [
-                  "1",
-                  "1"
+                  "2.1",
+                  "2.1"
                ],
                [
-                  "1",
-                  "1"
+                  "2.1",
+                  "2.1"
                ]
             ],
             "between.op",
@@ -2457,7 +2645,7 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:between",
             "op",
             "op:and"
@@ -2465,16 +2653,16 @@
          "valid" : 0
       },
       {
-         "input" : 0,
+         "input" : -3.1,
          "name" : "between| (no items)",
          "schema" : [
-            "bool",
+            "num",
             "between|",
             []
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:between",
             "op",
             "op:or",
@@ -2483,25 +2671,25 @@
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : -3.1,
          "name" : "between| (ok)",
          "schema" : [
-            "bool",
+            "num",
             "between|",
             [
                [
-                  0,
-                  0
+                  -3.1,
+                  -3.1
                ],
                [
-                  0,
-                  0
+                  -3.1,
+                  -3.1
                ]
             ]
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:between",
             "op",
             "op:or",
@@ -2510,25 +2698,25 @@
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : -3.1,
          "name" : "between| (nok + ok)",
          "schema" : [
-            "bool",
+            "num",
             "between|",
             [
                [
-                  "1",
-                  "1"
+                  "2.1",
+                  "2.1"
                ],
                [
-                  0,
-                  0
+                  -3.1,
+                  -3.1
                ]
             ]
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:between",
             "op",
             "op:or",
@@ -2537,25 +2725,25 @@
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : -3.1,
          "name" : "between| (ok + nok)",
          "schema" : [
-            "bool",
+            "num",
             "between|",
             [
                [
-                  0,
-                  0
+                  -3.1,
+                  -3.1
                ],
                [
-                  "1",
-                  "1"
+                  "2.1",
+                  "2.1"
                ]
             ]
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:between",
             "op",
             "op:or",
@@ -2565,25 +2753,25 @@
       },
       {
          "errors" : 1,
-         "input" : 0,
+         "input" : -3.1,
          "name" : "between| (nok + nok)",
          "schema" : [
-            "bool",
+            "num",
             "between|",
             [
                [
-                  "1",
-                  "1"
+                  "2.1",
+                  "2.1"
                ],
                [
-                  "1",
-                  "1"
+                  "2.1",
+                  "2.1"
                ]
             ]
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:between",
             "op",
             "op:or",
@@ -2592,10 +2780,10 @@
          "valid" : 0
       },
       {
-         "input" : 0,
+         "input" : -3.1,
          "name" : "between.op=or (no items)",
          "schema" : [
-            "bool",
+            "num",
             "between",
             [],
             "between.op",
@@ -2603,7 +2791,7 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:between",
             "op",
             "op:or"
@@ -2611,19 +2799,19 @@
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : -3.1,
          "name" : "between.op=or (ok)",
          "schema" : [
-            "bool",
+            "num",
             "between",
             [
                [
-                  0,
-                  0
+                  -3.1,
+                  -3.1
                ],
                [
-                  0,
-                  0
+                  -3.1,
+                  -3.1
                ]
             ],
             "between.op",
@@ -2631,7 +2819,7 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:between",
             "op",
             "op:or"
@@ -2639,19 +2827,19 @@
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : -3.1,
          "name" : "between.op=or (nok + ok)",
          "schema" : [
-            "bool",
+            "num",
             "between",
             [
                [
-                  "1",
-                  "1"
+                  "2.1",
+                  "2.1"
                ],
                [
-                  0,
-                  0
+                  -3.1,
+                  -3.1
                ]
             ],
             "between.op",
@@ -2659,7 +2847,7 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:between",
             "op",
             "op:or"
@@ -2667,19 +2855,19 @@
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : -3.1,
          "name" : "between.op=or (ok + nok)",
          "schema" : [
-            "bool",
+            "num",
             "between",
             [
                [
-                  0,
-                  0
+                  -3.1,
+                  -3.1
                ],
                [
-                  "1",
-                  "1"
+                  "2.1",
+                  "2.1"
                ]
             ],
             "between.op",
@@ -2687,7 +2875,7 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:between",
             "op",
             "op:or"
@@ -2696,19 +2884,19 @@
       },
       {
          "errors" : 1,
-         "input" : 0,
+         "input" : -3.1,
          "name" : "between.op=or (nok + nok)",
          "schema" : [
-            "bool",
+            "num",
             "between",
             [
                [
-                  "1",
-                  "1"
+                  "2.1",
+                  "2.1"
                ],
                [
-                  "1",
-                  "1"
+                  "2.1",
+                  "2.1"
                ]
             ],
             "between.op",
@@ -2716,7 +2904,7 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:between",
             "op",
             "op:or"
@@ -2724,10 +2912,10 @@
          "valid" : 0
       },
       {
-         "input" : 0,
+         "input" : -3.1,
          "name" : "between.op=none (empty items)",
          "schema" : [
-            "bool",
+            "num",
             "between",
             [],
             "between.op",
@@ -2735,7 +2923,7 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:between",
             "op",
             "op:none"
@@ -2743,19 +2931,19 @@
          "valid" : 1
       },
       {
-         "input" : 0,
+         "input" : -3.1,
          "name" : "between.op=none (nok + nok)",
          "schema" : [
-            "bool",
+            "num",
             "between",
             [
                [
-                  "1",
-                  "1"
+                  "2.1",
+                  "2.1"
                ],
                [
-                  "1",
-                  "1"
+                  "2.1",
+                  "2.1"
                ]
             ],
             "between.op",
@@ -2763,7 +2951,7 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:between",
             "op",
             "op:none"
@@ -2772,19 +2960,19 @@
       },
       {
          "errors" : 1,
-         "input" : 0,
+         "input" : -3.1,
          "name" : "between.op=none (nok + ok)",
          "schema" : [
-            "bool",
+            "num",
             "between",
             [
                [
-                  "1",
-                  "1"
+                  "2.1",
+                  "2.1"
                ],
                [
-                  0,
-                  0
+                  -3.1,
+                  -3.1
                ]
             ],
             "between.op",
@@ -2792,7 +2980,7 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:between",
             "op",
             "op:none"
@@ -2801,19 +2989,19 @@
       },
       {
          "errors" : 1,
-         "input" : 0,
+         "input" : -3.1,
          "name" : "between.op=none (ok + nok)",
          "schema" : [
-            "bool",
+            "num",
             "between",
             [
                [
-                  0,
-                  0
+                  -3.1,
+                  -3.1
                ],
                [
-                  "1",
-                  "1"
+                  "2.1",
+                  "2.1"
                ]
             ],
             "between.op",
@@ -2821,7 +3009,7 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:between",
             "op",
             "op:none"
@@ -2830,19 +3018,19 @@
       },
       {
          "errors" : 1,
-         "input" : 0,
+         "input" : -3.1,
          "name" : "between.op=none (ok + ok)",
          "schema" : [
-            "bool",
+            "num",
             "between",
             [
                [
-                  0,
-                  0
+                  -3.1,
+                  -3.1
                ],
                [
-                  0,
-                  0
+                  -3.1,
+                  -3.1
                ]
             ],
             "between.op",
@@ -2850,102 +3038,12 @@
          ],
          "tags" : [
             "type",
-            "type:bool",
+            "type:num",
             "clause:between",
             "op",
             "op:none"
          ],
          "valid" : 0
-      },
-      {
-         "input" : 1,
-         "name" : "is_true: 1 (ok)",
-         "schema" : [
-            "bool",
-            "is_true",
-            1
-         ],
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:is_true"
-         ],
-         "valid" : 1
-      },
-      {
-         "input" : 0,
-         "name" : "is_true: 1 (nok)",
-         "schema" : [
-            "bool",
-            "is_true",
-            1
-         ],
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:is_true"
-         ],
-         "valid" : 0
-      },
-      {
-         "input" : 0,
-         "name" : "is_true: 0 (ok)",
-         "schema" : [
-            "bool",
-            "is_true",
-            0
-         ],
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:is_true"
-         ],
-         "valid" : 1
-      },
-      {
-         "input" : 1,
-         "name" : "is_true: 0 (nok)",
-         "schema" : [
-            "bool",
-            "is_true",
-            0
-         ],
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:is_true"
-         ],
-         "valid" : 0
-      },
-      {
-         "input" : 0,
-         "name" : "is_true: undef (ok 1)",
-         "schema" : [
-            "bool",
-            "is_true",
-            null
-         ],
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:is_true"
-         ],
-         "valid" : 1
-      },
-      {
-         "input" : 1,
-         "name" : "is_true: undef (ok 2)",
-         "schema" : [
-            "bool",
-            "is_true",
-            null
-         ],
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:is_true"
-         ],
-         "valid" : 1
       }
    ],
    "version" : "v0.9.28 (generated by devscripts/gen-type-spectest on Fri Nov 22 23:39:26 2013)"

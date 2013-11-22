@@ -82,6 +82,129 @@
       },
       {
          "input" : null,
+         "name" : "defhash_v",
+         "schema" : [
+            "int",
+            "defhash_v",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:int",
+            "clause:defhash_v"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "v",
+         "schema" : [
+            "int",
+            "v",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:int",
+            "clause:v"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "c",
+         "schema" : [
+            "int",
+            "c.foo.bar",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:int",
+            "clause:c"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "default_lang",
+         "schema" : [
+            "int",
+            "default_lang",
+            "id_ID"
+         ],
+         "tags" : [
+            "type",
+            "type:int",
+            "clause:default_lang"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "name",
+         "schema" : [
+            "int",
+            "name",
+            "some name"
+         ],
+         "tags" : [
+            "type",
+            "type:int",
+            "clause:name"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "summary",
+         "schema" : [
+            "int",
+            "summary",
+            "some summary"
+         ],
+         "tags" : [
+            "type",
+            "type:int",
+            "clause:summary"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "description",
+         "schema" : [
+            "int",
+            "description",
+            "some description and `markdown`"
+         ],
+         "tags" : [
+            "type",
+            "type:int",
+            "clause:description"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "tags",
+         "schema" : [
+            "int",
+            "tags",
+            [
+               "some",
+               "tags"
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:int",
+            "clause:tags"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
          "name" : "req=0 must accept undefined value",
          "schema" : [
             "int",
@@ -90,7 +213,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:req"
          ],
          "valid" : 1
       },
@@ -104,7 +228,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:req"
          ],
          "valid" : 0
       },
@@ -118,7 +243,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:forbidden"
          ],
          "valid" : 1
       },
@@ -132,7 +258,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:forbidden"
          ],
          "valid" : 0
       },
@@ -146,7 +273,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:default"
          ],
          "valid" : 1
       },
@@ -160,7 +288,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:default"
          ],
          "valid" : 0
       },
@@ -178,7 +307,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:clause"
          ]
       },
       {
@@ -194,7 +324,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:clause"
          ],
          "valid" : 1
       },
@@ -213,7 +344,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:clause"
          ],
          "valid" : 0
       },
@@ -231,7 +363,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:clause"
          ],
          "valid" : 0
       },
@@ -248,7 +381,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:clset"
          ]
       },
       {
@@ -265,7 +399,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:clset"
          ]
       },
       {
@@ -295,7 +430,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:clset"
          ],
          "valid" : 1
       },
@@ -312,7 +448,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:clset"
          ],
          "valid" : 1
       },
@@ -330,7 +467,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:clset"
          ],
          "valid" : 0
       },
@@ -347,7 +485,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:clset"
          ],
          "valid" : 0
       },
@@ -364,7 +503,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:clset"
          ],
          "valid" : 0
       },
@@ -381,7 +521,42 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:clset"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : null,
+         "name" : "ok",
+         "schema" : [
+            "int",
+            {
+               "ok" : 1
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:int",
+            "clause:ok"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "ok + op not (nok)",
+         "schema" : [
+            "int",
+            {
+               "ok!" : 1
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:int",
+            "clause:ok",
+            "op",
+            "op:not"
          ],
          "valid" : 0
       },
@@ -395,7 +570,9 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "attr",
+            "attr:err_level"
          ],
          "valid" : 1
       },
@@ -409,7 +586,9 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "attr",
+            "attr:err_level"
          ],
          "valid" : 0
       },
@@ -425,7 +604,9 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "attr",
+            "attr:err_level"
          ],
          "valid" : 1
       },
@@ -442,7 +623,9 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "attr",
+            "attr:err_level"
          ],
          "valid" : 1
       },
@@ -456,7 +639,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:is"
          ],
          "valid" : 1
       },
@@ -470,7 +654,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:is"
          ],
          "valid" : 0
       },
@@ -1094,7 +1279,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:in"
          ],
          "valid" : 1
       },
@@ -1108,7 +1294,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:in"
          ],
          "valid" : 0
       },
@@ -1795,7 +1982,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:min"
          ],
          "valid" : 1
       },
@@ -1809,7 +1997,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:min"
          ],
          "valid" : 1
       },
@@ -1823,7 +2012,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:min"
          ],
          "valid" : 0
       },
@@ -1837,7 +2027,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:xmin"
          ],
          "valid" : 1
       },
@@ -1851,7 +2042,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:xmin"
          ],
          "valid" : 0
       },
@@ -1865,7 +2057,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:xmin"
          ],
          "valid" : 0
       },
@@ -1879,7 +2072,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:max"
          ],
          "valid" : 0
       },
@@ -1893,7 +2087,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:max"
          ],
          "valid" : 1
       },
@@ -1907,7 +2102,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:max"
          ],
          "valid" : 1
       },
@@ -1921,7 +2117,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:xmax"
          ],
          "valid" : 0
       },
@@ -1935,7 +2132,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:xmax"
          ],
          "valid" : 0
       },
@@ -1949,7 +2147,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:xmax"
          ],
          "valid" : 1
       },
@@ -1966,7 +2165,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:between"
          ],
          "valid" : 1
       },
@@ -1983,7 +2183,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:between"
          ],
          "valid" : 1
       },
@@ -2000,7 +2201,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:between"
          ],
          "valid" : 1
       },
@@ -2017,7 +2219,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:between"
          ],
          "valid" : 0
       },
@@ -2034,7 +2237,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:xbetween"
          ],
          "valid" : 1
       },
@@ -2051,7 +2255,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:xbetween"
          ],
          "valid" : 0
       },
@@ -2068,7 +2273,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:xbetween"
          ],
          "valid" : 0
       },
@@ -2085,7 +2291,8 @@
          ],
          "tags" : [
             "type",
-            "type:int"
+            "type:int",
+            "clause:xbetween"
          ],
          "valid" : 0
       },
@@ -2895,5 +3102,5 @@
          "valid" : 1
       }
    ],
-   "version" : "v0.9.27 (generated by devscripts/gen-type-spectest on Wed Nov 20 23:01:59 2013)"
+   "version" : "v0.9.28 (generated by devscripts/gen-type-spectest on Fri Nov 22 23:39:26 2013)"
 }

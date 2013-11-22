@@ -92,6 +92,129 @@
       },
       {
          "input" : null,
+         "name" : "defhash_v",
+         "schema" : [
+            "float",
+            "defhash_v",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:defhash_v"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "v",
+         "schema" : [
+            "float",
+            "v",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:v"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "c",
+         "schema" : [
+            "float",
+            "c.foo.bar",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:c"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "default_lang",
+         "schema" : [
+            "float",
+            "default_lang",
+            "id_ID"
+         ],
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:default_lang"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "name",
+         "schema" : [
+            "float",
+            "name",
+            "some name"
+         ],
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:name"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "summary",
+         "schema" : [
+            "float",
+            "summary",
+            "some summary"
+         ],
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:summary"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "description",
+         "schema" : [
+            "float",
+            "description",
+            "some description and `markdown`"
+         ],
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:description"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "tags",
+         "schema" : [
+            "float",
+            "tags",
+            [
+               "some",
+               "tags"
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:tags"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
          "name" : "req=0 must accept undefined value",
          "schema" : [
             "float",
@@ -100,7 +223,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:req"
          ],
          "valid" : 1
       },
@@ -114,7 +238,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:req"
          ],
          "valid" : 0
       },
@@ -128,7 +253,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:forbidden"
          ],
          "valid" : 1
       },
@@ -142,7 +268,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:forbidden"
          ],
          "valid" : 0
       },
@@ -156,7 +283,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:default"
          ],
          "valid" : 1
       },
@@ -170,7 +298,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:default"
          ],
          "valid" : 0
       },
@@ -188,7 +317,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:clause"
          ]
       },
       {
@@ -204,7 +334,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:clause"
          ],
          "valid" : 1
       },
@@ -223,7 +354,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:clause"
          ],
          "valid" : 0
       },
@@ -241,7 +373,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:clause"
          ],
          "valid" : 0
       },
@@ -258,7 +391,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:clset"
          ]
       },
       {
@@ -275,7 +409,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:clset"
          ]
       },
       {
@@ -305,7 +440,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:clset"
          ],
          "valid" : 1
       },
@@ -322,7 +458,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:clset"
          ],
          "valid" : 1
       },
@@ -340,7 +477,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:clset"
          ],
          "valid" : 0
       },
@@ -357,7 +495,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:clset"
          ],
          "valid" : 0
       },
@@ -374,7 +513,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:clset"
          ],
          "valid" : 0
       },
@@ -391,7 +531,42 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:clset"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : null,
+         "name" : "ok",
+         "schema" : [
+            "float",
+            {
+               "ok" : 1
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:ok"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "ok + op not (nok)",
+         "schema" : [
+            "float",
+            {
+               "ok!" : 1
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:ok",
+            "op",
+            "op:not"
          ],
          "valid" : 0
       },
@@ -405,7 +580,9 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "attr",
+            "attr:err_level"
          ],
          "valid" : 1
       },
@@ -419,7 +596,9 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "attr",
+            "attr:err_level"
          ],
          "valid" : 0
       },
@@ -435,7 +614,9 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "attr",
+            "attr:err_level"
          ],
          "valid" : 1
       },
@@ -452,7 +633,9 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "attr",
+            "attr:err_level"
          ],
          "valid" : 1
       },
@@ -466,7 +649,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:is"
          ],
          "valid" : 1
       },
@@ -480,7 +664,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:is"
          ],
          "valid" : 0
       },
@@ -1104,7 +1289,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:in"
          ],
          "valid" : 1
       },
@@ -1118,7 +1304,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:in"
          ],
          "valid" : 0
       },
@@ -1805,7 +1992,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:min"
          ],
          "valid" : 1
       },
@@ -1819,7 +2007,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:min"
          ],
          "valid" : 1
       },
@@ -1833,7 +2022,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:min"
          ],
          "valid" : 0
       },
@@ -1847,7 +2037,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:xmin"
          ],
          "valid" : 1
       },
@@ -1861,7 +2052,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:xmin"
          ],
          "valid" : 0
       },
@@ -1875,7 +2067,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:xmin"
          ],
          "valid" : 0
       },
@@ -1889,7 +2082,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:max"
          ],
          "valid" : 0
       },
@@ -1903,7 +2097,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:max"
          ],
          "valid" : 1
       },
@@ -1917,7 +2112,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:max"
          ],
          "valid" : 1
       },
@@ -1931,7 +2127,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:xmax"
          ],
          "valid" : 0
       },
@@ -1945,7 +2142,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:xmax"
          ],
          "valid" : 0
       },
@@ -1959,7 +2157,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:xmax"
          ],
          "valid" : 1
       },
@@ -1976,7 +2175,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:between"
          ],
          "valid" : 1
       },
@@ -1993,7 +2193,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:between"
          ],
          "valid" : 1
       },
@@ -2010,7 +2211,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:between"
          ],
          "valid" : 1
       },
@@ -2027,7 +2229,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:between"
          ],
          "valid" : 0
       },
@@ -2044,7 +2247,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:xbetween"
          ],
          "valid" : 1
       },
@@ -2061,7 +2265,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:xbetween"
          ],
          "valid" : 0
       },
@@ -2078,7 +2283,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:xbetween"
          ],
          "valid" : 0
       },
@@ -2095,7 +2301,8 @@
          ],
          "tags" : [
             "type",
-            "type:float"
+            "type:float",
+            "clause:xbetween"
          ],
          "valid" : 0
       },
@@ -2839,5 +3046,5 @@
          "valid" : 0
       }
    ],
-   "version" : "v0.9.27 (generated by devscripts/gen-type-spectest on Wed Nov 20 23:01:59 2013)"
+   "version" : "v0.9.28 (generated by devscripts/gen-type-spectest on Fri Nov 22 23:39:26 2013)"
 }
