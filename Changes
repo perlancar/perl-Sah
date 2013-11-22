@@ -1,5 +1,12 @@
 Revision history for Sah
 
+0.9.29   2013-11-22 (SHARYANTO) (not yet released)
+
+         - Remove hash 'req_keys_re', which doesn't make any sense.
+
+         - Add spectests for all types and clauses.
+
+
 0.9.28   2013-11-21 (SHARYANTO)
 
          - No spec changes. Rebuild with updated
