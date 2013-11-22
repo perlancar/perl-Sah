@@ -2,9 +2,18 @@ Revision history for Sah
 
 0.9.29   2013-11-22 (SHARYANTO) (not yet released)
 
-         - Remove hash 'req_keys_re', which doesn't make any sense.
+         - Add spectests for all types and clauses and properties (some clause
+           attributes have not been covered).
 
-         - Add spectests for all types and clauses.
+         [INCOMPATIBLE CHANGES]
+
+         - Rename obj properties: 'methods' -> 'meths', 'attributes' -> 'attrs'.
+           This is to be consistent with design principle 'abbreviate when
+           common abbreviation is present and won't introduce ambiguity'.
+
+         [REMOVED FEATURES]
+
+         - Remove hash 'req_keys_re', which doesn't make any sense.
 
 
 0.9.28   2013-11-21 (SHARYANTO)
