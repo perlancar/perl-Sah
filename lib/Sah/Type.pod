@@ -930,11 +930,6 @@ this schema:
 
 the previous hash will not validate since the value for C<b> is required.
 
-Note: you can also use the C<keys> property to express the same thing, but
-C<req_keys> is more convenient:
-
- ["hash", "prop", ["keys", ["array", "each_elem", ["str", "in", ["a", "b"]]]]]
-
 See also: C<allowed_keys>, C<forbidden_keys>.
 
 =head3 allowed_keys : ARRAY
@@ -946,6 +941,11 @@ in the value need not exist. Example:
 
 Then hashes C<{}>, C<{"a":1}>, C<{"a":1,"b":2}> all pass, but C<{"a":1,"c":3}>
 fails because it contains keys outside the allowed list.
+
+Note: you can also use the C<keys> property to express the same thing, but
+C<allowerd_keys> is more convenient:
+
+ ["hash", "prop", ["keys", ["array", "each_elem", ["str", "in", ["a", "b"]]]]]
 
 See also: C<req_keys>, C<forbidden_keys>.
 
@@ -961,6 +961,11 @@ Specify which keys are forbidden (must not exist). Example:
 
 Then hashes C<{}>, C<{"c":1}> all pass, but C<{"a":1,"c":3}> fails because it
 contains keys in the forbidden list.
+
+Note: you can also use the C<keys> property to express the same thing, but
+C<allowerd_keys> is more convenient:
+
+ ["hash", "prop", ["keys", ["array", "each_elem", ["str", "!in", ["a", "b"]]]]]
 
 See also: C<req_keys>, C<allowed_keys>.
 
@@ -1015,18 +1020,18 @@ Object.
 
 =head2 Properties
 
-=head3 methods
+=head3 meths : ARRAY
 
-=head3 attributes
+=head3 attrs : ARRAY
 
 =head2 Clauses
 
-=head3 can
+=head3 can : STR
 
-=head3 isa
+=head3 isa : STR
 
 
-=head1 TYPE: date
+=head1 TYPE: date (not yet specified)
 
 
 =head1 SEE ALSO
