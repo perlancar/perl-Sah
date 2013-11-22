@@ -86,12 +86,14 @@ sub gen_BaseType_tests {
         schema => [$Type, req=>0],
         input  => undef,
         valid  => 1,
+        tags   => ['clause:req'],
     };
     push @res, {
         name   => "req=1 must reject undefined value",
         schema => [$Type, req=>1],
         input  => undef,
         valid  => 0,
+        tags   => ['clause:req'],
     };
 
     # forbidden
@@ -100,12 +102,14 @@ sub gen_BaseType_tests {
         schema => [$Type, forbidden=>0],
         input  => $args{value},
         valid  => 1,
+        tags   => ['clause:forbidden'],
     };
     push @res, {
         name   => "forbidden=1 must reject defined value",
         schema => [$Type, forbidden=>1],
         input  => $args{value},
         valid  => 0,
+        tags   => ['clause:forbidden'],
     };
 
     # default
@@ -115,6 +119,7 @@ sub gen_BaseType_tests {
             input  => undef,
             schema => ["$Type*", default=>$_],
             valid  => 1,
+            tags   => ['clause:default'],
         };
     }
     for (@{ $args{nok_defaults} }) {
@@ -123,6 +128,7 @@ sub gen_BaseType_tests {
             input  => undef,
             schema => ["$Type*", default=>$_],
             valid  => 0,
+            tags   => ['clause:default'],
         };
     }
 
@@ -132,12 +138,14 @@ sub gen_BaseType_tests {
         input  => $args{value},
         schema => ["$Type*", clause=>[foo => 1]],
         dies   => 1,
+        tags   => ['clause:clause'],
     };
     push @res, {
         name   => "clause (ok)",
         input  => $args{value},
         schema => ["$Type*", clause=>$args{ok_clauses}[0]],
         valid  => 1,
+        tags   => ['clause:clause'],
     } if $args{ok_clauses};
     # to test that the existence of clause does not override clauses outside it
     push @res, {
@@ -149,6 +157,7 @@ sub gen_BaseType_tests {
             $args{nok_clauses}[1][0] => $args{nok_clauses}[1][1],
         ],
         valid  => 0,
+        tags   => ['clause:clause'],
     } if $args{ok_clauses};
     push @res, {
         name   => "clause (nok)",
@@ -156,6 +165,7 @@ sub gen_BaseType_tests {
         schema => ["$Type*", clause=>$args{nok_clauses}[0]],
         valid  => 0,
         errors => 1,
+        tags   => ['clause:clause'],
     } if $args{ok_clauses};
 
     # XXX clause 'clause' + .op and/or/none
@@ -165,12 +175,14 @@ sub gen_BaseType_tests {
         input  => $args{value},
         schema => ["$Type*", clset=>{foo=>1}],
         dies   => 1,
+        tags   => ['clause:clset'],
     };
     push @res, {
         name   => "clset (dies, unknown attr)",
         input  => $args{value},
         schema => ["$Type*", clset=>{min_len=>1, "min_len.foo"=>1}],
         dies   => 1,
+        tags   => ['clause:clset'],
     };
     push @res, {
         name   => "clset (empty = ok)",
@@ -183,6 +195,7 @@ sub gen_BaseType_tests {
         input  => $args{value},
         schema => ["$Type*", clset=>{_foo=>1, "foo._bar"=>2}],
         valid  => 1,
+        tags   => ['clause:clset'],
     };
     push @res, {
         name   => "clset (ok + ok = ok)",
@@ -192,6 +205,7 @@ sub gen_BaseType_tests {
             $args{ok_clauses}[1][0] => $args{ok_clauses}[1][1],
         }],
         valid  => 1,
+        tags   => ['clause:clset'],
     } if $args{ok_clauses};
     # to test that the existence of clset does not override clauses outside it
     push @res, {
@@ -205,6 +219,7 @@ sub gen_BaseType_tests {
             $args{nok_clauses}[1][0] => $args{nok_clauses}[1][1],
         ],
         valid  => 0,
+        tags   => ['clause:clset'],
     } if $args{ok_clauses};
     push @res, {
         name   => "clset (ok + nok = nok)",
@@ -214,6 +229,7 @@ sub gen_BaseType_tests {
             $args{nok_clauses}[1][0] => $args{nok_clauses}[1][1],
         }],
         valid  => 0,
+        tags   => ['clause:clset'],
     } if $args{ok_clauses};
     push @res, {
         name   => "clset (nok + ok = nok)",
@@ -223,6 +239,7 @@ sub gen_BaseType_tests {
             $args{ok_clauses}[1][0]  => $args{ok_clauses}[1][1],
         }],
         valid  => 0,
+        tags   => ['clause:clset'],
     } if $args{ok_clauses};
     push @res, {
         name   => "clset (nok + nok = nok)",
@@ -232,6 +249,7 @@ sub gen_BaseType_tests {
             $args{nok_clauses}[1][0] => $args{nok_clauses}[1][1],
         }],
         valid  => 0,
+        tags   => ['clause:clset'],
     } if $args{ok_clauses};
 
     # XXX clause 'clset' + .op and/or/none
