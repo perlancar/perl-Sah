@@ -1,0 +1,20 @@
+{
+    "tests": [
+        {
+            "name"           : "if clset + bool",
+            "summary"        : "forbid string to contain any lowercase character",
+            "schema"         : ["str", "if", [{"match": "[a-z]"}, false]],
+            "valid_inputs"   : ["", "A", "ABC"],
+            "invalid_inputs" : ["Ab", "aB"],
+            "tags"           : ['clause:if']
+        },
+        {
+            "name"           : "if clset + expr + expr",
+            "summary"        : "if string is all-lowercase, it must be a palindrome, otherwise it must be longer than 3 characters",
+            "schema"         : ["str", "if", [{"match": "^[a-z]+$"}, "is_palindrome($_)", "len($_) > 3"]],
+            "valid_inputs"   : ["abcba", "a", "Abcd"],
+            "invalid_inputs" : ["abcd", "Abc"],
+            "tags"           : ['clause:if']
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "description": "Currently not yet checking prefilters.temp attribute",
+    "tests": [
+        {
+            "name"           : "prefilters",
+            "schema"         : ["int", {"prefilters":["trim($_)"], "div_by":2}],
+            "valid_inputs"   : [2, " 2", "2 ", " 2 "],
+            "invalid_inputs" : [1, " 1 "],
+            "tags"           : ['clause:prefilters']
+        }
+    ]
+}

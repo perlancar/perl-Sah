@@ -1,0 +1,11 @@
+{
+    "tests": [
+        {
+            "name"           : "check_prop",
+            "schema"         : ["str", "check_prop", ["len", "$_ > 5"]],
+            "valid_inputs"   : ["abcdef"],
+            "invalid_inputs" : ["", "abcde"],
+            "tags"           : ['clause:check_prop']
+        }
+    ]
+}

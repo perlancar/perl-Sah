@@ -100,6 +100,64 @@ sub gen_BaseType_tests {
 
     # schema_v & base_v is tested in 02-schema_versioning.json
 
+    # c
+    push @res, {
+        name   => "c",
+        schema => [$Type, "c.foo.bar"=>1],
+        input  => undef,
+        valid  => 1,
+        tags   => ['clause:c'],
+    };
+
+    # XXX test actual c.perl.OPT, c.js.OPT
+
+    # default_lang
+    push @res, {
+        name   => "default_lang",
+        schema => [$Type, "default_lang"=>"id_ID"],
+        input  => undef,
+        valid  => 1,
+        tags   => ['clause:default_lang'],
+    };
+
+    # XXX test actual output of human/error message
+
+    # name
+    push @res, {
+        name   => "name",
+        schema => [$Type, "name"=>"some name"],
+        input  => undef,
+        valid  => 1,
+        tags   => ['clause:name'],
+    };
+
+    # summary
+    push @res, {
+        name   => "summary",
+        schema => [$Type, "summary"=>"some summary"],
+        input  => undef,
+        valid  => 1,
+        tags   => ['clause:summary'],
+    };
+
+    # description
+    push @res, {
+        name   => "description",
+        schema => [$Type, "description"=>"some description and `markdown`"],
+        input  => undef,
+        valid  => 1,
+        tags   => ['clause:description'],
+    };
+
+    # description
+    push @res, {
+        name   => "tags",
+        schema => [$Type, "tags"=>["some", "tags"]],
+        input  => undef,
+        valid  => 1,
+        tags   => ['clause:tags'],
+    };
+
     # req
     push @res, {
         name   => "req=0 must accept undefined value",
@@ -190,6 +248,7 @@ sub gen_BaseType_tests {
 
     # XXX clause 'clause' + .op and/or/none
 
+    # clset
     push @res, {
         name   => "clset (dies, unknown clause)",
         input  => $args{value},
@@ -273,6 +332,38 @@ sub gen_BaseType_tests {
     } if $args{ok_clauses};
 
     # XXX clause 'clset' + .op and/or/none
+
+    # prefilters is tested in 20-clause-prefilters.json
+
+    # ok
+    push @res, (
+        {
+            name   => "ok",
+            schema => [$Type, {ok => 1}],
+            input  => undef,
+            valid  => 1,
+            tags   => ["clause:ok"],
+        },
+    );
+    push @res, (
+        {
+            name   => "ok + op not (nok)",
+            schema => [$Type, {"ok!" => 1}],
+            input  => undef,
+            valid  => 0,
+            tags   => ["clause:ok", "op", "op:not"],
+        },
+    );
+
+    # check is tested in 20-clause-check.json
+
+    # prop is tested in 20-clause-prop.json
+
+    # check_prop is tested in 20-clause-check_prop.json
+
+    # if is tested in 20-clause-if.json
+
+    # postfilters is tested in 20-clause-prefilters.json
 
     @res;
 }
@@ -548,12 +639,14 @@ sub gen_err_level_tests {
             input  => $args{ok_value},
             schema => [$Type, $args{clause} => $args{cval}],
             valid  => 1,
+            tags   => ['attr', 'attr:err_level'],
         },
         {
             name   => ".err_level=error (clause=$args{clause}, nok)",
             input  => $args{nok_value},
             schema => [$Type, $args{clause} => $args{cval}],
             valid  => 0,
+            tags   => ['attr', 'attr:err_level'],
         },
         {
             name   => ".err_level=warn (clause=$args{clause}, ok)",
@@ -561,6 +654,7 @@ sub gen_err_level_tests {
             schema => [$Type, $args{clause} => $args{cval},
                        "$args{clause}.err_level"=>"warn"],
             valid  => 1,
+            tags   => ['attr', 'attr:err_level'],
         },
         {
             name   => ".err_level=warn (clause=$args{clause}, nok)",
@@ -569,6 +663,7 @@ sub gen_err_level_tests {
                        "$args{clause}.err_level"=>"warn"],
             valid  => 1,
             warnings => 1,
+            tags   => ['attr', 'attr:err_level'],
         },
     );
     # XXX .err_level=fatal (needs two clauses)
@@ -587,12 +682,14 @@ sub gen_Comparable_tests {
         schema => [$Type, is=>$v],
         input  => $v,
         valid  => 1,
+        tags   => ['clause:is'],
     };
     push @res, {
         name   => "is: must reject different value",
         schema => [$Type, is=>$v2],
         input  => $v,
         valid  => 0,
+        tags   => ['clause:is'],
     };
     local $Clause = "is";
     push @res, gen_op_attr_tests(
@@ -607,12 +704,14 @@ sub gen_Comparable_tests {
         schema => [$Type, in=>$args{values}],
         input  => $v,
         valid  => 1,
+        tags   => ['clause:in'],
     };
     push @res, {
         name   => "in: must reject empty choices",
         schema => [$Type, in=>[]],
         input  => $v,
         valid  => 0,
+        tags   => ['clause:in'],
     };
     local $Clause = "in";
     push @res, gen_op_attr_tests(
@@ -640,18 +739,21 @@ sub gen_Sortable_tests {
             input  => $v2,
             schema => [$Type, min => $v1],
             valid  => 1,
+            tags   => ['clause:min'],
         },
         {
             name   => "min: "._l($v2)." "._l($v2),
             input  => $v2,
             schema => [$Type, min => $v2],
             valid  => 1,
+            tags   => ['clause:min'],
         },
         {
             name   => "min: "._l($v1)." "._l($v2).' -> fail',
             input  => $v1,
             schema => [$Type, min => $v2],
             valid  => 0,
+            tags   => ['clause:min'],
         },
 
         {
@@ -659,18 +761,21 @@ sub gen_Sortable_tests {
             input  => $v2,
             schema => [$Type, xmin => $v1],
             valid  => 1,
+            tags   => ['clause:xmin'],
         },
         {
             name   => "xmin: "._l($v2)." "._l($v2).' -> fail',
             input  => $v2,
             schema => [$Type, xmin => $v2],
             valid  => 0,
+            tags   => ['clause:xmin'],
         },
         {
             name   => "xmin: "._l($v1)." "._l($v2).' -> fail',
             input  => $v1,
             schema => [$Type, xmin => $v2],
             valid  => 0,
+            tags   => ['clause:xmin'],
         },
 
         {
@@ -678,18 +783,21 @@ sub gen_Sortable_tests {
             input  => $v2,
             schema => [$Type, max => $v1],
             valid  => 0,
+            tags   => ['clause:max'],
         },
         {
             name   => "max: "._l($v2)." "._l($v2),
             input  => $v2,
             schema => [$Type, max => $v2],
             valid  => 1,
+            tags   => ['clause:max'],
         },
         {
             name   => "max: "._l($v1)." "._l($v2),
             input  => $v1,
             schema => [$Type, max => $v2],
             valid  => 1,
+            tags   => ['clause:max'],
         },
 
         {
@@ -697,18 +805,21 @@ sub gen_Sortable_tests {
             input  => $v2,
             schema => [$Type, xmax => $v1],
             valid  => 0,
+            tags   => ['clause:xmax'],
         },
         {
             name   => "xmax: "._l($v2)." "._l($v2).' -> fail',
             input  => $v2,
             schema => [$Type, xmax => $v2],
             valid  => 0,
+            tags   => ['clause:xmax'],
         },
         {
             name   => "xmax: "._l($v1)." "._l($v2),
             input  => $v1,
             schema => [$Type, xmax => $v2],
             valid  => 1,
+            tags   => ['clause:xmax'],
         },
 
         {
@@ -716,24 +827,28 @@ sub gen_Sortable_tests {
             input  => $v2,
             schema => [$Type, between => [$v1, $v3]],
             valid  => 1,
+            tags   => ['clause:between'],
         },
         {
             name   => "between: "._l($v2)." "._l($v1)." & "._l($v2),
             input  => $v2,
             schema => [$Type, between => [$v1, $v2]],
             valid  => 1,
+            tags   => ['clause:between'],
         },
         {
             name   => "between: "._l($v2)." "._l($v2)." & "._l($v2),
             input  => $v2,
             schema => [$Type, between => [$v2, clone($v2)]],
             valid  => 1,
+            tags   => ['clause:between'],
         },
         {
             name   => "between: "._l($v1)." "._l($v2)." & "._l($v3).' -> fail',
             input  => $v1,
             schema => [$Type, between => [$v2, $v3]],
             valid  => 0,
+            tags   => ['clause:between'],
         },
 
         {
@@ -741,24 +856,28 @@ sub gen_Sortable_tests {
             input  => $v2,
             schema => [$Type, xbetween => [$v1, $v3]],
             valid  => $v3 eq $v2 ? 0:1,
+            tags   => ['clause:xbetween'],
         },
         {
             name   => "xbetween: "._l($v2)." "._l($v1)." & "._l($v2).' -> fail',
             input  => $v2,
             schema => [$Type, xbetween => [$v1, $v2]],
             valid  => 0,
+            tags   => ['clause:xbetween'],
         },
         {
             name   => "xbetween: "._l($v2)." "._l($v2)." & "._l($v2).' -> fail',
             input  => $v2,
             schema => [$Type, xbetween => [$v2, clone($v2)]],
             valid  => 0,
+            tags   => ['clause:xbetween'],
         },
         {
             name   => "xbetween: "._l($v1)." "._l($v2)." & "._l($v3).' -> fail',
             input  => $v1,
             schema => [$Type, xbetween => [$v2, $v3]],
             valid  => 0,
+            tags   => ['clause:xbetween'],
         },
 
     );
@@ -796,82 +915,153 @@ sub gen_HasElems_tests {
             input  => $v1,
             schema => [$Type, len => $l1],
             valid  => 1,
+            tags   => ['clause:len'],
         },
         {
             name   => "len (nok)",
             input  => $v1,
             schema => [$Type, len => $l2],
             valid  => 0,
+            tags   => ['clause:len'],
         },
         {
             name   => "min_len (ok)",
             input  => $v1,
             schema => [$Type, min_len => $l1],
             valid  => 1,
+            tags   => ['clause:min_len'],
         },
         {
             name   => "min_len (nok)",
             input  => $v1,
             schema => [$Type, min_len => $l2],
             valid  => 0,
+            tags   => ['clause:min_len'],
         },
         {
             name   => "max_len (ok)",
             input  => $v1,
             schema => [$Type, min_len => $l1],
             valid  => 1,
+            tags   => ['clause:max_len'],
         },
         {
             name   => "max_len (nok)",
             input  => $v2,
             schema => [$Type, max_len => $l1],
             valid  => 0,
+            tags   => ['clause:max_len'],
         },
         {
             name   => "len_between (ok)",
             input  => $v1,
             schema => [$Type, len_between => [$l1, $l2]],
             valid  => 1,
+            tags   => ['clause:len_between'],
         },
         {
             name   => "len_between (nok)",
             input  => $v2,
             schema => [$Type, len_between => [$l1, $l1]],
             valid  => 0,
+            tags   => ['clause:len_between'],
         },
-
-        # XXX has
-
-        {
-            name   => "each_index (ok)",
-            input  => $v2,
-            schema => [$Type, each_index => $args{ok_each_index}],
-            valid  => 1,
-        },
-        {
-            name   => "each_index (nok)",
-            input  => $v2,
-            schema => [$Type, each_index => $args{nok_each_index}],
-            valid  => 0,
-        },
-        {
-            name   => "each_elem (ok)",
-            input  => $v2,
-            schema => [$Type, each_elem => $args{ok_each_elem}],
-            valid  => 1,
-        },
-        {
-            name   => "each_elem (nok)",
-            input  => $v2,
-            schema => [$Type, each_elem => $args{nok_each_elem}],
-            valid  => 0,
-        },
-
-        # XXX check_each_index
-        # XXX check_each_elem
-        # XXX uniq
-        # XXX exists
     );
+
+    for ("each_index", ("each_key") x !!$args{is_hash}) {
+        push @res, (
+            {
+                name   => "$_ (ok)",
+                input  => $v2,
+                schema => [$Type, $_ => $args{ok_each_index}],
+                valid  => 1,
+                tags   => ["clause:$_"],
+            },
+            {
+                name   => "$_ (nok)",
+                input  => $v2,
+                schema => [$Type, $_ => $args{nok_each_index}],
+                valid  => 0,
+                tags   => ["clause:$_"],
+            },
+        );
+    }
+    for ("each_elem", ("each_value") x !!$args{is_hash}) {
+        push @res, (
+            {
+                name   => "$_ (ok)",
+                input  => $v2,
+                schema => [$Type, $_ => $args{ok_each_elem}],
+                valid  => 1,
+                tags   => ["clause:$_"],
+            },
+            {
+                name   => "$_ (nok)",
+                input  => $v2,
+                schema => [$Type, $_ => $args{nok_each_elem}],
+                valid  => 0,
+                tags   => ["clause:$_"],
+            },
+        );
+    }
+
+    for ("check_each_index", ("check_each_key") x !!$args{is_hash}) {
+        push @res, (
+            {
+                name           => "$_",
+                schema         => [$Type => $_ => $args{check_each_index_value}],
+                valid_inputs   => $args{check_each_index_valid_inputs}   // [],
+                invalid_inputs => $args{check_each_index_invalid_inputs} // [],
+                tags           => ["clause:$_"],
+            },
+        ) if exists($args{check_each_index_value});
+    }
+
+    for ("check_each_elem", ("check_each_value") x !!$args{is_hash}) {
+        push @res, (
+            {
+                name           => "$_",
+                schema         => [$Type => $_ => $args{check_each_elem_value}],
+                valid_inputs   => $args{check_each_elem_valid_inputs}   // [],
+                invalid_inputs => $args{check_each_elem_invalid_inputs} // [],
+                tags           => ["clause:$_"],
+            },
+        ) if exists($args{check_each_elem_value});
+    }
+
+    push @res, (
+        {
+            name           => 'uniq=1',
+            schema         => [$Type => uniq => 1],
+            valid_inputs   => $args{uniq_inputs}    // [],
+            invalid_inputs => $args{nonuniq_inputs} // [],
+            tags           => ['clause:uniq'],
+        },
+        {
+            name           => 'uniq=0',
+            schema         => [$Type => uniq => 0],
+            valid_inputs   => $args{nonuniq_inputs} // [],
+            invalid_inputs => $args{uniq_inputs}    // [],
+            tags           => ['clause:uniq'],
+        },
+        {
+            name           => '!uniq=1',
+            schema         => [$Type => "!uniq" => 1],
+            valid_inputs   => $args{nonuniq_inputs} // [],
+            invalid_inputs => $args{uniq_inputs}    // [],
+            tags           => ['clause:uniq', 'op', 'op:not', 'opshortcut'],
+        },
+    ) if $args{uniq_inputs};
+
+    push @res, (
+        {
+            name           => 'exists',
+            schema         => $args{exists_value},
+            valid_inputs   => $args{exists_valid_inputs}   // [],
+            invalid_inputs => $args{exists_invalid_inputs} // [],
+            tags           => ['clause:exists'],
+        },
+    ) if $args{exists_value};
 
     if ($args{elems_test}) {
         for ($args{elems_test}) {
@@ -881,18 +1071,86 @@ sub gen_HasElems_tests {
                     input  => $_->{value},
                     schema => [$Type, elems => $_->{ok}],
                     valid  => 1,
+                    tags   => ['clause:elems'],
                 },
                 {
                     name   => 'elems (nok)',
                     input  => $_->{value},
                     schema => [$Type, elems => $_->{nok}],
                     valid  => 0,
+                    tags   => ['clause:elems'],
                 },
             );
         }
     }
 
-    # XXX multi vals for all clauses
+    push @res, (
+        {
+            name           => 'has',
+            schema         => [$Type => has => $args{has_values}[0]],
+            valid_inputs   => $args{has_valid_inputs}   // [],
+            invalid_inputs => $args{has_invalid_inputs} // [],
+            tags           => ['clause:has'],
+        },
+        {
+            name           => 'has + op.not',
+            schema         => [$Type => "!has" => $args{has_values}[0]],
+            valid_inputs   => $args{has_invalid_inputs} // [],
+            invalid_inputs => $args{has_valid_inputs}   // [],
+            tags           => ['clause:has', 'op', 'op:not', 'opshortcut'],
+        },
+        {
+            name           => 'has + op.or',
+            schema         => [$Type => "has|" => $args{has_values}],
+            valid_inputs   => $args{has_valid_inputs}   // [],
+            invalid_inputs => $args{has_invalid_inputs} // [],
+            tags           => ['clause:has', 'op', 'op:or', 'opshortcut'],
+        },
+        {
+            name           => 'has + op.and',
+            schema         => [$Type => "has&" => $args{has_values}],
+            valid_inputs   => $args{has_valid_inputs}[0],
+            invalid_inputs => [$args{has_valid_inputs}[1], @{ $args{has_invalid_inputs} }],
+            tags           => ['clause:has', 'op', 'op:and', 'opshortcut'],
+        },
+        # XXX has + op.none
+    ) if $args{has_values};
+
+    # XXX multi vals for all clauses that haven't the tests for yet
+
+    push @res, (
+        {
+            name           => 'prop:len',
+            schema         => [$Type => prop => [len => $args{prop_len_schema}]],
+            valid_inputs   => $args{prop_len_valid_inputs}   // [],
+            invalid_inputs => $args{prop_len_invalid_inputs} // [],
+            tags           => ['prop:len'],
+        },
+    ) if $args{prop_len_schema};
+
+    for ("indices", ("keys") x !!$args{is_hash}) {
+        push @res, (
+            {
+                name           => "prop:$_",
+                schema         => [$Type => prop => [$_ => $args{prop_indices_schema}]],
+                valid_inputs   => $args{prop_indices_valid_inputs}   // [],
+                invalid_inputs => $args{prop_indices_invalid_inputs} // [],
+                tags           => ["prop:$_"],
+            },
+        ) if $args{prop_indices_schema};
+    }
+
+    for ("elems", ("values") x !!$args{is_hash}) {
+        push @res, (
+            {
+                name           => "prop:$_",
+                schema         => [$Type => prop => [$_ => $args{prop_elems_schema}]],
+                valid_inputs   => $args{prop_elems_valid_inputs}   // [],
+                invalid_inputs => $args{prop_elems_invalid_inputs} // [],
+                tags           => ["prop:$_"],
+            },
+        ) if $args{prop_elems_schema};
+    }
 
     @res;
 }
@@ -1004,11 +1262,14 @@ sub gen_int_tests {
     @res;
 }
 
-sub gen_float_tests {
-    my %args = @_;
+# XXX currently we treat num and float as the same because we don't do
+# float-specific like is_{nan,inf,pos_inf,neg_inf} due to json doesn't support
+# serializing Inf/NaN.
+sub _gen_float_or_num_tests {
+    my ($which, %args) = @_;
     my @res;
 
-    local $Type = "float";
+    local $Type = $which;
 
     push @res, (
         gen_type_check_tests(
@@ -1041,6 +1302,10 @@ sub gen_float_tests {
     insert_type_tags(\@res);
     @res;
 }
+
+sub gen_num_tests { _gen_float_or_num_tests('num', @_) }
+
+sub gen_float_tests { _gen_float_or_num_tests('float', @_) }
 
 sub gen_array_tests {
     my %args = @_;
@@ -1081,6 +1346,41 @@ sub gen_array_tests {
             # 'elems' is actually not part of HasElems currently, but we stick
             # it in here for the moment. str might get 'elems' too.
             elems_test     => {value=>[1, 1.2], ok=>["int","float"], nok=>["int","int"]},
+
+            check_each_index_value          => '$_ <= 2',
+            check_each_index_valid_inputs   => [[], [1], [1,1], [1,1,1]],
+            check_each_index_invalid_inputs => [[1,1,1,1]],
+
+            check_each_elem_value           => '$_ >= 2',
+            check_each_elem_valid_inputs    => [[], [3], [3, 2]],
+            check_each_elem_invalid_inputs  => [[1], [2, 1]],
+
+            uniq_inputs    => [[], [1], [1,2]],
+            nonuniq_inputs => [[1,1]],
+
+            exists_value          => '$_ <= 2',
+            exists_valid_inputs   => [[1], [3, 1]],
+            exists_invalid_inputs => [[], [3]],
+
+            # has_values should be 2 elements, has_valid_inputs should be 2
+            # elements where the first one has both has_values and the second
+            # only the first. has_invalid_inputs must not have any values in
+            # has_values.
+            has_values         => [1, 2],
+            has_valid_inputs   => [[1, 2, 3], [1, 3]],
+            has_invalid_inputs => [[], [3]],
+
+            prop_len_schema             => [int => is => 2],
+            prop_len_valid_inputs       => [[1, 1], [1, 2]],
+            prop_len_invalid_inputs     => [[], [1]],
+
+            prop_indices_schema         => [array => has => 2],
+            prop_indices_valid_inputs   => [[1, 1, 1]],
+            prop_indices_invalid_inputs => [[], [1], [1, 1]],
+
+            prop_elems_schema           => [array => has => "a"],
+            prop_elems_valid_inputs     => [["a", "b"]],
+            prop_elems_invalid_inputs   => [[], ["b"]],
         ),
     );
 
@@ -1155,11 +1455,13 @@ sub gen_array_tests {
     @res;
 }
 
-sub gen_str_tests {
-    my %args = @_;
+# XXX currently buf is treated the same as str, because js/json/we don't do
+# binary stuff yet.
+sub _gen_str_or_buf_tests {
+    my ($which, %args) = @_;
     my @res;
 
-    local $Type = "str";
+    local $Type = $which;
 
     push @res, (
         gen_type_check_tests(
@@ -1193,31 +1495,66 @@ sub gen_str_tests {
             # will be tested on the second value
             ok_each_index  => [int =>  max => 2],
             nok_each_index => [int => xmax => 2],
-            ok_each_elem   => "str",
+            ok_each_elem   => $which,
             nok_each_elem  => "float",
             # currently only array has 'elems' clause, and it's not part of
-            # HasELems role
-            #elems_test     => {value=>"abc", ok=>["str","str","str"], nok=>["str","str",[str=>is=>"d"]]},
+            # HasElems role
+            #elems_test     => {value=>"abc", ok=>[$which,$which,$which], nok=>[$which,$which,[$which=>is=>"d"]]},
+
+            check_each_index_value          => '$_ <= 2',
+            check_each_index_valid_inputs   => ["", "a", "aa", "aaa"],
+            check_each_index_invalid_inputs => ["aaaa"],
+
+            check_each_elem_value           => '$_ eq "a"',
+            check_each_elem_valid_inputs    => [[], ["a"]],
+            check_each_elem_invalid_inputs  => [["A"], ["a", "b"]],
+
+            uniq_inputs    => ["", "a", "ab"],
+            nonuniq_inputs => ["aa"],
+
+            exists_value          => '$_ eq "a"',
+            exists_valid_inputs   => ["a", "ba"],
+            exists_invalid_inputs => ["", "bc", "A"],
+
+            # has_values should be 2 elements, has_valid_inputs should be 2
+            # elements where the first one has both has_values and the second
+            # only the first. has_invalid_inputs must not have any values in
+            # has_values.
+            has_values         => ["a", "b"],
+            has_valid_inputs   => ["abc", "bc"],
+            has_invalid_inputs => ["", "c"],
+
+            prop_len_schema             => [int => is => 2],
+            prop_len_valid_inputs       => ["aa"],
+            prop_len_invalid_inputs     => ["", "a"],
+
+            prop_indices_schema         => [array => has => 2],
+            prop_indices_valid_inputs   => ["aaa"],
+            prop_indices_invalid_inputs => ["", "a", "aa"],
+
+            prop_elems_schema           => [array => has => "a"],
+            prop_elems_valid_inputs     => ["ab"],
+            prop_elems_invalid_inputs   => ["", "b"],
         ),
 
         {
             name   => 'match: (ok)',
             input  => "a",
-            schema => [str => match => "[abc]"],
+            schema => [$which => match => "[abc]"],
             valid  => 1,
             tags   => ['clause:match'],
         },
         {
             name   => 'match: (nok)',
             input  => "z",
-            schema => [str => match => "[abc]"],
+            schema => [$which => match => "[abc]"],
             valid  => 0,
             tags   => ['clause:match'],
         },
         {
             name   => 'match: (dies, invalid regex)',
             input  => "a",
-            schema => [str => match => "("],
+            schema => [$which => match => "("],
             dies   => 1,
             tags   => ['clause:match'],
         },
@@ -1225,32 +1562,102 @@ sub gen_str_tests {
         {
             name   => 'is_re: 1 (ok)',
             input  => "a",
-            schema => [str => is_re => 1],
+            schema => [$which => is_re => 1],
             valid  => 1,
             tags   => ['clause:is_re'],
         },
         {
             name   => 'is_re: 1 (nok)',
             input  => "a(",
-            schema => [str => is_re => 1],
+            schema => [$which => is_re => 1],
             valid  => 0,
             tags   => ['clause:is_re'],
         },
         {
             name   => 'is_re: 0 (ok)',
             input  => "a(",
-            schema => [str => is_re => 0],
+            schema => [$which => is_re => 0],
             valid  => 1,
             tags   => ['clause:is_re'],
         },
         {
             name   => 'is_re: 0 (nok)',
             input  => "a",
-            schema => [str => is_re => 0],
+            schema => [$which => is_re => 0],
             valid  => 0,
             tags   => ['clause:is_re'],
         },
 
+    );
+
+    insert_type_tags(\@res);
+    @res;
+}
+
+sub gen_str_tests { _gen_str_or_buf_tests("str", @_) }
+
+sub gen_buf_tests { _gen_str_or_buf_tests("buf", @_) }
+
+# currently only tests the minimum
+sub gen_cistr_tests {
+    my %args = @_;
+    my @res;
+
+    local $Type = "cistr";
+
+    push @res, (
+        {
+            name           => 'is',
+            schema         => [$Type => {is => "steven"}],
+            valid_inpust   => ["steven", "Steven", "STEVEN"],
+            invalid_inputs => ["", "steve"],
+            tags           => ["clause:is"],
+        },
+    );
+
+    insert_type_tags(\@res);
+    @res;
+}
+
+# currently only tests the minimum and doesn't currently test valid inputs,
+# because js/json doesn't differentiate hash & object. in Data::Sah, a test for
+# perl compiler is provided.
+sub gen_obj_tests {
+    my %args = @_;
+    my @res;
+
+    local $Type = "obj";
+
+    push @res, (
+        {
+            name           => 'can (nok)',
+            schema         => [$Type => {can => "foo"}],
+            input          => 1,
+            valid          => 0,
+            tags           => ["clause:can"],
+        },
+        {
+            name           => 'isa (nok)',
+            schema         => [$Type => {isa => "foo"}],
+            input          => 1,
+            valid          => 0,
+            tags           => ["clause:isa"],
+        },
+
+        {
+            name           => 'prop:meths (nok)',
+            schema         => [$Type => prop => [meths => ['array']]],
+            input          => 1,
+            valid          => 0,
+            tags           => ['prop:meths'],
+        },
+        {
+            name           => 'prop:attrs (nok)',
+            schema         => [$Type => prop => [attrs => ['array']]],
+            input          => 1,
+            valid          => 0,
+            tags           => ['prop:attrs'],
+        },
     );
 
     insert_type_tags(\@res);
@@ -1287,6 +1694,12 @@ sub gen_hash_tests {
         ),
 
         gen_HasElems_tests(
+            # hardcoded, meaning: has each_key (alias for each_index),
+            # check_each_key (alias for check_each_index), each_value (alias for
+            # each_elem), check_each_value (alias for check_each_elem), prop
+            # keys (alias for indices), prop values (alias for elems).
+            is_hash => 1,
+
             # two values, each value is [VAL, LEN].
             values => [ [{a=>1}, 1], [{a=>1, b=>1.1}, 2] ],
             # will be tested on the second value
@@ -1295,7 +1708,42 @@ sub gen_hash_tests {
             ok_each_elem   => "float",
             nok_each_elem  => "int",
             # currently only array has 'elems' clause, and it's not part of
-            # HasELems role
+            # HasElems role
+
+            check_each_index_value          => '$_ eq "a"',
+            check_each_index_valid_inputs   => [{}, {a=>1}],
+            check_each_index_invalid_inputs => [{a=>1, b=>2}, {1=>"a"}],
+
+            check_each_elem_value           => '$_ eq "a"',
+            check_each_elem_valid_inputs    => [{}, {1=>"a"}],
+            check_each_elem_invalid_inputs  => [{1=>"a", 2=>"b"}, {a=>1}],
+
+            uniq_inputs    => [{}, {a=>1, b=>2}],
+            nonuniq_inputs => [{a=>1, b=>1}],
+
+            exists_value          => '$_ eq "a"',
+            exists_valid_inputs   => [{1=>"a"}, {2=>"b", 1=>"a"}],
+            exists_invalid_inputs => [{}, {2=>"b"}],
+
+            # has_values should be 2 elements, has_valid_inputs should be 2
+            # elements where the first one has both has_values and the second
+            # only the first. has_invalid_inputs must not have any values in
+            # has_values.
+            has_values         => ["a", "b"],
+            has_valid_inputs   => [{1=>"a", 2=>"b", 3=>"c"}, {2=>"b", 3=>"c"}],
+            has_invalid_inputs => [{}, {3=>"c"}],
+
+            prop_len_schema             => [int => is => 2],
+            prop_len_valid_inputs       => [{a=>1, b=>2}],
+            prop_len_invalid_inputs     => [{}, {a=>1}],
+
+            prop_indices_schema         => [array => has => "a"],
+            prop_indices_valid_inputs   => [{a=>1}, {a=>1, b=>2}],
+            prop_indices_invalid_inputs => [{}, {b=>2}, {1=>"a"}],
+
+            prop_elems_schema           => [array => has => "a"],
+            prop_elems_valid_inputs     => [{1=>"a"}, {1=>"a", 2=>"b"}],
+            prop_elems_invalid_inputs   => [{}, {a=>1}, {b=>2}],
         )
     );
 
@@ -1423,7 +1871,16 @@ sub gen_hash_tests {
         },
     );
 
-    # XXX re_keys
+    $sch  = [hash => {re_keys => {'[ab]' => "int"}}];
+    push @res, (
+        {
+            name           => "re_keys",
+            schema         => $sch,
+            valid_inputs   => [{}, {a=>1}, {b=>1, x=>"x"}],
+            invalid_inputs => [{a=>"x"}, {b=>"x"}],
+            tags           => ['clause:re_keys'],
+        },
+    );
 
     $sch  = [hash => {req_keys => []}];
     $sch2 = [hash => {req_keys => [qw/a b/]}];
@@ -1462,24 +1919,6 @@ sub gen_hash_tests {
             schema => $sch2,
             valid  => 0,
             tags   => ['clause:req_keys'],
-        },
-    );
-
-    $sch = [hash => {req_keys_re => '^(a|b)$'}];
-    push @res, (
-        {
-            name   => 'req_keys_re: (ok)',
-            input  => {a=>1, b=>1, c=>1},
-            schema => $sch,
-            valid  => 1,
-            tags   => ['clause:req_keys_re'],
-        },
-        {
-            name   => 'req_keys_re: (nok)',
-            input  => {b=>1, c=>1},
-            schema => $sch,
-            valid  => 0,
-            tags   => ['clause:req_keys_re'],
         },
     );
 
@@ -1583,6 +2022,28 @@ sub gen_hash_tests {
         },
     );
 
+    # prop: keys
+    push @res, (
+        {
+            name           => 'prop:keys',
+            schema         => [hash => prop => [keys => [array => has => "x"]]],
+            valid_inputs   => [{x=>1}, {x=>1, y=>1}],
+            invalid_inputs => [{}, {y=>"x"}],
+            tags           => ['prop:keys'],
+        },
+    );
+
+    # prop: values
+    push @res, (
+        {
+            name           => 'prop:values',
+            schema         => [hash => prop => [values => [array => has => "x"]]],
+            valid_inputs   => [{k=>"x"}, {k=>"x", k2=>"y"}],
+            invalid_inputs => [{}, {x=>"y"}],
+            tags           => ['prop:values'],
+        },
+    );
+
     insert_type_tags(\@res);
     @res;
 }
@@ -1590,8 +2051,6 @@ sub gen_hash_tests {
 sub gen_bool_tests {
     my %args = @_;
     my @res;
-
-    # XXX how to dump YAML's boolean?
 
     local $Type = "bool";
 
@@ -1745,7 +2204,8 @@ sub gen_all_tests {
 
 {
     my $now = localtime();
-    for my $type (qw(undef int float array str hash bool any all)) {
+    for my $type (qw(undef num int float array str buf cistr hash bool any all
+                      obj)) {
         my $v = "v$VERSION (generated by $0 on $now)",
         my $f = "gen_${type}_tests";
         no strict 'refs';

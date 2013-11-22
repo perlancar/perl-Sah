@@ -1,0 +1,12 @@
+{
+    "tests": [
+        {
+            "name"           : "prop",
+            "schema"         : ["str", {"prop":["len", ["int", {"div_by":2}]]}],
+            "summary"        : "String that has length divisible by 2",
+            "valid_inputs"   : ["", "ab", "abcd", "abcdef"],
+            "invalid_inputs" : ["a", "abc", "abcde"],
+            "tags"           : ['clause:prop', 'prop', 'prop:len']
+        }
+    ]
+}

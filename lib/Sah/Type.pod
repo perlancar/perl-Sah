@@ -540,7 +540,8 @@ Priority: 50 (normal)
 
 Category: constraint
 
-Requires that the data contains the element.
+Requires that the data contains the element. This is the counterpart of the
+C<in> clause.
 
 Examples:
 
@@ -930,6 +931,11 @@ this schema:
 
 the previous hash will not validate since the value for C<b> is required.
 
+Note: you can also use the C<keys> property to express the same thing, but
+C<req_keys> is more convenient:
+
+ ["hash", "prop", ["keys", ["array", "has&", ["a", "b"]]]]
+
 See also: C<allowed_keys>, C<forbidden_keys>.
 
 =head3 allowed_keys : ARRAY
@@ -943,7 +949,7 @@ Then hashes C<{}>, C<{"a":1}>, C<{"a":1,"b":2}> all pass, but C<{"a":1,"c":3}>
 fails because it contains keys outside the allowed list.
 
 Note: you can also use the C<keys> property to express the same thing, but
-C<allowerd_keys> is more convenient:
+C<allowed_keys> is more convenient:
 
  ["hash", "prop", ["keys", ["array", "each_elem", ["str", "in", ["a", "b"]]]]]
 
@@ -963,7 +969,7 @@ Then hashes C<{}>, C<{"c":1}> all pass, but C<{"a":1,"c":3}> fails because it
 contains keys in the forbidden list.
 
 Note: you can also use the C<keys> property to express the same thing, but
-C<allowerd_keys> is more convenient:
+C<forbidden_keys> is more convenient:
 
  ["hash", "prop", ["keys", ["array", "each_elem", ["str", "!in", ["a", "b"]]]]]
 

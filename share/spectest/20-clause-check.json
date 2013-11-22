@@ -1,0 +1,11 @@
+{
+    "tests": [
+        {
+            "name"           : "check",
+            "schema"         : ["str", "check", "len($_) > 5"],
+            "valid_inputs"   : ["abcdef"],
+            "invalid_inputs" : ["", "abcde"],
+            "tags"           : ['clause:check']
+        }
+    ]
+}

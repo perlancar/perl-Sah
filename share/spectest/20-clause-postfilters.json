@@ -1,0 +1,12 @@
+{
+    "tests": [
+        {
+            "name"           : "postfilters",
+            "description"    : "Currently not yet testing the result of postfilters",
+            "schema"         : ["str", {"match":"^[A-Za-z0-9_]+$", "postfilters":["uc($_)"]}],
+            "valid_inputs"   : ["", "harry"],
+            "invalid_inputs" : ["William"],
+            "tags"           : ['clause:postfilters']
+        }
+    ]
+}
