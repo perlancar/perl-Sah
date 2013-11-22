@@ -153,6 +153,20 @@ You can use C<if> clause and negate the clauses. For example:
 
  "if": [{"!div_by": 2}, {"!div_by": 5}]
 
+=head3 How about "len_in" clause for str? Or "values_uniq" for hash? Or perhaps "len_div_by"? Or some other clauses that test a property/transform of a value?
+
+Except for some commonly used cases like C<len_between>, C<min_len>, C<max_len>,
+C<allowed_keys>, C<forbidden_keys>, to validate a certain property of the value
+(instead of the raw value itself), you can use the generic C<prop> clause:
+
+ // check hash values are unique
+ ["hash", {"prop": ["values", ["array", {"uniq":1}]]}]
+
+Or, for more general use, you can apply a temporary prefilter first to the data:
+
+ // check hash values are unique
+ ["array", {"prefilters.temp":1, "prefilters":["hash_values($_)"], "uniq":1}]
+
 =head3 General advice when writing schemas?
 
 =over 4
