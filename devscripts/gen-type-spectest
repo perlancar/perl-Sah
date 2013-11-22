@@ -348,7 +348,7 @@ sub gen_BaseType_tests {
     push @res, (
         {
             name   => "ok + op not (nok)",
-            schema => [$Type, {"ok!" => 1}],
+            schema => [$Type, {"!ok" => 1}],
             input  => undef,
             valid  => 0,
             tags   => ["clause:ok", "op", "op:not"],
