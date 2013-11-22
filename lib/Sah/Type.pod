@@ -359,7 +359,7 @@ Category: constraint
 Validate property against a schema. Example:
 
  // require that the *length of* string is divisible by 2
- ["str", "prop", ["len", ["int", "div_by", 2"]]]
+ ["str", "prop", ["len", ["int", "div_by", 2]]]
 
 See also: C<check_prop>
 
@@ -481,7 +481,7 @@ by C<array>, C<hash>, and also C<str>.
 
 =head2 Properties
 
-=head3 len : STR
+=head3 len : NUM
 
 =head3 elems : ARRAY
 
@@ -930,15 +930,12 @@ this schema:
 
 the previous hash will not validate since the value for C<b> is required.
 
+Note: you can also use the C<keys> property to express the same thing, but
+C<req_keys> is more convenient:
+
+ ["hash", "prop", ["keys", ["array", "each_elem", ["str", "in", ["a", "b"]]]]]
+
 See also: C<allowed_keys>, C<forbidden_keys>.
-
-=head3 req_keys_re : RE
-
-Like C<req_keys> but using regular expression. Example:
-
- ["hash", "req_keys_re", "^(a|b)$"]
-
-will require keys "a" and "b" to exist.
 
 =head3 allowed_keys : ARRAY
 
