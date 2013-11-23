@@ -1523,8 +1523,8 @@ sub _gen_str_or_cistr_or_buf_tests {
             # only the first. has_invalid_inputs must not have any values in
             # has_values.
             has_values         => ["a", "b"],
-            has_valid_inputs   => $ci ? ["abc", "Bc"] : ["abc", "bc"],
-            has_invalid_inputs => $ci ? ["", "c"] : ["", "B", "c"],
+            has_valid_inputs   => $ci ? ["abc", "Ac"] : ["abc", "ac"],
+            has_invalid_inputs => $ci ? ["", "c"] : ["", "A", "c"],
 
             prop_len_schema             => [int => is => 2],
             prop_len_valid_inputs       => ["aa"],
