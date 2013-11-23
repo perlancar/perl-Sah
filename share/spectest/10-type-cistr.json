@@ -1,28 +1,3644 @@
 {
    "tests" : [
       {
-         "invalid_inputs" : [
-            "",
-            "steve"
+         "input" : 0,
+         "name" : "type check: must accept 0",
+         "schema" : "cistr",
+         "tags" : [
+            "type",
+            "type:cistr"
          ],
-         "valid_inpust" : [
-            "steven",
-            "Steven",
-            "STEVEN"
+         "valid" : 1
+      },
+      {
+         "input" : 1.1,
+         "name" : "type check: must accept 1.1",
+         "schema" : "cistr",
+         "tags" : [
+            "type",
+            "type:cistr"
          ],
-         "name" : "is",
+         "valid" : 1
+      },
+      {
+         "input" : "",
+         "name" : "type check: must accept ",
+         "schema" : "cistr",
+         "tags" : [
+            "type",
+            "type:cistr"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "str\n",
+         "name" : "type check: must accept str\n",
+         "schema" : "cistr",
+         "tags" : [
+            "type",
+            "type:cistr"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : [],
+         "name" : "type check: must reject []",
+         "schema" : "cistr",
+         "tags" : [
+            "type",
+            "type:cistr"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : {},
+         "name" : "type check: must reject {}",
+         "schema" : "cistr",
+         "tags" : [
+            "type",
+            "type:cistr"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : null,
+         "name" : "must accept undefined value",
+         "schema" : "cistr",
+         "tags" : [
+            "type",
+            "type:cistr"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "defhash_v",
          "schema" : [
             "cistr",
+            "defhash_v",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:defhash_v"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "v",
+         "schema" : [
+            "cistr",
+            "v",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:v"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "c",
+         "schema" : [
+            "cistr",
+            "c.foo.bar",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:c"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "default_lang",
+         "schema" : [
+            "cistr",
+            "default_lang",
+            "id_ID"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:default_lang"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "name",
+         "schema" : [
+            "cistr",
+            "name",
+            "some name"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:name"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "summary",
+         "schema" : [
+            "cistr",
+            "summary",
+            "some summary"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:summary"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "description",
+         "schema" : [
+            "cistr",
+            "description",
+            "some description and `markdown`"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:description"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "tags",
+         "schema" : [
+            "cistr",
+            "tags",
+            [
+               "some",
+               "tags"
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:tags"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "req=0 must accept undefined value",
+         "schema" : [
+            "cistr",
+            "req",
+            0
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:req"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "req=1 must reject undefined value",
+         "schema" : [
+            "cistr",
+            "req",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:req"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "a",
+         "name" : "forbidden=0 must accept defined value",
+         "schema" : [
+            "cistr",
+            "forbidden",
+            0
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:forbidden"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "forbidden=1 must reject defined value",
+         "schema" : [
+            "cistr",
+            "forbidden",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:forbidden"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : null,
+         "name" : "default: must accept valid default a",
+         "schema" : [
+            "cistr*",
+            "default",
+            "a"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:default"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "default: must reject invalid default []",
+         "schema" : [
+            "cistr*",
+            "default",
+            []
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:default"
+         ],
+         "valid" : 0
+      },
+      {
+         "dies" : 1,
+         "input" : "a",
+         "name" : "clause (dies, unknown clause)",
+         "schema" : [
+            "cistr*",
+            "clause",
+            [
+               "foo",
+               1
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:clause"
+         ]
+      },
+      {
+         "input" : "a",
+         "name" : "clause (ok)",
+         "schema" : [
+            "cistr*",
+            "clause",
+            [
+               "match",
+               "a"
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:clause"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "clause (ok) + clause nok = nok",
+         "schema" : [
+            "cistr*",
+            "clause",
+            [
+               "match",
+               "a"
+            ],
+            "len",
+            2
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:clause"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : "a",
+         "name" : "clause (nok)",
+         "schema" : [
+            "cistr*",
+            "clause",
+            [
+               "match",
+               "b"
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:clause"
+         ],
+         "valid" : 0
+      },
+      {
+         "dies" : 1,
+         "input" : "a",
+         "name" : "clset (dies, unknown clause)",
+         "schema" : [
+            "cistr*",
+            "clset",
             {
-               "is" : "steven"
+               "foo" : 1
             }
          ],
          "tags" : [
             "type",
             "type:cistr",
-            "clause:is"
+            "clause:clset"
          ]
+      },
+      {
+         "dies" : 1,
+         "input" : "a",
+         "name" : "clset (dies, unknown attr)",
+         "schema" : [
+            "cistr*",
+            "clset",
+            {
+               "min_len" : 1,
+               "min_len.foo" : 1
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:clset"
+         ]
+      },
+      {
+         "input" : "a",
+         "name" : "clset (empty = ok)",
+         "schema" : [
+            "cistr*",
+            "clset",
+            {}
+         ],
+         "tags" : [
+            "type",
+            "type:cistr"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "clset (ignored clause/attr = ok)",
+         "schema" : [
+            "cistr*",
+            "clset",
+            {
+               "foo._bar" : 2,
+               "_foo" : 1
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:clset"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "clset (ok + ok = ok)",
+         "schema" : [
+            "cistr*",
+            "clset",
+            {
+               "len" : 1,
+               "match" : "a"
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:clset"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "clset (ok) + clause nok = nok",
+         "schema" : [
+            "cistr*",
+            "clset",
+            {
+               "match" : "a"
+            },
+            "len",
+            2
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:clset"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "a",
+         "name" : "clset (ok + nok = nok)",
+         "schema" : [
+            "cistr*",
+            "clset",
+            {
+               "len" : 2,
+               "match" : "a"
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:clset"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "a",
+         "name" : "clset (nok + ok = nok)",
+         "schema" : [
+            "cistr*",
+            "clset",
+            {
+               "len" : 1,
+               "match" : "b"
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:clset"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "a",
+         "name" : "clset (nok + nok = nok)",
+         "schema" : [
+            "cistr*",
+            "clset",
+            {
+               "len" : 2,
+               "match" : "b"
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:clset"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : null,
+         "name" : "ok",
+         "schema" : [
+            "cistr",
+            {
+               "ok" : 1
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:ok"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : null,
+         "name" : "ok + op not (nok)",
+         "schema" : [
+            "cistr",
+            {
+               "!ok" : 1
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:ok",
+            "op",
+            "op:not"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "a",
+         "name" : ".err_level=error (clause=is, ok)",
+         "schema" : [
+            "cistr",
+            "is",
+            "a"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "attr",
+            "attr:err_level"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a\n",
+         "name" : ".err_level=error (clause=is, nok)",
+         "schema" : [
+            "cistr",
+            "is",
+            "a"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "attr",
+            "attr:err_level"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "a",
+         "name" : ".err_level=warn (clause=is, ok)",
+         "schema" : [
+            "cistr",
+            "is",
+            "a",
+            "is.err_level",
+            "warn"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "attr",
+            "attr:err_level"
+         ],
+         "valid" : 1
+      },
+      {
+         "warnings" : 1,
+         "input" : "a\n",
+         "name" : ".err_level=warn (clause=is, nok)",
+         "schema" : [
+            "cistr*",
+            "is",
+            "a",
+            "is.err_level",
+            "warn"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "attr",
+            "attr:err_level"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "is: must accept same value",
+         "schema" : [
+            "cistr",
+            "is",
+            "a"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "is: must reject different value",
+         "schema" : [
+            "cistr",
+            "is",
+            "B"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "a",
+         "name" : "!is (nok)",
+         "schema" : [
+            "cistr",
+            "!is",
+            "a"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is",
+            "op",
+            "op:not",
+            "opshortcut"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "a",
+         "name" : "!is (ok)",
+         "schema" : [
+            "cistr",
+            "!is",
+            "B"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is",
+            "op",
+            "op:not",
+            "opshortcut"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "is.op=not (nok)",
+         "schema" : [
+            "cistr",
+            "is",
+            "a",
+            "is.op",
+            "not"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is",
+            "op",
+            "op:not"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "a",
+         "name" : "is.op=not (ok)",
+         "schema" : [
+            "cistr",
+            "is",
+            "B",
+            "is.op",
+            "not"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is",
+            "op",
+            "op:not"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "is& (no items)",
+         "schema" : [
+            "cistr",
+            "is&",
+            []
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "is& (ok)",
+         "schema" : [
+            "cistr",
+            "is&",
+            [
+               "a",
+               "a"
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : "a",
+         "name" : "is& (nok + ok)",
+         "schema" : [
+            "cistr",
+            "is&",
+            [
+               "B",
+               "a"
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : "a",
+         "name" : "is& (ok + nok)",
+         "schema" : [
+            "cistr",
+            "is&",
+            [
+               "a",
+               "B"
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : "a",
+         "name" : "is& (nok + nok)",
+         "schema" : [
+            "cistr",
+            "is&",
+            [
+               "B",
+               "B"
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "a",
+         "name" : "is.op=and (no items)",
+         "schema" : [
+            "cistr",
+            "is",
+            [],
+            "is.op",
+            "and"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "is.op=and (ok)",
+         "schema" : [
+            "cistr",
+            "is",
+            [
+               "a",
+               "a"
+            ],
+            "is.op",
+            "and"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is",
+            "op",
+            "op:and"
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : "a",
+         "name" : "is.op=and (nok + ok)",
+         "schema" : [
+            "cistr",
+            "is",
+            [
+               "B",
+               "a"
+            ],
+            "is.op",
+            "and"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is",
+            "op",
+            "op:and"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : "a",
+         "name" : "is.op=and (ok + nok)",
+         "schema" : [
+            "cistr",
+            "is",
+            [
+               "a",
+               "B"
+            ],
+            "is.op",
+            "and"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is",
+            "op",
+            "op:and"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : "a",
+         "name" : "is.op=and (nok + nok)",
+         "schema" : [
+            "cistr",
+            "is",
+            [
+               "B",
+               "B"
+            ],
+            "is.op",
+            "and"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is",
+            "op",
+            "op:and"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "a",
+         "name" : "is| (no items)",
+         "schema" : [
+            "cistr",
+            "is|",
+            []
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "is| (ok)",
+         "schema" : [
+            "cistr",
+            "is|",
+            [
+               "a",
+               "a"
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "is| (nok + ok)",
+         "schema" : [
+            "cistr",
+            "is|",
+            [
+               "B",
+               "a"
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "is| (ok + nok)",
+         "schema" : [
+            "cistr",
+            "is|",
+            [
+               "a",
+               "B"
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : "a",
+         "name" : "is| (nok + nok)",
+         "schema" : [
+            "cistr",
+            "is|",
+            [
+               "B",
+               "B"
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "a",
+         "name" : "is.op=or (no items)",
+         "schema" : [
+            "cistr",
+            "is",
+            [],
+            "is.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is",
+            "op",
+            "op:or"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "is.op=or (ok)",
+         "schema" : [
+            "cistr",
+            "is",
+            [
+               "a",
+               "a"
+            ],
+            "is.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is",
+            "op",
+            "op:or"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "is.op=or (nok + ok)",
+         "schema" : [
+            "cistr",
+            "is",
+            [
+               "B",
+               "a"
+            ],
+            "is.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is",
+            "op",
+            "op:or"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "is.op=or (ok + nok)",
+         "schema" : [
+            "cistr",
+            "is",
+            [
+               "a",
+               "B"
+            ],
+            "is.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is",
+            "op",
+            "op:or"
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : "a",
+         "name" : "is.op=or (nok + nok)",
+         "schema" : [
+            "cistr",
+            "is",
+            [
+               "B",
+               "B"
+            ],
+            "is.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is",
+            "op",
+            "op:or"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "a",
+         "name" : "is.op=none (empty items)",
+         "schema" : [
+            "cistr",
+            "is",
+            [],
+            "is.op",
+            "none"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is",
+            "op",
+            "op:none"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "is.op=none (nok + nok)",
+         "schema" : [
+            "cistr",
+            "is",
+            [
+               "B",
+               "B"
+            ],
+            "is.op",
+            "none"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is",
+            "op",
+            "op:none"
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : "a",
+         "name" : "is.op=none (nok + ok)",
+         "schema" : [
+            "cistr",
+            "is",
+            [
+               "B",
+               "a"
+            ],
+            "is.op",
+            "none"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is",
+            "op",
+            "op:none"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : "a",
+         "name" : "is.op=none (ok + nok)",
+         "schema" : [
+            "cistr",
+            "is",
+            [
+               "a",
+               "B"
+            ],
+            "is.op",
+            "none"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is",
+            "op",
+            "op:none"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : "a",
+         "name" : "is.op=none (ok + ok)",
+         "schema" : [
+            "cistr",
+            "is",
+            [
+               "a",
+               "a"
+            ],
+            "is.op",
+            "none"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is",
+            "op",
+            "op:none"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "a",
+         "name" : "in: must accept valid choices",
+         "schema" : [
+            "cistr",
+            "in",
+            [
+               "a",
+               "B"
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:in"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "in: must reject empty choices",
+         "schema" : [
+            "cistr",
+            "in",
+            []
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:in"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "a",
+         "name" : "!in (nok)",
+         "schema" : [
+            "cistr",
+            "!in",
+            [
+               "a",
+               "B"
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:in",
+            "op",
+            "op:not",
+            "opshortcut"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "a",
+         "name" : "!in (ok)",
+         "schema" : [
+            "cistr",
+            "!in",
+            []
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:in",
+            "op",
+            "op:not",
+            "opshortcut"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "in.op=not (nok)",
+         "schema" : [
+            "cistr",
+            "in",
+            [
+               "a",
+               "B"
+            ],
+            "in.op",
+            "not"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:in",
+            "op",
+            "op:not"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "a",
+         "name" : "in.op=not (ok)",
+         "schema" : [
+            "cistr",
+            "in",
+            [],
+            "in.op",
+            "not"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:in",
+            "op",
+            "op:not"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "in& (no items)",
+         "schema" : [
+            "cistr",
+            "in&",
+            []
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:in",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "in& (ok)",
+         "schema" : [
+            "cistr",
+            "in&",
+            [
+               [
+                  "a",
+                  "B"
+               ],
+               [
+                  "a",
+                  "B"
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:in",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : "a",
+         "name" : "in& (nok + ok)",
+         "schema" : [
+            "cistr",
+            "in&",
+            [
+               [],
+               [
+                  "a",
+                  "B"
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:in",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : "a",
+         "name" : "in& (ok + nok)",
+         "schema" : [
+            "cistr",
+            "in&",
+            [
+               [
+                  "a",
+                  "B"
+               ],
+               []
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:in",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : "a",
+         "name" : "in& (nok + nok)",
+         "schema" : [
+            "cistr",
+            "in&",
+            [
+               [],
+               []
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:in",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "a",
+         "name" : "in.op=and (no items)",
+         "schema" : [
+            "cistr",
+            "in",
+            [],
+            "in.op",
+            "and"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "in.op=and (ok)",
+         "schema" : [
+            "cistr",
+            "in",
+            [
+               [
+                  "a",
+                  "B"
+               ],
+               [
+                  "a",
+                  "B"
+               ]
+            ],
+            "in.op",
+            "and"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:in",
+            "op",
+            "op:and"
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : "a",
+         "name" : "in.op=and (nok + ok)",
+         "schema" : [
+            "cistr",
+            "in",
+            [
+               [],
+               [
+                  "a",
+                  "B"
+               ]
+            ],
+            "in.op",
+            "and"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:in",
+            "op",
+            "op:and"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : "a",
+         "name" : "in.op=and (ok + nok)",
+         "schema" : [
+            "cistr",
+            "in",
+            [
+               [
+                  "a",
+                  "B"
+               ],
+               []
+            ],
+            "in.op",
+            "and"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:in",
+            "op",
+            "op:and"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : "a",
+         "name" : "in.op=and (nok + nok)",
+         "schema" : [
+            "cistr",
+            "in",
+            [
+               [],
+               []
+            ],
+            "in.op",
+            "and"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:in",
+            "op",
+            "op:and"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "a",
+         "name" : "in| (no items)",
+         "schema" : [
+            "cistr",
+            "in|",
+            []
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:in",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "in| (ok)",
+         "schema" : [
+            "cistr",
+            "in|",
+            [
+               [
+                  "a",
+                  "B"
+               ],
+               [
+                  "a",
+                  "B"
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:in",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "in| (nok + ok)",
+         "schema" : [
+            "cistr",
+            "in|",
+            [
+               [],
+               [
+                  "a",
+                  "B"
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:in",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "in| (ok + nok)",
+         "schema" : [
+            "cistr",
+            "in|",
+            [
+               [
+                  "a",
+                  "B"
+               ],
+               []
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:in",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : "a",
+         "name" : "in| (nok + nok)",
+         "schema" : [
+            "cistr",
+            "in|",
+            [
+               [],
+               []
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:in",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "a",
+         "name" : "in.op=or (no items)",
+         "schema" : [
+            "cistr",
+            "in",
+            [],
+            "in.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:in",
+            "op",
+            "op:or"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "in.op=or (ok)",
+         "schema" : [
+            "cistr",
+            "in",
+            [
+               [
+                  "a",
+                  "B"
+               ],
+               [
+                  "a",
+                  "B"
+               ]
+            ],
+            "in.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:in",
+            "op",
+            "op:or"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "in.op=or (nok + ok)",
+         "schema" : [
+            "cistr",
+            "in",
+            [
+               [],
+               [
+                  "a",
+                  "B"
+               ]
+            ],
+            "in.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:in",
+            "op",
+            "op:or"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "in.op=or (ok + nok)",
+         "schema" : [
+            "cistr",
+            "in",
+            [
+               [
+                  "a",
+                  "B"
+               ],
+               []
+            ],
+            "in.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:in",
+            "op",
+            "op:or"
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : "a",
+         "name" : "in.op=or (nok + nok)",
+         "schema" : [
+            "cistr",
+            "in",
+            [
+               [],
+               []
+            ],
+            "in.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:in",
+            "op",
+            "op:or"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "a",
+         "name" : "in.op=none (empty items)",
+         "schema" : [
+            "cistr",
+            "in",
+            [],
+            "in.op",
+            "none"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:in",
+            "op",
+            "op:none"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "in.op=none (nok + nok)",
+         "schema" : [
+            "cistr",
+            "in",
+            [
+               [],
+               []
+            ],
+            "in.op",
+            "none"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:in",
+            "op",
+            "op:none"
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : "a",
+         "name" : "in.op=none (nok + ok)",
+         "schema" : [
+            "cistr",
+            "in",
+            [
+               [],
+               [
+                  "a",
+                  "B"
+               ]
+            ],
+            "in.op",
+            "none"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:in",
+            "op",
+            "op:none"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : "a",
+         "name" : "in.op=none (ok + nok)",
+         "schema" : [
+            "cistr",
+            "in",
+            [
+               [
+                  "a",
+                  "B"
+               ],
+               []
+            ],
+            "in.op",
+            "none"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:in",
+            "op",
+            "op:none"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : "a",
+         "name" : "in.op=none (ok + ok)",
+         "schema" : [
+            "cistr",
+            "in",
+            [
+               [
+                  "a",
+                  "B"
+               ],
+               [
+                  "a",
+                  "B"
+               ]
+            ],
+            "in.op",
+            "none"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:in",
+            "op",
+            "op:none"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "a",
+         "name" : "min: a ",
+         "schema" : [
+            "cistr",
+            "min",
+            ""
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:min"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "min: a a",
+         "schema" : [
+            "cistr",
+            "min",
+            "a"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:min"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "",
+         "name" : "min:  a -> fail",
+         "schema" : [
+            "cistr",
+            "min",
+            "a"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:min"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "a",
+         "name" : "xmin: a ",
+         "schema" : [
+            "cistr",
+            "xmin",
+            ""
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:xmin"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "xmin: a a -> fail",
+         "schema" : [
+            "cistr",
+            "xmin",
+            "a"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:xmin"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "",
+         "name" : "xmin:  a -> fail",
+         "schema" : [
+            "cistr",
+            "xmin",
+            "a"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:xmin"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "a",
+         "name" : "max: a  -> fail",
+         "schema" : [
+            "cistr",
+            "max",
+            ""
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:max"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "a",
+         "name" : "max: a a",
+         "schema" : [
+            "cistr",
+            "max",
+            "a"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:max"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "",
+         "name" : "max:  a",
+         "schema" : [
+            "cistr",
+            "max",
+            "a"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:max"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "xmax: a  -> fail",
+         "schema" : [
+            "cistr",
+            "xmax",
+            ""
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:xmax"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "a",
+         "name" : "xmax: a a -> fail",
+         "schema" : [
+            "cistr",
+            "xmax",
+            "a"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:xmax"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "",
+         "name" : "xmax:  a",
+         "schema" : [
+            "cistr",
+            "xmax",
+            "a"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:xmax"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "between: a  & Ab",
+         "schema" : [
+            "cistr",
+            "between",
+            [
+               "",
+               "Ab"
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:between"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "between: a  & a",
+         "schema" : [
+            "cistr",
+            "between",
+            [
+               "",
+               "a"
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:between"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "between: a a & a",
+         "schema" : [
+            "cistr",
+            "between",
+            [
+               "a",
+               "a"
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:between"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "",
+         "name" : "between:  a & Ab -> fail",
+         "schema" : [
+            "cistr",
+            "between",
+            [
+               "a",
+               "Ab"
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:between"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "a",
+         "name" : "xbetween: a  & Ab",
+         "schema" : [
+            "cistr",
+            "xbetween",
+            [
+               "",
+               "Ab"
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:xbetween"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "xbetween: a  & a -> fail",
+         "schema" : [
+            "cistr",
+            "xbetween",
+            [
+               "",
+               "a"
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:xbetween"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "a",
+         "name" : "xbetween: a a & a -> fail",
+         "schema" : [
+            "cistr",
+            "xbetween",
+            [
+               "a",
+               "a"
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:xbetween"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "",
+         "name" : "xbetween:  a & Ab -> fail",
+         "schema" : [
+            "cistr",
+            "xbetween",
+            [
+               "a",
+               "Ab"
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:xbetween"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "",
+         "name" : "!between (nok)",
+         "schema" : [
+            "cistr",
+            "!between",
+            [
+               "",
+               ""
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:between",
+            "op",
+            "op:not",
+            "opshortcut"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "",
+         "name" : "!between (ok)",
+         "schema" : [
+            "cistr",
+            "!between",
+            [
+               "a",
+               "a"
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:between",
+            "op",
+            "op:not",
+            "opshortcut"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "",
+         "name" : "between.op=not (nok)",
+         "schema" : [
+            "cistr",
+            "between",
+            [
+               "",
+               ""
+            ],
+            "between.op",
+            "not"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:between",
+            "op",
+            "op:not"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "",
+         "name" : "between.op=not (ok)",
+         "schema" : [
+            "cistr",
+            "between",
+            [
+               "a",
+               "a"
+            ],
+            "between.op",
+            "not"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:between",
+            "op",
+            "op:not"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "",
+         "name" : "between& (no items)",
+         "schema" : [
+            "cistr",
+            "between&",
+            []
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:between",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "",
+         "name" : "between& (ok)",
+         "schema" : [
+            "cistr",
+            "between&",
+            [
+               [
+                  "",
+                  ""
+               ],
+               [
+                  "",
+                  ""
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:between",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : "",
+         "name" : "between& (nok + ok)",
+         "schema" : [
+            "cistr",
+            "between&",
+            [
+               [
+                  "a",
+                  "a"
+               ],
+               [
+                  "",
+                  ""
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:between",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : "",
+         "name" : "between& (ok + nok)",
+         "schema" : [
+            "cistr",
+            "between&",
+            [
+               [
+                  "",
+                  ""
+               ],
+               [
+                  "a",
+                  "a"
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:between",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : "",
+         "name" : "between& (nok + nok)",
+         "schema" : [
+            "cistr",
+            "between&",
+            [
+               [
+                  "a",
+                  "a"
+               ],
+               [
+                  "a",
+                  "a"
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:between",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "",
+         "name" : "between.op=and (no items)",
+         "schema" : [
+            "cistr",
+            "between",
+            [],
+            "between.op",
+            "and"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "",
+         "name" : "between.op=and (ok)",
+         "schema" : [
+            "cistr",
+            "between",
+            [
+               [
+                  "",
+                  ""
+               ],
+               [
+                  "",
+                  ""
+               ]
+            ],
+            "between.op",
+            "and"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:between",
+            "op",
+            "op:and"
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : "",
+         "name" : "between.op=and (nok + ok)",
+         "schema" : [
+            "cistr",
+            "between",
+            [
+               [
+                  "a",
+                  "a"
+               ],
+               [
+                  "",
+                  ""
+               ]
+            ],
+            "between.op",
+            "and"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:between",
+            "op",
+            "op:and"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : "",
+         "name" : "between.op=and (ok + nok)",
+         "schema" : [
+            "cistr",
+            "between",
+            [
+               [
+                  "",
+                  ""
+               ],
+               [
+                  "a",
+                  "a"
+               ]
+            ],
+            "between.op",
+            "and"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:between",
+            "op",
+            "op:and"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : "",
+         "name" : "between.op=and (nok + nok)",
+         "schema" : [
+            "cistr",
+            "between",
+            [
+               [
+                  "a",
+                  "a"
+               ],
+               [
+                  "a",
+                  "a"
+               ]
+            ],
+            "between.op",
+            "and"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:between",
+            "op",
+            "op:and"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "",
+         "name" : "between| (no items)",
+         "schema" : [
+            "cistr",
+            "between|",
+            []
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:between",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "",
+         "name" : "between| (ok)",
+         "schema" : [
+            "cistr",
+            "between|",
+            [
+               [
+                  "",
+                  ""
+               ],
+               [
+                  "",
+                  ""
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:between",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "",
+         "name" : "between| (nok + ok)",
+         "schema" : [
+            "cistr",
+            "between|",
+            [
+               [
+                  "a",
+                  "a"
+               ],
+               [
+                  "",
+                  ""
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:between",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "",
+         "name" : "between| (ok + nok)",
+         "schema" : [
+            "cistr",
+            "between|",
+            [
+               [
+                  "",
+                  ""
+               ],
+               [
+                  "a",
+                  "a"
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:between",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : "",
+         "name" : "between| (nok + nok)",
+         "schema" : [
+            "cistr",
+            "between|",
+            [
+               [
+                  "a",
+                  "a"
+               ],
+               [
+                  "a",
+                  "a"
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:between",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "",
+         "name" : "between.op=or (no items)",
+         "schema" : [
+            "cistr",
+            "between",
+            [],
+            "between.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:between",
+            "op",
+            "op:or"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "",
+         "name" : "between.op=or (ok)",
+         "schema" : [
+            "cistr",
+            "between",
+            [
+               [
+                  "",
+                  ""
+               ],
+               [
+                  "",
+                  ""
+               ]
+            ],
+            "between.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:between",
+            "op",
+            "op:or"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "",
+         "name" : "between.op=or (nok + ok)",
+         "schema" : [
+            "cistr",
+            "between",
+            [
+               [
+                  "a",
+                  "a"
+               ],
+               [
+                  "",
+                  ""
+               ]
+            ],
+            "between.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:between",
+            "op",
+            "op:or"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "",
+         "name" : "between.op=or (ok + nok)",
+         "schema" : [
+            "cistr",
+            "between",
+            [
+               [
+                  "",
+                  ""
+               ],
+               [
+                  "a",
+                  "a"
+               ]
+            ],
+            "between.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:between",
+            "op",
+            "op:or"
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : "",
+         "name" : "between.op=or (nok + nok)",
+         "schema" : [
+            "cistr",
+            "between",
+            [
+               [
+                  "a",
+                  "a"
+               ],
+               [
+                  "a",
+                  "a"
+               ]
+            ],
+            "between.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:between",
+            "op",
+            "op:or"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "",
+         "name" : "between.op=none (empty items)",
+         "schema" : [
+            "cistr",
+            "between",
+            [],
+            "between.op",
+            "none"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:between",
+            "op",
+            "op:none"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "",
+         "name" : "between.op=none (nok + nok)",
+         "schema" : [
+            "cistr",
+            "between",
+            [
+               [
+                  "a",
+                  "a"
+               ],
+               [
+                  "a",
+                  "a"
+               ]
+            ],
+            "between.op",
+            "none"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:between",
+            "op",
+            "op:none"
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : "",
+         "name" : "between.op=none (nok + ok)",
+         "schema" : [
+            "cistr",
+            "between",
+            [
+               [
+                  "a",
+                  "a"
+               ],
+               [
+                  "",
+                  ""
+               ]
+            ],
+            "between.op",
+            "none"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:between",
+            "op",
+            "op:none"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : "",
+         "name" : "between.op=none (ok + nok)",
+         "schema" : [
+            "cistr",
+            "between",
+            [
+               [
+                  "",
+                  ""
+               ],
+               [
+                  "a",
+                  "a"
+               ]
+            ],
+            "between.op",
+            "none"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:between",
+            "op",
+            "op:none"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : "",
+         "name" : "between.op=none (ok + ok)",
+         "schema" : [
+            "cistr",
+            "between",
+            [
+               [
+                  "",
+                  ""
+               ],
+               [
+                  "",
+                  ""
+               ]
+            ],
+            "between.op",
+            "none"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:between",
+            "op",
+            "op:none"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "a",
+         "name" : "len (ok)",
+         "schema" : [
+            "cistr",
+            "len",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:len"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "len (nok)",
+         "schema" : [
+            "cistr",
+            "len",
+            3
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:len"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "a",
+         "name" : "min_len (ok)",
+         "schema" : [
+            "cistr",
+            "min_len",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:min_len"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "min_len (nok)",
+         "schema" : [
+            "cistr",
+            "min_len",
+            3
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:min_len"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "a",
+         "name" : "max_len (ok)",
+         "schema" : [
+            "cistr",
+            "min_len",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:max_len"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "abc",
+         "name" : "max_len (nok)",
+         "schema" : [
+            "cistr",
+            "max_len",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:max_len"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "a",
+         "name" : "len_between (ok)",
+         "schema" : [
+            "cistr",
+            "len_between",
+            [
+               1,
+               3
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:len_between"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "abc",
+         "name" : "len_between (nok)",
+         "schema" : [
+            "cistr",
+            "len_between",
+            [
+               1,
+               1
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:len_between"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "abc",
+         "name" : "each_index (ok)",
+         "schema" : [
+            "cistr",
+            "each_index",
+            [
+               "int",
+               "max",
+               2
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:each_index"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "abc",
+         "name" : "each_index (nok)",
+         "schema" : [
+            "cistr",
+            "each_index",
+            [
+               "int",
+               "xmax",
+               2
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:each_index"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "abc",
+         "name" : "each_elem (ok)",
+         "schema" : [
+            "cistr",
+            "each_elem",
+            "cistr"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:each_elem"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "abc",
+         "name" : "each_elem (nok)",
+         "schema" : [
+            "cistr",
+            "each_elem",
+            "float"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:each_elem"
+         ],
+         "valid" : 0
+      },
+      {
+         "invalid_inputs" : [
+            "aaaa"
+         ],
+         "name" : "check_each_index",
+         "valid_inputs" : [
+            "",
+            "a",
+            "aa",
+            "aaa"
+         ],
+         "schema" : [
+            "cistr",
+            "check_each_index",
+            "$_ <= 2"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:check_each_index"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            [
+               "a",
+               "b"
+            ]
+         ],
+         "name" : "check_each_elem",
+         "valid_inputs" : [
+            [],
+            [
+               "a",
+               "A"
+            ]
+         ],
+         "schema" : [
+            "cistr",
+            "check_each_elem",
+            "$_ eq \"a\""
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:check_each_elem"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            "Aa"
+         ],
+         "name" : "uniq=1",
+         "valid_inputs" : [
+            "",
+            "a",
+            "ab"
+         ],
+         "schema" : [
+            "cistr",
+            "uniq",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:uniq"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            "",
+            "a",
+            "ab"
+         ],
+         "name" : "uniq=0",
+         "valid_inputs" : [
+            "Aa"
+         ],
+         "schema" : [
+            "cistr",
+            "uniq",
+            0
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:uniq"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            "",
+            "a",
+            "ab"
+         ],
+         "name" : "!uniq=1",
+         "valid_inputs" : [
+            "Aa"
+         ],
+         "schema" : [
+            "cistr",
+            "!uniq",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:uniq",
+            "op",
+            "op:not",
+            "opshortcut"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            "",
+            "bc"
+         ],
+         "name" : "exists",
+         "valid_inputs" : [
+            "a",
+            "ba",
+            "bA"
+         ],
+         "schema" : [
+            "str",
+            "is",
+            "a"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:exists"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            "",
+            "c"
+         ],
+         "name" : "has",
+         "valid_inputs" : [
+            "abc",
+            "Bc"
+         ],
+         "schema" : [
+            "cistr",
+            "has",
+            "a"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:has"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            "abc",
+            "Bc"
+         ],
+         "name" : "has + op.not",
+         "valid_inputs" : [
+            "",
+            "c"
+         ],
+         "schema" : [
+            "cistr",
+            "!has",
+            "a"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:has",
+            "op",
+            "op:not",
+            "opshortcut"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            "",
+            "c"
+         ],
+         "name" : "has + op.or",
+         "valid_inputs" : [
+            "abc",
+            "Bc"
+         ],
+         "schema" : [
+            "cistr",
+            "has|",
+            [
+               "a",
+               "b"
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:has",
+            "op",
+            "op:or",
+            "opshortcut"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            "Bc",
+            "",
+            "c"
+         ],
+         "name" : "has + op.and",
+         "valid_inputs" : "abc",
+         "schema" : [
+            "cistr",
+            "has&",
+            [
+               "a",
+               "b"
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:has",
+            "op",
+            "op:and",
+            "opshortcut"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            "",
+            "a"
+         ],
+         "name" : "prop:len",
+         "valid_inputs" : [
+            "aa"
+         ],
+         "schema" : [
+            "cistr",
+            "prop",
+            [
+               "len",
+               [
+                  "int",
+                  "is",
+                  2
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "prop:len"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            "",
+            "a",
+            "aa"
+         ],
+         "name" : "prop:indices",
+         "valid_inputs" : [
+            "aaa"
+         ],
+         "schema" : [
+            "cistr",
+            "prop",
+            [
+               "indices",
+               [
+                  "array",
+                  "has",
+                  2
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "prop:indices"
+         ]
+      },
+      {
+         "invalid_inputs" : [
+            "",
+            "b"
+         ],
+         "name" : "prop:elems",
+         "valid_inputs" : [
+            "Ab"
+         ],
+         "schema" : [
+            "cistr",
+            "prop",
+            [
+               "elems",
+               [
+                  "array",
+                  "has",
+                  "a"
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "prop:elems"
+         ]
+      },
+      {
+         "input" : "A",
+         "name" : "match: (ok)",
+         "schema" : [
+            "cistr",
+            "match",
+            "[abc]"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:match"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "z",
+         "name" : "match: (nok)",
+         "schema" : [
+            "cistr",
+            "match",
+            "[abc]"
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:match"
+         ],
+         "valid" : 0
+      },
+      {
+         "dies" : 1,
+         "input" : "a",
+         "name" : "match: (dies, invalid regex)",
+         "schema" : [
+            "cistr",
+            "match",
+            "("
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:match"
+         ]
+      },
+      {
+         "input" : "a",
+         "name" : "is_re: 1 (ok)",
+         "schema" : [
+            "cistr",
+            "is_re",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is_re"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a(",
+         "name" : "is_re: 1 (nok)",
+         "schema" : [
+            "cistr",
+            "is_re",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is_re"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : "a(",
+         "name" : "is_re: 0 (ok)",
+         "schema" : [
+            "cistr",
+            "is_re",
+            0
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is_re"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : "a",
+         "name" : "is_re: 0 (nok)",
+         "schema" : [
+            "cistr",
+            "is_re",
+            0
+         ],
+         "tags" : [
+            "type",
+            "type:cistr",
+            "clause:is_re"
+         ],
+         "valid" : 0
       }
    ],
-   "version" : "v0.9.28 (generated by devscripts/gen-type-spectest on Fri Nov 22 23:39:26 2013)"
+   "version" : "v0.9.29 (generated by devscripts/gen-type-spectest on Sat Nov 23 10:27:19 2013)"
 }
