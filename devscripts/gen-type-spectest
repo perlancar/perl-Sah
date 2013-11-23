@@ -1713,7 +1713,7 @@ sub gen_hash_tests {
             # only the first. has_invalid_inputs must not have any values in
             # has_values.
             has_values         => ["a", "b"],
-            has_valid_inputs   => [{1=>"a", 2=>"b", 3=>"c"}, {2=>"b", 3=>"c"}],
+            has_valid_inputs   => [{1=>"a", 2=>"b", 3=>"c"}, {1=>"a", 3=>"c"}],
             has_invalid_inputs => [{}, {3=>"c"}],
 
             prop_len_schema             => [int => is => 2],
