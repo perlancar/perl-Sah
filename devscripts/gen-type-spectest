@@ -1358,7 +1358,7 @@ sub gen_array_tests {
             uniq_inputs    => [[], [1], [1,2]],
             nonuniq_inputs => [[1,1]],
 
-            exists_value          => '$_ <= 2',
+            exists_value          => [int => max => 2],
             exists_valid_inputs   => [[1], [3, 1]],
             exists_invalid_inputs => [[], [3]],
 
@@ -1457,9 +1457,11 @@ sub gen_array_tests {
 
 # XXX currently buf is treated the same as str, because js/json/we don't do
 # binary stuff yet.
-sub _gen_str_or_buf_tests {
+sub _gen_str_or_cistr_or_buf_tests {
     my ($which, %args) = @_;
     my @res;
+
+    my $ci = $which =~ /ci/;
 
     local $Type = $which;
 
@@ -1482,11 +1484,11 @@ sub _gen_str_or_buf_tests {
             nok_value => "a\n",
         ),
         gen_Comparable_tests(
-            values => ["a", "b"],
+            values => $ci ? ["a", "B"] : ["a", "b"],
         ),
 
         gen_Sortable_tests(
-            values => ["", "a", "ab"],
+            values => $ci ? ["", "a", "Ab"] : ["", "a", "ab"],
         ),
 
         gen_HasElems_tests(
@@ -1506,23 +1508,23 @@ sub _gen_str_or_buf_tests {
             check_each_index_invalid_inputs => ["aaaa"],
 
             check_each_elem_value           => '$_ eq "a"',
-            check_each_elem_valid_inputs    => [[], ["a"]],
-            check_each_elem_invalid_inputs  => [["A"], ["a", "b"]],
+            check_each_elem_valid_inputs    => $ci ? [[], ["a", "A"]] : [[], ["a"]],
+            check_each_elem_invalid_inputs  => $ci ? [["a", "b"]] : [["A"], ["a", "b"]],
 
-            uniq_inputs    => ["", "a", "ab"],
-            nonuniq_inputs => ["aa"],
+            uniq_inputs    => $ci ? ["", "a", "ab"] : ["", "a", "ab", "Aab"],
+            nonuniq_inputs => $ci ? ["Aa"] : ["aa"],
 
-            exists_value          => '$_ eq "a"',
-            exists_valid_inputs   => ["a", "ba"],
-            exists_invalid_inputs => ["", "bc", "A"],
+            exists_value          => [str => is => "a"],
+            exists_valid_inputs   => $ci ? ["a", "ba", "bA"] : ["a", "ba"],
+            exists_invalid_inputs => $ci ? ["", "bc"] : ["", "bc", "A"],
 
             # has_values should be 2 elements, has_valid_inputs should be 2
             # elements where the first one has both has_values and the second
             # only the first. has_invalid_inputs must not have any values in
             # has_values.
             has_values         => ["a", "b"],
-            has_valid_inputs   => ["abc", "bc"],
-            has_invalid_inputs => ["", "c"],
+            has_valid_inputs   => $ci ? ["abc", "Bc"] : ["abc", "bc"],
+            has_invalid_inputs => $ci ? ["", "c"] : ["", "B", "c"],
 
             prop_len_schema             => [int => is => 2],
             prop_len_valid_inputs       => ["aa"],
@@ -1533,20 +1535,20 @@ sub _gen_str_or_buf_tests {
             prop_indices_invalid_inputs => ["", "a", "aa"],
 
             prop_elems_schema           => [array => has => "a"],
-            prop_elems_valid_inputs     => ["ab"],
-            prop_elems_invalid_inputs   => ["", "b"],
+            prop_elems_valid_inputs     => $ci ? ["Ab"] : ["ab"],
+            prop_elems_invalid_inputs   => $ci ? ["", "b"] : ["", "Ab"],
         ),
 
         {
             name   => 'match: (ok)',
-            input  => "a",
+            input  => $ci ? "A" : "a",
             schema => [$which => match => "[abc]"],
             valid  => 1,
             tags   => ['clause:match'],
         },
         {
             name   => 'match: (nok)',
-            input  => "z",
+            input  => $ci ? "z" : "A",
             schema => [$which => match => "[abc]"],
             valid  => 0,
             tags   => ['clause:match'],
@@ -1594,30 +1596,11 @@ sub _gen_str_or_buf_tests {
     @res;
 }
 
-sub gen_str_tests { _gen_str_or_buf_tests("str", @_) }
+sub gen_str_tests { _gen_str_or_cistr_or_buf_tests("str", @_) }
 
-sub gen_buf_tests { _gen_str_or_buf_tests("buf", @_) }
+sub gen_cistr_tests { _gen_str_or_cistr_or_buf_tests("cistr", @_) }
 
-# currently only tests the minimum
-sub gen_cistr_tests {
-    my %args = @_;
-    my @res;
-
-    local $Type = "cistr";
-
-    push @res, (
-        {
-            name           => 'is',
-            schema         => [$Type => {is => "steven"}],
-            valid_inpust   => ["steven", "Steven", "STEVEN"],
-            invalid_inputs => ["", "steve"],
-            tags           => ["clause:is"],
-        },
-    );
-
-    insert_type_tags(\@res);
-    @res;
-}
+sub gen_buf_tests { _gen_str_or_cistr_or_buf_tests("buf", @_) }
 
 # currently only tests the minimum and doesn't currently test valid inputs,
 # because js/json doesn't differentiate hash & object. in Data::Sah, a test for
@@ -1721,7 +1704,7 @@ sub gen_hash_tests {
             uniq_inputs    => [{}, {a=>1, b=>2}],
             nonuniq_inputs => [{a=>1, b=>1}],
 
-            exists_value          => '$_ eq "a"',
+            exists_value          => [str => max => "a"],
             exists_valid_inputs   => [{1=>"a"}, {2=>"b", 1=>"a"}],
             exists_invalid_inputs => [{}, {2=>"b"}],
 
