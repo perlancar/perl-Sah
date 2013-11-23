@@ -1,6 +1,6 @@
 Revision history for Sah
 
-0.9.29   2013-11-23 (SHARYANTO) (not yet released)
+0.9.29   2013-11-23 (SHARYANTO)
 
          - Add spectests for all types and clauses and properties that have not
            been equipped with them. The spectest is now pretty complete and
