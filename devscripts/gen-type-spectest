@@ -1109,7 +1109,7 @@ sub gen_HasElems_tests {
         {
             name           => 'has + op.and',
             schema         => [$Type => "has&" => $args{has_values}],
-            valid_inputs   => $args{has_valid_inputs}[0],
+            valid_inputs   => [$args{has_valid_inputs}[0]],
             invalid_inputs => [$args{has_valid_inputs}[1], @{ $args{has_invalid_inputs} }],
             tags           => ['clause:has', 'op', 'op:and', 'opshortcut'],
         },
