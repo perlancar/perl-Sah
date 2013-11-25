@@ -1,5 +1,10 @@
 Revision history for Sah
 
+0.9.30   2013-11-25 (SHARYANTO)
+
+         - No spec changes. Fix spectest for 're_keys' clause.
+
+
 0.9.29   2013-11-23 (SHARYANTO)
 
          - Add spectests for all types and clauses and properties that have not
