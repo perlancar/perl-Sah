@@ -1859,7 +1859,17 @@ sub gen_hash_tests {
         {
             name           => "re_keys",
             schema         => $sch,
-            valid_inputs   => [{}, {a=>1}, {b=>1, x=>"x"}],
+            valid_inputs   => [{}, {a=>1}, {b=>1}],
+            invalid_inputs => [{a=>"x"}, {b=>"x"}, {c=>1}],
+            tags           => ['clause:re_keys'],
+        },
+    );
+    $sch  = [hash => {re_keys => {'[ab]' => "int"}, "re_keys.restrict"=>0}];
+    push @res, (
+        {
+            name           => "re_keys (restrict=0)",
+            schema         => $sch,
+            valid_inputs   => [{}, {a=>1}, {b=>1}, {c=>"x"}],
             invalid_inputs => [{a=>"x"}, {b=>"x"}],
             tags           => ['clause:re_keys'],
         },
