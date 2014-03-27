@@ -614,6 +614,20 @@ return the number of characters in the string. However, when an inappropriate
 argument is given, an exception will be thrown.
 
 
+=head1 EXTRAS
+
+The extras part of a schema (the third element) contains various stuffs. It is a
+DefHash that can contain these keys:
+
+=over
+
+=item * def
+
+Subschema definitions.
+
+=back
+
+
 =head1 HISTORY
 
 2012-07-21 split specification to Sah
