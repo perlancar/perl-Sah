@@ -7,16 +7,63 @@ use warnings;
 # VERSION
 # DATE
 
-our %SCHEMAS = (
-    sah_str_schema => undef,
-    sah_array_schema => undef,
-    sah_schema => [any => {
-        of => [
-            'sah_str_schema',
-            'sah_array_schema',
-        ],
-    }],
-);
+our %SCHEMAS;
+
+$SCHEMAS{sah_type_name} = ['str' => {
+    match => '\A[A-Za-z][A-Za-z0-9_]*(::[A-Za-z][A-Za-z0-9_]*)*\z',
+}];
+
+$SCHEMAS{sah_str_schema} = ['str' => {
+    match => '\A[A-Za-z][A-Za-z0-9_]*(::[A-Za-z][A-Za-z0-9_]*)*\*?\z',
+}];
+
+$SCHEMAS{sah_clause_name} = undef; # TODO
+
+$SCHEMAS{sah_clause_set} = [defhash => {
+    # tmp
+    _prop => {
+        # from defhash
+        v => {},
+        defhash_v => {},
+        name => {},
+        summary => {},
+        description => {},
+        tags => {},
+        default_lang => {},
+        x => {},
+
+        # incomplete
+        clause => {
+        },
+        clset => {
+        },
+    },
+}];
+
+# XXX sah_num_clause_set (based on sah_clause_set)
+# XXX sah_
+
+$SCHEMAS{sah_extras} = [defhash => {
+    _prop => {
+        def => {},
+    },
+}];
+
+$SCHEMAS{sah_array_schema} = ['array' => {
+    elems => [
+        'sah_type_name',
+        'sah_clause_set',
+        'sah_extras',
+    ],
+    min_len => 1,
+}];
+
+$SCHEMAS{sah_schema} => [any => {
+    of => [
+        'sah_str_schema',
+        'sah_array_schema',
+    ],
+}];
 
 1;
 # ABSTRACT: Sah schemas for Sah schema
@@ -25,7 +72,6 @@ __END__
 # commented temporarily, unfinished refactoring
 sub schemas {
     my $re_var_nameU   = '(?:[A-Za-z_][A-Za-z0-9_]*)'; # U = unanchored
-    my $re_type_name   = '\A(?:'.$re_var_nameU.'::)*'.$re_var_nameU.'+\z';
     my $re_func_name   = '\A(?:'.$re_var_nameU.'::)*'.$re_var_nameU.'+\z';
     my $reu_var_name   = '(?:[A-Za-z_][A-Za-z0-9_]*)';
     my $re_clause_name = '\A(?:[a-z_][a-z0-9_]*)\z'; # no uppercase
@@ -103,37 +149,3 @@ sub schemas {
                              }],
         values_of => $schema,
     }];
-
-    $hash_schemaR->[1] = {
-        keys     => {
-            type        => $str_schemaR,
-            clause_sets => ['any*', {
-                of   => [qw/hash array/],
-                deps => [
-                    ['hash*'  => $clause_setR],
-                    ['array*' => ['array*' => {of => $clause_setR}]],
-                ],
-            }],
-            def         => $defR,
-        },
-        req_keys => ['type'],
-    };
-
-    my $schema => ['any' => {
-        of   => [qw/str array hash/],
-        deps => [
-            ['str*'   => $str_schema],
-            ['array*' => $array_schema],
-            ['hash*'  => $hash_schema],
-        ],
-    }];
-
-    return {
-        'sah::str_schema'   => $str_schema,
-        'sah::array_schema' => $array_schema,
-        'sah::hash_schema'  => $hash_schema,
-        'sah::schema'       => $schema,
-    {
-
-    };
-}
