@@ -8,7 +8,7 @@ use FindBin '$Bin';
 use vars qw($VERSION);
 use Data::Clone;
 use Data::Dump::OneLine qw(dump1);
-use File::Slurp;
+use File::Slurp::Tiny qw(read_file write_file);
 use JSON;
 
 my $json = JSON->new->allow_nonref->pretty(1);
