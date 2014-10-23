@@ -1540,6 +1540,24 @@ sub _gen_str_or_cistr_or_buf_tests {
         ),
 
         {
+            name   => 'encoding: (ok)',
+            input  => "a",
+            schema => [$which => encoding => "utf8"],
+            valid  => 1,
+            tags   => ['clause:encoding'],
+        },
+
+        # XXX test invalid utf8 string, but how to represent this in JSON?
+
+        {
+            name   => 'encoding: (dies, unknown encoding)',
+            input  => "a",
+            schema => [$which => encoding => "foo"],
+            dies   => 1,
+            tags   => ['clause:encoding'],
+        },
+
+        {
             name   => 'match: (ok)',
             input  => $ci ? "A" : "a",
             schema => [$which => match => "[abc]"],
