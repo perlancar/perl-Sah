@@ -58,7 +58,7 @@ $SCHEMAS{sah_array_schema} = ['array' => {
     min_len => 1,
 }];
 
-$SCHEMAS{sah_schema} => [any => {
+$SCHEMAS{sah_schema} = [any => {
     of => [
         'sah_str_schema',
         'sah_array_schema',
