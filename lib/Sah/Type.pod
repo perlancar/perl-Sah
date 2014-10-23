@@ -165,6 +165,12 @@ Example:
 
 See also: C<summary>, C<description>, C<tags>.
 
+=head3 caption : STR
+
+Priority: 2 (very high), after C<default>.
+
+From DefHash.
+
 =head3 summary : STR
 
 Priority: 2 (very high), after C<default>.
