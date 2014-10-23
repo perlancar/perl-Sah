@@ -750,6 +750,10 @@ from 0 to (length of string)-1). Default encoding is utf8.
 
 =head2 Clauses
 
+=head3 encoding : str
+
+Specify encoding. Currently the only supported value is C<utf8>.
+
 =head3 match : REGEX|{COMPILER=>REGEX, ...}
 
 Require that string match the specified regular expression.
