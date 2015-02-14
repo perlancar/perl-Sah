@@ -1,5 +1,13 @@
 Revision history for Sah
 
+0.9.32   2015-02-14 (PERLANCAR) - The Day After Friday The 13th
+
+         - No spec changes.
+
+         - Update text which still says *.{human,err_msg}.LANGCODE instead of
+           *.{human,err_msg}.alt.lang.LANGCODE.
+
+
 0.9.31   2014-10-23 (PERLANCAR)
 
          - Add clause for string: encoding.
