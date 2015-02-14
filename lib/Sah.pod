@@ -429,33 +429,33 @@ C<fatal> is the same as C<error> but will make validation exit early, without
 collecting further errors. This only takes effect when validation collects full
 errors instead of just stopping after the first error is found.
 
-=item * err_msg[.LANGCODE]
+=item * err_msg[.alt.lang.LANGCODE]
 
 This tells the compiler that instead of the default error message from the type
 handler, a custom error message is supplied. You can add translations by adding
 more attributes with language code suffixes. For example:
 
  ["str", {"match":                "[^A-Za-z0-9_-]",
-          "match.err_msg":        "Must not contain naughty characters",
-          "match.err_msg.id_ID": "Tidak boleh mengandung karakter aneh-aneh"
+          "match.err_msg":                "Must not contain naughty characters",
+          "match.err_msg.alt.lang.id_ID": "Tidak boleh mengandung karakter aneh-aneh"
  }]
 
 Another example:
 
  ["str", {"!in": ["root", "admin"],
-          "in.err_msg":       "Sorry, username is reserved",
-          "in.err_msg.id_ID": "Maaf, nama user dilarang digunakan"
+          "in.err_msg":                "Sorry, username is reserved",
+          "in.err_msg.alt.lang.id_ID": "Maaf, nama user dilarang digunakan"
  }]
 
-=item * human[.LANGCODE]
+=item * human[.alt.lang.LANGCODE]
 
 This is also ignored when validating data, but will be used by the human
 compiler to supply description. You can add translations by adding more
 attributes.
 
  ["str", {"match":             "[^A-Za-z0-9_-]",
-          "match.human":       "Must not contain naughty characters",
-          "match.human.id_ID": "Tidak boleh mengandung karakter aneh-aneh"
+          "match.human":                "Must not contain naughty characters",
+          "match.human.alt.lang.id_ID": "Tidak boleh mengandung karakter aneh-aneh"
  }]
 
 =item * alt
