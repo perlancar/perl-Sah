@@ -2153,6 +2153,12 @@ sub gen_any_tests {
             valid  => 0,
         },
         {
+            name   => 'of (nok + nok 2)',
+            input  => [[]],
+            schema => [$Type => of => ["str", [array => of => "str"]]],
+            valid  => 0,
+        },
+        {
             name   => 'of (ok + nok)',
             input  => 2,
             schema => [$Type => of => [[int => div_by=>2], [int => div_by=>5]]],
