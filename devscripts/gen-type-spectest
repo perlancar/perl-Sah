@@ -2157,6 +2157,7 @@ sub gen_any_tests {
             input  => [[]],
             schema => [$Type => of => ["str", [array => of => "str"]]],
             valid  => 0,
+            errors => 2,
         },
         {
             name   => 'of (ok + nok)',
