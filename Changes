@@ -1,5 +1,14 @@
 Revision history for Sah
 
+0.9.34   2015-04-30 (PERLANCAR)
+
+         - Add clauses for hash: choose_one_key (choose_one), choose_all_keys
+           (choose_all), req_one_key (req_one), dep_one, dep_all, req_dep_one,
+           req_dep_all.
+
+         - Add aliases req_all_keys & req_all for hash clause req_keys.
+
+
 0.9.33   2015-04-08 (PERLANCAR)
 
          - No spec changes.
