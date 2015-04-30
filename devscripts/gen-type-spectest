@@ -2033,6 +2033,351 @@ sub gen_hash_tests {
         },
     );
 
+    $sch = [hash => {choose_one_key=>[qw/a b c/]}];
+    push @res, (
+        {
+            name   => 'choose_one_key: (ok, empty)',
+            input  => {},
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'choose_one_key: (ok, a)',
+            input  => {a=>0},
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'choose_one_key: (ok, a+d)',
+            input  => {a=>0, d=>0},
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'choose_one_key: (ok, b)',
+            input  => {b=>0},
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'choose_one_key: (ok, b+d)',
+            input  => {b=>0, d=>0},
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'choose_one_key: (ok, c)',
+            input  => {c=>0},
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'choose_one_key: (ok, c+d)',
+            input  => {c=>0, d=>0},
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'choose_one_key: (nok, a+b)',
+            input  => {a=>0, b=>0},
+            schema => $sch,
+            valid  => 0,
+        },
+        {
+            name   => 'choose_one_key: (nok, a+c)',
+            input  => {a=>0, c=>0},
+            schema => $sch,
+            valid  => 0,
+        },
+        {
+            name   => 'choose_one_key: (nok, b+c)',
+            input  => {b=>0, c=>0},
+            schema => $sch,
+            valid  => 0,
+        },
+        {
+            name   => 'choose_one_key: (nok, a+b+c)',
+            input  => {a=>0, b=>0, c=>0},
+            schema => $sch,
+            valid  => 0,
+        },
+    );
+
+    # TODO: choose_some_keys
+
+    # this means, if either a/b/c is specified then all must be specified
+    $sch = [hash => {choose_all_keys=>[qw/a b c/]}];
+    push @res, (
+        {
+            name   => 'choose_all_keys: (ok, empty)',
+            input  => {},
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'choose_all_keys: (ok, d)',
+            input  => {d=>0},
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'choose_all_keys: (ok, a+b+c)',
+            input  => {a=>0, b=>0, c=>0},
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'choose_all_keys: (ok, a+b+c+d)',
+            input  => {a=>0, b=>0, c=>0, d=>0},
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'choose_all_keys: (nok, a)',
+            input  => {a=>0},
+            schema => $sch,
+            valid  => 0,
+        },
+        {
+            name   => 'choose_all_keys: (nok, b)',
+            input  => {b=>0},
+            schema => $sch,
+            valid  => 0,
+        },
+        {
+            name   => 'choose_all_keys: (nok, c)',
+            input  => {c=>0},
+            schema => $sch,
+            valid  => 0,
+        },
+        {
+            name   => 'choose_all_keys: (nok, a+b)',
+            input  => {a=>0, b=>0},
+            schema => $sch,
+            valid  => 0,
+        },
+        {
+            name   => 'choose_all_keys: (nok, a+c)',
+            input  => {a=>0, c=>0},
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'choose_all_keys: (nok, b+c)',
+            input  => {b=>0, c=>0},
+            schema => $sch,
+            valid  => 0,
+        },
+    );
+
+    $sch = [hash => {req_one_key=>[qw/a b/]}];
+    push @res, (
+        {
+            name   => 'req_one_key: (nok, empty)',
+            input  => {},
+            schema => $sch,
+            valid  => 0,
+        },
+        {
+            name   => 'req_one_key: (ok, a)',
+            input  => {a=>0},
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'req_one_key: (ok, b)',
+            input  => {b=>0},
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'req_one_key: (nok, a+b)',
+            input  => {a=>0, b=>0},
+            schema => $sch,
+            valid  => 0,
+        },
+    );
+
+    # note: req_all_keys is the same as req_keys
+
+    # TODO: require_some_keys
+
+    $sch = [hash => {dep_one=>["a", [qw/d1 d2/]]}];
+    push @res, (
+        {
+            name   => 'dep_one: (ok, empty)',
+            input  => {},
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'dep_one: (nok, a specified without d1/d2)',
+            input  => {a=>0},
+            schema => $sch,
+            valid  => 0,
+        },
+        {
+            name   => 'dep_one: (ok, a specified with d1)',
+            input  => {a=>0, d1=>0},
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'dep_one: (ok, a specified with d2)',
+            input  => {a=>0, d2=>0},
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'dep_one: (ok, a specified with d1 & d2)',
+            input  => {a=>0, d1=>0, d2=>0},
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'dep_one: (ok, no a with d1 & d2)',
+            input  => {d1=>0, d2=>0},
+            schema => $sch,
+            valid  => 1,
+        },
+    );
+    # TODO: dep_one with first argument an array [a,b]
+
+    $sch = [hash => {dep_all=>["a", [qw/d1 d2/]]}];
+    push @res, (
+        {
+            name   => 'dep_all: (ok, empty)',
+            input  => {},
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'dep_all: (nok, a specified without d1/d2)',
+            input  => {a=>0},
+            schema => $sch,
+            valid  => 0,
+        },
+        {
+            name   => 'dep_all: (nok, a specified with d1)',
+            input  => {a=>0, d1=>0},
+            schema => $sch,
+            valid  => 0,
+        },
+        {
+            name   => 'dep_all: (ok, a specified with d2)',
+            input  => {a=>0, d2=>0},
+            schema => $sch,
+            valid  => 0,
+        },
+        {
+            name   => 'dep_all: (ok, a specified with d1 & d2)',
+            input  => {a=>0, d1=>0, d2=>0},
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'dep_all: (ok, no a with d1 & d2)',
+            input  => {d1=>0, d2=>0},
+            schema => $sch,
+            valid  => 1,
+        },
+    );
+    # TODO: dep_all with first argument an array [a,b]
+
+    $sch = [hash => {req_dep_one=>["a", [qw/d1 d2/]]}];
+    push @res, (
+        {
+            name   => 'req_dep_one: (ok, empty)',
+            input  => {},
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'req_dep_one: (nok, a specified without d1/d2)',
+            input  => {a=>0},
+            schema => $sch,
+            valid  => 0,
+        },
+        {
+            name   => 'req_dep_one: (ok, a specified with d1)',
+            input  => {a=>0, d1=>0},
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'req_dep_one: (ok, a specified with d2)',
+            input  => {a=>0, d2=>0},
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'req_dep_one: (ok, a specified with d1 & d2)',
+            input  => {a=>0, d1=>0, d2=>0},
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'req_dep_one: (ok, no a with d1)',
+            input  => {d1=>0},
+            schema => $sch,
+            valid  => 0,
+        },
+        {
+            name   => 'req_dep_one: (ok, no a with d2)',
+            input  => {d2=>0},
+            schema => $sch,
+            valid  => 0,
+        },
+        {
+            name   => 'req_dep_one: (ok, no a with d1 & d2)',
+            input  => {d1=>0, d2=>0},
+            schema => $sch,
+            valid  => 0,
+        },
+    );
+    # TODO: req_dep_one with first argument an array [a,b]
+
+    $sch = [hash => {req_dep_all=>["a", [qw/d1 d2/]]}];
+    push @res, (
+        {
+            name   => 'req_dep_all: (ok, empty)',
+            input  => {},
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'req_dep_all: (nok, a specified without d1/d2)',
+            input  => {a=>0},
+            schema => $sch,
+            valid  => 0,
+        },
+        {
+            name   => 'req_dep_all: (nok, a specified with d1)',
+            input  => {a=>0, d1=>0},
+            schema => $sch,
+            valid  => 0,
+        },
+        {
+            name   => 'req_dep_all: (ok, a specified with d2)',
+            input  => {a=>0, d2=>0},
+            schema => $sch,
+            valid  => 0,
+        },
+        {
+            name   => 'req_dep_all: (ok, a specified with d1 & d2)',
+            input  => {a=>0, d1=>0, d2=>0},
+            schema => $sch,
+            valid  => 1,
+        },
+        {
+            name   => 'req_dep_all: (nok, no a with d1 & d2)',
+            input  => {d1=>0, d2=>0},
+            schema => $sch,
+            valid  => 0,
+        },
+    );
+    # TODO: req_dep_all with first argument an array [a,b]
+
     # prop: keys
     push @res, (
         {

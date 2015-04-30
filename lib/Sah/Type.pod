@@ -1,5 +1,6 @@
 package Sah::Type; # just to make PodWeaver happy
 
+# DATE
 # VERSION
 
 1;
@@ -990,21 +991,123 @@ See also: C<req_keys>, C<allowed_keys>.
 
 Like C<forbidden_keys> but using regular expression.
 
-=head3 each_key : SCHEMA
+=head3 each_key
 
 Alias to C<each_index>.
 
-=head3 each_value : SCHEMA
+=head3 each_value
 
 Alias to C<each_elem>.
 
-=head3 check_each_key : EXPR
+=head3 check_each_key
 
 Alias to C<check_each_index>.
 
-=head3 check_each_value : EXPR
+=head3 check_each_value
 
 Alias to C<check_each_elem>.
+
+=head3 choose_one_key : ARRAY[STR]
+
+Specify that hash contains at most one out of a list of key names. Example:
+
+ ["hash", "choose_one_key", ["exclude", "exclude_from"]]
+
+Hash can contain either "exclude" or "exclude_from" but not both.
+
+=head3 choose_one
+
+Alias to C<choose_one_key>.
+
+=head3 choose_all_keys : ARRAY[STR]
+
+Specify that if hash contains any one of keys in a given list of key names, then
+hash must contain all of those keys. Example:
+
+ ["hash", "choose_all_keys", ["password", "confirmation"]]
+
+When hash contains "password", it must also contain "confirmation". And vice
+versa.
+
+=head3 choose_all
+
+Alias to C<choose_all_keys>.
+
+=head3 (TODO: choose_some_keys : [ min, max, ARRAY[STR] ])
+
+=head3 req_one_key : ARRAY[STR]
+
+Specify that only exactly one key is required to exist. Example:
+
+ ["hash", "req_one_key", ["input_value", "input_file"]] // either specify input value directly, or specify path to file that contains the value
+
+When the two keys both exist, the clause fails.
+
+=head3 req_one
+
+Alias to C<req_one_key>.
+
+=head3 req_all_keys
+
+Alias to C<req_keys>.
+
+=head3 req_all
+
+Alias to C<req_keys>.
+
+=head3 (TODO: req_some_keys : [ min, max, ARRAY[STR] ])
+
+=head3 dep_one : [ STR|ARRAY[STR], ARRAY[STR] ]
+
+Specify that the first argument (either a string containing a key name, or a
+list of key names) can only exist when one of the keys given in the second
+argument exists. Example:
+
+ ["hash", "dep_one", ["postcode", ["address"]]]
+
+The "postcode" key can only be specified if "address" key exists.
+
+Another example:
+
+ ["hash", "dep_one", ["input_format", ["input_value", "input_file"]]
+
+If "input_value" or "input_file" exists, then "input_format" is allowed to be
+specified.
+
+Yet another example:
+
+ ["hash", "dep_one", [["input_format", "input_is_yaml", "input_is_json"], ["input_value", "input_file"]]
+
+If either "input_value" or "input_file" exists, then one of "input_format",
+"input_is_yaml", "input_is_json" is allowed to be specified.
+
+=head3 dep_all : [ STR|ARRAY[STR], ARRAY[STR] ]
+
+Specify that the first argument (either a string containing a key name, or a
+list of key names) can only exist when all of the keys given in the second
+argument exist. Example:
+
+ ["hash", "dep_all", ["postcode", ["address"]]]
+
+In the above example, you can also use "dep_one" clause for the same effect
+since there is only one key to depend on. Another example:
+
+ ["hash", "dep_all", ["postcode", ["address", "city"]]
+
+In the above example, "postcode" can only be specified when both "address" and
+"city" exist. Yet another example:
+
+=head3 req_dep_one : [ STR|ARRAY[STR], ARRAY[STR] ]
+
+Specify that the first argument (either a string containing a key name, or a
+list of key names) is required when one of the keys given in the second argument
+exist.
+
+=head3 req_dep_all : [ STR|ARRAY[STR], ARRAY[STR] ]
+
+Specify that the first argument (either a string containing a key name, or a
+list of key names) is required when all of the keys given in the second argument
+exist.
 
 
 =head1 TYPE: any
