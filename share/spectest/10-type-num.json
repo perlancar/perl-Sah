@@ -1,142 +1,142 @@
 {
    "tests" : [
       {
-         "input" : -1.1,
-         "name" : "type check: must accept -1.1",
          "tags" : [
             "type",
             "type:num"
          ],
          "valid" : 1,
+         "name" : "type check: must accept -1.1",
+         "input" : -1.1,
          "schema" : "num"
       },
       {
          "valid" : 1,
-         "schema" : "num",
-         "input" : -1,
          "tags" : [
             "type",
             "type:num"
          ],
+         "input" : -1,
+         "schema" : "num",
          "name" : "type check: must accept -1"
       },
       {
-         "valid" : 1,
+         "name" : "type check: must accept 0",
          "schema" : "num",
          "input" : 0,
-         "name" : "type check: must accept 0",
+         "tags" : [
+            "type",
+            "type:num"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 1,
+         "schema" : "num",
+         "name" : "type check: must accept 1",
+         "valid" : 1,
          "tags" : [
             "type",
             "type:num"
          ]
       },
       {
-         "input" : 1,
-         "name" : "type check: must accept 1",
+         "valid" : 1,
          "tags" : [
             "type",
             "type:num"
          ],
-         "valid" : 1,
-         "schema" : "num"
-      },
-      {
          "input" : 1.1,
-         "name" : "type check: must accept 1.1",
-         "tags" : [
-            "type",
-            "type:num"
-         ],
-         "valid" : 1,
-         "schema" : "num"
+         "schema" : "num",
+         "name" : "type check: must accept 1.1"
       },
       {
+         "schema" : "num",
          "input" : "a",
          "name" : "type check: must reject a",
+         "valid" : 0,
          "tags" : [
             "type",
             "type:num"
-         ],
-         "valid" : 0,
-         "schema" : "num"
+         ]
       },
       {
-         "valid" : 0,
          "schema" : "num",
          "input" : [],
-         "tags" : [
-            "type",
-            "type:num"
-         ],
-         "name" : "type check: must reject []"
-      },
-      {
-         "input" : {},
-         "name" : "type check: must reject {}",
-         "tags" : [
-            "type",
-            "type:num"
-         ],
+         "name" : "type check: must reject []",
          "valid" : 0,
-         "schema" : "num"
+         "tags" : [
+            "type",
+            "type:num"
+         ]
       },
       {
+         "name" : "type check: must reject {}",
+         "input" : {},
+         "schema" : "num",
          "tags" : [
             "type",
             "type:num"
          ],
-         "name" : "must accept undefined value",
+         "valid" : 0
+      },
+      {
+         "valid" : 1,
+         "tags" : [
+            "type",
+            "type:num"
+         ],
          "input" : null,
          "schema" : "num",
-         "valid" : 1
+         "name" : "must accept undefined value"
       },
       {
-         "schema" : [
-            "num",
-            "defhash_v",
-            1
-         ],
          "valid" : 1,
          "tags" : [
             "type",
             "type:num",
             "clause:defhash_v"
          ],
-         "name" : "defhash_v",
-         "input" : null
+         "schema" : [
+            "num",
+            "defhash_v",
+            1
+         ],
+         "input" : null,
+         "name" : "defhash_v"
       },
       {
-         "valid" : 1,
+         "input" : null,
          "schema" : [
             "num",
             "v",
             1
          ],
-         "input" : null,
+         "name" : "v",
+         "valid" : 1,
          "tags" : [
             "type",
             "type:num",
             "clause:v"
-         ],
-         "name" : "v"
+         ]
       },
       {
          "name" : "c",
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:c"
-         ],
          "input" : null,
          "schema" : [
             "num",
             "c.foo.bar",
             1
          ],
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:c"
+         ],
          "valid" : 1
       },
       {
-         "valid" : 1,
+         "name" : "default_lang",
          "schema" : [
             "num",
             "default_lang",
@@ -148,47 +148,47 @@
             "type:num",
             "clause:default_lang"
          ],
-         "name" : "default_lang"
+         "valid" : 1
       },
       {
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:name"
+         ],
          "valid" : 1,
+         "name" : "name",
          "schema" : [
             "num",
             "name",
             "some name"
          ],
-         "input" : null,
-         "name" : "name",
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:name"
-         ]
+         "input" : null
       },
       {
-         "input" : null,
          "tags" : [
             "type",
             "type:num",
             "clause:summary"
          ],
-         "name" : "summary",
          "valid" : 1,
+         "name" : "summary",
          "schema" : [
             "num",
             "summary",
             "some summary"
-         ]
+         ],
+         "input" : null
       },
       {
-         "valid" : 1,
+         "input" : null,
          "schema" : [
             "num",
             "description",
             "some description and `markdown`"
          ],
-         "input" : null,
          "name" : "description",
+         "valid" : 1,
          "tags" : [
             "type",
             "type:num",
@@ -196,6 +196,12 @@
          ]
       },
       {
+         "valid" : 1,
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:tags"
+         ],
          "schema" : [
             "num",
             "tags",
@@ -204,47 +210,40 @@
                "tags"
             ]
          ],
-         "valid" : 1,
-         "name" : "tags",
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:tags"
-         ],
-         "input" : null
+         "input" : null,
+         "name" : "tags"
       },
       {
-         "input" : null,
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:req"
-         ],
          "name" : "req=0 must accept undefined value",
-         "valid" : 1,
+         "input" : null,
          "schema" : [
             "num",
             "req",
             0
-         ]
-      },
-      {
-         "name" : "req=1 must reject undefined value",
+         ],
          "tags" : [
             "type",
             "type:num",
             "clause:req"
          ],
-         "input" : null,
+         "valid" : 1
+      },
+      {
+         "valid" : 0,
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:req"
+         ],
          "schema" : [
             "num",
             "req",
             1
          ],
-         "valid" : 0
+         "input" : null,
+         "name" : "req=1 must reject undefined value"
       },
       {
-         "valid" : 1,
          "schema" : [
             "num",
             "forbidden",
@@ -252,6 +251,7 @@
          ],
          "input" : 1.1,
          "name" : "forbidden=0 must accept defined value",
+         "valid" : 1,
          "tags" : [
             "type",
             "type:num",
@@ -260,56 +260,50 @@
       },
       {
          "valid" : 0,
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:forbidden"
+         ],
+         "input" : 1.1,
          "schema" : [
             "num",
             "forbidden",
             1
          ],
-         "input" : 1.1,
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:forbidden"
-         ],
          "name" : "forbidden=1 must reject defined value"
       },
       {
-         "valid" : 1,
-         "schema" : [
-            "num*",
-            "default",
-            1.1
-         ],
-         "input" : null,
-         "name" : "default: must accept valid default 1.1",
          "tags" : [
             "type",
             "type:num",
             "clause:default"
+         ],
+         "valid" : 1,
+         "name" : "default: must accept valid default 1.1",
+         "input" : null,
+         "schema" : [
+            "num*",
+            "default",
+            1.1
          ]
       },
       {
+         "name" : "default: must reject invalid default []",
+         "input" : null,
          "schema" : [
             "num*",
             "default",
             []
          ],
-         "valid" : 0,
          "tags" : [
             "type",
             "type:num",
             "clause:default"
          ],
-         "name" : "default: must reject invalid default []",
-         "input" : null
+         "valid" : 0
       },
       {
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:clause"
-         ],
-         "name" : "clause (dies, unknown clause)",
          "input" : 1.1,
          "schema" : [
             "num*",
@@ -319,17 +313,17 @@
                1
             ]
          ],
-         "dies" : 1
-      },
-      {
-         "input" : 1.1,
-         "name" : "clause (ok)",
+         "dies" : 1,
+         "name" : "clause (dies, unknown clause)",
          "tags" : [
             "type",
             "type:num",
             "clause:clause"
-         ],
-         "valid" : 1,
+         ]
+      },
+      {
+         "name" : "clause (ok)",
+         "input" : 1.1,
          "schema" : [
             "num*",
             "clause",
@@ -337,10 +331,17 @@
                "min",
                1
             ]
-         ]
+         ],
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:clause"
+         ],
+         "valid" : 1
       },
       {
-         "valid" : 0,
+         "name" : "clause (ok) + clause nok = nok",
+         "input" : 1.1,
          "schema" : [
             "num*",
             "clause",
@@ -351,15 +352,15 @@
             "max",
             1
          ],
-         "input" : 1.1,
          "tags" : [
             "type",
             "type:num",
             "clause:clause"
          ],
-         "name" : "clause (ok) + clause nok = nok"
+         "valid" : 0
       },
       {
+         "input" : 1.1,
          "schema" : [
             "num*",
             "clause",
@@ -368,34 +369,34 @@
                2
             ]
          ],
-         "errors" : 1,
+         "name" : "clause (nok)",
          "valid" : 0,
+         "errors" : 1,
          "tags" : [
             "type",
             "type:num",
             "clause:clause"
-         ],
-         "name" : "clause (nok)",
-         "input" : 1.1
+         ]
       },
       {
-         "name" : "clset (dies, unknown clause)",
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:clset"
-         ],
-         "input" : 1.1,
-         "dies" : 1,
          "schema" : [
             "num*",
             "clset",
             {
                "foo" : 1
             }
+         ],
+         "dies" : 1,
+         "input" : 1.1,
+         "name" : "clset (dies, unknown clause)",
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:clset"
          ]
       },
       {
+         "input" : 1.1,
          "dies" : 1,
          "schema" : [
             "num*",
@@ -405,7 +406,6 @@
                "min_len" : 1
             }
          ],
-         "input" : 1.1,
          "name" : "clset (dies, unknown attr)",
          "tags" : [
             "type",
@@ -419,20 +419,15 @@
             "clset",
             {}
          ],
+         "input" : 1.1,
+         "name" : "clset (empty = ok)",
          "valid" : 1,
          "tags" : [
             "type",
             "type:num"
-         ],
-         "name" : "clset (empty = ok)",
-         "input" : 1.1
+         ]
       },
       {
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:clset"
-         ],
          "name" : "clset (ignored clause/attr = ok)",
          "input" : 1.1,
          "schema" : [
@@ -443,9 +438,15 @@
                "_foo" : 1
             }
          ],
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:clset"
+         ],
          "valid" : 1
       },
       {
+         "name" : "clset (ok + ok = ok)",
          "schema" : [
             "num*",
             "clset",
@@ -454,17 +455,17 @@
                "min" : 1
             }
          ],
-         "valid" : 1,
+         "input" : 1.1,
          "tags" : [
             "type",
             "type:num",
             "clause:clset"
          ],
-         "name" : "clset (ok + ok = ok)",
-         "input" : 1.1
+         "valid" : 1
       },
       {
-         "valid" : 0,
+         "name" : "clset (ok) + clause nok = nok",
+         "input" : 1.1,
          "schema" : [
             "num*",
             "clset",
@@ -474,23 +475,15 @@
             "max",
             1
          ],
-         "input" : 1.1,
-         "name" : "clset (ok) + clause nok = nok",
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:clset"
-         ]
-      },
-      {
-         "input" : 1.1,
          "tags" : [
             "type",
             "type:num",
             "clause:clset"
          ],
+         "valid" : 0
+      },
+      {
          "name" : "clset (ok + nok = nok)",
-         "valid" : 0,
          "schema" : [
             "num*",
             "clset",
@@ -498,67 +491,68 @@
                "min" : 1,
                "max" : 1
             }
-         ]
+         ],
+         "input" : 1.1,
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:clset"
+         ],
+         "valid" : 0
+      },
+      {
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:clset"
+         ],
+         "valid" : 0,
+         "name" : "clset (nok + ok = nok)",
+         "schema" : [
+            "num*",
+            "clset",
+            {
+               "max" : 1.1,
+               "min" : 2
+            }
+         ],
+         "input" : 1.1
       },
       {
          "valid" : 0,
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:clset"
+         ],
          "schema" : [
             "num*",
             "clset",
             {
                "min" : 2,
-               "max" : 1.1
+               "max" : 1
             }
          ],
          "input" : 1.1,
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:clset"
-         ],
-         "name" : "clset (nok + ok = nok)"
+         "name" : "clset (nok + nok = nok)"
       },
       {
-         "valid" : 0,
-         "schema" : [
-            "num*",
-            "clset",
-            {
-               "max" : 1,
-               "min" : 2
-            }
-         ],
-         "input" : 1.1,
-         "name" : "clset (nok + nok = nok)",
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:clset"
-         ]
-      },
-      {
-         "input" : null,
+         "valid" : 1,
          "tags" : [
             "type",
             "type:num",
             "clause:ok"
          ],
-         "name" : "ok",
-         "valid" : 1,
          "schema" : [
             "num",
             {
                "ok" : 1
             }
-         ]
+         ],
+         "input" : null,
+         "name" : "ok"
       },
       {
-         "schema" : [
-            "num",
-            {
-               "!ok" : 1
-            }
-         ],
          "valid" : 0,
          "tags" : [
             "type",
@@ -567,18 +561,24 @@
             "op",
             "op:not"
          ],
-         "name" : "ok + op not (nok)",
-         "input" : null
+         "schema" : [
+            "num",
+            {
+               "!ok" : 1
+            }
+         ],
+         "input" : null,
+         "name" : "ok + op not (nok)"
       },
       {
-         "valid" : 1,
+         "input" : 0.1,
          "schema" : [
             "num",
             "min",
             0
          ],
-         "input" : 0.1,
          "name" : ".err_level=error (clause=min, ok)",
+         "valid" : 1,
          "tags" : [
             "type",
             "type:num",
@@ -592,17 +592,19 @@
             "min",
             0
          ],
+         "input" : -0.1,
+         "name" : ".err_level=error (clause=min, nok)",
          "valid" : 0,
          "tags" : [
             "type",
             "type:num",
             "attr",
             "attr:err_level"
-         ],
-         "name" : ".err_level=error (clause=min, nok)",
-         "input" : -0.1
+         ]
       },
       {
+         "name" : ".err_level=warn (clause=min, ok)",
+         "input" : 0.1,
          "schema" : [
             "num",
             "min",
@@ -610,92 +612,71 @@
             "min.err_level",
             "warn"
          ],
-         "valid" : 1,
-         "name" : ".err_level=warn (clause=min, ok)",
          "tags" : [
             "type",
             "type:num",
             "attr",
             "attr:err_level"
          ],
-         "input" : 0.1
+         "valid" : 1
       },
       {
-         "input" : -0.1,
-         "warnings" : 1,
-         "tags" : [
-            "type",
-            "type:num",
-            "attr",
-            "attr:err_level"
-         ],
-         "name" : ".err_level=warn (clause=min, nok)",
-         "valid" : 1,
          "schema" : [
             "num*",
             "min",
             0,
             "min.err_level",
             "warn"
+         ],
+         "warnings" : 1,
+         "input" : -0.1,
+         "name" : ".err_level=warn (clause=min, nok)",
+         "valid" : 1,
+         "tags" : [
+            "type",
+            "type:num",
+            "attr",
+            "attr:err_level"
          ]
       },
       {
-         "name" : "is: must accept same value",
+         "valid" : 1,
          "tags" : [
             "type",
             "type:num",
             "clause:is"
          ],
-         "input" : 1.1,
          "schema" : [
             "num",
             "is",
             1.1
          ],
-         "valid" : 1
+         "input" : 1.1,
+         "name" : "is: must accept same value"
       },
       {
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:is"
-         ],
-         "name" : "is: must reject different value",
-         "input" : 1.1,
          "schema" : [
             "num",
             "is",
             1.2
          ],
-         "valid" : 0
-      },
-      {
-         "schema" : [
-            "num",
-            "!is",
-            1.1
-         ],
+         "input" : 1.1,
+         "name" : "is: must reject different value",
          "valid" : 0,
          "tags" : [
             "type",
             "type:num",
-            "clause:is",
-            "op",
-            "op:not",
-            "opshortcut"
-         ],
-         "name" : "!is (nok)",
-         "input" : 1.1
+            "clause:is"
+         ]
       },
       {
-         "valid" : 1,
+         "name" : "!is (nok)",
          "schema" : [
             "num",
             "!is",
-            1.2
+            1.1
          ],
          "input" : 1.1,
-         "name" : "!is (ok)",
          "tags" : [
             "type",
             "type:num",
@@ -703,9 +684,29 @@
             "op",
             "op:not",
             "opshortcut"
-         ]
+         ],
+         "valid" : 0
       },
       {
+         "valid" : 1,
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:is",
+            "op",
+            "op:not",
+            "opshortcut"
+         ],
+         "schema" : [
+            "num",
+            "!is",
+            1.2
+         ],
+         "input" : 1.1,
+         "name" : "!is (ok)"
+      },
+      {
+         "name" : "is.op=not (nok)",
          "schema" : [
             "num",
             "is",
@@ -713,8 +714,7 @@
             "is.op",
             "not"
          ],
-         "valid" : 0,
-         "name" : "is.op=not (nok)",
+         "input" : 1.1,
          "tags" : [
             "type",
             "type:num",
@@ -722,10 +722,9 @@
             "op",
             "op:not"
          ],
-         "input" : 1.1
+         "valid" : 0
       },
       {
-         "name" : "is.op=not (ok)",
          "tags" : [
             "type",
             "type:num",
@@ -733,6 +732,8 @@
             "op",
             "op:not"
          ],
+         "valid" : 1,
+         "name" : "is.op=not (ok)",
          "input" : 1.1,
          "schema" : [
             "num",
@@ -740,18 +741,10 @@
             1.2,
             "is.op",
             "not"
-         ],
-         "valid" : 1
+         ]
       },
       {
          "valid" : 1,
-         "schema" : [
-            "num",
-            "is&",
-            []
-         ],
-         "input" : 1.1,
-         "name" : "is& (no items)",
          "tags" : [
             "type",
             "type:num",
@@ -759,10 +752,16 @@
             "op",
             "op:and",
             "opshortcut"
-         ]
+         ],
+         "input" : 1.1,
+         "schema" : [
+            "num",
+            "is&",
+            []
+         ],
+         "name" : "is& (no items)"
       },
       {
-         "valid" : 1,
          "schema" : [
             "num",
             "is&",
@@ -773,6 +772,7 @@
          ],
          "input" : 1.1,
          "name" : "is& (ok)",
+         "valid" : 1,
          "tags" : [
             "type",
             "type:num",
@@ -783,17 +783,6 @@
          ]
       },
       {
-         "errors" : 1,
-         "valid" : 0,
-         "schema" : [
-            "num",
-            "is&",
-            [
-               1.2,
-               1.1
-            ]
-         ],
-         "input" : 1.1,
          "tags" : [
             "type",
             "type:num",
@@ -802,7 +791,18 @@
             "op:and",
             "opshortcut"
          ],
-         "name" : "is& (nok + ok)"
+         "valid" : 0,
+         "errors" : 1,
+         "name" : "is& (nok + ok)",
+         "input" : 1.1,
+         "schema" : [
+            "num",
+            "is&",
+            [
+               1.2,
+               1.1
+            ]
+         ]
       },
       {
          "schema" : [
@@ -813,6 +813,8 @@
                1.2
             ]
          ],
+         "input" : 1.1,
+         "name" : "is& (ok + nok)",
          "errors" : 1,
          "valid" : 0,
          "tags" : [
@@ -822,11 +824,11 @@
             "op",
             "op:and",
             "opshortcut"
-         ],
-         "name" : "is& (ok + nok)",
-         "input" : 1.1
+         ]
       },
       {
+         "name" : "is& (nok + nok)",
+         "input" : 1.1,
          "schema" : [
             "num",
             "is&",
@@ -835,9 +837,6 @@
                1.2
             ]
          ],
-         "valid" : 0,
-         "errors" : 1,
-         "name" : "is& (nok + nok)",
          "tags" : [
             "type",
             "type:num",
@@ -846,10 +845,12 @@
             "op:and",
             "opshortcut"
          ],
-         "input" : 1.1
+         "valid" : 0,
+         "errors" : 1
       },
       {
-         "valid" : 1,
+         "name" : "is.op=and (no items)",
+         "input" : 1.1,
          "schema" : [
             "num",
             "is",
@@ -857,14 +858,14 @@
             "is.op",
             "and"
          ],
-         "input" : 1.1,
-         "name" : "is.op=and (no items)",
          "tags" : [
             "type",
             "type:num"
-         ]
+         ],
+         "valid" : 1
       },
       {
+         "input" : 1.1,
          "schema" : [
             "num",
             "is",
@@ -875,16 +876,15 @@
             "is.op",
             "and"
          ],
-         "valid" : 1,
          "name" : "is.op=and (ok)",
+         "valid" : 1,
          "tags" : [
             "type",
             "type:num",
             "clause:is",
             "op",
             "op:and"
-         ],
-         "input" : 1.1
+         ]
       },
       {
          "tags" : [
@@ -894,6 +894,8 @@
             "op",
             "op:and"
          ],
+         "valid" : 0,
+         "errors" : 1,
          "name" : "is.op=and (nok + ok)",
          "input" : 1.1,
          "schema" : [
@@ -905,18 +907,9 @@
             ],
             "is.op",
             "and"
-         ],
-         "errors" : 1,
-         "valid" : 0
+         ]
       },
       {
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:is",
-            "op",
-            "op:and"
-         ],
          "name" : "is.op=and (ok + nok)",
          "input" : 1.1,
          "schema" : [
@@ -929,11 +922,6 @@
             "is.op",
             "and"
          ],
-         "errors" : 1,
-         "valid" : 0
-      },
-      {
-         "name" : "is.op=and (nok + nok)",
          "tags" : [
             "type",
             "type:num",
@@ -941,6 +929,11 @@
             "op",
             "op:and"
          ],
+         "valid" : 0,
+         "errors" : 1
+      },
+      {
+         "name" : "is.op=and (nok + nok)",
          "input" : 1.1,
          "schema" : [
             "num",
@@ -952,18 +945,25 @@
             "is.op",
             "and"
          ],
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:is",
+            "op",
+            "op:and"
+         ],
          "valid" : 0,
          "errors" : 1
       },
       {
-         "valid" : 1,
+         "input" : 1.1,
          "schema" : [
             "num",
             "is|",
             []
          ],
-         "input" : 1.1,
          "name" : "is| (no items)",
+         "valid" : 1,
          "tags" : [
             "type",
             "type:num",
@@ -974,8 +974,16 @@
          ]
       },
       {
-         "input" : 1.1,
          "name" : "is| (ok)",
+         "schema" : [
+            "num",
+            "is|",
+            [
+               1.1,
+               1.1
+            ]
+         ],
+         "input" : 1.1,
          "tags" : [
             "type",
             "type:num",
@@ -984,40 +992,20 @@
             "op:or",
             "opshortcut"
          ],
-         "valid" : 1,
+         "valid" : 1
+      },
+      {
+         "input" : 1.1,
          "schema" : [
             "num",
             "is|",
             [
-               1.1,
+               1.2,
                1.1
             ]
-         ]
-      },
-      {
-         "input" : 1.1,
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:is",
-            "op",
-            "op:or",
-            "opshortcut"
          ],
          "name" : "is| (nok + ok)",
          "valid" : 1,
-         "schema" : [
-            "num",
-            "is|",
-            [
-               1.2,
-               1.1
-            ]
-         ]
-      },
-      {
-         "input" : 1.1,
-         "name" : "is| (ok + nok)",
          "tags" : [
             "type",
             "type:num",
@@ -1025,8 +1013,10 @@
             "op",
             "op:or",
             "opshortcut"
-         ],
-         "valid" : 1,
+         ]
+      },
+      {
+         "input" : 1.1,
          "schema" : [
             "num",
             "is|",
@@ -1034,6 +1024,16 @@
                1.1,
                1.2
             ]
+         ],
+         "name" : "is| (ok + nok)",
+         "valid" : 1,
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:is",
+            "op",
+            "op:or",
+            "opshortcut"
          ]
       },
       {
@@ -1045,6 +1045,8 @@
                1.2
             ]
          ],
+         "input" : 1.1,
+         "name" : "is| (nok + nok)",
          "errors" : 1,
          "valid" : 0,
          "tags" : [
@@ -1054,9 +1056,7 @@
             "op",
             "op:or",
             "opshortcut"
-         ],
-         "name" : "is| (nok + nok)",
-         "input" : 1.1
+         ]
       },
       {
          "tags" : [
@@ -1066,6 +1066,7 @@
             "op",
             "op:or"
          ],
+         "valid" : 1,
          "name" : "is.op=or (no items)",
          "input" : 1.1,
          "schema" : [
@@ -1074,19 +1075,10 @@
             [],
             "is.op",
             "or"
-         ],
-         "valid" : 1
+         ]
       },
       {
          "name" : "is.op=or (ok)",
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:is",
-            "op",
-            "op:or"
-         ],
-         "input" : 1.1,
          "schema" : [
             "num",
             "is",
@@ -1097,21 +1089,39 @@
             "is.op",
             "or"
          ],
+         "input" : 1.1,
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:is",
+            "op",
+            "op:or"
+         ],
          "valid" : 1
       },
       {
-         "schema" : [
-            "num",
-            "is",
-            [
-               1.2,
-               1.1
-            ],
-            "is.op",
-            "or"
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:is",
+            "op",
+            "op:or"
          ],
          "valid" : 1,
          "name" : "is.op=or (nok + ok)",
+         "schema" : [
+            "num",
+            "is",
+            [
+               1.2,
+               1.1
+            ],
+            "is.op",
+            "or"
+         ],
+         "input" : 1.1
+      },
+      {
          "tags" : [
             "type",
             "type:num",
@@ -1119,9 +1129,9 @@
             "op",
             "op:or"
          ],
-         "input" : 1.1
-      },
-      {
+         "valid" : 1,
+         "name" : "is.op=or (ok + nok)",
+         "input" : 1.1,
          "schema" : [
             "num",
             "is",
@@ -1131,27 +1141,9 @@
             ],
             "is.op",
             "or"
-         ],
-         "valid" : 1,
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:is",
-            "op",
-            "op:or"
-         ],
-         "name" : "is.op=or (ok + nok)",
-         "input" : 1.1
+         ]
       },
       {
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:is",
-            "op",
-            "op:or"
-         ],
-         "name" : "is.op=or (nok + nok)",
          "input" : 1.1,
          "schema" : [
             "num",
@@ -1163,11 +1155,27 @@
             "is.op",
             "or"
          ],
+         "name" : "is.op=or (nok + nok)",
+         "valid" : 0,
          "errors" : 1,
-         "valid" : 0
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:is",
+            "op",
+            "op:or"
+         ]
       },
       {
          "valid" : 1,
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:is",
+            "op",
+            "op:none"
+         ],
+         "input" : 1.1,
          "schema" : [
             "num",
             "is",
@@ -1175,25 +1183,10 @@
             "is.op",
             "none"
          ],
-         "input" : 1.1,
-         "name" : "is.op=none (empty items)",
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:is",
-            "op",
-            "op:none"
-         ]
+         "name" : "is.op=none (empty items)"
       },
       {
          "name" : "is.op=none (nok + nok)",
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:is",
-            "op",
-            "op:none"
-         ],
          "input" : 1.1,
          "schema" : [
             "num",
@@ -1204,10 +1197,19 @@
             ],
             "is.op",
             "none"
+         ],
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:is",
+            "op",
+            "op:none"
          ],
          "valid" : 1
       },
       {
+         "name" : "is.op=none (nok + ok)",
+         "input" : 1.1,
          "schema" : [
             "num",
             "is",
@@ -1218,8 +1220,6 @@
             "is.op",
             "none"
          ],
-         "errors" : 1,
-         "valid" : 0,
          "tags" : [
             "type",
             "type:num",
@@ -1227,12 +1227,11 @@
             "op",
             "op:none"
          ],
-         "name" : "is.op=none (nok + ok)",
-         "input" : 1.1
+         "valid" : 0,
+         "errors" : 1
       },
       {
-         "errors" : 1,
-         "valid" : 0,
+         "name" : "is.op=none (ok + nok)",
          "schema" : [
             "num",
             "is",
@@ -1251,93 +1250,67 @@
             "op",
             "op:none"
          ],
-         "name" : "is.op=none (ok + nok)"
-      },
-      {
-         "input" : 1.1,
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:is",
-            "op",
-            "op:none"
-         ],
-         "name" : "is.op=none (ok + ok)",
          "errors" : 1,
-         "valid" : 0,
-         "schema" : [
-            "num",
-            "is",
-            [
-               1.1,
-               1.1
-            ],
-            "is.op",
-            "none"
-         ]
-      },
-      {
-         "input" : 1.1,
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:in"
-         ],
-         "name" : "in: must accept valid choices",
-         "valid" : 1,
-         "schema" : [
-            "num",
-            "in",
-            [
-               1.1,
-               1.2
-            ]
-         ]
-      },
-      {
-         "input" : 1.1,
-         "name" : "in: must reject empty choices",
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:in"
-         ],
-         "valid" : 0,
-         "schema" : [
-            "num",
-            "in",
-            []
-         ]
-      },
-      {
-         "name" : "!in (nok)",
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:in",
-            "op",
-            "op:not",
-            "opshortcut"
-         ],
-         "input" : 1.1,
-         "schema" : [
-            "num",
-            "!in",
-            [
-               1.1,
-               1.2
-            ]
-         ],
          "valid" : 0
       },
       {
+         "errors" : 1,
+         "valid" : 0,
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:is",
+            "op",
+            "op:none"
+         ],
          "schema" : [
             "num",
-            "!in",
+            "is",
+            [
+               1.1,
+               1.1
+            ],
+            "is.op",
+            "none"
+         ],
+         "input" : 1.1,
+         "name" : "is.op=none (ok + ok)"
+      },
+      {
+         "schema" : [
+            "num",
+            "in",
+            [
+               1.1,
+               1.2
+            ]
+         ],
+         "input" : 1.1,
+         "name" : "in: must accept valid choices",
+         "valid" : 1,
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:in"
+         ]
+      },
+      {
+         "valid" : 0,
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:in"
+         ],
+         "schema" : [
+            "num",
+            "in",
             []
          ],
-         "valid" : 1,
-         "name" : "!in (ok)",
+         "input" : 1.1,
+         "name" : "in: must reject empty choices"
+      },
+      {
+         "valid" : 0,
          "tags" : [
             "type",
             "type:num",
@@ -1346,9 +1319,45 @@
             "op:not",
             "opshortcut"
          ],
-         "input" : 1.1
+         "input" : 1.1,
+         "schema" : [
+            "num",
+            "!in",
+            [
+               1.1,
+               1.2
+            ]
+         ],
+         "name" : "!in (nok)"
       },
       {
+         "schema" : [
+            "num",
+            "!in",
+            []
+         ],
+         "input" : 1.1,
+         "name" : "!in (ok)",
+         "valid" : 1,
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:in",
+            "op",
+            "op:not",
+            "opshortcut"
+         ]
+      },
+      {
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:in",
+            "op",
+            "op:not"
+         ],
+         "valid" : 0,
+         "name" : "in.op=not (nok)",
          "schema" : [
             "num",
             "in",
@@ -1359,56 +1368,48 @@
             "in.op",
             "not"
          ],
-         "valid" : 0,
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:in",
-            "op",
-            "op:not"
-         ],
-         "name" : "in.op=not (nok)",
          "input" : 1.1
       },
       {
-         "input" : 1.1,
          "name" : "in.op=not (ok)",
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:in",
-            "op",
-            "op:not"
-         ],
-         "valid" : 1,
+         "input" : 1.1,
          "schema" : [
             "num",
             "in",
             [],
             "in.op",
             "not"
-         ]
-      },
-      {
+         ],
          "tags" : [
             "type",
             "type:num",
             "clause:in",
             "op",
-            "op:and",
-            "opshortcut"
-         ],
-         "name" : "in& (no items)",
-         "input" : 1.1,
-         "schema" : [
-            "num",
-            "in&",
-            []
+            "op:not"
          ],
          "valid" : 1
       },
       {
          "valid" : 1,
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:in",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
+         "schema" : [
+            "num",
+            "in&",
+            []
+         ],
+         "input" : 1.1,
+         "name" : "in& (no items)"
+      },
+      {
+         "name" : "in& (ok)",
+         "input" : 1.1,
          "schema" : [
             "num",
             "in&",
@@ -1423,7 +1424,6 @@
                ]
             ]
          ],
-         "input" : 1.1,
          "tags" : [
             "type",
             "type:num",
@@ -1432,11 +1432,24 @@
             "op:and",
             "opshortcut"
          ],
-         "name" : "in& (ok)"
+         "valid" : 1
       },
       {
+         "schema" : [
+            "num",
+            "in&",
+            [
+               [],
+               [
+                  1.1,
+                  1.2
+               ]
+            ]
+         ],
          "input" : 1.1,
          "name" : "in& (nok + ok)",
+         "errors" : 1,
+         "valid" : 0,
          "tags" : [
             "type",
             "type:num",
@@ -1444,23 +1457,9 @@
             "op",
             "op:and",
             "opshortcut"
-         ],
-         "valid" : 0,
-         "errors" : 1,
-         "schema" : [
-            "num",
-            "in&",
-            [
-               [],
-               [
-                  1.1,
-                  1.2
-               ]
-            ]
          ]
       },
       {
-         "input" : 1.1,
          "tags" : [
             "type",
             "type:num",
@@ -1469,9 +1468,9 @@
             "op:and",
             "opshortcut"
          ],
-         "name" : "in& (ok + nok)",
          "errors" : 1,
          "valid" : 0,
+         "name" : "in& (ok + nok)",
          "schema" : [
             "num",
             "in&",
@@ -1482,11 +1481,10 @@
                ],
                []
             ]
-         ]
+         ],
+         "input" : 1.1
       },
       {
-         "input" : 1.1,
-         "name" : "in& (nok + nok)",
          "tags" : [
             "type",
             "type:num",
@@ -1495,8 +1493,9 @@
             "op:and",
             "opshortcut"
          ],
-         "valid" : 0,
          "errors" : 1,
+         "valid" : 0,
+         "name" : "in& (nok + nok)",
          "schema" : [
             "num",
             "in&",
@@ -1504,26 +1503,27 @@
                [],
                []
             ]
-         ]
+         ],
+         "input" : 1.1
       },
       {
+         "input" : 1.1,
+         "schema" : [
+            "num",
+            "in",
+            [],
+            "in.op",
+            "and"
+         ],
+         "name" : "in.op=and (no items)",
+         "valid" : 1,
          "tags" : [
             "type",
             "type:num"
-         ],
-         "name" : "in.op=and (no items)",
-         "input" : 1.1,
-         "schema" : [
-            "num",
-            "in",
-            [],
-            "in.op",
-            "and"
-         ],
-         "valid" : 1
+         ]
       },
       {
-         "name" : "in.op=and (ok)",
+         "valid" : 1,
          "tags" : [
             "type",
             "type:num",
@@ -1531,7 +1531,6 @@
             "op",
             "op:and"
          ],
-         "input" : 1.1,
          "schema" : [
             "num",
             "in",
@@ -1548,9 +1547,20 @@
             "in.op",
             "and"
          ],
-         "valid" : 1
+         "input" : 1.1,
+         "name" : "in.op=and (ok)"
       },
       {
+         "valid" : 0,
+         "errors" : 1,
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:in",
+            "op",
+            "op:and"
+         ],
+         "input" : 1.1,
          "schema" : [
             "num",
             "in",
@@ -1564,8 +1574,9 @@
             "in.op",
             "and"
          ],
-         "errors" : 1,
-         "valid" : 0,
+         "name" : "in.op=and (nok + ok)"
+      },
+      {
          "tags" : [
             "type",
             "type:num",
@@ -1573,26 +1584,25 @@
             "op",
             "op:and"
          ],
-         "name" : "in.op=and (nok + ok)",
+         "errors" : 1,
+         "valid" : 0,
+         "name" : "in.op=and (ok + nok)",
+         "schema" : [
+            "num",
+            "in",
+            [
+               [
+                  1.1,
+                  1.2
+               ],
+               []
+            ],
+            "in.op",
+            "and"
+         ],
          "input" : 1.1
       },
       {
-         "errors" : 1,
-         "valid" : 0,
-         "schema" : [
-            "num",
-            "in",
-            [
-               [
-                  1.1,
-                  1.2
-               ],
-               []
-            ],
-            "in.op",
-            "and"
-         ],
-         "input" : 1.1,
          "tags" : [
             "type",
             "type:num",
@@ -1600,38 +1610,40 @@
             "op",
             "op:and"
          ],
-         "name" : "in.op=and (ok + nok)"
-      },
-      {
-         "schema" : [
-            "num",
-            "in",
-            [
-               [],
-               []
-            ],
-            "in.op",
-            "and"
-         ],
-         "errors" : 1,
          "valid" : 0,
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:in",
-            "op",
-            "op:and"
-         ],
+         "errors" : 1,
          "name" : "in.op=and (nok + nok)",
-         "input" : 1.1
+         "input" : 1.1,
+         "schema" : [
+            "num",
+            "in",
+            [
+               [],
+               []
+            ],
+            "in.op",
+            "and"
+         ]
       },
       {
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:in",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
+         "valid" : 1,
+         "name" : "in| (no items)",
+         "input" : 1.1,
          "schema" : [
             "num",
             "in|",
             []
-         ],
-         "valid" : 1,
+         ]
+      },
+      {
          "tags" : [
             "type",
             "type:num",
@@ -1640,26 +1652,26 @@
             "op:or",
             "opshortcut"
          ],
-         "name" : "in| (no items)",
+         "valid" : 1,
+         "name" : "in| (ok)",
+         "schema" : [
+            "num",
+            "in|",
+            [
+               [
+                  1.1,
+                  1.2
+               ],
+               [
+                  1.1,
+                  1.2
+               ]
+            ]
+         ],
          "input" : 1.1
       },
       {
          "valid" : 1,
-         "schema" : [
-            "num",
-            "in|",
-            [
-               [
-                  1.1,
-                  1.2
-               ],
-               [
-                  1.1,
-                  1.2
-               ]
-            ]
-         ],
-         "input" : 1.1,
          "tags" : [
             "type",
             "type:num",
@@ -1668,20 +1680,7 @@
             "op:or",
             "opshortcut"
          ],
-         "name" : "in| (ok)"
-      },
-      {
          "input" : 1.1,
-         "name" : "in| (nok + ok)",
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:in",
-            "op",
-            "op:or",
-            "opshortcut"
-         ],
-         "valid" : 1,
          "schema" : [
             "num",
             "in|",
@@ -1692,34 +1691,44 @@
                   1.2
                ]
             ]
-         ]
+         ],
+         "name" : "in| (nok + ok)"
       },
       {
-         "valid" : 1,
-         "schema" : [
-            "num",
-            "in|",
-            [
-               [
-                  1.1,
-                  1.2
-               ],
-               []
-            ]
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:in",
+            "op",
+            "op:or",
+            "opshortcut"
          ],
-         "input" : 1.1,
+         "valid" : 1,
          "name" : "in| (ok + nok)",
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:in",
-            "op",
-            "op:or",
-            "opshortcut"
-         ]
+         "schema" : [
+            "num",
+            "in|",
+            [
+               [
+                  1.1,
+                  1.2
+               ],
+               []
+            ]
+         ],
+         "input" : 1.1
       },
       {
+         "name" : "in| (nok + nok)",
          "input" : 1.1,
+         "schema" : [
+            "num",
+            "in|",
+            [
+               [],
+               []
+            ]
+         ],
          "tags" : [
             "type",
             "type:num",
@@ -1728,21 +1737,10 @@
             "op:or",
             "opshortcut"
          ],
-         "name" : "in| (nok + nok)",
-         "errors" : 1,
          "valid" : 0,
-         "schema" : [
-            "num",
-            "in|",
-            [
-               [],
-               []
-            ]
-         ]
+         "errors" : 1
       },
       {
-         "input" : 1.1,
-         "name" : "in.op=or (no items)",
          "tags" : [
             "type",
             "type:num",
@@ -1751,16 +1749,26 @@
             "op:or"
          ],
          "valid" : 1,
+         "name" : "in.op=or (no items)",
          "schema" : [
             "num",
             "in",
             [],
             "in.op",
             "or"
-         ]
+         ],
+         "input" : 1.1
       },
       {
          "valid" : 1,
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:in",
+            "op",
+            "op:or"
+         ],
+         "input" : 1.1,
          "schema" : [
             "num",
             "in",
@@ -1776,18 +1784,20 @@
             ],
             "in.op",
             "or"
-         ],
-         "input" : 1.1,
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:in",
-            "op",
-            "op:or"
          ],
          "name" : "in.op=or (ok)"
       },
       {
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:in",
+            "op",
+            "op:or"
+         ],
+         "valid" : 1,
+         "name" : "in.op=or (nok + ok)",
+         "input" : 1.1,
          "schema" : [
             "num",
             "in",
@@ -1800,9 +1810,9 @@
             ],
             "in.op",
             "or"
-         ],
-         "valid" : 1,
-         "name" : "in.op=or (nok + ok)",
+         ]
+      },
+      {
          "tags" : [
             "type",
             "type:num",
@@ -1810,10 +1820,8 @@
             "op",
             "op:or"
          ],
-         "input" : 1.1
-      },
-      {
          "valid" : 1,
+         "name" : "in.op=or (ok + nok)",
          "schema" : [
             "num",
             "in",
@@ -1827,17 +1835,11 @@
             "in.op",
             "or"
          ],
-         "input" : 1.1,
-         "name" : "in.op=or (ok + nok)",
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:in",
-            "op",
-            "op:or"
-         ]
+         "input" : 1.1
       },
       {
+         "name" : "in.op=or (nok + nok)",
+         "input" : 1.1,
          "schema" : [
             "num",
             "in",
@@ -1848,9 +1850,6 @@
             "in.op",
             "or"
          ],
-         "valid" : 0,
-         "errors" : 1,
-         "name" : "in.op=or (nok + nok)",
          "tags" : [
             "type",
             "type:num",
@@ -1858,14 +1857,37 @@
             "op",
             "op:or"
          ],
-         "input" : 1.1
+         "valid" : 0,
+         "errors" : 1
       },
       {
          "valid" : 1,
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:in",
+            "op",
+            "op:none"
+         ],
          "schema" : [
             "num",
             "in",
             [],
+            "in.op",
+            "none"
+         ],
+         "input" : 1.1,
+         "name" : "in.op=none (empty items)"
+      },
+      {
+         "name" : "in.op=none (nok + nok)",
+         "schema" : [
+            "num",
+            "in",
+            [
+               [],
+               []
+            ],
             "in.op",
             "none"
          ],
@@ -1877,33 +1899,10 @@
             "op",
             "op:none"
          ],
-         "name" : "in.op=none (empty items)"
+         "valid" : 1
       },
       {
-         "schema" : [
-            "num",
-            "in",
-            [
-               [],
-               []
-            ],
-            "in.op",
-            "none"
-         ],
-         "valid" : 1,
-         "name" : "in.op=none (nok + nok)",
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:in",
-            "op",
-            "op:none"
-         ],
-         "input" : 1.1
-      },
-      {
-         "valid" : 0,
-         "errors" : 1,
+         "input" : 1.1,
          "schema" : [
             "num",
             "in",
@@ -1917,8 +1916,9 @@
             "in.op",
             "none"
          ],
-         "input" : 1.1,
          "name" : "in.op=none (nok + ok)",
+         "valid" : 0,
+         "errors" : 1,
          "tags" : [
             "type",
             "type:num",
@@ -1928,13 +1928,6 @@
          ]
       },
       {
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:in",
-            "op",
-            "op:none"
-         ],
          "name" : "in.op=none (ok + nok)",
          "input" : 1.1,
          "schema" : [
@@ -1950,12 +1943,6 @@
             "in.op",
             "none"
          ],
-         "errors" : 1,
-         "valid" : 0
-      },
-      {
-         "input" : 1.1,
-         "name" : "in.op=none (ok + ok)",
          "tags" : [
             "type",
             "type:num",
@@ -1964,7 +1951,9 @@
             "op:none"
          ],
          "valid" : 0,
-         "errors" : 1,
+         "errors" : 1
+      },
+      {
          "schema" : [
             "num",
             "in",
@@ -1980,175 +1969,185 @@
             ],
             "in.op",
             "none"
+         ],
+         "input" : 1.1,
+         "name" : "in.op=none (ok + ok)",
+         "errors" : 1,
+         "valid" : 0,
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:in",
+            "op",
+            "op:none"
          ]
       },
       {
-         "input" : 2.1,
          "tags" : [
             "type",
             "type:num",
             "clause:min"
          ],
-         "name" : "min: 2.1 -3.1",
          "valid" : 1,
+         "name" : "min: 2.1 -3.1",
          "schema" : [
             "num",
             "min",
             -3.1
-         ]
+         ],
+         "input" : 2.1
       },
       {
-         "valid" : 1,
-         "schema" : [
-            "num",
-            "min",
-            2.1
-         ],
-         "input" : 2.1,
-         "name" : "min: 2.1 2.1",
          "tags" : [
             "type",
             "type:num",
             "clause:min"
-         ]
-      },
-      {
+         ],
+         "valid" : 1,
+         "name" : "min: 2.1 2.1",
+         "input" : 2.1,
          "schema" : [
             "num",
             "min",
             2.1
-         ],
+         ]
+      },
+      {
          "valid" : 0,
          "tags" : [
             "type",
             "type:num",
             "clause:min"
          ],
-         "name" : "min: -3.1 2.1 -> fail",
-         "input" : -3.1
+         "input" : -3.1,
+         "schema" : [
+            "num",
+            "min",
+            2.1
+         ],
+         "name" : "min: -3.1 2.1 -> fail"
       },
       {
          "valid" : 1,
-         "schema" : [
-            "num",
-            "xmin",
-            -3.1
-         ],
-         "input" : 2.1,
          "tags" : [
             "type",
             "type:num",
             "clause:xmin"
+         ],
+         "input" : 2.1,
+         "schema" : [
+            "num",
+            "xmin",
+            -3.1
          ],
          "name" : "xmin: 2.1 -3.1"
       },
       {
          "valid" : 0,
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:xmin"
+         ],
          "schema" : [
             "num",
             "xmin",
             2.1
          ],
          "input" : 2.1,
-         "name" : "xmin: 2.1 2.1 -> fail",
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:xmin"
-         ]
+         "name" : "xmin: 2.1 2.1 -> fail"
       },
       {
-         "valid" : 0,
-         "schema" : [
-            "num",
-            "xmin",
-            2.1
-         ],
-         "input" : -3.1,
          "name" : "xmin: -3.1 2.1 -> fail",
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:xmin"
-         ]
-      },
-      {
-         "valid" : 0,
          "schema" : [
             "num",
-            "max",
-            -3.1
-         ],
-         "input" : 2.1,
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:max"
-         ],
-         "name" : "max: 2.1 -3.1 -> fail"
-      },
-      {
-         "schema" : [
-            "num",
-            "max",
+            "xmin",
             2.1
          ],
-         "valid" : 1,
-         "name" : "max: 2.1 2.1",
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:max"
-         ],
-         "input" : 2.1
-      },
-      {
          "input" : -3.1,
          "tags" : [
             "type",
             "type:num",
-            "clause:max"
-         ],
-         "name" : "max: -3.1 2.1",
-         "valid" : 1,
-         "schema" : [
-            "num",
-            "max",
-            2.1
-         ]
-      },
-      {
-         "schema" : [
-            "num",
-            "xmax",
-            -3.1
-         ],
-         "valid" : 0,
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:xmax"
-         ],
-         "name" : "xmax: 2.1 -3.1 -> fail",
-         "input" : 2.1
-      },
-      {
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:xmax"
-         ],
-         "name" : "xmax: 2.1 2.1 -> fail",
-         "input" : 2.1,
-         "schema" : [
-            "num",
-            "xmax",
-            2.1
+            "clause:xmin"
          ],
          "valid" : 0
       },
       {
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:max"
+         ],
+         "valid" : 0,
+         "name" : "max: 2.1 -3.1 -> fail",
+         "input" : 2.1,
+         "schema" : [
+            "num",
+            "max",
+            -3.1
+         ]
+      },
+      {
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:max"
+         ],
          "valid" : 1,
+         "name" : "max: 2.1 2.1",
+         "input" : 2.1,
+         "schema" : [
+            "num",
+            "max",
+            2.1
+         ]
+      },
+      {
+         "input" : -3.1,
+         "schema" : [
+            "num",
+            "max",
+            2.1
+         ],
+         "name" : "max: -3.1 2.1",
+         "valid" : 1,
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:max"
+         ]
+      },
+      {
+         "schema" : [
+            "num",
+            "xmax",
+            -3.1
+         ],
+         "input" : 2.1,
+         "name" : "xmax: 2.1 -3.1 -> fail",
+         "valid" : 0,
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:xmax"
+         ]
+      },
+      {
+         "valid" : 0,
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:xmax"
+         ],
+         "schema" : [
+            "num",
+            "xmax",
+            2.1
+         ],
+         "input" : 2.1,
+         "name" : "xmax: 2.1 2.1 -> fail"
+      },
+      {
          "schema" : [
             "num",
             "xmax",
@@ -2156,6 +2155,7 @@
          ],
          "input" : -3.1,
          "name" : "xmax: -3.1 2.1",
+         "valid" : 1,
          "tags" : [
             "type",
             "type:num",
@@ -2164,13 +2164,6 @@
       },
       {
          "input" : 2.1,
-         "name" : "between: 2.1 -3.1 & 4.1",
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:between"
-         ],
-         "valid" : 1,
          "schema" : [
             "num",
             "between",
@@ -2178,6 +2171,13 @@
                -3.1,
                4.1
             ]
+         ],
+         "name" : "between: 2.1 -3.1 & 4.1",
+         "valid" : 1,
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:between"
          ]
       },
       {
@@ -2186,6 +2186,7 @@
             "type:num",
             "clause:between"
          ],
+         "valid" : 1,
          "name" : "between: 2.1 -3.1 & 2.1",
          "input" : 2.1,
          "schema" : [
@@ -2195,10 +2196,10 @@
                -3.1,
                2.1
             ]
-         ],
-         "valid" : 1
+         ]
       },
       {
+         "name" : "between: 2.1 2.1 & 2.1",
          "schema" : [
             "num",
             "between",
@@ -2207,17 +2208,16 @@
                2.1
             ]
          ],
-         "valid" : 1,
-         "name" : "between: 2.1 2.1 & 2.1",
+         "input" : 2.1,
          "tags" : [
             "type",
             "type:num",
             "clause:between"
          ],
-         "input" : 2.1
+         "valid" : 1
       },
       {
-         "valid" : 0,
+         "input" : -3.1,
          "schema" : [
             "num",
             "between",
@@ -2226,8 +2226,8 @@
                4.1
             ]
          ],
-         "input" : -3.1,
          "name" : "between: -3.1 2.1 & 4.1 -> fail",
+         "valid" : 0,
          "tags" : [
             "type",
             "type:num",
@@ -2235,12 +2235,6 @@
          ]
       },
       {
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:xbetween"
-         ],
-         "name" : "xbetween: 2.1 -3.1 & 4.1",
          "input" : "2.1",
          "schema" : [
             "num",
@@ -2250,16 +2244,21 @@
                4.1
             ]
          ],
-         "valid" : 1
+         "name" : "xbetween: 2.1 -3.1 & 4.1",
+         "valid" : 1,
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:xbetween"
+         ]
       },
       {
+         "valid" : 0,
          "tags" : [
             "type",
             "type:num",
             "clause:xbetween"
          ],
-         "name" : "xbetween: 2.1 -3.1 & 2.1 -> fail",
-         "input" : "2.1",
          "schema" : [
             "num",
             "xbetween",
@@ -2268,16 +2267,11 @@
                "2.1"
             ]
          ],
-         "valid" : 0
+         "input" : "2.1",
+         "name" : "xbetween: 2.1 -3.1 & 2.1 -> fail"
       },
       {
          "name" : "xbetween: 2.1 2.1 & 2.1 -> fail",
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:xbetween"
-         ],
-         "input" : "2.1",
          "schema" : [
             "num",
             "xbetween",
@@ -2286,17 +2280,22 @@
                "2.1"
             ]
          ],
-         "valid" : 0
-      },
-      {
-         "input" : -3.1,
+         "input" : "2.1",
          "tags" : [
             "type",
             "type:num",
             "clause:xbetween"
          ],
-         "name" : "xbetween: -3.1 2.1 & 4.1 -> fail",
+         "valid" : 0
+      },
+      {
          "valid" : 0,
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:xbetween"
+         ],
+         "input" : -3.1,
          "schema" : [
             "num",
             "xbetween",
@@ -2304,19 +2303,10 @@
                "2.1",
                "4.1"
             ]
-         ]
+         ],
+         "name" : "xbetween: -3.1 2.1 & 4.1 -> fail"
       },
       {
-         "schema" : [
-            "num",
-            "!between",
-            [
-               -3.1,
-               -3.1
-            ]
-         ],
-         "valid" : 0,
-         "name" : "!between (nok)",
          "tags" : [
             "type",
             "type:num",
@@ -2325,10 +2315,20 @@
             "op:not",
             "opshortcut"
          ],
-         "input" : -3.1
+         "valid" : 0,
+         "name" : "!between (nok)",
+         "input" : -3.1,
+         "schema" : [
+            "num",
+            "!between",
+            [
+               -3.1,
+               -3.1
+            ]
+         ]
       },
       {
-         "valid" : 1,
+         "name" : "!between (ok)",
          "schema" : [
             "num",
             "!between",
@@ -2346,17 +2346,10 @@
             "op:not",
             "opshortcut"
          ],
-         "name" : "!between (ok)"
+         "valid" : 1
       },
       {
          "name" : "between.op=not (nok)",
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:between",
-            "op",
-            "op:not"
-         ],
          "input" : -3.1,
          "schema" : [
             "num",
@@ -2367,20 +2360,19 @@
             ],
             "between.op",
             "not"
+         ],
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:between",
+            "op",
+            "op:not"
          ],
          "valid" : 0
       },
       {
-         "input" : -3.1,
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:between",
-            "op",
-            "op:not"
-         ],
          "name" : "between.op=not (ok)",
-         "valid" : 1,
+         "input" : -3.1,
          "schema" : [
             "num",
             "between",
@@ -2390,14 +2382,17 @@
             ],
             "between.op",
             "not"
-         ]
+         ],
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:between",
+            "op",
+            "op:not"
+         ],
+         "valid" : 1
       },
       {
-         "schema" : [
-            "num",
-            "between&",
-            []
-         ],
          "valid" : 1,
          "tags" : [
             "type",
@@ -2407,10 +2402,16 @@
             "op:and",
             "opshortcut"
          ],
-         "name" : "between& (no items)",
-         "input" : -3.1
+         "schema" : [
+            "num",
+            "between&",
+            []
+         ],
+         "input" : -3.1,
+         "name" : "between& (no items)"
       },
       {
+         "valid" : 1,
          "tags" : [
             "type",
             "type:num",
@@ -2419,7 +2420,6 @@
             "op:and",
             "opshortcut"
          ],
-         "name" : "between& (ok)",
          "input" : -3.1,
          "schema" : [
             "num",
@@ -2435,38 +2435,11 @@
                ]
             ]
          ],
-         "valid" : 1
+         "name" : "between& (ok)"
       },
       {
-         "schema" : [
-            "num",
-            "between&",
-            [
-               [
-                  "2.1",
-                  "2.1"
-               ],
-               [
-                  -3.1,
-                  -3.1
-               ]
-            ]
-         ],
          "valid" : 0,
          "errors" : 1,
-         "name" : "between& (nok + ok)",
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:between",
-            "op",
-            "op:and",
-            "opshortcut"
-         ],
-         "input" : -3.1
-      },
-      {
-         "name" : "between& (ok + nok)",
          "tags" : [
             "type",
             "type:num",
@@ -2481,6 +2454,23 @@
             "between&",
             [
                [
+                  "2.1",
+                  "2.1"
+               ],
+               [
+                  -3.1,
+                  -3.1
+               ]
+            ]
+         ],
+         "name" : "between& (nok + ok)"
+      },
+      {
+         "schema" : [
+            "num",
+            "between&",
+            [
+               [
                   -3.1,
                   -3.1
                ],
@@ -2489,72 +2479,65 @@
                   "2.1"
                ]
             ]
+         ],
+         "input" : -3.1,
+         "name" : "between& (ok + nok)",
+         "errors" : 1,
+         "valid" : 0,
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:between",
+            "op",
+            "op:and",
+            "opshortcut"
+         ]
+      },
+      {
+         "name" : "between& (nok + nok)",
+         "input" : -3.1,
+         "schema" : [
+            "num",
+            "between&",
+            [
+               [
+                  "2.1",
+                  "2.1"
+               ],
+               [
+                  "2.1",
+                  "2.1"
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:between",
+            "op",
+            "op:and",
+            "opshortcut"
          ],
          "valid" : 0,
          "errors" : 1
       },
       {
+         "name" : "between.op=and (no items)",
          "schema" : [
             "num",
-            "between&",
-            [
-               [
-                  "2.1",
-                  "2.1"
-               ],
-               [
-                  "2.1",
-                  "2.1"
-               ]
-            ]
+            "between",
+            [],
+            "between.op",
+            "and"
          ],
-         "errors" : 1,
-         "valid" : 0,
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:between",
-            "op",
-            "op:and",
-            "opshortcut"
-         ],
-         "name" : "between& (nok + nok)",
-         "input" : -3.1
-      },
-      {
          "input" : -3.1,
-         "name" : "between.op=and (no items)",
          "tags" : [
             "type",
             "type:num"
          ],
-         "valid" : 1,
-         "schema" : [
-            "num",
-            "between",
-            [],
-            "between.op",
-            "and"
-         ]
+         "valid" : 1
       },
       {
-         "schema" : [
-            "num",
-            "between",
-            [
-               [
-                  -3.1,
-                  -3.1
-               ],
-               [
-                  -3.1,
-                  -3.1
-               ]
-            ],
-            "between.op",
-            "and"
-         ],
-         "valid" : 1,
          "tags" : [
             "type",
             "type:num",
@@ -2562,19 +2545,16 @@
             "op",
             "op:and"
          ],
+         "valid" : 1,
          "name" : "between.op=and (ok)",
-         "input" : -3.1
-      },
-      {
-         "valid" : 0,
-         "errors" : 1,
+         "input" : -3.1,
          "schema" : [
             "num",
             "between",
             [
                [
-                  "2.1",
-                  "2.1"
+                  -3.1,
+                  -3.1
                ],
                [
                   -3.1,
@@ -2583,18 +2563,47 @@
             ],
             "between.op",
             "and"
+         ]
+      },
+      {
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:between",
+            "op",
+            "op:and"
          ],
-         "input" : -3.1,
+         "valid" : 0,
+         "errors" : 1,
          "name" : "between.op=and (nok + ok)",
+         "input" : -3.1,
+         "schema" : [
+            "num",
+            "between",
+            [
+               [
+                  "2.1",
+                  "2.1"
+               ],
+               [
+                  -3.1,
+                  -3.1
+               ]
+            ],
+            "between.op",
+            "and"
+         ]
+      },
+      {
+         "errors" : 1,
+         "valid" : 0,
          "tags" : [
             "type",
             "type:num",
             "clause:between",
             "op",
             "op:and"
-         ]
-      },
-      {
+         ],
          "schema" : [
             "num",
             "between",
@@ -2611,20 +2620,12 @@
             "between.op",
             "and"
          ],
-         "errors" : 1,
-         "valid" : 0,
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:between",
-            "op",
-            "op:and"
-         ],
-         "name" : "between.op=and (ok + nok)",
-         "input" : -3.1
+         "input" : -3.1,
+         "name" : "between.op=and (ok + nok)"
       },
       {
-         "input" : -3.1,
+         "errors" : 1,
+         "valid" : 0,
          "tags" : [
             "type",
             "type:num",
@@ -2632,9 +2633,6 @@
             "op",
             "op:and"
          ],
-         "name" : "between.op=and (nok + nok)",
-         "errors" : 1,
-         "valid" : 0,
          "schema" : [
             "num",
             "between",
@@ -2650,9 +2648,12 @@
             ],
             "between.op",
             "and"
-         ]
+         ],
+         "input" : -3.1,
+         "name" : "between.op=and (nok + nok)"
       },
       {
+         "valid" : 1,
          "tags" : [
             "type",
             "type:num",
@@ -2661,17 +2662,16 @@
             "op:or",
             "opshortcut"
          ],
-         "name" : "between| (no items)",
-         "input" : -3.1,
          "schema" : [
             "num",
             "between|",
             []
          ],
-         "valid" : 1
+         "input" : -3.1,
+         "name" : "between| (no items)"
       },
       {
-         "name" : "between| (ok)",
+         "valid" : 1,
          "tags" : [
             "type",
             "type:num",
@@ -2680,7 +2680,6 @@
             "op:or",
             "opshortcut"
          ],
-         "input" : -3.1,
          "schema" : [
             "num",
             "between|",
@@ -2695,19 +2694,11 @@
                ]
             ]
          ],
-         "valid" : 1
+         "input" : -3.1,
+         "name" : "between| (ok)"
       },
       {
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:between",
-            "op",
-            "op:or",
-            "opshortcut"
-         ],
          "name" : "between| (nok + ok)",
-         "input" : -3.1,
          "schema" : [
             "num",
             "between|",
@@ -2722,25 +2713,47 @@
                ]
             ]
          ],
+         "input" : -3.1,
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:between",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
          "valid" : 1
       },
       {
-         "schema" : [
-            "num",
-            "between|",
-            [
-               [
-                  -3.1,
-                  -3.1
-               ],
-               [
-                  "2.1",
-                  "2.1"
-               ]
-            ]
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:between",
+            "op",
+            "op:or",
+            "opshortcut"
          ],
          "valid" : 1,
          "name" : "between| (ok + nok)",
+         "schema" : [
+            "num",
+            "between|",
+            [
+               [
+                  -3.1,
+                  -3.1
+               ],
+               [
+                  "2.1",
+                  "2.1"
+               ]
+            ]
+         ],
+         "input" : -3.1
+      },
+      {
+         "valid" : 0,
+         "errors" : 1,
          "tags" : [
             "type",
             "type:num",
@@ -2749,9 +2762,7 @@
             "op:or",
             "opshortcut"
          ],
-         "input" : -3.1
-      },
-      {
+         "input" : -3.1,
          "schema" : [
             "num",
             "between|",
@@ -2766,20 +2777,18 @@
                ]
             ]
          ],
-         "valid" : 0,
-         "errors" : 1,
-         "name" : "between| (nok + nok)",
+         "name" : "between| (nok + nok)"
+      },
+      {
          "tags" : [
             "type",
             "type:num",
             "clause:between",
             "op",
-            "op:or",
-            "opshortcut"
+            "op:or"
          ],
-         "input" : -3.1
-      },
-      {
+         "valid" : 1,
+         "name" : "between.op=or (no items)",
          "schema" : [
             "num",
             "between",
@@ -2787,19 +2796,10 @@
             "between.op",
             "or"
          ],
-         "valid" : 1,
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:between",
-            "op",
-            "op:or"
-         ],
-         "name" : "between.op=or (no items)",
          "input" : -3.1
       },
       {
-         "valid" : 1,
+         "input" : -3.1,
          "schema" : [
             "num",
             "between",
@@ -2816,8 +2816,8 @@
             "between.op",
             "or"
          ],
-         "input" : -3.1,
          "name" : "between.op=or (ok)",
+         "valid" : 1,
          "tags" : [
             "type",
             "type:num",
@@ -2825,37 +2825,36 @@
             "op",
             "op:or"
          ]
-      },
-      {
-         "name" : "between.op=or (nok + ok)",
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:between",
-            "op",
-            "op:or"
-         ],
-         "input" : -3.1,
-         "schema" : [
-            "num",
-            "between",
-            [
-               [
-                  "2.1",
-                  "2.1"
-               ],
-               [
-                  -3.1,
-                  -3.1
-               ]
-            ],
-            "between.op",
-            "or"
-         ],
-         "valid" : 1
       },
       {
          "valid" : 1,
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:between",
+            "op",
+            "op:or"
+         ],
+         "schema" : [
+            "num",
+            "between",
+            [
+               [
+                  "2.1",
+                  "2.1"
+               ],
+               [
+                  -3.1,
+                  -3.1
+               ]
+            ],
+            "between.op",
+            "or"
+         ],
+         "input" : -3.1,
+         "name" : "between.op=or (nok + ok)"
+      },
+      {
          "schema" : [
             "num",
             "between",
@@ -2873,18 +2872,17 @@
             "or"
          ],
          "input" : -3.1,
+         "name" : "between.op=or (ok + nok)",
+         "valid" : 1,
          "tags" : [
             "type",
             "type:num",
             "clause:between",
             "op",
             "op:or"
-         ],
-         "name" : "between.op=or (ok + nok)"
+         ]
       },
       {
-         "input" : -3.1,
-         "name" : "between.op=or (nok + nok)",
          "tags" : [
             "type",
             "type:num",
@@ -2892,8 +2890,9 @@
             "op",
             "op:or"
          ],
-         "valid" : 0,
          "errors" : 1,
+         "valid" : 0,
+         "name" : "between.op=or (nok + nok)",
          "schema" : [
             "num",
             "between",
@@ -2909,17 +2908,11 @@
             ],
             "between.op",
             "or"
-         ]
+         ],
+         "input" : -3.1
       },
       {
          "name" : "between.op=none (empty items)",
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:between",
-            "op",
-            "op:none"
-         ],
          "input" : -3.1,
          "schema" : [
             "num",
@@ -2928,10 +2921,24 @@
             "between.op",
             "none"
          ],
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:between",
+            "op",
+            "op:none"
+         ],
          "valid" : 1
       },
       {
          "valid" : 1,
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:between",
+            "op",
+            "op:none"
+         ],
          "schema" : [
             "num",
             "between",
@@ -2949,24 +2956,10 @@
             "none"
          ],
          "input" : -3.1,
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:between",
-            "op",
-            "op:none"
-         ],
          "name" : "between.op=none (nok + nok)"
       },
       {
          "name" : "between.op=none (nok + ok)",
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:between",
-            "op",
-            "op:none"
-         ],
          "input" : -3.1,
          "schema" : [
             "num",
@@ -2984,19 +2977,27 @@
             "between.op",
             "none"
          ],
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:between",
+            "op",
+            "op:none"
+         ],
          "valid" : 0,
          "errors" : 1
       },
       {
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:between",
+            "op",
+            "op:none"
+         ],
+         "errors" : 1,
+         "valid" : 0,
          "name" : "between.op=none (ok + nok)",
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:between",
-            "op",
-            "op:none"
-         ],
-         "input" : -3.1,
          "schema" : [
             "num",
             "between",
@@ -3013,21 +3014,19 @@
             "between.op",
             "none"
          ],
-         "valid" : 0,
-         "errors" : 1
+         "input" : -3.1
       },
       {
-         "input" : -3.1,
-         "name" : "between.op=none (ok + ok)",
-         "tags" : [
-            "type",
-            "type:num",
-            "clause:between",
-            "op",
-            "op:none"
-         ],
          "valid" : 0,
          "errors" : 1,
+         "tags" : [
+            "type",
+            "type:num",
+            "clause:between",
+            "op",
+            "op:none"
+         ],
+         "input" : -3.1,
          "schema" : [
             "num",
             "between",
@@ -3043,8 +3042,9 @@
             ],
             "between.op",
             "none"
-         ]
+         ],
+         "name" : "between.op=none (ok + ok)"
       }
    ],
-   "version" : "v0.9.32 (generated by devscripts/gen-type-spectest on Wed Apr  8 12:01:37 2015)"
+   "version" : "v0.9.34 (generated by devscripts/gen-type-spectest on Thu Apr 30 20:23:56 2015)"
 }
