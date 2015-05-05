@@ -1,5 +1,12 @@
 Revision history for Sah
 
+0.9.35  2015-05-05 (PERLANCAR)
+
+	- No spec changes.
+
+	- Fix spectests for req_dep_one & req_dep_all.
+
+
 0.9.34   2015-04-30 (PERLANCAR)
 
          - Add clauses for hash: choose_one_key (choose_one), choose_all_keys
