@@ -1,6 +1,6 @@
 Revision history for Sah
 
-0.9.36  2015-05-05 (PERLANCAR) (unreleased)
+0.9.36  2015-05-05 (PERLANCAR)
 
         - Rename dep_one -> dep_any, req_dep_one -> req_dep_any because those
           are the more apt names.
