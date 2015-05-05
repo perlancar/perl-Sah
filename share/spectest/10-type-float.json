@@ -1,127 +1,126 @@
 {
    "tests" : [
       {
+         "valid" : 1,
+         "input" : -1.1,
          "name" : "type check: must accept -1.1",
          "schema" : "float",
-         "input" : -1.1,
          "tags" : [
             "type",
             "type:float"
-         ],
-         "valid" : 1
+         ]
       },
       {
-         "valid" : 1,
+         "schema" : "float",
          "tags" : [
             "type",
             "type:float"
          ],
-         "schema" : "float",
          "input" : -1,
+         "valid" : 1,
          "name" : "type check: must accept -1"
       },
       {
+         "tags" : [
+            "type",
+            "type:float"
+         ],
          "schema" : "float",
-         "input" : 0,
          "name" : "type check: must accept 0",
          "valid" : 1,
-         "tags" : [
-            "type",
-            "type:float"
-         ]
+         "input" : 0
       },
       {
          "valid" : 1,
-         "tags" : [
-            "type",
-            "type:float"
-         ],
-         "schema" : "float",
          "input" : 1,
-         "name" : "type check: must accept 1"
-      },
-      {
-         "name" : "type check: must accept 1.1",
-         "input" : 1.1,
+         "name" : "type check: must accept 1",
          "schema" : "float",
-         "tags" : [
-            "type",
-            "type:float"
-         ],
-         "valid" : 1
-      },
-      {
-         "input" : "a",
-         "schema" : "float",
-         "name" : "type check: must reject a",
-         "valid" : 0,
          "tags" : [
             "type",
             "type:float"
          ]
       },
       {
+         "valid" : 1,
+         "input" : 1.1,
+         "name" : "type check: must accept 1.1",
+         "schema" : "float",
+         "tags" : [
+            "type",
+            "type:float"
+         ]
+      },
+      {
+         "schema" : "float",
          "tags" : [
             "type",
             "type:float"
          ],
          "valid" : 0,
-         "name" : "type check: must reject []",
+         "input" : "a",
+         "name" : "type check: must reject a"
+      },
+      {
+         "schema" : "float",
+         "tags" : [
+            "type",
+            "type:float"
+         ],
+         "valid" : 0,
          "input" : [],
-         "schema" : "float"
+         "name" : "type check: must reject []"
       },
       {
+         "schema" : "float",
          "tags" : [
             "type",
             "type:float"
          ],
-         "valid" : 0,
-         "name" : "type check: must reject {}",
          "input" : {},
-         "schema" : "float"
+         "valid" : 0,
+         "name" : "type check: must reject {}"
       },
       {
          "tags" : [
             "type",
             "type:float"
          ],
-         "valid" : 1,
+         "schema" : "float",
          "name" : "must accept undefined value",
-         "input" : null,
-         "schema" : "float"
+         "valid" : 1,
+         "input" : null
       },
       {
-         "valid" : 1,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:defhash_v"
-         ],
          "schema" : [
             "float",
             "defhash_v",
             1
          ],
-         "input" : null,
-         "name" : "defhash_v"
-      },
-      {
-         "valid" : 1,
          "tags" : [
             "type",
             "type:float",
-            "clause:v"
+            "clause:defhash_v"
          ],
          "input" : null,
+         "valid" : 1,
+         "name" : "defhash_v"
+      },
+      {
+         "input" : null,
+         "valid" : 1,
+         "name" : "v",
          "schema" : [
             "float",
             "v",
             1
          ],
-         "name" : "v"
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:v"
+         ]
       },
       {
-         "valid" : 1,
          "tags" : [
             "type",
             "type:float",
@@ -132,18 +131,19 @@
             "c.foo.bar",
             1
          ],
-         "input" : null,
-         "name" : "c"
+         "name" : "c",
+         "valid" : 1,
+         "input" : null
       },
       {
+         "name" : "default_lang",
+         "valid" : 1,
+         "input" : null,
          "tags" : [
             "type",
             "type:float",
             "clause:default_lang"
          ],
-         "valid" : 1,
-         "name" : "default_lang",
-         "input" : null,
          "schema" : [
             "float",
             "default_lang",
@@ -151,52 +151,56 @@
          ]
       },
       {
+         "name" : "name",
          "valid" : 1,
+         "input" : null,
          "tags" : [
             "type",
             "type:float",
             "clause:name"
          ],
-         "input" : null,
          "schema" : [
             "float",
             "name",
             "some name"
-         ],
-         "name" : "name"
+         ]
       },
       {
-         "schema" : [
-            "float",
-            "summary",
-            "some summary"
-         ],
-         "input" : null,
          "name" : "summary",
          "valid" : 1,
+         "input" : null,
          "tags" : [
             "type",
             "type:float",
             "clause:summary"
+         ],
+         "schema" : [
+            "float",
+            "summary",
+            "some summary"
          ]
       },
       {
+         "schema" : [
+            "float",
+            "description",
+            "some description and `markdown`"
+         ],
          "tags" : [
             "type",
             "type:float",
             "clause:description"
          ],
-         "valid" : 1,
-         "name" : "description",
          "input" : null,
-         "schema" : [
-            "float",
-            "description",
-            "some description and `markdown`"
-         ]
+         "valid" : 1,
+         "name" : "description"
       },
       {
-         "input" : null,
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:tags"
+         ],
          "schema" : [
             "float",
             "tags",
@@ -207,30 +211,27 @@
          ],
          "name" : "tags",
          "valid" : 1,
+         "input" : null
+      },
+      {
          "tags" : [
             "type",
             "type:float",
-            "clause:tags"
-         ]
-      },
-      {
+            "clause:req"
+         ],
          "schema" : [
             "float",
             "req",
             0
          ],
-         "input" : null,
          "name" : "req=0 must accept undefined value",
-         "valid" : 1,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:req"
-         ]
+         "input" : null,
+         "valid" : 1
       },
       {
-         "name" : "req=1 must reject undefined value",
+         "valid" : 0,
          "input" : null,
+         "name" : "req=1 must reject undefined value",
          "schema" : [
             "float",
             "req",
@@ -240,8 +241,22 @@
             "type",
             "type:float",
             "clause:req"
+         ]
+      },
+      {
+         "schema" : [
+            "float",
+            "forbidden",
+            0
          ],
-         "valid" : 0
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:forbidden"
+         ],
+         "valid" : 1,
+         "input" : 1.1,
+         "name" : "forbidden=0 must accept defined value"
       },
       {
          "tags" : [
@@ -249,44 +264,29 @@
             "type:float",
             "clause:forbidden"
          ],
-         "valid" : 1,
-         "name" : "forbidden=0 must accept defined value",
          "schema" : [
             "float",
             "forbidden",
-            0
+            1
          ],
+         "name" : "forbidden=1 must reject defined value",
+         "valid" : 0,
          "input" : 1.1
       },
       {
-         "name" : "forbidden=1 must reject defined value",
-         "schema" : [
-            "float",
-            "forbidden",
-            1
-         ],
-         "input" : 1.1,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:forbidden"
-         ],
-         "valid" : 0
-      },
-      {
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:default"
-         ],
-         "valid" : 1,
-         "name" : "default: must accept valid default 1.1",
          "schema" : [
             "float*",
             "default",
             1.1
          ],
-         "input" : null
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:default"
+         ],
+         "input" : null,
+         "valid" : 1,
+         "name" : "default: must accept valid default 1.1"
       },
       {
          "schema" : [
@@ -294,17 +294,24 @@
             "default",
             []
          ],
-         "input" : null,
-         "name" : "default: must reject invalid default []",
-         "valid" : 0,
          "tags" : [
             "type",
             "type:float",
             "clause:default"
-         ]
+         ],
+         "input" : null,
+         "valid" : 0,
+         "name" : "default: must reject invalid default []"
       },
       {
+         "name" : "clause (dies, unknown clause)",
+         "input" : 1.1,
          "dies" : 1,
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:clause"
+         ],
          "schema" : [
             "float*",
             "clause",
@@ -312,24 +319,12 @@
                "foo",
                1
             ]
-         ],
-         "input" : 1.1,
-         "name" : "clause (dies, unknown clause)",
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:clause"
          ]
       },
       {
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:clause"
-         ],
+         "input" : 1.1,
          "valid" : 1,
          "name" : "clause (ok)",
-         "input" : 1.1,
          "schema" : [
             "float*",
             "clause",
@@ -337,10 +332,17 @@
                "min",
                1
             ]
+         ],
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:clause"
          ]
       },
       {
+         "name" : "clause (ok) + clause nok = nok",
          "valid" : 0,
+         "input" : 1.1,
          "tags" : [
             "type",
             "type:float",
@@ -355,19 +357,9 @@
             ],
             "max",
             1
-         ],
-         "input" : 1.1,
-         "name" : "clause (ok) + clause nok = nok"
+         ]
       },
       {
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:clause"
-         ],
-         "errors" : 1,
-         "valid" : 0,
-         "name" : "clause (nok)",
          "schema" : [
             "float*",
             "clause",
@@ -376,11 +368,23 @@
                2
             ]
          ],
-         "input" : 1.1
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:clause"
+         ],
+         "input" : 1.1,
+         "valid" : 0,
+         "name" : "clause (nok)",
+         "errors" : 1
       },
       {
-         "name" : "clset (dies, unknown clause)",
-         "input" : 1.1,
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:clset"
+         ],
+         "dies" : 1,
          "schema" : [
             "float*",
             "clset",
@@ -388,52 +392,42 @@
                "foo" : 1
             }
          ],
-         "dies" : 1,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:clset"
-         ]
+         "name" : "clset (dies, unknown clause)",
+         "input" : 1.1
       },
       {
          "name" : "clset (dies, unknown attr)",
          "input" : 1.1,
          "dies" : 1,
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:clset"
+         ],
          "schema" : [
             "float*",
             "clset",
             {
-               "min_len.foo" : 1,
-               "min_len" : 1
+               "min_len" : 1,
+               "min_len.foo" : 1
             }
-         ],
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:clset"
          ]
       },
       {
+         "name" : "clset (empty = ok)",
          "valid" : 1,
+         "input" : 1.1,
          "tags" : [
             "type",
             "type:float"
          ],
-         "input" : 1.1,
          "schema" : [
             "float*",
             "clset",
             {}
-         ],
-         "name" : "clset (empty = ok)"
+         ]
       },
       {
-         "valid" : 1,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:clset"
-         ],
          "schema" : [
             "float*",
             "clset",
@@ -442,35 +436,37 @@
                "foo._bar" : 2
             }
          ],
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:clset"
+         ],
+         "valid" : 1,
          "input" : 1.1,
          "name" : "clset (ignored clause/attr = ok)"
       },
       {
+         "valid" : 1,
+         "input" : 1.1,
          "name" : "clset (ok + ok = ok)",
          "schema" : [
             "float*",
             "clset",
             {
-               "min" : 1,
-               "max" : 1.1
+               "max" : 1.1,
+               "min" : 1
             }
          ],
-         "input" : 1.1,
          "tags" : [
             "type",
             "type:float",
             "clause:clset"
-         ],
-         "valid" : 1
+         ]
       },
       {
          "valid" : 0,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:clset"
-         ],
          "input" : 1.1,
+         "name" : "clset (ok) + clause nok = nok",
          "schema" : [
             "float*",
             "clset",
@@ -480,9 +476,16 @@
             "max",
             1
          ],
-         "name" : "clset (ok) + clause nok = nok"
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:clset"
+         ]
       },
       {
+         "input" : 1.1,
+         "valid" : 0,
+         "name" : "clset (ok + nok = nok)",
          "schema" : [
             "float*",
             "clset",
@@ -491,9 +494,6 @@
                "max" : 1
             }
          ],
-         "input" : 1.1,
-         "name" : "clset (ok + nok = nok)",
-         "valid" : 0,
          "tags" : [
             "type",
             "type:float",
@@ -501,6 +501,8 @@
          ]
       },
       {
+         "name" : "clset (nok + ok = nok)",
+         "input" : 1.1,
          "valid" : 0,
          "tags" : [
             "type",
@@ -511,14 +513,15 @@
             "float*",
             "clset",
             {
-               "max" : 1.1,
-               "min" : 2
+               "min" : 2,
+               "max" : 1.1
             }
-         ],
-         "input" : 1.1,
-         "name" : "clset (nok + ok = nok)"
+         ]
       },
       {
+         "input" : 1.1,
+         "valid" : 0,
+         "name" : "clset (nok + nok = nok)",
          "schema" : [
             "float*",
             "clset",
@@ -527,9 +530,6 @@
                "min" : 2
             }
          ],
-         "input" : 1.1,
-         "name" : "clset (nok + nok = nok)",
-         "valid" : 0,
          "tags" : [
             "type",
             "type:float",
@@ -539,27 +539,22 @@
       {
          "name" : "ok",
          "input" : null,
-         "schema" : [
-            "float",
-            {
-               "ok" : 1
-            }
-         ],
+         "valid" : 1,
          "tags" : [
             "type",
             "type:float",
             "clause:ok"
          ],
-         "valid" : 1
-      },
-      {
-         "name" : "ok + op not (nok)",
          "schema" : [
             "float",
             {
-               "!ok" : 1
+               "ok" : 1
             }
-         ],
+         ]
+      },
+      {
+         "name" : "ok + op not (nok)",
+         "valid" : 0,
          "input" : null,
          "tags" : [
             "type",
@@ -568,10 +563,20 @@
             "op",
             "op:not"
          ],
-         "valid" : 0
+         "schema" : [
+            "float",
+            {
+               "!ok" : 1
+            }
+         ]
       },
       {
-         "input" : 0.1,
+         "tags" : [
+            "type",
+            "type:float",
+            "attr",
+            "attr:err_level"
+         ],
          "schema" : [
             "float",
             "min",
@@ -579,12 +584,23 @@
          ],
          "name" : ".err_level=error (clause=min, ok)",
          "valid" : 1,
+         "input" : 0.1
+      },
+      {
+         "schema" : [
+            "float",
+            "min",
+            0
+         ],
          "tags" : [
             "type",
             "type:float",
             "attr",
             "attr:err_level"
-         ]
+         ],
+         "input" : -0.1,
+         "valid" : 0,
+         "name" : ".err_level=error (clause=min, nok)"
       },
       {
          "tags" : [
@@ -593,18 +609,6 @@
             "attr",
             "attr:err_level"
          ],
-         "valid" : 0,
-         "name" : ".err_level=error (clause=min, nok)",
-         "input" : -0.1,
-         "schema" : [
-            "float",
-            "min",
-            0
-         ]
-      },
-      {
-         "name" : ".err_level=warn (clause=min, ok)",
-         "input" : 0.1,
          "schema" : [
             "float",
             "min",
@@ -612,16 +616,18 @@
             "min.err_level",
             "warn"
          ],
+         "name" : ".err_level=warn (clause=min, ok)",
+         "valid" : 1,
+         "input" : 0.1
+      },
+      {
          "tags" : [
             "type",
             "type:float",
             "attr",
             "attr:err_level"
          ],
-         "valid" : 1
-      },
-      {
-         "input" : -0.1,
+         "warnings" : 1,
          "schema" : [
             "float*",
             "min",
@@ -629,58 +635,52 @@
             "min.err_level",
             "warn"
          ],
-         "warnings" : 1,
          "name" : ".err_level=warn (clause=min, nok)",
          "valid" : 1,
-         "tags" : [
-            "type",
-            "type:float",
-            "attr",
-            "attr:err_level"
-         ]
+         "input" : -0.1
       },
       {
          "name" : "is: must accept same value",
+         "valid" : 1,
          "input" : 1.1,
-         "schema" : [
-            "float",
-            "is",
-            1.1
-         ],
          "tags" : [
             "type",
             "type:float",
             "clause:is"
          ],
-         "valid" : 1
+         "schema" : [
+            "float",
+            "is",
+            1.1
+         ]
       },
       {
-         "name" : "is: must reject different value",
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:is"
+         ],
          "schema" : [
             "float",
             "is",
             1.2
          ],
-         "input" : 1.1,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:is"
-         ],
-         "valid" : 0
+         "name" : "is: must reject different value",
+         "valid" : 0,
+         "input" : 1.1
       },
       {
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:is",
-            "op",
-            "op:not",
-            "opshortcut"
-         ],
-         "valid" : 0,
          "name" : "!is (nok)",
          "input" : 1.1,
+         "valid" : 0,
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:is",
+            "op",
+            "op:not",
+            "opshortcut"
+         ],
          "schema" : [
             "float",
             "!is",
@@ -689,13 +689,13 @@
       },
       {
          "input" : 1.1,
+         "valid" : 1,
+         "name" : "!is (ok)",
          "schema" : [
             "float",
             "!is",
             1.2
          ],
-         "name" : "!is (ok)",
-         "valid" : 1,
          "tags" : [
             "type",
             "type:float",
@@ -706,6 +706,9 @@
          ]
       },
       {
+         "name" : "is.op=not (nok)",
+         "valid" : 0,
+         "input" : 1.1,
          "tags" : [
             "type",
             "type:float",
@@ -713,9 +716,6 @@
             "op",
             "op:not"
          ],
-         "valid" : 0,
-         "name" : "is.op=not (nok)",
-         "input" : 1.1,
          "schema" : [
             "float",
             "is",
@@ -725,7 +725,6 @@
          ]
       },
       {
-         "valid" : 1,
          "tags" : [
             "type",
             "type:float",
@@ -733,7 +732,6 @@
             "op",
             "op:not"
          ],
-         "input" : 1.1,
          "schema" : [
             "float",
             "is",
@@ -741,17 +739,12 @@
             "is.op",
             "not"
          ],
-         "name" : "is.op=not (ok)"
+         "name" : "is.op=not (ok)",
+         "input" : 1.1,
+         "valid" : 1
       },
       {
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:is",
-            "op",
-            "op:and",
-            "opshortcut"
-         ],
+         "input" : 1.1,
          "valid" : 1,
          "name" : "is& (no items)",
          "schema" : [
@@ -759,20 +752,6 @@
             "is&",
             []
          ],
-         "input" : 1.1
-      },
-      {
-         "input" : 1.1,
-         "schema" : [
-            "float",
-            "is&",
-            [
-               1.1,
-               1.1
-            ]
-         ],
-         "name" : "is& (ok)",
-         "valid" : 1,
          "tags" : [
             "type",
             "type:float",
@@ -787,14 +766,27 @@
             "float",
             "is&",
             [
-               1.2,
+               1.1,
                1.1
             ]
          ],
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:is",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
          "input" : 1.1,
+         "valid" : 1,
+         "name" : "is& (ok)"
+      },
+      {
          "name" : "is& (nok + ok)",
          "errors" : 1,
          "valid" : 0,
+         "input" : 1.1,
          "tags" : [
             "type",
             "type:float",
@@ -802,20 +794,20 @@
             "op",
             "op:and",
             "opshortcut"
-         ]
-      },
-      {
+         ],
          "schema" : [
             "float",
             "is&",
             [
-               1.1,
-               1.2
+               1.2,
+               1.1
             ]
-         ],
-         "input" : 1.1,
+         ]
+      },
+      {
          "name" : "is& (ok + nok)",
          "errors" : 1,
+         "input" : 1.1,
          "valid" : 0,
          "tags" : [
             "type",
@@ -824,9 +816,25 @@
             "op",
             "op:and",
             "opshortcut"
+         ],
+         "schema" : [
+            "float",
+            "is&",
+            [
+               1.1,
+               1.2
+            ]
          ]
       },
       {
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:is",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
          "schema" : [
             "float",
             "is&",
@@ -835,21 +843,12 @@
                1.2
             ]
          ],
-         "input" : 1.1,
          "name" : "is& (nok + nok)",
          "errors" : 1,
          "valid" : 0,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:is",
-            "op",
-            "op:and",
-            "opshortcut"
-         ]
+         "input" : 1.1
       },
       {
-         "valid" : 1,
          "tags" : [
             "type",
             "type:float"
@@ -861,20 +860,11 @@
             "is.op",
             "and"
          ],
+         "name" : "is.op=and (no items)",
          "input" : 1.1,
-         "name" : "is.op=and (no items)"
+         "valid" : 1
       },
       {
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:is",
-            "op",
-            "op:and"
-         ],
-         "valid" : 1,
-         "name" : "is.op=and (ok)",
-         "input" : 1.1,
          "schema" : [
             "float",
             "is",
@@ -884,10 +874,30 @@
             ],
             "is.op",
             "and"
-         ]
+         ],
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:is",
+            "op",
+            "op:and"
+         ],
+         "input" : 1.1,
+         "valid" : 1,
+         "name" : "is.op=and (ok)"
       },
       {
+         "errors" : 1,
          "name" : "is.op=and (nok + ok)",
+         "valid" : 0,
+         "input" : 1.1,
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:is",
+            "op",
+            "op:and"
+         ],
          "schema" : [
             "float",
             "is",
@@ -897,30 +907,20 @@
             ],
             "is.op",
             "and"
-         ],
-         "input" : 1.1,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:is",
-            "op",
-            "op:and"
-         ],
-         "errors" : 1,
-         "valid" : 0
+         ]
       },
       {
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:is",
-            "op",
-            "op:and"
-         ],
-         "valid" : 0,
          "errors" : 1,
          "name" : "is.op=and (ok + nok)",
+         "valid" : 0,
          "input" : 1.1,
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:is",
+            "op",
+            "op:and"
+         ],
          "schema" : [
             "float",
             "is",
@@ -933,7 +933,17 @@
          ]
       },
       {
+         "errors" : 1,
          "name" : "is.op=and (nok + nok)",
+         "valid" : 0,
+         "input" : 1.1,
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:is",
+            "op",
+            "op:and"
+         ],
          "schema" : [
             "float",
             "is",
@@ -943,19 +953,12 @@
             ],
             "is.op",
             "and"
-         ],
-         "input" : 1.1,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:is",
-            "op",
-            "op:and"
-         ],
-         "errors" : 1,
-         "valid" : 0
+         ]
       },
       {
+         "name" : "is| (no items)",
+         "input" : 1.1,
+         "valid" : 1,
          "tags" : [
             "type",
             "type:float",
@@ -964,9 +967,6 @@
             "op:or",
             "opshortcut"
          ],
-         "valid" : 1,
-         "name" : "is| (no items)",
-         "input" : 1.1,
          "schema" : [
             "float",
             "is|",
@@ -974,6 +974,8 @@
          ]
       },
       {
+         "valid" : 1,
+         "input" : 1.1,
          "name" : "is| (ok)",
          "schema" : [
             "float",
@@ -983,7 +985,6 @@
                1.1
             ]
          ],
-         "input" : 1.1,
          "tags" : [
             "type",
             "type:float",
@@ -991,10 +992,11 @@
             "op",
             "op:or",
             "opshortcut"
-         ],
-         "valid" : 1
+         ]
       },
       {
+         "input" : 1.1,
+         "valid" : 1,
          "name" : "is| (nok + ok)",
          "schema" : [
             "float",
@@ -1004,7 +1006,6 @@
                1.1
             ]
          ],
-         "input" : 1.1,
          "tags" : [
             "type",
             "type:float",
@@ -1012,12 +1013,9 @@
             "op",
             "op:or",
             "opshortcut"
-         ],
-         "valid" : 1
+         ]
       },
       {
-         "name" : "is| (ok + nok)",
-         "input" : 1.1,
          "schema" : [
             "float",
             "is|",
@@ -1034,250 +1032,251 @@
             "op:or",
             "opshortcut"
          ],
-         "valid" : 1
+         "input" : 1.1,
+         "valid" : 1,
+         "name" : "is| (ok + nok)"
       },
       {
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:is",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
+         "schema" : [
+            "float",
+            "is|",
+            [
+               1.2,
+               1.2
+            ]
+         ],
+         "errors" : 1,
          "name" : "is| (nok + nok)",
          "input" : 1.1,
-         "schema" : [
-            "float",
-            "is|",
-            [
-               1.2,
-               1.2
-            ]
-         ],
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:is",
-            "op",
-            "op:or",
-            "opshortcut"
-         ],
-         "valid" : 0,
-         "errors" : 1
-      },
-      {
-         "name" : "is.op=or (no items)",
-         "input" : 1.1,
-         "schema" : [
-            "float",
-            "is",
-            [],
-            "is.op",
-            "or"
-         ],
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:is",
-            "op",
-            "op:or"
-         ],
-         "valid" : 1
-      },
-      {
-         "input" : 1.1,
-         "schema" : [
-            "float",
-            "is",
-            [
-               1.1,
-               1.1
-            ],
-            "is.op",
-            "or"
-         ],
-         "name" : "is.op=or (ok)",
-         "valid" : 1,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:is",
-            "op",
-            "op:or"
-         ]
-      },
-      {
-         "schema" : [
-            "float",
-            "is",
-            [
-               1.2,
-               1.1
-            ],
-            "is.op",
-            "or"
-         ],
-         "input" : 1.1,
-         "name" : "is.op=or (nok + ok)",
-         "valid" : 1,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:is",
-            "op",
-            "op:or"
-         ]
-      },
-      {
-         "name" : "is.op=or (ok + nok)",
-         "schema" : [
-            "float",
-            "is",
-            [
-               1.1,
-               1.2
-            ],
-            "is.op",
-            "or"
-         ],
-         "input" : 1.1,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:is",
-            "op",
-            "op:or"
-         ],
-         "valid" : 1
-      },
-      {
-         "schema" : [
-            "float",
-            "is",
-            [
-               1.2,
-               1.2
-            ],
-            "is.op",
-            "or"
-         ],
-         "input" : 1.1,
-         "name" : "is.op=or (nok + nok)",
-         "errors" : 1,
-         "valid" : 0,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:is",
-            "op",
-            "op:or"
-         ]
-      },
-      {
-         "valid" : 1,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:is",
-            "op",
-            "op:none"
-         ],
-         "schema" : [
-            "float",
-            "is",
-            [],
-            "is.op",
-            "none"
-         ],
-         "input" : 1.1,
-         "name" : "is.op=none (empty items)"
-      },
-      {
-         "valid" : 1,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:is",
-            "op",
-            "op:none"
-         ],
-         "schema" : [
-            "float",
-            "is",
-            [
-               1.2,
-               1.2
-            ],
-            "is.op",
-            "none"
-         ],
-         "input" : 1.1,
-         "name" : "is.op=none (nok + nok)"
-      },
-      {
-         "valid" : 0,
-         "errors" : 1,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:is",
-            "op",
-            "op:none"
-         ],
-         "input" : 1.1,
-         "schema" : [
-            "float",
-            "is",
-            [
-               1.2,
-               1.1
-            ],
-            "is.op",
-            "none"
-         ],
-         "name" : "is.op=none (nok + ok)"
-      },
-      {
-         "schema" : [
-            "float",
-            "is",
-            [
-               1.1,
-               1.2
-            ],
-            "is.op",
-            "none"
-         ],
-         "input" : 1.1,
-         "name" : "is.op=none (ok + nok)",
-         "errors" : 1,
-         "valid" : 0,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:is",
-            "op",
-            "op:none"
-         ]
-      },
-      {
-         "name" : "is.op=none (ok + ok)",
-         "schema" : [
-            "float",
-            "is",
-            [
-               1.1,
-               1.1
-            ],
-            "is.op",
-            "none"
-         ],
-         "input" : 1.1,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:is",
-            "op",
-            "op:none"
-         ],
-         "errors" : 1,
          "valid" : 0
       },
       {
-         "name" : "in: must accept valid choices",
+         "input" : 1.1,
+         "valid" : 1,
+         "name" : "is.op=or (no items)",
+         "schema" : [
+            "float",
+            "is",
+            [],
+            "is.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:is",
+            "op",
+            "op:or"
+         ]
+      },
+      {
+         "input" : 1.1,
+         "valid" : 1,
+         "name" : "is.op=or (ok)",
+         "schema" : [
+            "float",
+            "is",
+            [
+               1.1,
+               1.1
+            ],
+            "is.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:is",
+            "op",
+            "op:or"
+         ]
+      },
+      {
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:is",
+            "op",
+            "op:or"
+         ],
+         "schema" : [
+            "float",
+            "is",
+            [
+               1.2,
+               1.1
+            ],
+            "is.op",
+            "or"
+         ],
+         "name" : "is.op=or (nok + ok)",
+         "valid" : 1,
+         "input" : 1.1
+      },
+      {
+         "name" : "is.op=or (ok + nok)",
+         "valid" : 1,
+         "input" : 1.1,
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:is",
+            "op",
+            "op:or"
+         ],
+         "schema" : [
+            "float",
+            "is",
+            [
+               1.1,
+               1.2
+            ],
+            "is.op",
+            "or"
+         ]
+      },
+      {
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:is",
+            "op",
+            "op:or"
+         ],
+         "schema" : [
+            "float",
+            "is",
+            [
+               1.2,
+               1.2
+            ],
+            "is.op",
+            "or"
+         ],
+         "errors" : 1,
+         "name" : "is.op=or (nok + nok)",
+         "valid" : 0,
+         "input" : 1.1
+      },
+      {
+         "input" : 1.1,
+         "valid" : 1,
+         "name" : "is.op=none (empty items)",
+         "schema" : [
+            "float",
+            "is",
+            [],
+            "is.op",
+            "none"
+         ],
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:is",
+            "op",
+            "op:none"
+         ]
+      },
+      {
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:is",
+            "op",
+            "op:none"
+         ],
+         "schema" : [
+            "float",
+            "is",
+            [
+               1.2,
+               1.2
+            ],
+            "is.op",
+            "none"
+         ],
+         "name" : "is.op=none (nok + nok)",
+         "valid" : 1,
+         "input" : 1.1
+      },
+      {
+         "input" : 1.1,
+         "valid" : 0,
+         "errors" : 1,
+         "name" : "is.op=none (nok + ok)",
+         "schema" : [
+            "float",
+            "is",
+            [
+               1.2,
+               1.1
+            ],
+            "is.op",
+            "none"
+         ],
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:is",
+            "op",
+            "op:none"
+         ]
+      },
+      {
+         "errors" : 1,
+         "name" : "is.op=none (ok + nok)",
+         "valid" : 0,
+         "input" : 1.1,
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:is",
+            "op",
+            "op:none"
+         ],
+         "schema" : [
+            "float",
+            "is",
+            [
+               1.1,
+               1.2
+            ],
+            "is.op",
+            "none"
+         ]
+      },
+      {
+         "schema" : [
+            "float",
+            "is",
+            [
+               1.1,
+               1.1
+            ],
+            "is.op",
+            "none"
+         ],
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:is",
+            "op",
+            "op:none"
+         ],
+         "input" : 1.1,
+         "valid" : 0,
+         "name" : "is.op=none (ok + ok)",
+         "errors" : 1
+      },
+      {
          "schema" : [
             "float",
             "in",
@@ -1286,17 +1285,16 @@
                1.2
             ]
          ],
-         "input" : 1.1,
          "tags" : [
             "type",
             "type:float",
             "clause:in"
          ],
-         "valid" : 1
+         "input" : 1.1,
+         "valid" : 1,
+         "name" : "in: must accept valid choices"
       },
       {
-         "name" : "in: must reject empty choices",
-         "input" : 1.1,
          "schema" : [
             "float",
             "in",
@@ -1307,10 +1305,19 @@
             "type:float",
             "clause:in"
          ],
-         "valid" : 0
+         "input" : 1.1,
+         "valid" : 0,
+         "name" : "in: must reject empty choices"
       },
       {
-         "input" : 1.1,
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:in",
+            "op",
+            "op:not",
+            "opshortcut"
+         ],
          "schema" : [
             "float",
             "!in",
@@ -1321,16 +1328,14 @@
          ],
          "name" : "!in (nok)",
          "valid" : 0,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:in",
-            "op",
-            "op:not",
-            "opshortcut"
-         ]
+         "input" : 1.1
       },
       {
+         "schema" : [
+            "float",
+            "!in",
+            []
+         ],
          "tags" : [
             "type",
             "type:float",
@@ -1339,16 +1344,14 @@
             "op:not",
             "opshortcut"
          ],
-         "valid" : 1,
-         "name" : "!in (ok)",
          "input" : 1.1,
-         "schema" : [
-            "float",
-            "!in",
-            []
-         ]
+         "valid" : 1,
+         "name" : "!in (ok)"
       },
       {
+         "name" : "in.op=not (nok)",
+         "input" : 1.1,
+         "valid" : 0,
          "tags" : [
             "type",
             "type:float",
@@ -1356,9 +1359,6 @@
             "op",
             "op:not"
          ],
-         "valid" : 0,
-         "name" : "in.op=not (nok)",
-         "input" : 1.1,
          "schema" : [
             "float",
             "in",
@@ -1371,7 +1371,6 @@
          ]
       },
       {
-         "valid" : 1,
          "tags" : [
             "type",
             "type:float",
@@ -1379,7 +1378,6 @@
             "op",
             "op:not"
          ],
-         "input" : 1.1,
          "schema" : [
             "float",
             "in",
@@ -1387,11 +1385,11 @@
             "in.op",
             "not"
          ],
-         "name" : "in.op=not (ok)"
+         "name" : "in.op=not (ok)",
+         "valid" : 1,
+         "input" : 1.1
       },
       {
-         "name" : "in& (no items)",
-         "input" : 1.1,
          "schema" : [
             "float",
             "in&",
@@ -1405,9 +1403,14 @@
             "op:and",
             "opshortcut"
          ],
-         "valid" : 1
+         "input" : 1.1,
+         "valid" : 1,
+         "name" : "in& (no items)"
       },
       {
+         "name" : "in& (ok)",
+         "input" : 1.1,
+         "valid" : 1,
          "tags" : [
             "type",
             "type:float",
@@ -1416,8 +1419,6 @@
             "op:and",
             "opshortcut"
          ],
-         "valid" : 1,
-         "name" : "in& (ok)",
          "schema" : [
             "float",
             "in&",
@@ -1431,11 +1432,9 @@
                   1.2
                ]
             ]
-         ],
-         "input" : 1.1
+         ]
       },
       {
-         "name" : "in& (nok + ok)",
          "schema" : [
             "float",
             "in&",
@@ -1447,7 +1446,6 @@
                ]
             ]
          ],
-         "input" : 1.1,
          "tags" : [
             "type",
             "type:float",
@@ -1456,12 +1454,16 @@
             "op:and",
             "opshortcut"
          ],
+         "valid" : 0,
+         "input" : 1.1,
          "errors" : 1,
-         "valid" : 0
+         "name" : "in& (nok + ok)"
       },
       {
          "errors" : 1,
+         "name" : "in& (ok + nok)",
          "valid" : 0,
+         "input" : 1.1,
          "tags" : [
             "type",
             "type:float",
@@ -1480,11 +1482,17 @@
                ],
                []
             ]
-         ],
-         "input" : 1.1,
-         "name" : "in& (ok + nok)"
+         ]
       },
       {
+         "schema" : [
+            "float",
+            "in&",
+            [
+               [],
+               []
+            ]
+         ],
          "tags" : [
             "type",
             "type:float",
@@ -1493,38 +1501,31 @@
             "op:and",
             "opshortcut"
          ],
-         "errors" : 1,
+         "input" : 1.1,
          "valid" : 0,
          "name" : "in& (nok + nok)",
-         "schema" : [
-            "float",
-            "in&",
-            [
-               [],
-               []
-            ]
-         ],
-         "input" : 1.1
+         "errors" : 1
       },
       {
          "name" : "in.op=and (no items)",
          "input" : 1.1,
+         "valid" : 1,
+         "tags" : [
+            "type",
+            "type:float"
+         ],
          "schema" : [
             "float",
             "in",
             [],
             "in.op",
             "and"
-         ],
-         "tags" : [
-            "type",
-            "type:float"
-         ],
-         "valid" : 1
+         ]
       },
       {
-         "name" : "in.op=and (ok)",
          "input" : 1.1,
+         "valid" : 1,
+         "name" : "in.op=and (ok)",
          "schema" : [
             "float",
             "in",
@@ -1547,10 +1548,12 @@
             "clause:in",
             "op",
             "op:and"
-         ],
-         "valid" : 1
+         ]
       },
       {
+         "valid" : 0,
+         "input" : 1.1,
+         "errors" : 1,
          "name" : "in.op=and (nok + ok)",
          "schema" : [
             "float",
@@ -1565,7 +1568,19 @@
             "in.op",
             "and"
          ],
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:in",
+            "op",
+            "op:and"
+         ]
+      },
+      {
+         "errors" : 1,
+         "name" : "in.op=and (ok + nok)",
          "input" : 1.1,
+         "valid" : 0,
          "tags" : [
             "type",
             "type:float",
@@ -1573,10 +1588,6 @@
             "op",
             "op:and"
          ],
-         "errors" : 1,
-         "valid" : 0
-      },
-      {
          "schema" : [
             "float",
             "in",
@@ -1589,22 +1600,9 @@
             ],
             "in.op",
             "and"
-         ],
-         "input" : 1.1,
-         "name" : "in.op=and (ok + nok)",
-         "errors" : 1,
-         "valid" : 0,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:in",
-            "op",
-            "op:and"
          ]
       },
       {
-         "name" : "in.op=and (nok + nok)",
-         "input" : 1.1,
          "schema" : [
             "float",
             "in",
@@ -1623,54 +1621,16 @@
             "op:and"
          ],
          "valid" : 0,
-         "errors" : 1
+         "input" : 1.1,
+         "errors" : 1,
+         "name" : "in.op=and (nok + nok)"
       },
       {
-         "name" : "in| (no items)",
          "schema" : [
             "float",
             "in|",
             []
          ],
-         "input" : 1.1,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:in",
-            "op",
-            "op:or",
-            "opshortcut"
-         ],
-         "valid" : 1
-      },
-      {
-         "name" : "in| (ok)",
-         "input" : 1.1,
-         "schema" : [
-            "float",
-            "in|",
-            [
-               [
-                  1.1,
-                  1.2
-               ],
-               [
-                  1.1,
-                  1.2
-               ]
-            ]
-         ],
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:in",
-            "op",
-            "op:or",
-            "opshortcut"
-         ],
-         "valid" : 1
-      },
-      {
          "tags" : [
             "type",
             "type:float",
@@ -1680,8 +1640,45 @@
             "opshortcut"
          ],
          "valid" : 1,
-         "name" : "in| (nok + ok)",
          "input" : 1.1,
+         "name" : "in| (no items)"
+      },
+      {
+         "schema" : [
+            "float",
+            "in|",
+            [
+               [
+                  1.1,
+                  1.2
+               ],
+               [
+                  1.1,
+                  1.2
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:in",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
+         "valid" : 1,
+         "input" : 1.1,
+         "name" : "in| (ok)"
+      },
+      {
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:in",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
          "schema" : [
             "float",
             "in|",
@@ -1692,11 +1689,23 @@
                   1.2
                ]
             ]
-         ]
+         ],
+         "name" : "in| (nok + ok)",
+         "input" : 1.1,
+         "valid" : 1
       },
       {
          "name" : "in| (ok + nok)",
          "input" : 1.1,
+         "valid" : 1,
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:in",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
          "schema" : [
             "float",
             "in|",
@@ -1707,27 +1716,12 @@
                ],
                []
             ]
-         ],
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:in",
-            "op",
-            "op:or",
-            "opshortcut"
-         ],
-         "valid" : 1
+         ]
       },
       {
          "name" : "in| (nok + nok)",
-         "schema" : [
-            "float",
-            "in|",
-            [
-               [],
-               []
-            ]
-         ],
+         "errors" : 1,
+         "valid" : 0,
          "input" : 1.1,
          "tags" : [
             "type",
@@ -1737,7 +1731,133 @@
             "op:or",
             "opshortcut"
          ],
+         "schema" : [
+            "float",
+            "in|",
+            [
+               [],
+               []
+            ]
+         ]
+      },
+      {
+         "input" : 1.1,
+         "valid" : 1,
+         "name" : "in.op=or (no items)",
+         "schema" : [
+            "float",
+            "in",
+            [],
+            "in.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:in",
+            "op",
+            "op:or"
+         ]
+      },
+      {
+         "schema" : [
+            "float",
+            "in",
+            [
+               [
+                  1.1,
+                  1.2
+               ],
+               [
+                  1.1,
+                  1.2
+               ]
+            ],
+            "in.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:in",
+            "op",
+            "op:or"
+         ],
+         "input" : 1.1,
+         "valid" : 1,
+         "name" : "in.op=or (ok)"
+      },
+      {
+         "valid" : 1,
+         "input" : 1.1,
+         "name" : "in.op=or (nok + ok)",
+         "schema" : [
+            "float",
+            "in",
+            [
+               [],
+               [
+                  1.1,
+                  1.2
+               ]
+            ],
+            "in.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:in",
+            "op",
+            "op:or"
+         ]
+      },
+      {
+         "name" : "in.op=or (ok + nok)",
+         "input" : 1.1,
+         "valid" : 1,
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:in",
+            "op",
+            "op:or"
+         ],
+         "schema" : [
+            "float",
+            "in",
+            [
+               [
+                  1.1,
+                  1.2
+               ],
+               []
+            ],
+            "in.op",
+            "or"
+         ]
+      },
+      {
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:in",
+            "op",
+            "op:or"
+         ],
+         "schema" : [
+            "float",
+            "in",
+            [
+               [],
+               []
+            ],
+            "in.op",
+            "or"
+         ],
+         "name" : "in.op=or (nok + nok)",
          "errors" : 1,
+         "input" : 1.1,
          "valid" : 0
       },
       {
@@ -1746,142 +1866,30 @@
             "in",
             [],
             "in.op",
-            "or"
-         ],
-         "input" : 1.1,
-         "name" : "in.op=or (no items)",
-         "valid" : 1,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:in",
-            "op",
-            "op:or"
-         ]
-      },
-      {
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:in",
-            "op",
-            "op:or"
-         ],
-         "valid" : 1,
-         "name" : "in.op=or (ok)",
-         "schema" : [
-            "float",
-            "in",
-            [
-               [
-                  1.1,
-                  1.2
-               ],
-               [
-                  1.1,
-                  1.2
-               ]
-            ],
-            "in.op",
-            "or"
-         ],
-         "input" : 1.1
-      },
-      {
-         "valid" : 1,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:in",
-            "op",
-            "op:or"
-         ],
-         "input" : 1.1,
-         "schema" : [
-            "float",
-            "in",
-            [
-               [],
-               [
-                  1.1,
-                  1.2
-               ]
-            ],
-            "in.op",
-            "or"
-         ],
-         "name" : "in.op=or (nok + ok)"
-      },
-      {
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:in",
-            "op",
-            "op:or"
-         ],
-         "valid" : 1,
-         "name" : "in.op=or (ok + nok)",
-         "schema" : [
-            "float",
-            "in",
-            [
-               [
-                  1.1,
-                  1.2
-               ],
-               []
-            ],
-            "in.op",
-            "or"
-         ],
-         "input" : 1.1
-      },
-      {
-         "schema" : [
-            "float",
-            "in",
-            [
-               [],
-               []
-            ],
-            "in.op",
-            "or"
-         ],
-         "input" : 1.1,
-         "name" : "in.op=or (nok + nok)",
-         "errors" : 1,
-         "valid" : 0,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:in",
-            "op",
-            "op:or"
-         ]
-      },
-      {
-         "schema" : [
-            "float",
-            "in",
-            [],
-            "in.op",
             "none"
          ],
-         "input" : 1.1,
-         "name" : "in.op=none (empty items)",
-         "valid" : 1,
          "tags" : [
             "type",
             "type:float",
             "clause:in",
             "op",
             "op:none"
-         ]
+         ],
+         "valid" : 1,
+         "input" : 1.1,
+         "name" : "in.op=none (empty items)"
       },
       {
          "name" : "in.op=none (nok + nok)",
          "input" : 1.1,
+         "valid" : 1,
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:in",
+            "op",
+            "op:none"
+         ],
          "schema" : [
             "float",
             "in",
@@ -1891,27 +1899,9 @@
             ],
             "in.op",
             "none"
-         ],
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:in",
-            "op",
-            "op:none"
-         ],
-         "valid" : 1
+         ]
       },
       {
-         "valid" : 0,
-         "errors" : 1,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:in",
-            "op",
-            "op:none"
-         ],
-         "input" : 1.1,
          "schema" : [
             "float",
             "in",
@@ -1925,11 +1915,6 @@
             "in.op",
             "none"
          ],
-         "name" : "in.op=none (nok + ok)"
-      },
-      {
-         "valid" : 0,
-         "errors" : 1,
          "tags" : [
             "type",
             "type:float",
@@ -1938,6 +1923,18 @@
             "op:none"
          ],
          "input" : 1.1,
+         "valid" : 0,
+         "name" : "in.op=none (nok + ok)",
+         "errors" : 1
+      },
+      {
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:in",
+            "op",
+            "op:none"
+         ],
          "schema" : [
             "float",
             "in",
@@ -1951,11 +1948,16 @@
             "in.op",
             "none"
          ],
-         "name" : "in.op=none (ok + nok)"
+         "errors" : 1,
+         "name" : "in.op=none (ok + nok)",
+         "valid" : 0,
+         "input" : 1.1
       },
       {
-         "valid" : 0,
          "errors" : 1,
+         "name" : "in.op=none (ok + ok)",
+         "valid" : 0,
+         "input" : 1.1,
          "tags" : [
             "type",
             "type:float",
@@ -1963,7 +1965,6 @@
             "op",
             "op:none"
          ],
-         "input" : 1.1,
          "schema" : [
             "float",
             "in",
@@ -1979,33 +1980,32 @@
             ],
             "in.op",
             "none"
-         ],
-         "name" : "in.op=none (ok + ok)"
+         ]
       },
       {
-         "name" : "min: 2.1 -3.1",
-         "input" : 2.1,
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:min"
+         ],
          "schema" : [
             "float",
             "min",
             -3.1
          ],
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:min"
-         ],
-         "valid" : 1
+         "name" : "min: 2.1 -3.1",
+         "valid" : 1,
+         "input" : 2.1
       },
       {
+         "name" : "min: 2.1 2.1",
+         "valid" : 1,
+         "input" : 2.1,
          "tags" : [
             "type",
             "type:float",
             "clause:min"
          ],
-         "valid" : 1,
-         "name" : "min: 2.1 2.1",
-         "input" : 2.1,
          "schema" : [
             "float",
             "min",
@@ -2013,104 +2013,89 @@
          ]
       },
       {
-         "input" : -3.1,
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:min"
+         ],
          "schema" : [
             "float",
             "min",
             2.1
          ],
          "name" : "min: -3.1 2.1 -> fail",
-         "valid" : 0,
+         "input" : -3.1,
+         "valid" : 0
+      },
+      {
+         "name" : "xmin: 2.1 -3.1",
+         "valid" : 1,
+         "input" : 2.1,
          "tags" : [
             "type",
             "type:float",
-            "clause:min"
-         ]
-      },
-      {
+            "clause:xmin"
+         ],
          "schema" : [
             "float",
             "xmin",
             -3.1
-         ],
-         "input" : 2.1,
-         "name" : "xmin: 2.1 -3.1",
-         "valid" : 1,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:xmin"
          ]
       },
       {
-         "valid" : 0,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:xmin"
-         ],
-         "schema" : [
-            "float",
-            "xmin",
-            2.1
-         ],
+         "name" : "xmin: 2.1 2.1 -> fail",
          "input" : 2.1,
-         "name" : "xmin: 2.1 2.1 -> fail"
-      },
-      {
          "valid" : 0,
          "tags" : [
             "type",
             "type:float",
             "clause:xmin"
          ],
-         "input" : -3.1,
          "schema" : [
             "float",
             "xmin",
             2.1
-         ],
-         "name" : "xmin: -3.1 2.1 -> fail"
+         ]
       },
       {
+         "name" : "xmin: -3.1 2.1 -> fail",
+         "input" : -3.1,
+         "valid" : 0,
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:xmin"
+         ],
+         "schema" : [
+            "float",
+            "xmin",
+            2.1
+         ]
+      },
+      {
+         "name" : "max: 2.1 -3.1 -> fail",
+         "input" : 2.1,
+         "valid" : 0,
          "tags" : [
             "type",
             "type:float",
             "clause:max"
          ],
-         "valid" : 0,
-         "name" : "max: 2.1 -3.1 -> fail",
          "schema" : [
             "float",
             "max",
             -3.1
-         ],
-         "input" : 2.1
+         ]
       },
       {
          "name" : "max: 2.1 2.1",
-         "input" : 2.1,
-         "schema" : [
-            "float",
-            "max",
-            2.1
-         ],
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:max"
-         ],
-         "valid" : 1
-      },
-      {
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:max"
-         ],
          "valid" : 1,
-         "name" : "max: -3.1 2.1",
-         "input" : -3.1,
+         "input" : 2.1,
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:max"
+         ],
          "schema" : [
             "float",
             "max",
@@ -2118,18 +2103,48 @@
          ]
       },
       {
+         "schema" : [
+            "float",
+            "max",
+            2.1
+         ],
          "tags" : [
             "type",
             "type:float",
-            "clause:xmax"
+            "clause:max"
          ],
+         "input" : -3.1,
+         "valid" : 1,
+         "name" : "max: -3.1 2.1"
+      },
+      {
+         "input" : 2.1,
          "valid" : 0,
          "name" : "xmax: 2.1 -3.1 -> fail",
-         "input" : 2.1,
          "schema" : [
             "float",
             "xmax",
             -3.1
+         ],
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:xmax"
+         ]
+      },
+      {
+         "name" : "xmax: 2.1 2.1 -> fail",
+         "valid" : 0,
+         "input" : 2.1,
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:xmax"
+         ],
+         "schema" : [
+            "float",
+            "xmax",
+            2.1
          ]
       },
       {
@@ -2138,33 +2153,24 @@
             "type:float",
             "clause:xmax"
          ],
-         "valid" : 0,
-         "name" : "xmax: 2.1 2.1 -> fail",
          "schema" : [
             "float",
             "xmax",
             2.1
          ],
-         "input" : 2.1
-      },
-      {
+         "name" : "xmax: -3.1 2.1",
          "valid" : 1,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:xmax"
-         ],
-         "input" : -3.1,
-         "schema" : [
-            "float",
-            "xmax",
-            2.1
-         ],
-         "name" : "xmax: -3.1 2.1"
+         "input" : -3.1
       },
       {
          "name" : "between: 2.1 -3.1 & 4.1",
+         "valid" : 1,
          "input" : 2.1,
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:between"
+         ],
          "schema" : [
             "float",
             "between",
@@ -2172,15 +2178,29 @@
                -3.1,
                4.1
             ]
-         ],
+         ]
+      },
+      {
          "tags" : [
             "type",
             "type:float",
             "clause:between"
          ],
-         "valid" : 1
+         "schema" : [
+            "float",
+            "between",
+            [
+               -3.1,
+               2.1
+            ]
+         ],
+         "name" : "between: 2.1 -3.1 & 2.1",
+         "valid" : 1,
+         "input" : 2.1
       },
       {
+         "name" : "between: 2.1 2.1 & 2.1",
+         "input" : 2.1,
          "valid" : 1,
          "tags" : [
             "type",
@@ -2191,33 +2211,12 @@
             "float",
             "between",
             [
-               -3.1,
-               2.1
-            ]
-         ],
-         "input" : 2.1,
-         "name" : "between: 2.1 -3.1 & 2.1"
-      },
-      {
-         "name" : "between: 2.1 2.1 & 2.1",
-         "schema" : [
-            "float",
-            "between",
-            [
                2.1,
                2.1
             ]
-         ],
-         "input" : 2.1,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:between"
-         ],
-         "valid" : 1
+         ]
       },
       {
-         "input" : -3.1,
          "schema" : [
             "float",
             "between",
@@ -2226,16 +2225,16 @@
                4.1
             ]
          ],
-         "name" : "between: -3.1 2.1 & 4.1 -> fail",
-         "valid" : 0,
          "tags" : [
             "type",
             "type:float",
             "clause:between"
-         ]
+         ],
+         "valid" : 0,
+         "input" : -3.1,
+         "name" : "between: -3.1 2.1 & 4.1 -> fail"
       },
       {
-         "name" : "xbetween: 2.1 -3.1 & 4.1",
          "schema" : [
             "float",
             "xbetween",
@@ -2244,21 +2243,18 @@
                4.1
             ]
          ],
-         "input" : "2.1",
          "tags" : [
             "type",
             "type:float",
             "clause:xbetween"
          ],
-         "valid" : 1
+         "input" : "2.1",
+         "valid" : 1,
+         "name" : "xbetween: 2.1 -3.1 & 4.1"
       },
       {
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:xbetween"
-         ],
          "valid" : 0,
+         "input" : "2.1",
          "name" : "xbetween: 2.1 -3.1 & 2.1 -> fail",
          "schema" : [
             "float",
@@ -2268,17 +2264,21 @@
                "2.1"
             ]
          ],
-         "input" : "2.1"
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:xbetween"
+         ]
       },
       {
+         "name" : "xbetween: 2.1 2.1 & 2.1 -> fail",
+         "valid" : 0,
+         "input" : "2.1",
          "tags" : [
             "type",
             "type:float",
             "clause:xbetween"
          ],
-         "valid" : 0,
-         "name" : "xbetween: 2.1 2.1 & 2.1 -> fail",
-         "input" : "2.1",
          "schema" : [
             "float",
             "xbetween",
@@ -2289,6 +2289,9 @@
          ]
       },
       {
+         "valid" : 0,
+         "input" : -3.1,
+         "name" : "xbetween: -3.1 2.1 & 4.1 -> fail",
          "schema" : [
             "float",
             "xbetween",
@@ -2297,9 +2300,6 @@
                "4.1"
             ]
          ],
-         "input" : -3.1,
-         "name" : "xbetween: -3.1 2.1 & 4.1 -> fail",
-         "valid" : 0,
          "tags" : [
             "type",
             "type:float",
@@ -2307,6 +2307,9 @@
          ]
       },
       {
+         "input" : -3.1,
+         "valid" : 0,
+         "name" : "!between (nok)",
          "schema" : [
             "float",
             "!between",
@@ -2315,9 +2318,6 @@
                -3.1
             ]
          ],
-         "input" : -3.1,
-         "name" : "!between (nok)",
-         "valid" : 0,
          "tags" : [
             "type",
             "type:float",
@@ -2328,15 +2328,6 @@
          ]
       },
       {
-         "valid" : 1,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:between",
-            "op",
-            "op:not",
-            "opshortcut"
-         ],
          "schema" : [
             "float",
             "!between",
@@ -2345,18 +2336,22 @@
                "2.1"
             ]
          ],
-         "input" : -3.1,
-         "name" : "!between (ok)"
-      },
-      {
-         "valid" : 0,
          "tags" : [
             "type",
             "type:float",
             "clause:between",
             "op",
-            "op:not"
+            "op:not",
+            "opshortcut"
          ],
+         "input" : -3.1,
+         "valid" : 1,
+         "name" : "!between (ok)"
+      },
+      {
+         "input" : -3.1,
+         "valid" : 0,
+         "name" : "between.op=not (nok)",
          "schema" : [
             "float",
             "between",
@@ -2367,11 +2362,15 @@
             "between.op",
             "not"
          ],
-         "input" : -3.1,
-         "name" : "between.op=not (nok)"
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:between",
+            "op",
+            "op:not"
+         ]
       },
       {
-         "name" : "between.op=not (ok)",
          "schema" : [
             "float",
             "between",
@@ -2382,7 +2381,6 @@
             "between.op",
             "not"
          ],
-         "input" : -3.1,
          "tags" : [
             "type",
             "type:float",
@@ -2390,17 +2388,16 @@
             "op",
             "op:not"
          ],
-         "valid" : 1
+         "input" : -3.1,
+         "valid" : 1,
+         "name" : "between.op=not (ok)"
       },
       {
-         "input" : -3.1,
          "schema" : [
             "float",
             "between&",
             []
          ],
-         "name" : "between& (no items)",
-         "valid" : 1,
          "tags" : [
             "type",
             "type:float",
@@ -2408,9 +2405,14 @@
             "op",
             "op:and",
             "opshortcut"
-         ]
+         ],
+         "valid" : 1,
+         "input" : -3.1,
+         "name" : "between& (no items)"
       },
       {
+         "input" : -3.1,
+         "valid" : 1,
          "name" : "between& (ok)",
          "schema" : [
             "float",
@@ -2426,7 +2428,6 @@
                ]
             ]
          ],
-         "input" : -3.1,
          "tags" : [
             "type",
             "type:float",
@@ -2434,8 +2435,7 @@
             "op",
             "op:and",
             "opshortcut"
-         ],
-         "valid" : 1
+         ]
       },
       {
          "schema" : [
@@ -2452,20 +2452,6 @@
                ]
             ]
          ],
-         "input" : -3.1,
-         "name" : "between& (nok + ok)",
-         "errors" : 1,
-         "valid" : 0,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:between",
-            "op",
-            "op:and",
-            "opshortcut"
-         ]
-      },
-      {
          "tags" : [
             "type",
             "type:float",
@@ -2474,27 +2460,40 @@
             "op:and",
             "opshortcut"
          ],
+         "input" : -3.1,
          "valid" : 0,
          "errors" : 1,
+         "name" : "between& (nok + ok)"
+      },
+      {
+         "schema" : [
+            "float",
+            "between&",
+            [
+               [
+                  -3.1,
+                  -3.1
+               ],
+               [
+                  "2.1",
+                  "2.1"
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:between",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
+         "input" : -3.1,
+         "valid" : 0,
          "name" : "between& (ok + nok)",
-         "input" : -3.1,
-         "schema" : [
-            "float",
-            "between&",
-            [
-               [
-                  -3.1,
-                  -3.1
-               ],
-               [
-                  "2.1",
-                  "2.1"
-               ]
-            ]
-         ]
+         "errors" : 1
       },
       {
-         "input" : -3.1,
          "schema" : [
             "float",
             "between&",
@@ -2509,9 +2508,6 @@
                ]
             ]
          ],
-         "name" : "between& (nok + nok)",
-         "valid" : 0,
-         "errors" : 1,
          "tags" : [
             "type",
             "type:float",
@@ -2519,11 +2515,17 @@
             "op",
             "op:and",
             "opshortcut"
-         ]
+         ],
+         "valid" : 0,
+         "input" : -3.1,
+         "errors" : 1,
+         "name" : "between& (nok + nok)"
       },
       {
-         "name" : "between.op=and (no items)",
-         "input" : -3.1,
+         "tags" : [
+            "type",
+            "type:float"
+         ],
          "schema" : [
             "float",
             "between",
@@ -2531,147 +2533,147 @@
             "between.op",
             "and"
          ],
-         "tags" : [
-            "type",
-            "type:float"
-         ],
-         "valid" : 1
-      },
-      {
+         "name" : "between.op=and (no items)",
          "valid" : 1,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:between",
-            "op",
-            "op:and"
-         ],
-         "schema" : [
-            "float",
-            "between",
-            [
-               [
-                  -3.1,
-                  -3.1
-               ],
-               [
-                  -3.1,
-                  -3.1
-               ]
-            ],
-            "between.op",
-            "and"
-         ],
-         "input" : -3.1,
-         "name" : "between.op=and (ok)"
-      },
-      {
-         "schema" : [
-            "float",
-            "between",
-            [
-               [
-                  "2.1",
-                  "2.1"
-               ],
-               [
-                  -3.1,
-                  -3.1
-               ]
-            ],
-            "between.op",
-            "and"
-         ],
-         "input" : -3.1,
-         "name" : "between.op=and (nok + ok)",
-         "errors" : 1,
-         "valid" : 0,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:between",
-            "op",
-            "op:and"
-         ]
-      },
-      {
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:between",
-            "op",
-            "op:and"
-         ],
-         "valid" : 0,
-         "errors" : 1,
-         "name" : "between.op=and (ok + nok)",
-         "input" : -3.1,
-         "schema" : [
-            "float",
-            "between",
-            [
-               [
-                  -3.1,
-                  -3.1
-               ],
-               [
-                  "2.1",
-                  "2.1"
-               ]
-            ],
-            "between.op",
-            "and"
-         ]
-      },
-      {
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:between",
-            "op",
-            "op:and"
-         ],
-         "valid" : 0,
-         "errors" : 1,
-         "name" : "between.op=and (nok + nok)",
-         "input" : -3.1,
-         "schema" : [
-            "float",
-            "between",
-            [
-               [
-                  "2.1",
-                  "2.1"
-               ],
-               [
-                  "2.1",
-                  "2.1"
-               ]
-            ],
-            "between.op",
-            "and"
-         ]
-      },
-      {
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:between",
-            "op",
-            "op:or",
-            "opshortcut"
-         ],
-         "valid" : 1,
-         "name" : "between| (no items)",
-         "schema" : [
-            "float",
-            "between|",
-            []
-         ],
          "input" : -3.1
       },
       {
          "valid" : 1,
+         "input" : -3.1,
+         "name" : "between.op=and (ok)",
+         "schema" : [
+            "float",
+            "between",
+            [
+               [
+                  -3.1,
+                  -3.1
+               ],
+               [
+                  -3.1,
+                  -3.1
+               ]
+            ],
+            "between.op",
+            "and"
+         ],
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:between",
+            "op",
+            "op:and"
+         ]
+      },
+      {
+         "name" : "between.op=and (nok + ok)",
+         "errors" : 1,
+         "input" : -3.1,
+         "valid" : 0,
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:between",
+            "op",
+            "op:and"
+         ],
+         "schema" : [
+            "float",
+            "between",
+            [
+               [
+                  "2.1",
+                  "2.1"
+               ],
+               [
+                  -3.1,
+                  -3.1
+               ]
+            ],
+            "between.op",
+            "and"
+         ]
+      },
+      {
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:between",
+            "op",
+            "op:and"
+         ],
+         "schema" : [
+            "float",
+            "between",
+            [
+               [
+                  -3.1,
+                  -3.1
+               ],
+               [
+                  "2.1",
+                  "2.1"
+               ]
+            ],
+            "between.op",
+            "and"
+         ],
+         "name" : "between.op=and (ok + nok)",
+         "errors" : 1,
+         "input" : -3.1,
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "name" : "between.op=and (nok + nok)",
+         "valid" : 0,
+         "input" : -3.1,
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:between",
+            "op",
+            "op:and"
+         ],
+         "schema" : [
+            "float",
+            "between",
+            [
+               [
+                  "2.1",
+                  "2.1"
+               ],
+               [
+                  "2.1",
+                  "2.1"
+               ]
+            ],
+            "between.op",
+            "and"
+         ]
+      },
+      {
+         "name" : "between| (no items)",
+         "input" : -3.1,
+         "valid" : 1,
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:between",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
+         "schema" : [
+            "float",
+            "between|",
+            []
+         ]
+      },
+      {
+         "name" : "between| (ok)",
+         "valid" : 1,
+         "input" : -3.1,
          "tags" : [
             "type",
             "type:float",
@@ -2693,21 +2695,9 @@
                   -3.1
                ]
             ]
-         ],
-         "input" : -3.1,
-         "name" : "between| (ok)"
+         ]
       },
       {
-         "valid" : 1,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:between",
-            "op",
-            "op:or",
-            "opshortcut"
-         ],
-         "input" : -3.1,
          "schema" : [
             "float",
             "between|",
@@ -2722,19 +2712,19 @@
                ]
             ]
          ],
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:between",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
+         "valid" : 1,
+         "input" : -3.1,
          "name" : "between| (nok + ok)"
       },
       {
-         "valid" : 1,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:between",
-            "op",
-            "op:or",
-            "opshortcut"
-         ],
-         "input" : -3.1,
          "schema" : [
             "float",
             "between|",
@@ -2749,11 +2739,6 @@
                ]
             ]
          ],
-         "name" : "between| (ok + nok)"
-      },
-      {
-         "valid" : 0,
-         "errors" : 1,
          "tags" : [
             "type",
             "type:float",
@@ -2762,7 +2747,11 @@
             "op:or",
             "opshortcut"
          ],
+         "valid" : 1,
          "input" : -3.1,
+         "name" : "between| (ok + nok)"
+      },
+      {
          "schema" : [
             "float",
             "between|",
@@ -2777,9 +2766,22 @@
                ]
             ]
          ],
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:between",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
+         "valid" : 0,
+         "input" : -3.1,
+         "errors" : 1,
          "name" : "between| (nok + nok)"
       },
       {
+         "input" : -3.1,
+         "valid" : 1,
          "name" : "between.op=or (no items)",
          "schema" : [
             "float",
@@ -2788,18 +2790,18 @@
             "between.op",
             "or"
          ],
-         "input" : -3.1,
          "tags" : [
             "type",
             "type:float",
             "clause:between",
             "op",
             "op:or"
-         ],
-         "valid" : 1
+         ]
       },
       {
          "input" : -3.1,
+         "valid" : 1,
+         "name" : "between.op=or (ok)",
          "schema" : [
             "float",
             "between",
@@ -2816,8 +2818,6 @@
             "between.op",
             "or"
          ],
-         "name" : "between.op=or (ok)",
-         "valid" : 1,
          "tags" : [
             "type",
             "type:float",
@@ -2827,7 +2827,9 @@
          ]
       },
       {
+         "name" : "between.op=or (nok + ok)",
          "valid" : 1,
+         "input" : -3.1,
          "tags" : [
             "type",
             "type:float",
@@ -2835,7 +2837,6 @@
             "op",
             "op:or"
          ],
-         "input" : -3.1,
          "schema" : [
             "float",
             "between",
@@ -2851,11 +2852,16 @@
             ],
             "between.op",
             "or"
-         ],
-         "name" : "between.op=or (nok + ok)"
+         ]
       },
       {
-         "input" : -3.1,
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:between",
+            "op",
+            "op:or"
+         ],
          "schema" : [
             "float",
             "between",
@@ -2873,14 +2879,8 @@
             "or"
          ],
          "name" : "between.op=or (ok + nok)",
-         "valid" : 1,
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:between",
-            "op",
-            "op:or"
-         ]
+         "input" : -3.1,
+         "valid" : 1
       },
       {
          "schema" : [
@@ -2899,20 +2899,22 @@
             "between.op",
             "or"
          ],
-         "input" : -3.1,
-         "name" : "between.op=or (nok + nok)",
-         "errors" : 1,
-         "valid" : 0,
          "tags" : [
             "type",
             "type:float",
             "clause:between",
             "op",
             "op:or"
-         ]
+         ],
+         "input" : -3.1,
+         "valid" : 0,
+         "name" : "between.op=or (nok + nok)",
+         "errors" : 1
       },
       {
+         "valid" : 1,
          "input" : -3.1,
+         "name" : "between.op=none (empty items)",
          "schema" : [
             "float",
             "between",
@@ -2920,8 +2922,6 @@
             "between.op",
             "none"
          ],
-         "name" : "between.op=none (empty items)",
-         "valid" : 1,
          "tags" : [
             "type",
             "type:float",
@@ -2931,24 +2931,8 @@
          ]
       },
       {
-         "schema" : [
-            "float",
-            "between",
-            [
-               [
-                  "2.1",
-                  "2.1"
-               ],
-               [
-                  "2.1",
-                  "2.1"
-               ]
-            ],
-            "between.op",
-            "none"
-         ],
-         "input" : -3.1,
          "name" : "between.op=none (nok + nok)",
+         "input" : -3.1,
          "valid" : 1,
          "tags" : [
             "type",
@@ -2956,9 +2940,7 @@
             "clause:between",
             "op",
             "op:none"
-         ]
-      },
-      {
+         ],
          "schema" : [
             "float",
             "between",
@@ -2968,16 +2950,18 @@
                   "2.1"
                ],
                [
-                  -3.1,
-                  -3.1
+                  "2.1",
+                  "2.1"
                ]
             ],
             "between.op",
             "none"
-         ],
-         "input" : -3.1,
+         ]
+      },
+      {
          "name" : "between.op=none (nok + ok)",
          "errors" : 1,
+         "input" : -3.1,
          "valid" : 0,
          "tags" : [
             "type",
@@ -2985,11 +2969,32 @@
             "clause:between",
             "op",
             "op:none"
+         ],
+         "schema" : [
+            "float",
+            "between",
+            [
+               [
+                  "2.1",
+                  "2.1"
+               ],
+               [
+                  -3.1,
+                  -3.1
+               ]
+            ],
+            "between.op",
+            "none"
          ]
       },
       {
-         "name" : "between.op=none (ok + nok)",
-         "input" : -3.1,
+         "tags" : [
+            "type",
+            "type:float",
+            "clause:between",
+            "op",
+            "op:none"
+         ],
          "schema" : [
             "float",
             "between",
@@ -3006,18 +3011,15 @@
             "between.op",
             "none"
          ],
-         "tags" : [
-            "type",
-            "type:float",
-            "clause:between",
-            "op",
-            "op:none"
-         ],
+         "name" : "between.op=none (ok + nok)",
+         "errors" : 1,
          "valid" : 0,
-         "errors" : 1
+         "input" : -3.1
       },
       {
+         "name" : "between.op=none (ok + ok)",
          "errors" : 1,
+         "input" : -3.1,
          "valid" : 0,
          "tags" : [
             "type",
@@ -3041,10 +3043,8 @@
             ],
             "between.op",
             "none"
-         ],
-         "input" : -3.1,
-         "name" : "between.op=none (ok + ok)"
+         ]
       }
    ],
-   "version" : "v0.9.34 (generated by devscripts/gen-type-spectest on Thu Apr 30 20:23:56 2015)"
+   "version" : "v0.9.34 (generated by devscripts/gen-type-spectest on Tue May  5 09:36:45 2015)"
 }
