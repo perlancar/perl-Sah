@@ -1,5 +1,11 @@
 Revision history for Sah
 
+0.9.36  2015-05-05 (PERLANCAR) (unreleased)
+
+        - Rename dep_one -> dep_any, req_dep_one -> req_dep_any because those
+          are the more apt names.
+
+
 0.9.35  2015-05-05 (PERLANCAR)
 
 	- No spec changes.
@@ -11,7 +17,8 @@ Revision history for Sah
 
          - Add clauses for hash: choose_one_key (choose_one), choose_all_keys
            (choose_all), req_one_key (req_one), dep_one, dep_all, req_dep_one,
-           req_dep_all.
+           req_dep_all. UPDATE: dep_one has been renamed to dep_any, req_dep_one
+           to req_dep_any.
 
          - Add aliases req_all_keys & req_all for hash clause req_keys.
 

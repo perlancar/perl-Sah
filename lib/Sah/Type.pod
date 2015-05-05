@@ -1057,26 +1057,26 @@ Alias to C<req_keys>.
 
 =head3 (TODO: req_some_keys : [ min, max, ARRAY[STR] ])
 
-=head3 dep_one : [ STR|ARRAY[STR], ARRAY[STR] ]
+=head3 dep_any : [ STR|ARRAY[STR], ARRAY[STR] ]
 
 Specify that the first argument (either a string containing a key name, or a
 list of key names) can only exist when one of the keys given in the second
 argument exists. Example:
 
- ["hash", "dep_one", ["postcode", ["address"]]]
+ ["hash", "dep_any", ["postcode", ["address"]]]
 
 The "postcode" key can only be specified if "address" key exists.
 
 Another example:
 
- ["hash", "dep_one", ["input_format", ["input_value", "input_file"]]
+ ["hash", "dep_any", ["input_format", ["input_value", "input_file"]]
 
 If "input_value" or "input_file" exists, then "input_format" is allowed to be
 specified.
 
 Yet another example:
 
- ["hash", "dep_one", [["input_format", "input_is_yaml", "input_is_json"], ["input_value", "input_file"]]
+ ["hash", "dep_any", [["input_format", "input_is_yaml", "input_is_json"], ["input_value", "input_file"]]
 
 If either "input_value" or "input_file" exists, then one of "input_format",
 "input_is_yaml", "input_is_json" is allowed to be specified.
@@ -1089,7 +1089,7 @@ argument exist. Example:
 
  ["hash", "dep_all", ["postcode", ["address"]]]
 
-In the above example, you can also use "dep_one" clause for the same effect
+In the above example, you can also use "dep_any" clause for the same effect
 since there is only one key to depend on. Another example:
 
  ["hash", "dep_all", ["postcode", ["address", "city"]]
@@ -1097,7 +1097,7 @@ since there is only one key to depend on. Another example:
 In the above example, "postcode" can only be specified when both "address" and
 "city" exist. Yet another example:
 
-=head3 req_dep_one : [ STR|ARRAY[STR], ARRAY[STR] ]
+=head3 req_dep_any : [ STR|ARRAY[STR], ARRAY[STR] ]
 
 Specify that the first argument (either a string containing a key name, or a
 list of key names) is required when one of the keys given in the second argument

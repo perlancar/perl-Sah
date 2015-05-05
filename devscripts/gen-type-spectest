@@ -2148,46 +2148,46 @@ sub gen_hash_tests {
 
     # TODO: require_some_keys
 
-    $sch = [hash => {dep_one=>["a", [qw/d1 d2/]]}];
+    $sch = [hash => {dep_any=>["a", [qw/d1 d2/]]}];
     push @res, (
         {
-            name   => 'dep_one: (ok, empty)',
+            name   => 'dep_any: (ok, empty)',
             input  => {},
             schema => $sch,
             valid  => 1,
         },
         {
-            name   => 'dep_one: (nok, a specified without d1/d2)',
+            name   => 'dep_any: (nok, a specified without d1/d2)',
             input  => {a=>0},
             schema => $sch,
             valid  => 0,
         },
         {
-            name   => 'dep_one: (ok, a specified with d1)',
+            name   => 'dep_any: (ok, a specified with d1)',
             input  => {a=>0, d1=>0},
             schema => $sch,
             valid  => 1,
         },
         {
-            name   => 'dep_one: (ok, a specified with d2)',
+            name   => 'dep_any: (ok, a specified with d2)',
             input  => {a=>0, d2=>0},
             schema => $sch,
             valid  => 1,
         },
         {
-            name   => 'dep_one: (ok, a specified with d1 & d2)',
+            name   => 'dep_any: (ok, a specified with d1 & d2)',
             input  => {a=>0, d1=>0, d2=>0},
             schema => $sch,
             valid  => 1,
         },
         {
-            name   => 'dep_one: (ok, no a with d1 & d2)',
+            name   => 'dep_any: (ok, no a with d1 & d2)',
             input  => {d1=>0, d2=>0},
             schema => $sch,
             valid  => 1,
         },
     );
-    # TODO: dep_one with first argument an array [a,b]
+    # TODO: dep_any with first argument an array [a,b]
 
     $sch = [hash => {dep_all=>["a", [qw/d1 d2/]]}];
     push @res, (
@@ -2230,58 +2230,58 @@ sub gen_hash_tests {
     );
     # TODO: dep_all with first argument an array [a,b]
 
-    $sch = [hash => {req_dep_one=>["a", [qw/d1 d2/]]}];
+    $sch = [hash => {req_dep_any=>["a", [qw/d1 d2/]]}];
     push @res, (
         {
-            name   => 'req_dep_one: (ok, empty)',
+            name   => 'req_dep_any: (ok, empty)',
             input  => {},
             schema => $sch,
             valid  => 1,
         },
         {
-            name   => 'req_dep_one: (ok, a specified without d1/d2)',
+            name   => 'req_dep_any: (ok, a specified without d1/d2)',
             input  => {a=>0},
             schema => $sch,
             valid  => 1,
         },
         {
-            name   => 'req_dep_one: (ok, a specified with d1)',
+            name   => 'req_dep_any: (ok, a specified with d1)',
             input  => {a=>0, d1=>0},
             schema => $sch,
             valid  => 1,
         },
         {
-            name   => 'req_dep_one: (ok, a specified with d2)',
+            name   => 'req_dep_any: (ok, a specified with d2)',
             input  => {a=>0, d2=>0},
             schema => $sch,
             valid  => 1,
         },
         {
-            name   => 'req_dep_one: (ok, a specified with d1 & d2)',
+            name   => 'req_dep_any: (ok, a specified with d1 & d2)',
             input  => {a=>0, d1=>0, d2=>0},
             schema => $sch,
             valid  => 1,
         },
         {
-            name   => 'req_dep_one: (ok, no a with d1)',
+            name   => 'req_dep_any: (ok, no a with d1)',
             input  => {d1=>0},
             schema => $sch,
             valid  => 0,
         },
         {
-            name   => 'req_dep_one: (ok, no a with d2)',
+            name   => 'req_dep_any: (ok, no a with d2)',
             input  => {d2=>0},
             schema => $sch,
             valid  => 0,
         },
         {
-            name   => 'req_dep_one: (ok, no a with d1 & d2)',
+            name   => 'req_dep_any: (ok, no a with d1 & d2)',
             input  => {d1=>0, d2=>0},
             schema => $sch,
             valid  => 0,
         },
     );
-    # TODO: req_dep_one with first argument an array [a,b]
+    # TODO: req_dep_any with first argument an array [a,b]
 
     $sch = [hash => {req_dep_all=>["a", [qw/d1 d2/]]}];
     push @res, (
