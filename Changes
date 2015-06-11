@@ -1,5 +1,13 @@
 Revision history for Sah
 
+0.9.37  2015-06-11 (PERLANCAR)
+
+        - No spec changes.
+
+        - spectest: Add ID number to type tests, produce canonical (sorted keys)
+          JSON.
+
+
 0.9.36  2015-05-05 (PERLANCAR)
 
         - Rename dep_one -> dep_any, req_dep_one -> req_dep_any because those
