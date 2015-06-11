@@ -1,5 +1,8 @@
 #!/usr/bin/env perl
 
+# DATE
+# VERSION
+
 use 5.010;
 use strict;
 use warnings FATAL => 'all';
@@ -11,9 +14,8 @@ use Data::Dump::OneLine qw(dump1);
 use File::Slurp::Tiny qw(read_file write_file);
 use JSON;
 
-my $json = JSON->new->allow_nonref->pretty(1);
+my $json = JSON->new->allow_nonref->pretty(1)->canonical(1);
 
-# VERSION
 unless (defined $VERSION) {
     my $dist = read_file "$Bin/../dist.ini";
     $dist =~ /^\s*version\s*=\s*(.+)/m and $VERSION = $1;
