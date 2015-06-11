@@ -1157,12 +1157,20 @@ sub gen_HasElems_tests {
     @res;
 }
 
-sub insert_type_tags {
+sub postprocess {
     my $res = shift;
 
+    my $id = 1;
+
     for (@$res) {
+        # add type tags
         $_->{tags} //= [];
         unshift @{ $_->{tags} }, 'type', "type:$Type";
+
+        # add ID
+        $_->{name} = sprintf("%s%04d: %s", $Type, $id, $_->{name});
+
+        $id++;
     }
 }
 
@@ -1189,7 +1197,7 @@ sub gen_undef_tests {
         },
     );
 
-    insert_type_tags(\@res);
+    postprocess(\@res);
     @res;
 }
 
@@ -1260,7 +1268,7 @@ sub gen_int_tests {
     # XXX op attr for div_by
     # XXX div_by 0
 
-    insert_type_tags(\@res);
+    postprocess(\@res);
     @res;
 }
 
@@ -1301,7 +1309,7 @@ sub _gen_float_or_num_tests {
         # is_{nan,inf,pos_inf,neg_inf} is currently tested in perl compiler
     );
 
-    insert_type_tags(\@res);
+    postprocess(\@res);
     @res;
 }
 
@@ -1453,7 +1461,7 @@ sub gen_array_tests {
         },
     );
 
-    insert_type_tags(\@res);
+    postprocess(\@res);
     @res;
 }
 
@@ -1612,7 +1620,7 @@ sub _gen_str_or_cistr_or_buf_tests {
 
     );
 
-    insert_type_tags(\@res);
+    postprocess(\@res);
     @res;
 }
 
@@ -1663,7 +1671,7 @@ sub gen_obj_tests {
         },
     );
 
-    insert_type_tags(\@res);
+    postprocess(\@res);
     @res;
 }
 
@@ -2360,7 +2368,7 @@ sub gen_hash_tests {
         },
     );
 
-    insert_type_tags(\@res);
+    postprocess(\@res);
     @res;
 }
 
@@ -2440,7 +2448,7 @@ sub gen_bool_tests {
         },
     );
 
-    insert_type_tags(\@res);
+    postprocess(\@res);
     @res;
 }
 
@@ -2484,7 +2492,7 @@ sub gen_any_tests {
         },
     );
 
-    insert_type_tags(\@res);
+    postprocess(\@res);
     @res;
 }
 
@@ -2521,7 +2529,7 @@ sub gen_all_tests {
         },
     );
 
-    insert_type_tags(\@res);
+    postprocess(\@res);
     @res;
 }
 
