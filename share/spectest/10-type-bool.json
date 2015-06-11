@@ -1,74 +1,73 @@
 {
    "tests" : [
       {
-         "tags" : [
-            "type",
-            "type:bool"
-         ],
-         "schema" : "bool",
-         "valid" : 1,
          "input" : 0,
-         "name" : "type check: must accept 0"
-      },
-      {
+         "name" : "bool0001: type check: must accept 0",
+         "schema" : "bool",
          "tags" : [
             "type",
             "type:bool"
          ],
-         "schema" : "bool",
-         "valid" : 1,
+         "valid" : 1
+      },
+      {
          "input" : 1,
-         "name" : "type check: must accept 1"
-      },
-      {
+         "name" : "bool0002: type check: must accept 1",
+         "schema" : "bool",
          "tags" : [
             "type",
             "type:bool"
          ],
-         "schema" : "bool",
-         "name" : "type check: must reject []",
+         "valid" : 1
+      },
+      {
          "input" : [],
+         "name" : "bool0003: type check: must reject []",
+         "schema" : "bool",
+         "tags" : [
+            "type",
+            "type:bool"
+         ],
          "valid" : 0
       },
       {
+         "input" : {},
+         "name" : "bool0004: type check: must reject {}",
          "schema" : "bool",
          "tags" : [
             "type",
             "type:bool"
          ],
-         "input" : {},
-         "valid" : 0,
-         "name" : "type check: must reject {}"
+         "valid" : 0
       },
       {
          "input" : null,
-         "valid" : 1,
-         "name" : "must accept undefined value",
+         "name" : "bool0005: must accept undefined value",
+         "schema" : "bool",
          "tags" : [
             "type",
             "type:bool"
          ],
-         "schema" : "bool"
+         "valid" : 1
       },
       {
          "input" : null,
-         "valid" : 1,
-         "name" : "defhash_v",
+         "name" : "bool0006: defhash_v",
+         "schema" : [
+            "bool",
+            "defhash_v",
+            1
+         ],
          "tags" : [
             "type",
             "type:bool",
             "clause:defhash_v"
          ],
-         "schema" : [
-            "bool",
-            "defhash_v",
-            1
-         ]
+         "valid" : 1
       },
       {
          "input" : null,
-         "valid" : 1,
-         "name" : "v",
+         "name" : "bool0007: v",
          "schema" : [
             "bool",
             "v",
@@ -78,24 +77,27 @@
             "type",
             "type:bool",
             "clause:v"
-         ]
+         ],
+         "valid" : 1
       },
       {
-         "name" : "c",
          "input" : null,
-         "valid" : 1,
+         "name" : "bool0008: c",
+         "schema" : [
+            "bool",
+            "c.foo.bar",
+            1
+         ],
          "tags" : [
             "type",
             "type:bool",
             "clause:c"
          ],
-         "schema" : [
-            "bool",
-            "c.foo.bar",
-            1
-         ]
+         "valid" : 1
       },
       {
+         "input" : null,
+         "name" : "bool0009: default_lang",
          "schema" : [
             "bool",
             "default_lang",
@@ -106,14 +108,11 @@
             "type:bool",
             "clause:default_lang"
          ],
-         "valid" : 1,
-         "input" : null,
-         "name" : "default_lang"
+         "valid" : 1
       },
       {
-         "name" : "name",
          "input" : null,
-         "valid" : 1,
+         "name" : "bool0010: name",
          "schema" : [
             "bool",
             "name",
@@ -123,27 +122,27 @@
             "type",
             "type:bool",
             "clause:name"
-         ]
+         ],
+         "valid" : 1
       },
       {
          "input" : null,
-         "valid" : 1,
-         "name" : "summary",
+         "name" : "bool0011: summary",
+         "schema" : [
+            "bool",
+            "summary",
+            "some summary"
+         ],
          "tags" : [
             "type",
             "type:bool",
             "clause:summary"
          ],
-         "schema" : [
-            "bool",
-            "summary",
-            "some summary"
-         ]
+         "valid" : 1
       },
       {
-         "name" : "description",
-         "valid" : 1,
          "input" : null,
+         "name" : "bool0012: description",
          "schema" : [
             "bool",
             "description",
@@ -153,9 +152,12 @@
             "type",
             "type:bool",
             "clause:description"
-         ]
+         ],
+         "valid" : 1
       },
       {
+         "input" : null,
+         "name" : "bool0013: tags",
          "schema" : [
             "bool",
             "tags",
@@ -169,11 +171,11 @@
             "type:bool",
             "clause:tags"
          ],
+         "valid" : 1
+      },
+      {
          "input" : null,
-         "valid" : 1,
-         "name" : "tags"
-      },
-      {
+         "name" : "bool0014: req=0 must accept undefined value",
          "schema" : [
             "bool",
             "req",
@@ -184,44 +186,41 @@
             "type:bool",
             "clause:req"
          ],
-         "name" : "req=0 must accept undefined value",
-         "valid" : 1,
-         "input" : null
+         "valid" : 1
       },
       {
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:req"
-         ],
+         "input" : null,
+         "name" : "bool0015: req=1 must reject undefined value",
          "schema" : [
             "bool",
             "req",
             1
          ],
-         "name" : "req=1 must reject undefined value",
-         "valid" : 0,
-         "input" : null
-      },
-      {
-         "schema" : [
-            "bool",
-            "forbidden",
-            0
-         ],
          "tags" : [
             "type",
             "type:bool",
-            "clause:forbidden"
+            "clause:req"
          ],
-         "name" : "forbidden=0 must accept defined value",
-         "valid" : 1,
-         "input" : 1
+         "valid" : 0
       },
       {
-         "name" : "forbidden=1 must reject defined value",
          "input" : 1,
-         "valid" : 0,
+         "name" : "bool0016: forbidden=0 must accept defined value",
+         "schema" : [
+            "bool",
+            "forbidden",
+            0
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:forbidden"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 1,
+         "name" : "bool0017: forbidden=1 must reject defined value",
          "schema" : [
             "bool",
             "forbidden",
@@ -231,9 +230,12 @@
             "type",
             "type:bool",
             "clause:forbidden"
-         ]
+         ],
+         "valid" : 0
       },
       {
+         "input" : null,
+         "name" : "bool0018: default: must accept valid default 1",
          "schema" : [
             "bool*",
             "default",
@@ -244,11 +246,11 @@
             "type:bool",
             "clause:default"
          ],
-         "valid" : 1,
-         "input" : null,
-         "name" : "default: must accept valid default 1"
+         "valid" : 1
       },
       {
+         "input" : null,
+         "name" : "bool0019: default: must reject invalid default []",
          "schema" : [
             "bool*",
             "default",
@@ -259,16 +261,12 @@
             "type:bool",
             "clause:default"
          ],
-         "name" : "default: must reject invalid default []",
-         "input" : null,
          "valid" : 0
       },
       {
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:clause"
-         ],
+         "dies" : 1,
+         "input" : 1,
+         "name" : "bool0020: clause (dies, unknown clause)",
          "schema" : [
             "bool*",
             "clause",
@@ -277,37 +275,39 @@
                1
             ]
          ],
-         "dies" : 1,
-         "name" : "clause (dies, unknown clause)",
-         "input" : 1
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:clause"
+         ]
       },
       {
          "dies" : 1,
          "input" : 1,
-         "name" : "clset (dies, unknown clause)",
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:clset"
-         ],
+         "name" : "bool0021: clset (dies, unknown clause)",
          "schema" : [
             "bool*",
             "clset",
             {
                "foo" : 1
             }
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:clset"
          ]
       },
       {
-         "input" : 1,
-         "name" : "clset (dies, unknown attr)",
          "dies" : 1,
+         "input" : 1,
+         "name" : "bool0022: clset (dies, unknown attr)",
          "schema" : [
             "bool*",
             "clset",
             {
-               "min_len.foo" : 1,
-               "min_len" : 1
+               "min_len" : 1,
+               "min_len.foo" : 1
             }
          ],
          "tags" : [
@@ -317,9 +317,8 @@
          ]
       },
       {
-         "valid" : 1,
          "input" : 1,
-         "name" : "clset (empty = ok)",
+         "name" : "bool0023: clset (empty = ok)",
          "schema" : [
             "bool*",
             "clset",
@@ -328,43 +327,46 @@
          "tags" : [
             "type",
             "type:bool"
-         ]
+         ],
+         "valid" : 1
       },
       {
-         "valid" : 1,
          "input" : 1,
-         "name" : "clset (ignored clause/attr = ok)",
+         "name" : "bool0024: clset (ignored clause/attr = ok)",
+         "schema" : [
+            "bool*",
+            "clset",
+            {
+               "_foo" : 1,
+               "foo._bar" : 2
+            }
+         ],
          "tags" : [
             "type",
             "type:bool",
             "clause:clset"
          ],
-         "schema" : [
-            "bool*",
-            "clset",
-            {
-               "foo._bar" : 2,
-               "_foo" : 1
-            }
-         ]
+         "valid" : 1
       },
       {
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:ok"
-         ],
+         "input" : null,
+         "name" : "bool0025: ok",
          "schema" : [
             "bool",
             {
                "ok" : 1
             }
          ],
-         "valid" : 1,
-         "input" : null,
-         "name" : "ok"
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:ok"
+         ],
+         "valid" : 1
       },
       {
+         "input" : null,
+         "name" : "bool0026: ok + op not (nok)",
          "schema" : [
             "bool",
             {
@@ -378,30 +380,27 @@
             "op",
             "op:not"
          ],
-         "input" : null,
-         "valid" : 0,
-         "name" : "ok + op not (nok)"
+         "valid" : 0
       },
       {
+         "input" : 1,
+         "name" : "bool0027: .err_level=error (clause=is, ok)",
+         "schema" : [
+            "bool",
+            "is",
+            1
+         ],
          "tags" : [
             "type",
             "type:bool",
             "attr",
             "attr:err_level"
          ],
-         "schema" : [
-            "bool",
-            "is",
-            1
-         ],
-         "input" : 1,
-         "valid" : 1,
-         "name" : ".err_level=error (clause=is, ok)"
+         "valid" : 1
       },
       {
          "input" : 0,
-         "valid" : 0,
-         "name" : ".err_level=error (clause=is, nok)",
+         "name" : "bool0028: .err_level=error (clause=is, nok)",
          "schema" : [
             "bool",
             "is",
@@ -412,12 +411,12 @@
             "type:bool",
             "attr",
             "attr:err_level"
-         ]
+         ],
+         "valid" : 0
       },
       {
-         "valid" : 1,
          "input" : 1,
-         "name" : ".err_level=warn (clause=is, ok)",
+         "name" : "bool0029: .err_level=warn (clause=is, ok)",
          "schema" : [
             "bool",
             "is",
@@ -430,9 +429,12 @@
             "type:bool",
             "attr",
             "attr:err_level"
-         ]
+         ],
+         "valid" : 1
       },
       {
+         "input" : 0,
+         "name" : "bool0030: .err_level=warn (clause=is, nok)",
          "schema" : [
             "bool*",
             "is",
@@ -446,30 +448,27 @@
             "attr",
             "attr:err_level"
          ],
-         "input" : 0,
          "valid" : 1,
-         "name" : ".err_level=warn (clause=is, nok)",
          "warnings" : 1
       },
       {
-         "name" : "is: must accept same value",
          "input" : 0,
-         "valid" : 1,
+         "name" : "bool0031: is: must accept same value",
+         "schema" : [
+            "bool",
+            "is",
+            0
+         ],
          "tags" : [
             "type",
             "type:bool",
             "clause:is"
          ],
-         "schema" : [
-            "bool",
-            "is",
-            0
-         ]
+         "valid" : 1
       },
       {
-         "name" : "is: must reject different value",
          "input" : 0,
-         "valid" : 0,
+         "name" : "bool0032: is: must reject different value",
          "schema" : [
             "bool",
             "is",
@@ -479,9 +478,12 @@
             "type",
             "type:bool",
             "clause:is"
-         ]
+         ],
+         "valid" : 0
       },
       {
+         "input" : 0,
+         "name" : "bool0033: !is (nok)",
          "schema" : [
             "bool",
             "!is",
@@ -495,11 +497,11 @@
             "op:not",
             "opshortcut"
          ],
-         "input" : 0,
-         "valid" : 0,
-         "name" : "!is (nok)"
+         "valid" : 0
       },
       {
+         "input" : 0,
+         "name" : "bool0034: !is (ok)",
          "schema" : [
             "bool",
             "!is",
@@ -513,30 +515,18 @@
             "op:not",
             "opshortcut"
          ],
-         "name" : "!is (ok)",
-         "valid" : 1,
-         "input" : 0
+         "valid" : 1
       },
       {
-         "valid" : 0,
          "input" : 0,
-         "name" : "is.op=not (nok)",
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:is",
-            "op",
-            "op:not"
-         ],
+         "name" : "bool0035: is.op=not (nok)",
          "schema" : [
             "bool",
             "is",
             0,
             "is.op",
             "not"
-         ]
-      },
-      {
+         ],
          "tags" : [
             "type",
             "type:bool",
@@ -544,6 +534,11 @@
             "op",
             "op:not"
          ],
+         "valid" : 0
+      },
+      {
+         "input" : 0,
+         "name" : "bool0036: is.op=not (ok)",
          "schema" : [
             "bool",
             "is",
@@ -551,37 +546,36 @@
             "is.op",
             "not"
          ],
-         "name" : "is.op=not (ok)",
-         "valid" : 1,
-         "input" : 0
-      },
-      {
          "tags" : [
             "type",
             "type:bool",
             "clause:is",
             "op",
-            "op:and",
-            "opshortcut"
+            "op:not"
          ],
+         "valid" : 1
+      },
+      {
+         "input" : 0,
+         "name" : "bool0037: is& (no items)",
          "schema" : [
             "bool",
             "is&",
             []
          ],
-         "name" : "is& (no items)",
-         "input" : 0,
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
          "valid" : 1
       },
       {
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:is",
-            "op",
-            "op:and",
-            "opshortcut"
-         ],
+         "input" : 0,
+         "name" : "bool0038: is& (ok)",
          "schema" : [
             "bool",
             "is&",
@@ -590,11 +584,6 @@
                0
             ]
          ],
-         "input" : 0,
-         "valid" : 1,
-         "name" : "is& (ok)"
-      },
-      {
          "tags" : [
             "type",
             "type:bool",
@@ -603,7 +592,12 @@
             "op:and",
             "opshortcut"
          ],
+         "valid" : 1
+      },
+      {
          "errors" : 1,
+         "input" : 0,
+         "name" : "bool0039: is& (nok + ok)",
          "schema" : [
             "bool",
             "is&",
@@ -612,11 +606,20 @@
                0
             ]
          ],
-         "name" : "is& (nok + ok)",
-         "input" : 0,
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
          "valid" : 0
       },
       {
+         "errors" : 1,
+         "input" : 0,
+         "name" : "bool0040: is& (ok + nok)",
          "schema" : [
             "bool",
             "is&",
@@ -625,7 +628,6 @@
                1
             ]
          ],
-         "errors" : 1,
          "tags" : [
             "type",
             "type:bool",
@@ -634,14 +636,12 @@
             "op:and",
             "opshortcut"
          ],
-         "valid" : 0,
-         "input" : 0,
-         "name" : "is& (ok + nok)"
+         "valid" : 0
       },
       {
-         "name" : "is& (nok + nok)",
-         "valid" : 0,
+         "errors" : 1,
          "input" : 0,
+         "name" : "bool0041: is& (nok + nok)",
          "schema" : [
             "bool",
             "is&",
@@ -650,7 +650,6 @@
                1
             ]
          ],
-         "errors" : 1,
          "tags" : [
             "type",
             "type:bool",
@@ -658,32 +657,28 @@
             "op",
             "op:and",
             "opshortcut"
-         ]
+         ],
+         "valid" : 0
       },
       {
+         "input" : 0,
+         "name" : "bool0042: is.op=and (no items)",
+         "schema" : [
+            "bool",
+            "is",
+            [],
+            "is.op",
+            "and"
+         ],
          "tags" : [
             "type",
             "type:bool"
          ],
-         "schema" : [
-            "bool",
-            "is",
-            [],
-            "is.op",
-            "and"
-         ],
-         "input" : 0,
-         "valid" : 1,
-         "name" : "is.op=and (no items)"
+         "valid" : 1
       },
       {
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:is",
-            "op",
-            "op:and"
-         ],
+         "input" : 0,
+         "name" : "bool0043: is.op=and (ok)",
          "schema" : [
             "bool",
             "is",
@@ -694,15 +689,6 @@
             "is.op",
             "and"
          ],
-         "name" : "is.op=and (ok)",
-         "valid" : 1,
-         "input" : 0
-      },
-      {
-         "name" : "is.op=and (nok + ok)",
-         "valid" : 0,
-         "input" : 0,
-         "errors" : 1,
          "tags" : [
             "type",
             "type:bool",
@@ -710,6 +696,12 @@
             "op",
             "op:and"
          ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : 0,
+         "name" : "bool0044: is.op=and (nok + ok)",
          "schema" : [
             "bool",
             "is",
@@ -719,9 +711,20 @@
             ],
             "is.op",
             "and"
-         ]
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:and"
+         ],
+         "valid" : 0
       },
       {
+         "errors" : 1,
+         "input" : 0,
+         "name" : "bool0045: is.op=and (ok + nok)",
          "schema" : [
             "bool",
             "is",
@@ -732,7 +735,6 @@
             "is.op",
             "and"
          ],
-         "errors" : 1,
          "tags" : [
             "type",
             "type:bool",
@@ -740,14 +742,12 @@
             "op",
             "op:and"
          ],
-         "name" : "is.op=and (ok + nok)",
-         "valid" : 0,
-         "input" : 0
+         "valid" : 0
       },
       {
-         "valid" : 0,
+         "errors" : 1,
          "input" : 0,
-         "name" : "is.op=and (nok + nok)",
+         "name" : "bool0046: is.op=and (nok + nok)",
          "schema" : [
             "bool",
             "is",
@@ -758,37 +758,44 @@
             "is.op",
             "and"
          ],
-         "errors" : 1,
          "tags" : [
             "type",
             "type:bool",
             "clause:is",
             "op",
             "op:and"
-         ]
+         ],
+         "valid" : 0
       },
       {
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:is",
-            "op",
-            "op:or",
-            "opshortcut"
-         ],
+         "input" : 0,
+         "name" : "bool0047: is| (no items)",
          "schema" : [
             "bool",
             "is|",
             []
          ],
-         "name" : "is| (no items)",
-         "input" : 0,
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
          "valid" : 1
       },
       {
-         "valid" : 1,
          "input" : 0,
-         "name" : "is| (ok)",
+         "name" : "bool0048: is| (ok)",
+         "schema" : [
+            "bool",
+            "is|",
+            [
+               0,
+               0
+            ]
+         ],
          "tags" : [
             "type",
             "type:bool",
@@ -797,16 +804,11 @@
             "op:or",
             "opshortcut"
          ],
-         "schema" : [
-            "bool",
-            "is|",
-            [
-               0,
-               0
-            ]
-         ]
+         "valid" : 1
       },
       {
+         "input" : 0,
+         "name" : "bool0049: is| (nok + ok)",
          "schema" : [
             "bool",
             "is|",
@@ -823,19 +825,11 @@
             "op:or",
             "opshortcut"
          ],
-         "valid" : 1,
-         "input" : 0,
-         "name" : "is| (nok + ok)"
+         "valid" : 1
       },
       {
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:is",
-            "op",
-            "op:or",
-            "opshortcut"
-         ],
+         "input" : 0,
+         "name" : "bool0050: is| (ok + nok)",
          "schema" : [
             "bool",
             "is|",
@@ -844,20 +838,20 @@
                1
             ]
          ],
-         "name" : "is| (ok + nok)",
-         "valid" : 1,
-         "input" : 0
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
+         "valid" : 1
       },
       {
          "errors" : 1,
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:is",
-            "op",
-            "op:or",
-            "opshortcut"
-         ],
+         "input" : 0,
+         "name" : "bool0051: is| (nok + nok)",
          "schema" : [
             "bool",
             "is|",
@@ -866,232 +860,237 @@
                1
             ]
          ],
-         "valid" : 0,
-         "input" : 0,
-         "name" : "is| (nok + nok)"
-      },
-      {
-         "valid" : 1,
-         "input" : 0,
-         "name" : "is.op=or (no items)",
-         "schema" : [
-            "bool",
-            "is",
-            [],
-            "is.op",
-            "or"
-         ],
          "tags" : [
             "type",
             "type:bool",
             "clause:is",
             "op",
-            "op:or"
-         ]
-      },
-      {
-         "valid" : 1,
-         "input" : 0,
-         "name" : "is.op=or (ok)",
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:is",
-            "op",
-            "op:or"
+            "op:or",
+            "opshortcut"
          ],
-         "schema" : [
-            "bool",
-            "is",
-            [
-               0,
-               0
-            ],
-            "is.op",
-            "or"
-         ]
-      },
-      {
-         "valid" : 1,
-         "input" : 0,
-         "name" : "is.op=or (nok + ok)",
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:is",
-            "op",
-            "op:or"
-         ],
-         "schema" : [
-            "bool",
-            "is",
-            [
-               1,
-               0
-            ],
-            "is.op",
-            "or"
-         ]
-      },
-      {
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:is",
-            "op",
-            "op:or"
-         ],
-         "schema" : [
-            "bool",
-            "is",
-            [
-               0,
-               1
-            ],
-            "is.op",
-            "or"
-         ],
-         "name" : "is.op=or (ok + nok)",
-         "valid" : 1,
-         "input" : 0
-      },
-      {
-         "input" : 0,
-         "valid" : 0,
-         "name" : "is.op=or (nok + nok)",
-         "schema" : [
-            "bool",
-            "is",
-            [
-               1,
-               1
-            ],
-            "is.op",
-            "or"
-         ],
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:is",
-            "op",
-            "op:or"
-         ],
-         "errors" : 1
-      },
-      {
-         "input" : 0,
-         "valid" : 1,
-         "name" : "is.op=none (empty items)",
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:is",
-            "op",
-            "op:none"
-         ],
-         "schema" : [
-            "bool",
-            "is",
-            [],
-            "is.op",
-            "none"
-         ]
-      },
-      {
-         "name" : "is.op=none (nok + nok)",
-         "valid" : 1,
-         "input" : 0,
-         "schema" : [
-            "bool",
-            "is",
-            [
-               1,
-               1
-            ],
-            "is.op",
-            "none"
-         ],
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:is",
-            "op",
-            "op:none"
-         ]
-      },
-      {
-         "input" : 0,
-         "valid" : 0,
-         "name" : "is.op=none (nok + ok)",
-         "schema" : [
-            "bool",
-            "is",
-            [
-               1,
-               0
-            ],
-            "is.op",
-            "none"
-         ],
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:is",
-            "op",
-            "op:none"
-         ],
-         "errors" : 1
-      },
-      {
-         "input" : 0,
-         "valid" : 0,
-         "name" : "is.op=none (ok + nok)",
-         "errors" : 1,
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:is",
-            "op",
-            "op:none"
-         ],
-         "schema" : [
-            "bool",
-            "is",
-            [
-               0,
-               1
-            ],
-            "is.op",
-            "none"
-         ]
-      },
-      {
-         "schema" : [
-            "bool",
-            "is",
-            [
-               0,
-               0
-            ],
-            "is.op",
-            "none"
-         ],
-         "errors" : 1,
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:is",
-            "op",
-            "op:none"
-         ],
-         "name" : "is.op=none (ok + ok)",
-         "input" : 0,
          "valid" : 0
       },
       {
-         "name" : "in: must accept valid choices",
-         "valid" : 1,
          "input" : 0,
+         "name" : "bool0052: is.op=or (no items)",
+         "schema" : [
+            "bool",
+            "is",
+            [],
+            "is.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:or"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 0,
+         "name" : "bool0053: is.op=or (ok)",
+         "schema" : [
+            "bool",
+            "is",
+            [
+               0,
+               0
+            ],
+            "is.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:or"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 0,
+         "name" : "bool0054: is.op=or (nok + ok)",
+         "schema" : [
+            "bool",
+            "is",
+            [
+               1,
+               0
+            ],
+            "is.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:or"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 0,
+         "name" : "bool0055: is.op=or (ok + nok)",
+         "schema" : [
+            "bool",
+            "is",
+            [
+               0,
+               1
+            ],
+            "is.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:or"
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : 0,
+         "name" : "bool0056: is.op=or (nok + nok)",
+         "schema" : [
+            "bool",
+            "is",
+            [
+               1,
+               1
+            ],
+            "is.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:or"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 0,
+         "name" : "bool0057: is.op=none (empty items)",
+         "schema" : [
+            "bool",
+            "is",
+            [],
+            "is.op",
+            "none"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:none"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 0,
+         "name" : "bool0058: is.op=none (nok + nok)",
+         "schema" : [
+            "bool",
+            "is",
+            [
+               1,
+               1
+            ],
+            "is.op",
+            "none"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:none"
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : 0,
+         "name" : "bool0059: is.op=none (nok + ok)",
+         "schema" : [
+            "bool",
+            "is",
+            [
+               1,
+               0
+            ],
+            "is.op",
+            "none"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:none"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : 0,
+         "name" : "bool0060: is.op=none (ok + nok)",
+         "schema" : [
+            "bool",
+            "is",
+            [
+               0,
+               1
+            ],
+            "is.op",
+            "none"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:none"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : 0,
+         "name" : "bool0061: is.op=none (ok + ok)",
+         "schema" : [
+            "bool",
+            "is",
+            [
+               0,
+               0
+            ],
+            "is.op",
+            "none"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is",
+            "op",
+            "op:none"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 0,
+         "name" : "bool0062: in: must accept valid choices",
          "schema" : [
             "bool",
             "in",
@@ -1104,12 +1103,12 @@
             "type",
             "type:bool",
             "clause:in"
-         ]
+         ],
+         "valid" : 1
       },
       {
-         "name" : "in: must reject empty choices",
          "input" : 0,
-         "valid" : 0,
+         "name" : "bool0063: in: must reject empty choices",
          "schema" : [
             "bool",
             "in",
@@ -1119,17 +1118,12 @@
             "type",
             "type:bool",
             "clause:in"
-         ]
+         ],
+         "valid" : 0
       },
       {
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:in",
-            "op",
-            "op:not",
-            "opshortcut"
-         ],
+         "input" : 0,
+         "name" : "bool0064: !in (nok)",
          "schema" : [
             "bool",
             "!in",
@@ -1138,14 +1132,19 @@
                1
             ]
          ],
-         "name" : "!in (nok)",
-         "valid" : 0,
-         "input" : 0
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:not",
+            "opshortcut"
+         ],
+         "valid" : 0
       },
       {
-         "name" : "!in (ok)",
          "input" : 0,
-         "valid" : 1,
+         "name" : "bool0065: !in (ok)",
          "schema" : [
             "bool",
             "!in",
@@ -1158,9 +1157,12 @@
             "op",
             "op:not",
             "opshortcut"
-         ]
+         ],
+         "valid" : 1
       },
       {
+         "input" : 0,
+         "name" : "bool0066: in.op=not (nok)",
          "schema" : [
             "bool",
             "in",
@@ -1178,11 +1180,11 @@
             "op",
             "op:not"
          ],
-         "name" : "in.op=not (nok)",
-         "valid" : 0,
-         "input" : 0
+         "valid" : 0
       },
       {
+         "input" : 0,
+         "name" : "bool0067: in.op=not (ok)",
          "schema" : [
             "bool",
             "in",
@@ -1197,29 +1199,16 @@
             "op",
             "op:not"
          ],
-         "valid" : 1,
-         "input" : 0,
-         "name" : "in.op=not (ok)"
+         "valid" : 1
       },
       {
-         "name" : "in& (no items)",
-         "valid" : 1,
          "input" : 0,
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:in",
-            "op",
-            "op:and",
-            "opshortcut"
-         ],
+         "name" : "bool0068: in& (no items)",
          "schema" : [
             "bool",
             "in&",
             []
-         ]
-      },
-      {
+         ],
          "tags" : [
             "type",
             "type:bool",
@@ -1228,28 +1217,39 @@
             "op:and",
             "opshortcut"
          ],
-         "schema" : [
-            "bool",
-            "in&",
-            [
-               [
-                  0,
-                  1
-               ],
-               [
-                  0,
-                  1
-               ]
-            ]
-         ],
-         "name" : "in& (ok)",
-         "input" : 0,
          "valid" : 1
       },
       {
-         "valid" : 0,
          "input" : 0,
-         "name" : "in& (nok + ok)",
+         "name" : "bool0069: in& (ok)",
+         "schema" : [
+            "bool",
+            "in&",
+            [
+               [
+                  0,
+                  1
+               ],
+               [
+                  0,
+                  1
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : 0,
+         "name" : "bool0070: in& (nok + ok)",
          "schema" : [
             "bool",
             "in&",
@@ -1261,17 +1261,6 @@
                ]
             ]
          ],
-         "errors" : 1,
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:in",
-            "op",
-            "op:and",
-            "opshortcut"
-         ]
-      },
-      {
          "tags" : [
             "type",
             "type:bool",
@@ -1280,7 +1269,12 @@
             "op:and",
             "opshortcut"
          ],
+         "valid" : 0
+      },
+      {
          "errors" : 1,
+         "input" : 0,
+         "name" : "bool0071: in& (ok + nok)",
          "schema" : [
             "bool",
             "in&",
@@ -1292,14 +1286,20 @@
                []
             ]
          ],
-         "valid" : 0,
-         "input" : 0,
-         "name" : "in& (ok + nok)"
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
+         "valid" : 0
       },
       {
-         "name" : "in& (nok + nok)",
-         "valid" : 0,
+         "errors" : 1,
          "input" : 0,
+         "name" : "bool0072: in& (nok + nok)",
          "schema" : [
             "bool",
             "in&",
@@ -1308,7 +1308,6 @@
                []
             ]
          ],
-         "errors" : 1,
          "tags" : [
             "type",
             "type:bool",
@@ -1316,25 +1315,28 @@
             "op",
             "op:and",
             "opshortcut"
-         ]
+         ],
+         "valid" : 0
       },
       {
+         "input" : 0,
+         "name" : "bool0073: in.op=and (no items)",
+         "schema" : [
+            "bool",
+            "in",
+            [],
+            "in.op",
+            "and"
+         ],
          "tags" : [
             "type",
             "type:bool"
          ],
-         "schema" : [
-            "bool",
-            "in",
-            [],
-            "in.op",
-            "and"
-         ],
-         "name" : "in.op=and (no items)",
-         "valid" : 1,
-         "input" : 0
+         "valid" : 1
       },
       {
+         "input" : 0,
+         "name" : "bool0074: in.op=and (ok)",
          "schema" : [
             "bool",
             "in",
@@ -1358,14 +1360,12 @@
             "op",
             "op:and"
          ],
-         "input" : 0,
-         "valid" : 1,
-         "name" : "in.op=and (ok)"
+         "valid" : 1
       },
       {
+         "errors" : 1,
          "input" : 0,
-         "valid" : 0,
-         "name" : "in.op=and (nok + ok)",
+         "name" : "bool0075: in.op=and (nok + ok)",
          "schema" : [
             "bool",
             "in",
@@ -1386,12 +1386,12 @@
             "op",
             "op:and"
          ],
-         "errors" : 1
+         "valid" : 0
       },
       {
-         "name" : "in.op=and (ok + nok)",
+         "errors" : 1,
          "input" : 0,
-         "valid" : 0,
+         "name" : "bool0076: in.op=and (ok + nok)",
          "schema" : [
             "bool",
             "in",
@@ -1405,20 +1405,6 @@
             "in.op",
             "and"
          ],
-         "errors" : 1,
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:in",
-            "op",
-            "op:and"
-         ]
-      },
-      {
-         "name" : "in.op=and (nok + nok)",
-         "input" : 0,
-         "valid" : 0,
-         "errors" : 1,
          "tags" : [
             "type",
             "type:bool",
@@ -1426,6 +1412,12 @@
             "op",
             "op:and"
          ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : 0,
+         "name" : "bool0077: in.op=and (nok + nok)",
          "schema" : [
             "bool",
             "in",
@@ -1435,30 +1427,24 @@
             ],
             "in.op",
             "and"
-         ]
-      },
-      {
-         "valid" : 1,
-         "input" : 0,
-         "name" : "in| (no items)",
+         ],
          "tags" : [
             "type",
             "type:bool",
             "clause:in",
             "op",
-            "op:or",
-            "opshortcut"
+            "op:and"
          ],
+         "valid" : 0
+      },
+      {
+         "input" : 0,
+         "name" : "bool0078: in| (no items)",
          "schema" : [
             "bool",
             "in|",
             []
-         ]
-      },
-      {
-         "input" : 0,
-         "valid" : 1,
-         "name" : "in| (ok)",
+         ],
          "tags" : [
             "type",
             "type:bool",
@@ -1467,6 +1453,11 @@
             "op:or",
             "opshortcut"
          ],
+         "valid" : 1
+      },
+      {
+         "input" : 0,
+         "name" : "bool0079: in| (ok)",
          "schema" : [
             "bool",
             "in|",
@@ -1480,12 +1471,7 @@
                   1
                ]
             ]
-         ]
-      },
-      {
-         "valid" : 1,
-         "input" : 0,
-         "name" : "in| (nok + ok)",
+         ],
          "tags" : [
             "type",
             "type:bool",
@@ -1494,6 +1480,11 @@
             "op:or",
             "opshortcut"
          ],
+         "valid" : 1
+      },
+      {
+         "input" : 0,
+         "name" : "bool0080: in| (nok + ok)",
          "schema" : [
             "bool",
             "in|",
@@ -1504,12 +1495,7 @@
                   1
                ]
             ]
-         ]
-      },
-      {
-         "valid" : 1,
-         "input" : 0,
-         "name" : "in| (ok + nok)",
+         ],
          "tags" : [
             "type",
             "type:bool",
@@ -1518,6 +1504,11 @@
             "op:or",
             "opshortcut"
          ],
+         "valid" : 1
+      },
+      {
+         "input" : 0,
+         "name" : "bool0081: in| (ok + nok)",
          "schema" : [
             "bool",
             "in|",
@@ -1528,18 +1519,29 @@
                ],
                []
             ]
-         ]
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:or",
+            "opshortcut"
+         ],
+         "valid" : 1
       },
       {
-         "schema" : [
-            "bool",
-            "in|",
-            [
-               [],
-               []
-            ]
-         ],
          "errors" : 1,
+         "input" : 0,
+         "name" : "bool0082: in| (nok + nok)",
+         "schema" : [
+            "bool",
+            "in|",
+            [
+               [],
+               []
+            ]
+         ],
          "tags" : [
             "type",
             "type:bool",
@@ -1548,18 +1550,11 @@
             "op:or",
             "opshortcut"
          ],
-         "name" : "in| (nok + nok)",
-         "valid" : 0,
-         "input" : 0
+         "valid" : 0
       },
       {
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:in",
-            "op",
-            "op:or"
-         ],
+         "input" : 0,
+         "name" : "bool0083: in.op=or (no items)",
          "schema" : [
             "bool",
             "in",
@@ -1567,11 +1562,6 @@
             "in.op",
             "or"
          ],
-         "name" : "in.op=or (no items)",
-         "input" : 0,
-         "valid" : 1
-      },
-      {
          "tags" : [
             "type",
             "type:bool",
@@ -1579,6 +1569,11 @@
             "op",
             "op:or"
          ],
+         "valid" : 1
+      },
+      {
+         "input" : 0,
+         "name" : "bool0084: in.op=or (ok)",
          "schema" : [
             "bool",
             "in",
@@ -1595,14 +1590,18 @@
             "in.op",
             "or"
          ],
-         "name" : "in.op=or (ok)",
-         "input" : 0,
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:or"
+         ],
          "valid" : 1
       },
       {
-         "name" : "in.op=or (nok + ok)",
-         "valid" : 1,
          "input" : 0,
+         "name" : "bool0085: in.op=or (nok + ok)",
          "schema" : [
             "bool",
             "in",
@@ -1622,9 +1621,12 @@
             "clause:in",
             "op",
             "op:or"
-         ]
+         ],
+         "valid" : 1
       },
       {
+         "input" : 0,
+         "name" : "bool0086: in.op=or (ok + nok)",
          "schema" : [
             "bool",
             "in",
@@ -1645,14 +1647,12 @@
             "op",
             "op:or"
          ],
-         "name" : "in.op=or (ok + nok)",
-         "valid" : 1,
-         "input" : 0
+         "valid" : 1
       },
       {
+         "errors" : 1,
          "input" : 0,
-         "valid" : 0,
-         "name" : "in.op=or (nok + nok)",
+         "name" : "bool0087: in.op=or (nok + nok)",
          "schema" : [
             "bool",
             "in",
@@ -1670,9 +1670,11 @@
             "op",
             "op:or"
          ],
-         "errors" : 1
+         "valid" : 0
       },
       {
+         "input" : 0,
+         "name" : "bool0088: in.op=none (empty items)",
          "schema" : [
             "bool",
             "in",
@@ -1687,21 +1689,11 @@
             "op",
             "op:none"
          ],
-         "name" : "in.op=none (empty items)",
-         "input" : 0,
          "valid" : 1
       },
       {
-         "name" : "in.op=none (nok + nok)",
          "input" : 0,
-         "valid" : 1,
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:in",
-            "op",
-            "op:none"
-         ],
+         "name" : "bool0089: in.op=none (nok + nok)",
          "schema" : [
             "bool",
             "in",
@@ -1711,9 +1703,7 @@
             ],
             "in.op",
             "none"
-         ]
-      },
-      {
+         ],
          "tags" : [
             "type",
             "type:bool",
@@ -1721,7 +1711,12 @@
             "op",
             "op:none"
          ],
+         "valid" : 1
+      },
+      {
          "errors" : 1,
+         "input" : 0,
+         "name" : "bool0090: in.op=none (nok + ok)",
          "schema" : [
             "bool",
             "in",
@@ -1735,14 +1730,19 @@
             "in.op",
             "none"
          ],
-         "valid" : 0,
-         "input" : 0,
-         "name" : "in.op=none (nok + ok)"
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:none"
+         ],
+         "valid" : 0
       },
       {
+         "errors" : 1,
          "input" : 0,
-         "valid" : 0,
-         "name" : "in.op=none (ok + nok)",
+         "name" : "bool0091: in.op=none (ok + nok)",
          "schema" : [
             "bool",
             "in",
@@ -1763,20 +1763,12 @@
             "op",
             "op:none"
          ],
-         "errors" : 1
+         "valid" : 0
       },
       {
-         "input" : 0,
-         "valid" : 0,
-         "name" : "in.op=none (ok + ok)",
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:in",
-            "op",
-            "op:none"
-         ],
          "errors" : 1,
+         "input" : 0,
+         "name" : "bool0092: in.op=none (ok + ok)",
          "schema" : [
             "bool",
             "in",
@@ -1792,9 +1784,19 @@
             ],
             "in.op",
             "none"
-         ]
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:in",
+            "op",
+            "op:none"
+         ],
+         "valid" : 0
       },
       {
+         "input" : 1,
+         "name" : "bool0093: min: 1 0",
          "schema" : [
             "bool",
             "min",
@@ -1805,184 +1807,176 @@
             "type:bool",
             "clause:min"
          ],
-         "input" : 1,
-         "valid" : 1,
-         "name" : "min: 1 0"
-      },
-      {
-         "name" : "min: 1 1",
-         "input" : 1,
-         "valid" : 1,
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:min"
-         ],
-         "schema" : [
-            "bool",
-            "min",
-            1
-         ]
-      },
-      {
-         "name" : "min: 0 1 -> fail",
-         "valid" : 0,
-         "input" : 0,
-         "schema" : [
-            "bool",
-            "min",
-            1
-         ],
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:min"
-         ]
-      },
-      {
-         "name" : "xmin: 1 0",
-         "valid" : 1,
-         "input" : 1,
-         "schema" : [
-            "bool",
-            "xmin",
-            0
-         ],
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:xmin"
-         ]
-      },
-      {
-         "schema" : [
-            "bool",
-            "xmin",
-            1
-         ],
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:xmin"
-         ],
-         "name" : "xmin: 1 1 -> fail",
-         "valid" : 0,
-         "input" : 1
-      },
-      {
-         "schema" : [
-            "bool",
-            "xmin",
-            1
-         ],
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:xmin"
-         ],
-         "valid" : 0,
-         "input" : 0,
-         "name" : "xmin: 0 1 -> fail"
-      },
-      {
-         "name" : "max: 1 0 -> fail",
-         "input" : 1,
-         "valid" : 0,
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:max"
-         ],
-         "schema" : [
-            "bool",
-            "max",
-            0
-         ]
-      },
-      {
-         "valid" : 1,
-         "input" : 1,
-         "name" : "max: 1 1",
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:max"
-         ],
-         "schema" : [
-            "bool",
-            "max",
-            1
-         ]
-      },
-      {
-         "name" : "max: 0 1",
-         "valid" : 1,
-         "input" : 0,
-         "schema" : [
-            "bool",
-            "max",
-            1
-         ],
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:max"
-         ]
-      },
-      {
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:xmax"
-         ],
-         "schema" : [
-            "bool",
-            "xmax",
-            0
-         ],
-         "name" : "xmax: 1 0 -> fail",
-         "valid" : 0,
-         "input" : 1
-      },
-      {
-         "schema" : [
-            "bool",
-            "xmax",
-            1
-         ],
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:xmax"
-         ],
-         "valid" : 0,
-         "input" : 1,
-         "name" : "xmax: 1 1 -> fail"
-      },
-      {
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:xmax"
-         ],
-         "schema" : [
-            "bool",
-            "xmax",
-            1
-         ],
-         "name" : "xmax: 0 1",
-         "input" : 0,
          "valid" : 1
       },
       {
-         "valid" : 1,
          "input" : 1,
-         "name" : "between: 1 0 & 1",
+         "name" : "bool0094: min: 1 1",
+         "schema" : [
+            "bool",
+            "min",
+            1
+         ],
          "tags" : [
             "type",
             "type:bool",
-            "clause:between"
+            "clause:min"
          ],
+         "valid" : 1
+      },
+      {
+         "input" : 0,
+         "name" : "bool0095: min: 0 1 -> fail",
+         "schema" : [
+            "bool",
+            "min",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:min"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 1,
+         "name" : "bool0096: xmin: 1 0",
+         "schema" : [
+            "bool",
+            "xmin",
+            0
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:xmin"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 1,
+         "name" : "bool0097: xmin: 1 1 -> fail",
+         "schema" : [
+            "bool",
+            "xmin",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:xmin"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 0,
+         "name" : "bool0098: xmin: 0 1 -> fail",
+         "schema" : [
+            "bool",
+            "xmin",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:xmin"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 1,
+         "name" : "bool0099: max: 1 0 -> fail",
+         "schema" : [
+            "bool",
+            "max",
+            0
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:max"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 1,
+         "name" : "bool0100: max: 1 1",
+         "schema" : [
+            "bool",
+            "max",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:max"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 0,
+         "name" : "bool0101: max: 0 1",
+         "schema" : [
+            "bool",
+            "max",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:max"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 1,
+         "name" : "bool0102: xmax: 1 0 -> fail",
+         "schema" : [
+            "bool",
+            "xmax",
+            0
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:xmax"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 1,
+         "name" : "bool0103: xmax: 1 1 -> fail",
+         "schema" : [
+            "bool",
+            "xmax",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:xmax"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 0,
+         "name" : "bool0104: xmax: 0 1",
+         "schema" : [
+            "bool",
+            "xmax",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:xmax"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 1,
+         "name" : "bool0105: between: 1 0 & 1",
          "schema" : [
             "bool",
             "between",
@@ -1990,17 +1984,17 @@
                0,
                1
             ]
-         ]
-      },
-      {
-         "input" : 1,
-         "valid" : 1,
-         "name" : "between: 1 0 & 1",
+         ],
          "tags" : [
             "type",
             "type:bool",
             "clause:between"
          ],
+         "valid" : 1
+      },
+      {
+         "input" : 1,
+         "name" : "bool0106: between: 1 0 & 1",
          "schema" : [
             "bool",
             "between",
@@ -2008,9 +2002,17 @@
                0,
                1
             ]
-         ]
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between"
+         ],
+         "valid" : 1
       },
       {
+         "input" : 1,
+         "name" : "bool0107: between: 1 1 & 1",
          "schema" : [
             "bool",
             "between",
@@ -2024,14 +2026,11 @@
             "type:bool",
             "clause:between"
          ],
-         "valid" : 1,
-         "input" : 1,
-         "name" : "between: 1 1 & 1"
+         "valid" : 1
       },
       {
-         "name" : "between: 0 1 & 1 -> fail",
          "input" : 0,
-         "valid" : 0,
+         "name" : "bool0108: between: 0 1 & 1 -> fail",
          "schema" : [
             "bool",
             "between",
@@ -2044,12 +2043,12 @@
             "type",
             "type:bool",
             "clause:between"
-         ]
+         ],
+         "valid" : 0
       },
       {
-         "name" : "xbetween: 1 0 & 1",
-         "valid" : 0,
          "input" : "1",
+         "name" : "bool0109: xbetween: 1 0 & 1",
          "schema" : [
             "bool",
             "xbetween",
@@ -2062,14 +2061,12 @@
             "type",
             "type:bool",
             "clause:xbetween"
-         ]
+         ],
+         "valid" : 0
       },
       {
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:xbetween"
-         ],
+         "input" : "1",
+         "name" : "bool0110: xbetween: 1 0 & 1 -> fail",
          "schema" : [
             "bool",
             "xbetween",
@@ -2078,11 +2075,16 @@
                "1"
             ]
          ],
-         "name" : "xbetween: 1 0 & 1 -> fail",
-         "input" : "1",
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:xbetween"
+         ],
          "valid" : 0
       },
       {
+         "input" : "1",
+         "name" : "bool0111: xbetween: 1 1 & 1 -> fail",
          "schema" : [
             "bool",
             "xbetween",
@@ -2096,16 +2098,11 @@
             "type:bool",
             "clause:xbetween"
          ],
-         "name" : "xbetween: 1 1 & 1 -> fail",
-         "input" : "1",
          "valid" : 0
       },
       {
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:xbetween"
-         ],
+         "input" : 0,
+         "name" : "bool0112: xbetween: 0 1 & 1 -> fail",
          "schema" : [
             "bool",
             "xbetween",
@@ -2114,38 +2111,22 @@
                "1"
             ]
          ],
-         "input" : 0,
-         "valid" : 0,
-         "name" : "xbetween: 0 1 & 1 -> fail"
-      },
-      {
-         "name" : "!between (nok)",
-         "valid" : 0,
-         "input" : 0,
          "tags" : [
             "type",
             "type:bool",
-            "clause:between",
-            "op",
-            "op:not",
-            "opshortcut"
+            "clause:xbetween"
          ],
+         "valid" : 0
+      },
+      {
+         "input" : 0,
+         "name" : "bool0113: !between (nok)",
          "schema" : [
             "bool",
             "!between",
             [
                0,
                0
-            ]
-         ]
-      },
-      {
-         "schema" : [
-            "bool",
-            "!between",
-            [
-               "1",
-               "1"
             ]
          ],
          "tags" : [
@@ -2156,39 +2137,38 @@
             "op:not",
             "opshortcut"
          ],
-         "input" : 0,
-         "valid" : 1,
-         "name" : "!between (ok)"
+         "valid" : 0
       },
       {
          "input" : 0,
-         "valid" : 0,
-         "name" : "between.op=not (nok)",
+         "name" : "bool0114: !between (ok)",
+         "schema" : [
+            "bool",
+            "!between",
+            [
+               "1",
+               "1"
+            ]
+         ],
          "tags" : [
             "type",
             "type:bool",
             "clause:between",
             "op",
-            "op:not"
+            "op:not",
+            "opshortcut"
          ],
+         "valid" : 1
+      },
+      {
+         "input" : 0,
+         "name" : "bool0115: between.op=not (nok)",
          "schema" : [
             "bool",
             "between",
             [
                0,
                0
-            ],
-            "between.op",
-            "not"
-         ]
-      },
-      {
-         "schema" : [
-            "bool",
-            "between",
-            [
-               "1",
-               "1"
             ],
             "between.op",
             "not"
@@ -2200,14 +2180,33 @@
             "op",
             "op:not"
          ],
-         "name" : "between.op=not (ok)",
-         "valid" : 1,
-         "input" : 0
+         "valid" : 0
       },
       {
          "input" : 0,
-         "valid" : 1,
-         "name" : "between& (no items)",
+         "name" : "bool0116: between.op=not (ok)",
+         "schema" : [
+            "bool",
+            "between",
+            [
+               "1",
+               "1"
+            ],
+            "between.op",
+            "not"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:not"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 0,
+         "name" : "bool0117: between& (no items)",
          "schema" : [
             "bool",
             "between&",
@@ -2220,39 +2219,26 @@
             "op",
             "op:and",
             "opshortcut"
-         ]
+         ],
+         "valid" : 1
       },
       {
-         "schema" : [
-            "bool",
-            "between&",
-            [
-               [
-                  0,
-                  0
-               ],
-               [
-                  0,
-                  0
-               ]
-            ]
-         ],
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:between",
-            "op",
-            "op:and",
-            "opshortcut"
-         ],
-         "name" : "between& (ok)",
-         "valid" : 1,
-         "input" : 0
-      },
-      {
-         "name" : "between& (nok + ok)",
-         "valid" : 0,
          "input" : 0,
+         "name" : "bool0118: between& (ok)",
+         "schema" : [
+            "bool",
+            "between&",
+            [
+               [
+                  0,
+                  0
+               ],
+               [
+                  0,
+                  0
+               ]
+            ]
+         ],
          "tags" : [
             "type",
             "type:bool",
@@ -2261,7 +2247,12 @@
             "op:and",
             "opshortcut"
          ],
+         "valid" : 1
+      },
+      {
          "errors" : 1,
+         "input" : 0,
+         "name" : "bool0119: between& (nok + ok)",
          "schema" : [
             "bool",
             "between&",
@@ -2275,9 +2266,7 @@
                   0
                ]
             ]
-         ]
-      },
-      {
+         ],
          "tags" : [
             "type",
             "type:bool",
@@ -2286,54 +2275,67 @@
             "op:and",
             "opshortcut"
          ],
-         "errors" : 1,
-         "schema" : [
-            "bool",
-            "between&",
-            [
-               [
-                  0,
-                  0
-               ],
-               [
-                  "1",
-                  "1"
-               ]
-            ]
-         ],
-         "input" : 0,
-         "valid" : 0,
-         "name" : "between& (ok + nok)"
-      },
-      {
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:between",
-            "op",
-            "op:and",
-            "opshortcut"
-         ],
-         "errors" : 1,
-         "schema" : [
-            "bool",
-            "between&",
-            [
-               [
-                  "1",
-                  "1"
-               ],
-               [
-                  "1",
-                  "1"
-               ]
-            ]
-         ],
-         "name" : "between& (nok + nok)",
-         "input" : 0,
          "valid" : 0
       },
       {
+         "errors" : 1,
+         "input" : 0,
+         "name" : "bool0120: between& (ok + nok)",
+         "schema" : [
+            "bool",
+            "between&",
+            [
+               [
+                  0,
+                  0
+               ],
+               [
+                  "1",
+                  "1"
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : 0,
+         "name" : "bool0121: between& (nok + nok)",
+         "schema" : [
+            "bool",
+            "between&",
+            [
+               [
+                  "1",
+                  "1"
+               ],
+               [
+                  "1",
+                  "1"
+               ]
+            ]
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:and",
+            "opshortcut"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 0,
+         "name" : "bool0122: between.op=and (no items)",
          "schema" : [
             "bool",
             "between",
@@ -2345,14 +2347,11 @@
             "type",
             "type:bool"
          ],
-         "name" : "between.op=and (no items)",
-         "valid" : 1,
-         "input" : 0
+         "valid" : 1
       },
       {
-         "valid" : 1,
          "input" : 0,
-         "name" : "between.op=and (ok)",
+         "name" : "bool0123: between.op=and (ok)",
          "schema" : [
             "bool",
             "between",
@@ -2375,20 +2374,13 @@
             "clause:between",
             "op",
             "op:and"
-         ]
+         ],
+         "valid" : 1
       },
       {
-         "name" : "between.op=and (nok + ok)",
-         "input" : 0,
-         "valid" : 0,
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:between",
-            "op",
-            "op:and"
-         ],
          "errors" : 1,
+         "input" : 0,
+         "name" : "bool0124: between.op=and (nok + ok)",
          "schema" : [
             "bool",
             "between",
@@ -2404,13 +2396,7 @@
             ],
             "between.op",
             "and"
-         ]
-      },
-      {
-         "name" : "between.op=and (ok + nok)",
-         "input" : 0,
-         "valid" : 0,
-         "errors" : 1,
+         ],
          "tags" : [
             "type",
             "type:bool",
@@ -2418,6 +2404,12 @@
             "op",
             "op:and"
          ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : 0,
+         "name" : "bool0125: between.op=and (ok + nok)",
          "schema" : [
             "bool",
             "between",
@@ -2433,9 +2425,20 @@
             ],
             "between.op",
             "and"
-         ]
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:and"
+         ],
+         "valid" : 0
       },
       {
+         "errors" : 1,
+         "input" : 0,
+         "name" : "bool0126: between.op=and (nok + nok)",
          "schema" : [
             "bool",
             "between",
@@ -2452,7 +2455,6 @@
             "between.op",
             "and"
          ],
-         "errors" : 1,
          "tags" : [
             "type",
             "type:bool",
@@ -2460,11 +2462,11 @@
             "op",
             "op:and"
          ],
-         "valid" : 0,
-         "input" : 0,
-         "name" : "between.op=and (nok + nok)"
+         "valid" : 0
       },
       {
+         "input" : 0,
+         "name" : "bool0127: between| (no items)",
          "schema" : [
             "bool",
             "between|",
@@ -2478,11 +2480,11 @@
             "op:or",
             "opshortcut"
          ],
-         "name" : "between| (no items)",
-         "input" : 0,
          "valid" : 1
       },
       {
+         "input" : 0,
+         "name" : "bool0128: between| (ok)",
          "schema" : [
             "bool",
             "between|",
@@ -2505,19 +2507,11 @@
             "op:or",
             "opshortcut"
          ],
-         "name" : "between| (ok)",
-         "input" : 0,
          "valid" : 1
       },
       {
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:between",
-            "op",
-            "op:or",
-            "opshortcut"
-         ],
+         "input" : 0,
+         "name" : "bool0129: between| (nok + ok)",
          "schema" : [
             "bool",
             "between|",
@@ -2532,14 +2526,6 @@
                ]
             ]
          ],
-         "input" : 0,
-         "valid" : 1,
-         "name" : "between| (nok + ok)"
-      },
-      {
-         "name" : "between| (ok + nok)",
-         "valid" : 1,
-         "input" : 0,
          "tags" : [
             "type",
             "type:bool",
@@ -2548,6 +2534,11 @@
             "op:or",
             "opshortcut"
          ],
+         "valid" : 1
+      },
+      {
+         "input" : 0,
+         "name" : "bool0130: between| (ok + nok)",
          "schema" : [
             "bool",
             "between|",
@@ -2555,25 +2546,6 @@
                [
                   0,
                   0
-               ],
-               [
-                  "1",
-                  "1"
-               ]
-            ]
-         ]
-      },
-      {
-         "input" : 0,
-         "valid" : 0,
-         "name" : "between| (nok + nok)",
-         "schema" : [
-            "bool",
-            "between|",
-            [
-               [
-                  "1",
-                  "1"
                ],
                [
                   "1",
@@ -2589,308 +2561,335 @@
             "op:or",
             "opshortcut"
          ],
-         "errors" : 1
-      },
-      {
-         "name" : "between.op=or (no items)",
-         "valid" : 1,
-         "input" : 0,
-         "schema" : [
-            "bool",
-            "between",
-            [],
-            "between.op",
-            "or"
-         ],
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:between",
-            "op",
-            "op:or"
-         ]
-      },
-      {
-         "schema" : [
-            "bool",
-            "between",
-            [
-               [
-                  0,
-                  0
-               ],
-               [
-                  0,
-                  0
-               ]
-            ],
-            "between.op",
-            "or"
-         ],
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:between",
-            "op",
-            "op:or"
-         ],
-         "valid" : 1,
-         "input" : 0,
-         "name" : "between.op=or (ok)"
-      },
-      {
-         "name" : "between.op=or (nok + ok)",
-         "input" : 0,
-         "valid" : 1,
-         "schema" : [
-            "bool",
-            "between",
-            [
-               [
-                  "1",
-                  "1"
-               ],
-               [
-                  0,
-                  0
-               ]
-            ],
-            "between.op",
-            "or"
-         ],
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:between",
-            "op",
-            "op:or"
-         ]
-      },
-      {
-         "name" : "between.op=or (ok + nok)",
-         "input" : 0,
-         "valid" : 1,
-         "schema" : [
-            "bool",
-            "between",
-            [
-               [
-                  0,
-                  0
-               ],
-               [
-                  "1",
-                  "1"
-               ]
-            ],
-            "between.op",
-            "or"
-         ],
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:between",
-            "op",
-            "op:or"
-         ]
-      },
-      {
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:between",
-            "op",
-            "op:or"
-         ],
-         "errors" : 1,
-         "schema" : [
-            "bool",
-            "between",
-            [
-               [
-                  "1",
-                  "1"
-               ],
-               [
-                  "1",
-                  "1"
-               ]
-            ],
-            "between.op",
-            "or"
-         ],
-         "input" : 0,
-         "valid" : 0,
-         "name" : "between.op=or (nok + nok)"
-      },
-      {
-         "name" : "between.op=none (empty items)",
-         "valid" : 1,
-         "input" : 0,
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:between",
-            "op",
-            "op:none"
-         ],
-         "schema" : [
-            "bool",
-            "between",
-            [],
-            "between.op",
-            "none"
-         ]
-      },
-      {
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:between",
-            "op",
-            "op:none"
-         ],
-         "schema" : [
-            "bool",
-            "between",
-            [
-               [
-                  "1",
-                  "1"
-               ],
-               [
-                  "1",
-                  "1"
-               ]
-            ],
-            "between.op",
-            "none"
-         ],
-         "name" : "between.op=none (nok + nok)",
-         "input" : 0,
          "valid" : 1
       },
       {
          "errors" : 1,
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:between",
-            "op",
-            "op:none"
-         ],
+         "input" : 0,
+         "name" : "bool0131: between| (nok + nok)",
          "schema" : [
             "bool",
-            "between",
+            "between|",
             [
                [
                   "1",
                   "1"
                ],
                [
-                  0,
-                  0
-               ]
-            ],
-            "between.op",
-            "none"
-         ],
-         "name" : "between.op=none (nok + ok)",
-         "valid" : 0,
-         "input" : 0
-      },
-      {
-         "name" : "between.op=none (ok + nok)",
-         "input" : 0,
-         "valid" : 0,
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:between",
-            "op",
-            "op:none"
-         ],
-         "errors" : 1,
-         "schema" : [
-            "bool",
-            "between",
-            [
-               [
-                  0,
-                  0
-               ],
-               [
                   "1",
                   "1"
                ]
-            ],
-            "between.op",
-            "none"
-         ]
-      },
-      {
-         "schema" : [
-            "bool",
-            "between",
-            [
-               [
-                  0,
-                  0
-               ],
-               [
-                  0,
-                  0
-               ]
-            ],
-            "between.op",
-            "none"
+            ]
          ],
-         "errors" : 1,
          "tags" : [
             "type",
             "type:bool",
             "clause:between",
             "op",
-            "op:none"
+            "op:or",
+            "opshortcut"
          ],
-         "valid" : 0,
-         "input" : 0,
-         "name" : "between.op=none (ok + ok)"
-      },
-      {
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:is_true"
-         ],
-         "schema" : [
-            "bool",
-            "is_true",
-            1
-         ],
-         "valid" : 1,
-         "input" : 1,
-         "name" : "is_true: 1 (ok)"
-      },
-      {
-         "tags" : [
-            "type",
-            "type:bool",
-            "clause:is_true"
-         ],
-         "schema" : [
-            "bool",
-            "is_true",
-            1
-         ],
-         "name" : "is_true: 1 (nok)",
-         "input" : 0,
          "valid" : 0
       },
       {
-         "valid" : 1,
          "input" : 0,
-         "name" : "is_true: 0 (ok)",
+         "name" : "bool0132: between.op=or (no items)",
+         "schema" : [
+            "bool",
+            "between",
+            [],
+            "between.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:or"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 0,
+         "name" : "bool0133: between.op=or (ok)",
+         "schema" : [
+            "bool",
+            "between",
+            [
+               [
+                  0,
+                  0
+               ],
+               [
+                  0,
+                  0
+               ]
+            ],
+            "between.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:or"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 0,
+         "name" : "bool0134: between.op=or (nok + ok)",
+         "schema" : [
+            "bool",
+            "between",
+            [
+               [
+                  "1",
+                  "1"
+               ],
+               [
+                  0,
+                  0
+               ]
+            ],
+            "between.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:or"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 0,
+         "name" : "bool0135: between.op=or (ok + nok)",
+         "schema" : [
+            "bool",
+            "between",
+            [
+               [
+                  0,
+                  0
+               ],
+               [
+                  "1",
+                  "1"
+               ]
+            ],
+            "between.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:or"
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : 0,
+         "name" : "bool0136: between.op=or (nok + nok)",
+         "schema" : [
+            "bool",
+            "between",
+            [
+               [
+                  "1",
+                  "1"
+               ],
+               [
+                  "1",
+                  "1"
+               ]
+            ],
+            "between.op",
+            "or"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:or"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 0,
+         "name" : "bool0137: between.op=none (empty items)",
+         "schema" : [
+            "bool",
+            "between",
+            [],
+            "between.op",
+            "none"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:none"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 0,
+         "name" : "bool0138: between.op=none (nok + nok)",
+         "schema" : [
+            "bool",
+            "between",
+            [
+               [
+                  "1",
+                  "1"
+               ],
+               [
+                  "1",
+                  "1"
+               ]
+            ],
+            "between.op",
+            "none"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:none"
+         ],
+         "valid" : 1
+      },
+      {
+         "errors" : 1,
+         "input" : 0,
+         "name" : "bool0139: between.op=none (nok + ok)",
+         "schema" : [
+            "bool",
+            "between",
+            [
+               [
+                  "1",
+                  "1"
+               ],
+               [
+                  0,
+                  0
+               ]
+            ],
+            "between.op",
+            "none"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:none"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : 0,
+         "name" : "bool0140: between.op=none (ok + nok)",
+         "schema" : [
+            "bool",
+            "between",
+            [
+               [
+                  0,
+                  0
+               ],
+               [
+                  "1",
+                  "1"
+               ]
+            ],
+            "between.op",
+            "none"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:none"
+         ],
+         "valid" : 0
+      },
+      {
+         "errors" : 1,
+         "input" : 0,
+         "name" : "bool0141: between.op=none (ok + ok)",
+         "schema" : [
+            "bool",
+            "between",
+            [
+               [
+                  0,
+                  0
+               ],
+               [
+                  0,
+                  0
+               ]
+            ],
+            "between.op",
+            "none"
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:between",
+            "op",
+            "op:none"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 1,
+         "name" : "bool0142: is_true: 1 (ok)",
+         "schema" : [
+            "bool",
+            "is_true",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is_true"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : 0,
+         "name" : "bool0143: is_true: 1 (nok)",
+         "schema" : [
+            "bool",
+            "is_true",
+            1
+         ],
+         "tags" : [
+            "type",
+            "type:bool",
+            "clause:is_true"
+         ],
+         "valid" : 0
+      },
+      {
+         "input" : 0,
+         "name" : "bool0144: is_true: 0 (ok)",
          "schema" : [
             "bool",
             "is_true",
@@ -2900,12 +2899,12 @@
             "type",
             "type:bool",
             "clause:is_true"
-         ]
+         ],
+         "valid" : 1
       },
       {
          "input" : 1,
-         "valid" : 0,
-         "name" : "is_true: 0 (nok)",
+         "name" : "bool0145: is_true: 0 (nok)",
          "schema" : [
             "bool",
             "is_true",
@@ -2915,38 +2914,39 @@
             "type",
             "type:bool",
             "clause:is_true"
-         ]
+         ],
+         "valid" : 0
       },
       {
-         "name" : "is_true: undef (ok 1)",
          "input" : 0,
-         "valid" : 1,
+         "name" : "bool0146: is_true: undef (ok 1)",
+         "schema" : [
+            "bool",
+            "is_true",
+            null
+         ],
          "tags" : [
             "type",
             "type:bool",
             "clause:is_true"
          ],
-         "schema" : [
-            "bool",
-            "is_true",
-            null
-         ]
+         "valid" : 1
       },
       {
-         "valid" : 1,
          "input" : 1,
-         "name" : "is_true: undef (ok 2)",
+         "name" : "bool0147: is_true: undef (ok 2)",
+         "schema" : [
+            "bool",
+            "is_true",
+            null
+         ],
          "tags" : [
             "type",
             "type:bool",
             "clause:is_true"
          ],
-         "schema" : [
-            "bool",
-            "is_true",
-            null
-         ]
+         "valid" : 1
       }
    ],
-   "version" : "v0.9.35 (generated by devscripts/gen-type-spectest on Tue May  5 12:31:19 2015)"
+   "version" : "v0.9.36 (generated by devscripts/gen-type-spectest on Thu Jun 11 14:24:01 2015)"
 }
