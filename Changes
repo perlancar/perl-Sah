@@ -1,5 +1,13 @@
 Revision history for Sah
 
+0.9.39  2015-09-09 (PERLANCAR)
+
+	- No spec changes.
+
+	- Add Sah::SpecTest, a dummy module just so other dists can express
+	  depending on share/spectest.
+
+
 0.9.38  2015-09-03 (PERLANCAR)
 
 	- No spec changes.
