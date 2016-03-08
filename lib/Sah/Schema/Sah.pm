@@ -1,11 +1,11 @@
 package Sah::Schema::Sah;
 
+# DATE
+# VERSION
+
 use 5.010;
 use strict;
 use warnings;
-
-# VERSION
-# DATE
 
 our %SCHEMAS;
 
@@ -17,7 +17,7 @@ $SCHEMAS{sah_str_schema} = ['str' => {
     match => '\A[A-Za-z][A-Za-z0-9_]*(::[A-Za-z][A-Za-z0-9_]*)*\*?\z',
 }];
 
-$SCHEMAS{sah_clause_name} = undef; # TODO
+#$SCHEMAS{sah_clause_name} = undef; # TODO
 
 $SCHEMAS{sah_clause_set} = [defhash => {
     # tmp
