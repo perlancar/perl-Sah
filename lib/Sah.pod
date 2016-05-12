@@ -503,6 +503,12 @@ options. For example:
    "c.js.ignore_missing_clause_handler": true
  }]
 
+=item * x.WHATEVER
+
+This comes from DefHash and is an alternative to underscore prefix for putting
+extra data in a schema. The difference is that some processing tool might strip
+the underscore clause/attribute.
+
 =back
 
 Aside from the above general attributes, each clause might recognize its own
