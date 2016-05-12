@@ -1,5 +1,10 @@
 Revision history for Sah
 
+0.9.40  2016-05-12 (PERLANCAR)
+
+	- Introduce x.* attribute, like in DefHash.
+
+
 0.9.39  2015-09-09 (PERLANCAR)
 
 	- No spec changes.
