@@ -21,7 +21,7 @@ our $schema = [defhash => {
         clset => {
         },
     },
-}];
+}, {}];
 
 1;
 # ABSTRACT: Sah clause set

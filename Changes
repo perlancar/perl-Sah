@@ -1,5 +1,13 @@
 Revision history for Sah
 
+0.9.41  2016-06-11 (PERLANCAR)
+
+	- Add hash clause: req_some_keys (and alias req_some).
+
+        - Follow Sah::Schemas convention (schemas for Sah are now put in
+          Sah::Schema::sah::*).
+
+
 0.9.40  2016-05-12 (PERLANCAR)
 
 	- Introduce x.* attribute, like in DefHash.
