@@ -2156,7 +2156,71 @@ sub gen_hash_tests {
 
     # note: req_all_keys is the same as req_keys
 
-    # TODO: require_some_keys
+    for my $cl (qw/req_some_keys/) {
+        $sch = [hash => {$cl => [1, 2, [qw/a b c/]]}];
+        push @res, (
+            {
+                name   => "$cl: (nok, empty)",
+                input  => {},
+                schema => $sch,
+                valid  => 0,
+            },
+            {
+                name   => "$cl: (nok, d)",
+                input  => {d=>0},
+                schema => $sch,
+                valid  => 0,
+            },
+            {
+                name   => "$cl: (ok, a)",
+                input  => {a=>0},
+                schema => $sch,
+                valid  => 1,
+            },
+            {
+                name   => "$cl: (ok, a+d)",
+                input  => {a=>0, d=>0},
+                schema => $sch,
+                valid  => 1,
+            },
+            {
+                name   => "$cl: (ok, b)",
+                input  => {b=>0},
+                schema => $sch,
+                valid  => 1,
+            },
+            {
+                name   => "$cl: (ok, c)",
+                input  => {b=>0},
+                schema => $sch,
+                valid  => 1,
+            },
+            {
+                name   => "$cl: (ok, a+b)",
+                input  => {a=>0, b=>0},
+                schema => $sch,
+                valid  => 1,
+            },
+            {
+                name   => "$cl: (ok, a+c)",
+                input  => {a=>0, c=>0},
+                schema => $sch,
+                valid  => 1,
+            },
+            {
+                name   => "$cl: (ok, b+c)",
+                input  => {b=>0, c=>0},
+                schema => $sch,
+                valid  => 1,
+            },
+            {
+                name   => "$cl: (nok, a+b+c)",
+                input  => {a=>0, b=>0, c=>0},
+                schema => $sch,
+                valid  => 0,
+            },
+        );
+    } # cl: req_some_keys
 
     $sch = [hash => {dep_any=>["a", [qw/d1 d2/]]}];
     push @res, (
