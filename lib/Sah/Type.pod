@@ -1055,7 +1055,11 @@ Alias to C<req_keys>.
 
 Alias to C<req_keys>.
 
-=head3 (TODO: req_some_keys : [ min, max, ARRAY[STR] ])
+=head3 req_some_keys : [ min, max, ARRAY[STR] ]
+
+=head3 req_some
+
+Alias to C<req_some_keys>.
 
 =head3 dep_any : [ STR|ARRAY[STR], ARRAY[STR] ]
 
