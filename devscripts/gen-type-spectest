@@ -970,63 +970,63 @@ sub gen_HasElems_tests {
         },
     );
 
-    for ("each_index", ("each_key") x !!$args{is_hash}) {
+    for my $cl ("each_index", @{ $args{aliases_for_each_index} // [] }) {
         push @res, (
             {
-                name   => "$_ (ok)",
+                name   => "$cl (ok)",
                 input  => $v2,
-                schema => [$Type, $_ => $args{ok_each_index}],
+                schema => [$Type, $cl => $args{ok_each_index}],
                 valid  => 1,
-                tags   => ["clause:$_"],
+                tags   => ["clause:$cl"],
             },
             {
-                name   => "$_ (nok)",
+                name   => "$cl (nok)",
                 input  => $v2,
-                schema => [$Type, $_ => $args{nok_each_index}],
+                schema => [$Type, $cl => $args{nok_each_index}],
                 valid  => 0,
-                tags   => ["clause:$_"],
+                tags   => ["clause:$cl"],
             },
         );
     }
-    for ("each_elem", ("each_value") x !!$args{is_hash}) {
+    for my $cl ("each_elem", @{ $args{aliases_for_each_elem} // [] }) {
         push @res, (
             {
-                name   => "$_ (ok)",
+                name   => "$cl (ok)",
                 input  => $v2,
-                schema => [$Type, $_ => $args{ok_each_elem}],
+                schema => [$Type, $cl => $args{ok_each_elem}],
                 valid  => 1,
-                tags   => ["clause:$_"],
+                tags   => ["clause:$cl"],
             },
             {
-                name   => "$_ (nok)",
+                name   => "$cl (nok)",
                 input  => $v2,
-                schema => [$Type, $_ => $args{nok_each_elem}],
+                schema => [$Type, $cl => $args{nok_each_elem}],
                 valid  => 0,
-                tags   => ["clause:$_"],
+                tags   => ["clause:$cl"],
             },
         );
     }
 
-    for ("check_each_index", ("check_each_key") x !!$args{is_hash}) {
+    for my $cl ("check_each_index", @{ $args{aliases_for_check_each_index} // [] }) {
         push @res, (
             {
-                name           => "$_",
-                schema         => [$Type => $_ => $args{check_each_index_value}],
+                name           => "$cl",
+                schema         => [$Type => $cl => $args{check_each_index_value}],
                 valid_inputs   => $args{check_each_index_valid_inputs}   // [],
                 invalid_inputs => $args{check_each_index_invalid_inputs} // [],
-                tags           => ["clause:$_"],
+                tags           => ["clause:$cl"],
             },
         ) if exists($args{check_each_index_value});
     }
 
-    for ("check_each_elem", ("check_each_value") x !!$args{is_hash}) {
+    for my $cl ("check_each_elem", @{ $args{aliases_for_check_each_elem} // [] }) {
         push @res, (
             {
-                name           => "$_",
-                schema         => [$Type => $_ => $args{check_each_elem_value}],
+                name           => "$cl",
+                schema         => [$Type => $cl => $args{check_each_elem_value}],
                 valid_inputs   => $args{check_each_elem_valid_inputs}   // [],
                 invalid_inputs => $args{check_each_elem_invalid_inputs} // [],
-                tags           => ["clause:$_"],
+                tags           => ["clause:$cl"],
             },
         ) if exists($args{check_each_elem_value});
     }
@@ -1130,26 +1130,26 @@ sub gen_HasElems_tests {
         },
     ) if $args{prop_len_schema};
 
-    for ("indices", ("keys") x !!$args{is_hash}) {
+    for my $pr ("indices", @{ $args{aliases_for_indices} // [] }) {
         push @res, (
             {
-                name           => "prop:$_",
-                schema         => [$Type => prop => [$_ => $args{prop_indices_schema}]],
+                name           => "prop:$pr",
+                schema         => [$Type => prop => [$pr => $args{prop_indices_schema}]],
                 valid_inputs   => $args{prop_indices_valid_inputs}   // [],
                 invalid_inputs => $args{prop_indices_invalid_inputs} // [],
-                tags           => ["prop:$_"],
+                tags           => ["prop:$pr"],
             },
         ) if $args{prop_indices_schema};
     }
 
-    for ("elems", ("values") x !!$args{is_hash}) {
+    for my $pr ("elems", @{ $args{aliases_for_elems} // [] }) {
         push @res, (
             {
-                name           => "prop:$_",
-                schema         => [$Type => prop => [$_ => $args{prop_elems_schema}]],
+                name           => "prop:$pr",
+                schema         => [$Type => prop => [$pr => $args{prop_elems_schema}]],
                 valid_inputs   => $args{prop_elems_valid_inputs}   // [],
                 invalid_inputs => $args{prop_elems_invalid_inputs} // [],
-                tags           => ["prop:$_"],
+                tags           => ["prop:$pr"],
             },
         ) if $args{prop_elems_schema};
     }
@@ -1348,6 +1348,7 @@ sub gen_array_tests {
         gen_HasElems_tests(
             # two values, each value is [VAL, LEN].
             values => [ [[1], 1], [[1, 1.2], 2] ],
+
             # will be tested on the second value
             ok_each_index  => [int =>  max => 1],
             nok_each_index => [int => xmax => 1],
@@ -1391,9 +1392,12 @@ sub gen_array_tests {
             prop_elems_schema           => [array => has => "a"],
             prop_elems_valid_inputs     => [["a", "b"]],
             prop_elems_invalid_inputs   => [[], ["b"]],
+
+            aliases_for_each_elem => ['of'],
         ),
     );
 
+    # elems
     my $sch = [array => {elems => ["int*", ["float", default=>2]]}];
     push @res, (
         {
@@ -1705,12 +1709,6 @@ sub gen_hash_tests {
         ),
 
         gen_HasElems_tests(
-            # hardcoded, meaning: has each_key (alias for each_index),
-            # check_each_key (alias for check_each_index), each_value (alias for
-            # each_elem), check_each_value (alias for check_each_elem), prop
-            # keys (alias for indices), prop values (alias for elems).
-            is_hash => 1,
-
             # two values, each value is [VAL, LEN].
             values => [ [{a=>1}, 1], [{a=>1, b=>1.1}, 2] ],
             # will be tested on the second value
@@ -1755,6 +1753,13 @@ sub gen_hash_tests {
             prop_elems_schema           => [array => has => "a"],
             prop_elems_valid_inputs     => [{1=>"a"}, {1=>"a", 2=>"b"}],
             prop_elems_invalid_inputs   => [{}, {a=>1}, {b=>2}],
+
+            aliases_for_each_index        => ['each_key'],
+            aliases_for_each_elem         => ['of', 'each_value'],
+            aliases_for_check_each_index  => ['check_each_key'],
+            aliases_for_check_each_elem   => ['check_each_value'],
+            aliases_for_indices           => ['keys'],
+            aliases_for_elems             => ['values'],
         )
     );
 
@@ -1903,45 +1908,47 @@ sub gen_hash_tests {
         },
     );
 
-    $sch  = [hash => {req_keys => []}];
-    $sch2 = [hash => {req_keys => [qw/a b/]}];
-    push @res, (
-        {
-            name   => 'req_keys: (ok, empty req_keys, empty keys in input)',
-            input  => {},
-            schema => $sch,
-            valid  => 1,
-            tags   => ['clause:req_keys'],
-        },
-        {
-            name   => 'req_keys: (ok, empty req_keys, extra keys in input)',
-            input  => {a=>1},
-            schema => $sch,
-            valid  => 1,
-            tags   => ['clause:req_keys'],
-        },
-        {
-            name   => 'req_keys: (ok)',
-            input  => {a=>1, b=>1},
-            schema => $sch2,
-            valid  => 1,
-            tags   => ['clause:req_keys'],
-        },
-        {
-            name   => 'req_keys: (ok, extra keys in input)',
-            input  => {a=>1, b=>1, c=>1},
-            schema => $sch2,
-            valid  => 1,
-            tags   => ['clause:req_keys'],
-        },
-        {
-            name   => 'req_keys: (nok, missing req keys in input)',
-            input  => {b=>1, c=>1},
-            schema => $sch2,
-            valid  => 0,
-            tags   => ['clause:req_keys'],
-        },
-    );
+    for my $cl ("req_keys", "req_all_keys", "req_all") {
+        $sch  = [hash => {$cl => []}];
+        $sch2 = [hash => {$cl => [qw/a b/]}];
+        push @res, (
+            {
+                name   => "$cl: (ok, empty $cl, empty keys in input)",
+                input  => {},
+                schema => $sch,
+                valid  => 1,
+                tags   => ["clause:$cl"],
+            },
+            {
+                name   => "$cl: (ok, empty $cl, extra keys in input)",
+                input  => {a=>1},
+                schema => $sch,
+                valid  => 1,
+                tags   => ["clause:$cl"],
+            },
+            {
+                name   => "$cl: (ok)",
+                input  => {a=>1, b=>1},
+                schema => $sch2,
+                valid  => 1,
+                tags   => ["clause:$cl"],
+            },
+            {
+                name   => "$cl: (ok, extra keys in input)",
+                input  => {a=>1, b=>1, c=>1},
+                schema => $sch2,
+                valid  => 1,
+                tags   => ["clause:$cl"],
+            },
+            {
+                name   => "$cl: (nok, missing req keys in input)",
+                input  => {b=>1, c=>1},
+                schema => $sch2,
+                valid  => 0,
+                tags   => ["clause:$cl"],
+            },
+        );
+    }
 
     $sch = [hash => {allowed_keys => [qw/a b c/]}];
     push @res, (
@@ -2043,120 +2050,140 @@ sub gen_hash_tests {
         },
     );
 
-    $sch = [hash => {choose_one_key=>[qw/a b/]}];
-    push @res, (
-        {
-            name   => 'choose_one_key: (ok, empty)',
-            input  => {},
-            schema => $sch,
-            valid  => 1,
-        },
-        {
-            name   => 'choose_one_key: (ok, a)',
-            input  => {a=>0},
-            schema => $sch,
-            valid  => 1,
-        },
-        {
-            name   => 'choose_one_key: (ok, a+d)',
-            input  => {a=>0, d=>0},
-            schema => $sch,
-            valid  => 1,
-        },
-        {
-            name   => 'choose_one_key: (ok, b)',
-            input  => {b=>0},
-            schema => $sch,
-            valid  => 1,
-        },
-        {
-            name   => 'choose_one_key: (ok, b+d)',
-            input  => {b=>0, d=>0},
-            schema => $sch,
-            valid  => 1,
-        },
-        {
-            name   => 'choose_one_key: (nok, a+b)',
-            input  => {a=>0, b=>0},
-            schema => $sch,
-            valid  => 0,
-        },
-    );
+    for my $cl ("choose_one_key", "choose_one") {
+        $sch = [hash => {$cl=>[qw/a b/]}];
+        push @res, (
+            {
+                name   => "$cl: (ok, empty)",
+                input  => {},
+                schema => $sch,
+                valid  => 1,
+                tags   => ["clause:$cl"],
+            },
+            {
+                name   => "$cl: (ok, a)",
+                input  => {a=>0},
+                schema => $sch,
+                valid  => 1,
+                tags   => ["clause:$cl"],
+            },
+            {
+                name   => "$cl: (ok, a+d)",
+                input  => {a=>0, d=>0},
+                schema => $sch,
+                valid  => 1,
+                tags   => ["clause:$cl"],
+            },
+            {
+                name   => "$cl: (ok, b)",
+                input  => {b=>0},
+                schema => $sch,
+                valid  => 1,
+                tags   => ["clause:$cl"],
+            },
+            {
+                name   => "$cl: (ok, b+d)",
+                input  => {b=>0, d=>0},
+                schema => $sch,
+                valid  => 1,
+                tags   => ["clause:$cl"],
+            },
+            {
+                name   => "$cl: (nok, a+b)",
+                input  => {a=>0, b=>0},
+                schema => $sch,
+                valid  => 0,
+                tags   => ["clause:$cl"],
+            },
+        );
+    }
 
     # TODO: choose_some_keys
 
-    # this means, if either a/b/c is specified then all must be specified
-    $sch = [hash => {choose_all_keys=>[qw/a b/]}];
-    push @res, (
-        {
-            name   => 'choose_all_keys: (ok, empty)',
-            input  => {},
-            schema => $sch,
-            valid  => 1,
-        },
-        {
-            name   => 'choose_all_keys: (ok, d)',
-            input  => {d=>0},
-            schema => $sch,
-            valid  => 1,
-        },
-        {
-            name   => 'choose_all_keys: (ok, a+b)',
-            input  => {a=>0, b=>0},
-            schema => $sch,
-            valid  => 1,
-        },
-        {
-            name   => 'choose_all_keys: (ok, a+b+d)',
-            input  => {a=>0, b=>0, d=>0},
-            schema => $sch,
-            valid  => 1,
-        },
-        {
-            name   => 'choose_all_keys: (nok, a)',
-            input  => {a=>0},
-            schema => $sch,
-            valid  => 0,
-        },
-        {
-            name   => 'choose_all_keys: (nok, b)',
-            input  => {b=>0},
-            schema => $sch,
-            valid  => 0,
-        },
-    );
+    for my $cl ("choose_all_keys", "choose_all") {
+        # this means, if either a/b/c is specified then all must be specified
+        $sch = [hash => {$cl=>[qw/a b/]}];
+        push @res, (
+            {
+                name   => "$cl: (ok, empty)",
+                input  => {},
+                schema => $sch,
+                valid  => 1,
+                tags   => ["clause:$cl"],
+            },
+            {
+                name   => "$cl: (ok, d)",
+                input  => {d=>0},
+                schema => $sch,
+                valid  => 1,
+                tags   => ["clause:$cl"],
+            },
+            {
+                name   => "$cl: (ok, a+b)",
+                input  => {a=>0, b=>0},
+                schema => $sch,
+                valid  => 1,
+                tags   => ["clause:$cl"],
+            },
+            {
+                name   => "$cl: (ok, a+b+d)",
+                input  => {a=>0, b=>0, d=>0},
+                schema => $sch,
+                valid  => 1,
+                tags   => ["clause:$cl"],
+            },
+            {
+                name   => "$cl: (nok, a)",
+                input  => {a=>0},
+                schema => $sch,
+                valid  => 0,
+                tags   => ["clause:$cl"],
+            },
+            {
+                name   => "$cl: (nok, b)",
+                input  => {b=>0},
+                schema => $sch,
+                valid  => 0,
+                tags   => ["clause:$cl"],
+            },
+        );
+    }
 
-    $sch = [hash => {req_one_key=>[qw/a b/]}];
-    push @res, (
-        {
-            name   => 'req_one_key: (nok, empty)',
-            input  => {},
-            schema => $sch,
-            valid  => 0,
-        },
-        {
-            name   => 'req_one_key: (ok, a)',
-            input  => {a=>0},
-            schema => $sch,
-            valid  => 1,
-        },
-        {
-            name   => 'req_one_key: (ok, b)',
-            input  => {b=>0},
-            schema => $sch,
-            valid  => 1,
-        },
-        {
-            name   => 'req_one_key: (nok, a+b)',
-            input  => {a=>0, b=>0},
-            schema => $sch,
-            valid  => 0,
-        },
-    );
+    for my $cl ("req_one_key", "req_one") {
+        $sch = [hash => {$cl=>[qw/a b/]}];
+        push @res, (
+            {
+                name   => "$cl: (nok, empty)",
+                input  => {},
+                schema => $sch,
+                valid  => 0,
+                tags   => ["clause:$cl"],
+            },
+            {
+                name   => "$cl: (ok, a)",
+                input  => {a=>0},
+                schema => $sch,
+                valid  => 1,
+                tags   => ["clause:$cl"],
+            },
+            {
+                name   => "$cl: (ok, b)",
+                input  => {b=>0},
+                schema => $sch,
+                valid  => 1,
+                tags   => ["clause:$cl"],
+            },
+            {
+                name   => "$cl: (nok, a+b)",
+                input  => {a=>0, b=>0},
+                schema => $sch,
+                valid  => 0,
+                tags   => ["clause:$cl"],
+            },
+        );
+    }
 
-    # note: req_all_keys is the same as req_keys
-
-    for my $cl (qw/req_some_keys/) {
+    for my $cl (qw/req_some_keys req_some/) {
         $sch = [hash => {$cl => [1, 2, [qw/a b c/]]}];
         push @res, (
             {
@@ -2164,60 +2191,70 @@ sub gen_hash_tests {
                 input  => {},
                 schema => $sch,
                 valid  => 0,
+                tags   => ["clause:$cl"],
             },
             {
                 name   => "$cl: (nok, d)",
                 input  => {d=>0},
                 schema => $sch,
                 valid  => 0,
+                tags   => ["clause:$cl"],
             },
             {
                 name   => "$cl: (ok, a)",
                 input  => {a=>0},
                 schema => $sch,
                 valid  => 1,
+                tags   => ["clause:$cl"],
             },
             {
                 name   => "$cl: (ok, a+d)",
                 input  => {a=>0, d=>0},
                 schema => $sch,
                 valid  => 1,
+                tags   => ["clause:$cl"],
             },
             {
                 name   => "$cl: (ok, b)",
                 input  => {b=>0},
                 schema => $sch,
                 valid  => 1,
+                tags   => ["clause:$cl"],
             },
             {
                 name   => "$cl: (ok, c)",
                 input  => {b=>0},
                 schema => $sch,
                 valid  => 1,
+                tags   => ["clause:$cl"],
             },
             {
                 name   => "$cl: (ok, a+b)",
                 input  => {a=>0, b=>0},
                 schema => $sch,
                 valid  => 1,
+                tags   => ["clause:$cl"],
             },
             {
                 name   => "$cl: (ok, a+c)",
                 input  => {a=>0, c=>0},
                 schema => $sch,
                 valid  => 1,
+                tags   => ["clause:$cl"],
             },
             {
                 name   => "$cl: (ok, b+c)",
                 input  => {b=>0, c=>0},
                 schema => $sch,
                 valid  => 1,
+                tags   => ["clause:$cl"],
             },
             {
                 name   => "$cl: (nok, a+b+c)",
                 input  => {a=>0, b=>0, c=>0},
                 schema => $sch,
                 valid  => 0,
+                tags   => ["clause:$cl"],
             },
         );
     } # cl: req_some_keys
