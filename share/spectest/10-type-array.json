@@ -2534,6 +2534,42 @@
          "valid" : 0
       },
       {
+         "input" : [
+            1,
+            1.2
+         ],
+         "name" : "array0115: of (ok)",
+         "schema" : [
+            "array",
+            "of",
+            "float"
+         ],
+         "tags" : [
+            "type",
+            "type:array",
+            "clause:of"
+         ],
+         "valid" : 1
+      },
+      {
+         "input" : [
+            1,
+            1.2
+         ],
+         "name" : "array0116: of (nok)",
+         "schema" : [
+            "array",
+            "of",
+            "int"
+         ],
+         "tags" : [
+            "type",
+            "type:array",
+            "clause:of"
+         ],
+         "valid" : 0
+      },
+      {
          "invalid_inputs" : [
             [
                1,
@@ -2542,7 +2578,7 @@
                1
             ]
          ],
-         "name" : "array0115: check_each_index",
+         "name" : "array0117: check_each_index",
          "schema" : [
             "array",
             "check_each_index",
@@ -2579,7 +2615,7 @@
                1
             ]
          ],
-         "name" : "array0116: check_each_elem",
+         "name" : "array0118: check_each_elem",
          "schema" : [
             "array",
             "check_each_elem",
@@ -2608,7 +2644,7 @@
                1
             ]
          ],
-         "name" : "array0117: uniq=1",
+         "name" : "array0119: uniq=1",
          "schema" : [
             "array",
             "uniq",
@@ -2641,7 +2677,7 @@
                2
             ]
          ],
-         "name" : "array0118: uniq=0",
+         "name" : "array0120: uniq=0",
          "schema" : [
             "array",
             "uniq",
@@ -2670,7 +2706,7 @@
                2
             ]
          ],
-         "name" : "array0119: !uniq=1",
+         "name" : "array0121: !uniq=1",
          "schema" : [
             "array",
             "!uniq",
@@ -2698,7 +2734,7 @@
                3
             ]
          ],
-         "name" : "array0120: exists",
+         "name" : "array0122: exists",
          "schema" : [
             "int",
             "max",
@@ -2724,7 +2760,7 @@
             1,
             1.2
          ],
-         "name" : "array0121: elems (ok)",
+         "name" : "array0123: elems (ok)",
          "schema" : [
             "array",
             "elems",
@@ -2745,7 +2781,7 @@
             1,
             1.2
          ],
-         "name" : "array0122: elems (nok)",
+         "name" : "array0124: elems (nok)",
          "schema" : [
             "array",
             "elems",
@@ -2768,7 +2804,7 @@
                3
             ]
          ],
-         "name" : "array0123: has",
+         "name" : "array0125: has",
          "schema" : [
             "array",
             "has",
@@ -2803,7 +2839,7 @@
                3
             ]
          ],
-         "name" : "array0124: has + op.not",
+         "name" : "array0126: has + op.not",
          "schema" : [
             "array",
             "!has",
@@ -2831,7 +2867,7 @@
                3
             ]
          ],
-         "name" : "array0125: has + op.or",
+         "name" : "array0127: has + op.or",
          "schema" : [
             "array",
             "has|",
@@ -2871,7 +2907,7 @@
                3
             ]
          ],
-         "name" : "array0126: has + op.and",
+         "name" : "array0128: has + op.and",
          "schema" : [
             "array",
             "has&",
@@ -2903,7 +2939,7 @@
                1
             ]
          ],
-         "name" : "array0127: prop:len",
+         "name" : "array0129: prop:len",
          "schema" : [
             "array",
             "prop",
@@ -2943,7 +2979,7 @@
                1
             ]
          ],
-         "name" : "array0128: prop:indices",
+         "name" : "array0130: prop:indices",
          "schema" : [
             "array",
             "prop",
@@ -2976,7 +3012,7 @@
                "b"
             ]
          ],
-         "name" : "array0129: prop:elems",
+         "name" : "array0131: prop:elems",
          "schema" : [
             "array",
             "prop",
@@ -3006,7 +3042,7 @@
             null,
             1
          ],
-         "name" : "array0130: elems (nok, first elem required)",
+         "name" : "array0132: elems (nok, first elem required)",
          "schema" : [
             "array",
             {
@@ -3031,7 +3067,7 @@
          "input" : [
             1
          ],
-         "name" : "array0131: elems (ok, missing elem set to undef)",
+         "name" : "array0133: elems (ok, missing elem set to undef)",
          "schema" : [
             "array",
             {
@@ -3057,7 +3093,7 @@
             1,
             null
          ],
-         "name" : "array0132: elems (ok, second elem optional)",
+         "name" : "array0134: elems (ok, second elem optional)",
          "schema" : [
             "array",
             {
@@ -3083,7 +3119,7 @@
             1,
             1.1
          ],
-         "name" : "array0133: elems (ok 2)",
+         "name" : "array0135: elems (ok 2)",
          "schema" : [
             "array",
             {
@@ -3110,7 +3146,7 @@
             1.1,
             null
          ],
-         "name" : "array0134: elems (ok, extra elems ignored)",
+         "name" : "array0136: elems (ok, extra elems ignored)",
          "schema" : [
             "array",
             {
@@ -3137,7 +3173,7 @@
             1.1,
             "foo"
          ],
-         "name" : "array0135: elems (ok, extra elems ignored 2)",
+         "name" : "array0137: elems (ok, extra elems ignored 2)",
          "schema" : [
             "array",
             {
@@ -3162,7 +3198,7 @@
          "input" : [
             1
          ],
-         "name" : "array0136: elems (ok, create_default=0)",
+         "name" : "array0138: elems (ok, create_default=0)",
          "output" : [
             1
          ],
@@ -3192,7 +3228,7 @@
             1,
             null
          ],
-         "name" : "array0137: elems (ok 2, create_default=0)",
+         "name" : "array0139: elems (ok 2, create_default=0)",
          "output" : [
             1,
             2
@@ -3219,5 +3255,5 @@
          "valid" : 1
       }
    ],
-   "version" : "v0.9.41 (generated by devscripts/gen-type-spectest on Sat Jun 11 09:13:46 2016)"
+   "version" : "v0.9.41 (generated by devscripts/gen-type-spectest on Sun Jun 12 14:49:05 2016)"
 }
