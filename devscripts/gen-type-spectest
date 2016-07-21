@@ -1397,8 +1397,21 @@ sub gen_array_tests {
         ),
     );
 
+    # this is to test implementation that uses nested loop variable (e.g. $_ in
+    # perl). we want to make sure that they work.
+    my $sch  = [array => of => [array => of => "int"]];
+    push @res, (
+        {
+            name           => "array[array[int]] (test nested loop variable in implementation)",
+            schema         => $sch,
+            valid_inputs   => [ [], [[1,2], [3,4]] ],
+            invalid_inputs => [ [[1,2], [[],4]] ],
+            tags           => ['clause:of'],
+        },
+    );
+
     # elems
-    my $sch = [array => {elems => ["int*", ["float", default=>2]]}];
+    $sch = [array => {elems => ["int*", ["float", default=>2]]}];
     push @res, (
         {
             name   => 'elems (nok, first elem required)',
