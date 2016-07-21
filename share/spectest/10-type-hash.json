@@ -3403,8 +3403,50 @@
          ]
       },
       {
+         "invalid_inputs" : [
+            {
+               "a" : 1
+            },
+            {
+               "a" : [
+                  "b"
+               ]
+            }
+         ],
+         "name" : "hash0155: re_keys + array[of] (test nested loop variable in implementation)",
+         "schema" : [
+            "hash",
+            {
+               "re_keys" : {
+                  "[ab]" : [
+                     "array",
+                     {
+                        "of" : "int"
+                     }
+                  ]
+               }
+            }
+         ],
+         "tags" : [
+            "type",
+            "type:hash",
+            "clause:re_keys"
+         ],
+         "valid_inputs" : [
+            {},
+            {
+               "a" : []
+            },
+            {
+               "a" : [
+                  1
+               ]
+            }
+         ]
+      },
+      {
          "input" : {},
-         "name" : "hash0155: req_keys: (ok, empty req_keys, empty keys in input)",
+         "name" : "hash0156: req_keys: (ok, empty req_keys, empty keys in input)",
          "schema" : [
             "hash",
             {
@@ -3422,7 +3464,7 @@
          "input" : {
             "a" : 1
          },
-         "name" : "hash0156: req_keys: (ok, empty req_keys, extra keys in input)",
+         "name" : "hash0157: req_keys: (ok, empty req_keys, extra keys in input)",
          "schema" : [
             "hash",
             {
@@ -3441,7 +3483,7 @@
             "a" : 1,
             "b" : 1
          },
-         "name" : "hash0157: req_keys: (ok)",
+         "name" : "hash0158: req_keys: (ok)",
          "schema" : [
             "hash",
             {
@@ -3464,7 +3506,7 @@
             "b" : 1,
             "c" : 1
          },
-         "name" : "hash0158: req_keys: (ok, extra keys in input)",
+         "name" : "hash0159: req_keys: (ok, extra keys in input)",
          "schema" : [
             "hash",
             {
@@ -3486,7 +3528,7 @@
             "b" : 1,
             "c" : 1
          },
-         "name" : "hash0159: req_keys: (nok, missing req keys in input)",
+         "name" : "hash0160: req_keys: (nok, missing req keys in input)",
          "schema" : [
             "hash",
             {
@@ -3505,7 +3547,7 @@
       },
       {
          "input" : {},
-         "name" : "hash0160: req_all_keys: (ok, empty req_all_keys, empty keys in input)",
+         "name" : "hash0161: req_all_keys: (ok, empty req_all_keys, empty keys in input)",
          "schema" : [
             "hash",
             {
@@ -3523,7 +3565,7 @@
          "input" : {
             "a" : 1
          },
-         "name" : "hash0161: req_all_keys: (ok, empty req_all_keys, extra keys in input)",
+         "name" : "hash0162: req_all_keys: (ok, empty req_all_keys, extra keys in input)",
          "schema" : [
             "hash",
             {
@@ -3542,7 +3584,7 @@
             "a" : 1,
             "b" : 1
          },
-         "name" : "hash0162: req_all_keys: (ok)",
+         "name" : "hash0163: req_all_keys: (ok)",
          "schema" : [
             "hash",
             {
@@ -3565,7 +3607,7 @@
             "b" : 1,
             "c" : 1
          },
-         "name" : "hash0163: req_all_keys: (ok, extra keys in input)",
+         "name" : "hash0164: req_all_keys: (ok, extra keys in input)",
          "schema" : [
             "hash",
             {
@@ -3587,7 +3629,7 @@
             "b" : 1,
             "c" : 1
          },
-         "name" : "hash0164: req_all_keys: (nok, missing req keys in input)",
+         "name" : "hash0165: req_all_keys: (nok, missing req keys in input)",
          "schema" : [
             "hash",
             {
@@ -3606,7 +3648,7 @@
       },
       {
          "input" : {},
-         "name" : "hash0165: req_all: (ok, empty req_all, empty keys in input)",
+         "name" : "hash0166: req_all: (ok, empty req_all, empty keys in input)",
          "schema" : [
             "hash",
             {
@@ -3624,7 +3666,7 @@
          "input" : {
             "a" : 1
          },
-         "name" : "hash0166: req_all: (ok, empty req_all, extra keys in input)",
+         "name" : "hash0167: req_all: (ok, empty req_all, extra keys in input)",
          "schema" : [
             "hash",
             {
@@ -3643,7 +3685,7 @@
             "a" : 1,
             "b" : 1
          },
-         "name" : "hash0167: req_all: (ok)",
+         "name" : "hash0168: req_all: (ok)",
          "schema" : [
             "hash",
             {
@@ -3666,7 +3708,7 @@
             "b" : 1,
             "c" : 1
          },
-         "name" : "hash0168: req_all: (ok, extra keys in input)",
+         "name" : "hash0169: req_all: (ok, extra keys in input)",
          "schema" : [
             "hash",
             {
@@ -3688,7 +3730,7 @@
             "b" : 1,
             "c" : 1
          },
-         "name" : "hash0169: req_all: (nok, missing req keys in input)",
+         "name" : "hash0170: req_all: (nok, missing req keys in input)",
          "schema" : [
             "hash",
             {
@@ -3707,7 +3749,7 @@
       },
       {
          "input" : {},
-         "name" : "hash0170: allowed_keys: (ok, empty keys in input)",
+         "name" : "hash0171: allowed_keys: (ok, empty keys in input)",
          "schema" : [
             "hash",
             {
@@ -3730,7 +3772,7 @@
             "a" : 1,
             "b" : null
          },
-         "name" : "hash0171: allowed_keys: (ok)",
+         "name" : "hash0172: allowed_keys: (ok)",
          "schema" : [
             "hash",
             {
@@ -3753,7 +3795,7 @@
             "a" : 1,
             "d" : null
          },
-         "name" : "hash0172: allowed_keys: (nok, keys outside allowed list)",
+         "name" : "hash0173: allowed_keys: (nok, keys outside allowed list)",
          "schema" : [
             "hash",
             {
@@ -3773,7 +3815,7 @@
       },
       {
          "input" : {},
-         "name" : "hash0173: allowed_keys_re: (ok, empty keys in input)",
+         "name" : "hash0174: allowed_keys_re: (ok, empty keys in input)",
          "schema" : [
             "hash",
             {
@@ -3792,7 +3834,7 @@
             "a" : 1,
             "b" : null
          },
-         "name" : "hash0174: allowed_keys_re: (ok)",
+         "name" : "hash0175: allowed_keys_re: (ok)",
          "schema" : [
             "hash",
             {
@@ -3811,7 +3853,7 @@
             "a" : 1,
             "d" : null
          },
-         "name" : "hash0175: allowed_keys_re: (nok, keys outside allowed regex)",
+         "name" : "hash0176: allowed_keys_re: (nok, keys outside allowed regex)",
          "schema" : [
             "hash",
             {
@@ -3827,7 +3869,7 @@
       },
       {
          "input" : {},
-         "name" : "hash0176: forbidden_keys: (ok, empty keys in input)",
+         "name" : "hash0177: forbidden_keys: (ok, empty keys in input)",
          "schema" : [
             "hash",
             {
@@ -3850,7 +3892,7 @@
             "d" : 1,
             "e" : null
          },
-         "name" : "hash0177: forbidden_keys: (ok)",
+         "name" : "hash0178: forbidden_keys: (ok)",
          "schema" : [
             "hash",
             {
@@ -3873,7 +3915,7 @@
             "a" : 1,
             "d" : null
          },
-         "name" : "hash0178: forbidden_keys: (nok, keys in forbidden list)",
+         "name" : "hash0179: forbidden_keys: (nok, keys in forbidden list)",
          "schema" : [
             "hash",
             {
@@ -3893,7 +3935,7 @@
       },
       {
          "input" : {},
-         "name" : "hash0179: forbidden_keys_re: (ok, empty keys in input)",
+         "name" : "hash0180: forbidden_keys_re: (ok, empty keys in input)",
          "schema" : [
             "hash",
             {
@@ -3912,7 +3954,7 @@
             "d" : 1,
             "e" : null
          },
-         "name" : "hash0180: forbidden_keys_re: (ok)",
+         "name" : "hash0181: forbidden_keys_re: (ok)",
          "schema" : [
             "hash",
             {
@@ -3931,7 +3973,7 @@
             "a" : 1,
             "d" : null
          },
-         "name" : "hash0181: forbidden_keys_re: (nok, keys in forbidden regex)",
+         "name" : "hash0182: forbidden_keys_re: (nok, keys in forbidden regex)",
          "schema" : [
             "hash",
             {
@@ -3947,7 +3989,7 @@
       },
       {
          "input" : {},
-         "name" : "hash0182: choose_one_key: (ok, empty)",
+         "name" : "hash0183: choose_one_key: (ok, empty)",
          "schema" : [
             "hash",
             {
@@ -3968,7 +4010,7 @@
          "input" : {
             "a" : 0
          },
-         "name" : "hash0183: choose_one_key: (ok, a)",
+         "name" : "hash0184: choose_one_key: (ok, a)",
          "schema" : [
             "hash",
             {
@@ -3990,7 +4032,7 @@
             "a" : 0,
             "d" : 0
          },
-         "name" : "hash0184: choose_one_key: (ok, a+d)",
+         "name" : "hash0185: choose_one_key: (ok, a+d)",
          "schema" : [
             "hash",
             {
@@ -4011,7 +4053,7 @@
          "input" : {
             "b" : 0
          },
-         "name" : "hash0185: choose_one_key: (ok, b)",
+         "name" : "hash0186: choose_one_key: (ok, b)",
          "schema" : [
             "hash",
             {
@@ -4033,7 +4075,7 @@
             "b" : 0,
             "d" : 0
          },
-         "name" : "hash0186: choose_one_key: (ok, b+d)",
+         "name" : "hash0187: choose_one_key: (ok, b+d)",
          "schema" : [
             "hash",
             {
@@ -4055,7 +4097,7 @@
             "a" : 0,
             "b" : 0
          },
-         "name" : "hash0187: choose_one_key: (nok, a+b)",
+         "name" : "hash0188: choose_one_key: (nok, a+b)",
          "schema" : [
             "hash",
             {
@@ -4074,7 +4116,7 @@
       },
       {
          "input" : {},
-         "name" : "hash0188: choose_one: (ok, empty)",
+         "name" : "hash0189: choose_one: (ok, empty)",
          "schema" : [
             "hash",
             {
@@ -4095,7 +4137,7 @@
          "input" : {
             "a" : 0
          },
-         "name" : "hash0189: choose_one: (ok, a)",
+         "name" : "hash0190: choose_one: (ok, a)",
          "schema" : [
             "hash",
             {
@@ -4117,7 +4159,7 @@
             "a" : 0,
             "d" : 0
          },
-         "name" : "hash0190: choose_one: (ok, a+d)",
+         "name" : "hash0191: choose_one: (ok, a+d)",
          "schema" : [
             "hash",
             {
@@ -4138,7 +4180,7 @@
          "input" : {
             "b" : 0
          },
-         "name" : "hash0191: choose_one: (ok, b)",
+         "name" : "hash0192: choose_one: (ok, b)",
          "schema" : [
             "hash",
             {
@@ -4160,7 +4202,7 @@
             "b" : 0,
             "d" : 0
          },
-         "name" : "hash0192: choose_one: (ok, b+d)",
+         "name" : "hash0193: choose_one: (ok, b+d)",
          "schema" : [
             "hash",
             {
@@ -4182,7 +4224,7 @@
             "a" : 0,
             "b" : 0
          },
-         "name" : "hash0193: choose_one: (nok, a+b)",
+         "name" : "hash0194: choose_one: (nok, a+b)",
          "schema" : [
             "hash",
             {
@@ -4201,7 +4243,7 @@
       },
       {
          "input" : {},
-         "name" : "hash0194: choose_all_keys: (ok, empty)",
+         "name" : "hash0195: choose_all_keys: (ok, empty)",
          "schema" : [
             "hash",
             {
@@ -4222,7 +4264,7 @@
          "input" : {
             "d" : 0
          },
-         "name" : "hash0195: choose_all_keys: (ok, d)",
+         "name" : "hash0196: choose_all_keys: (ok, d)",
          "schema" : [
             "hash",
             {
@@ -4244,7 +4286,7 @@
             "a" : 0,
             "b" : 0
          },
-         "name" : "hash0196: choose_all_keys: (ok, a+b)",
+         "name" : "hash0197: choose_all_keys: (ok, a+b)",
          "schema" : [
             "hash",
             {
@@ -4267,7 +4309,7 @@
             "b" : 0,
             "d" : 0
          },
-         "name" : "hash0197: choose_all_keys: (ok, a+b+d)",
+         "name" : "hash0198: choose_all_keys: (ok, a+b+d)",
          "schema" : [
             "hash",
             {
@@ -4288,7 +4330,7 @@
          "input" : {
             "a" : 0
          },
-         "name" : "hash0198: choose_all_keys: (nok, a)",
+         "name" : "hash0199: choose_all_keys: (nok, a)",
          "schema" : [
             "hash",
             {
@@ -4309,7 +4351,7 @@
          "input" : {
             "b" : 0
          },
-         "name" : "hash0199: choose_all_keys: (nok, b)",
+         "name" : "hash0200: choose_all_keys: (nok, b)",
          "schema" : [
             "hash",
             {
@@ -4328,7 +4370,7 @@
       },
       {
          "input" : {},
-         "name" : "hash0200: choose_all: (ok, empty)",
+         "name" : "hash0201: choose_all: (ok, empty)",
          "schema" : [
             "hash",
             {
@@ -4349,7 +4391,7 @@
          "input" : {
             "d" : 0
          },
-         "name" : "hash0201: choose_all: (ok, d)",
+         "name" : "hash0202: choose_all: (ok, d)",
          "schema" : [
             "hash",
             {
@@ -4371,7 +4413,7 @@
             "a" : 0,
             "b" : 0
          },
-         "name" : "hash0202: choose_all: (ok, a+b)",
+         "name" : "hash0203: choose_all: (ok, a+b)",
          "schema" : [
             "hash",
             {
@@ -4394,7 +4436,7 @@
             "b" : 0,
             "d" : 0
          },
-         "name" : "hash0203: choose_all: (ok, a+b+d)",
+         "name" : "hash0204: choose_all: (ok, a+b+d)",
          "schema" : [
             "hash",
             {
@@ -4415,7 +4457,7 @@
          "input" : {
             "a" : 0
          },
-         "name" : "hash0204: choose_all: (nok, a)",
+         "name" : "hash0205: choose_all: (nok, a)",
          "schema" : [
             "hash",
             {
@@ -4436,7 +4478,7 @@
          "input" : {
             "b" : 0
          },
-         "name" : "hash0205: choose_all: (nok, b)",
+         "name" : "hash0206: choose_all: (nok, b)",
          "schema" : [
             "hash",
             {
@@ -4455,7 +4497,7 @@
       },
       {
          "input" : {},
-         "name" : "hash0206: req_one_key: (nok, empty)",
+         "name" : "hash0207: req_one_key: (nok, empty)",
          "schema" : [
             "hash",
             {
@@ -4476,7 +4518,7 @@
          "input" : {
             "a" : 0
          },
-         "name" : "hash0207: req_one_key: (ok, a)",
+         "name" : "hash0208: req_one_key: (ok, a)",
          "schema" : [
             "hash",
             {
@@ -4497,7 +4539,7 @@
          "input" : {
             "b" : 0
          },
-         "name" : "hash0208: req_one_key: (ok, b)",
+         "name" : "hash0209: req_one_key: (ok, b)",
          "schema" : [
             "hash",
             {
@@ -4519,7 +4561,7 @@
             "a" : 0,
             "b" : 0
          },
-         "name" : "hash0209: req_one_key: (nok, a+b)",
+         "name" : "hash0210: req_one_key: (nok, a+b)",
          "schema" : [
             "hash",
             {
@@ -4538,7 +4580,7 @@
       },
       {
          "input" : {},
-         "name" : "hash0210: req_one: (nok, empty)",
+         "name" : "hash0211: req_one: (nok, empty)",
          "schema" : [
             "hash",
             {
@@ -4559,7 +4601,7 @@
          "input" : {
             "a" : 0
          },
-         "name" : "hash0211: req_one: (ok, a)",
+         "name" : "hash0212: req_one: (ok, a)",
          "schema" : [
             "hash",
             {
@@ -4580,7 +4622,7 @@
          "input" : {
             "b" : 0
          },
-         "name" : "hash0212: req_one: (ok, b)",
+         "name" : "hash0213: req_one: (ok, b)",
          "schema" : [
             "hash",
             {
@@ -4602,7 +4644,7 @@
             "a" : 0,
             "b" : 0
          },
-         "name" : "hash0213: req_one: (nok, a+b)",
+         "name" : "hash0214: req_one: (nok, a+b)",
          "schema" : [
             "hash",
             {
@@ -4621,7 +4663,7 @@
       },
       {
          "input" : {},
-         "name" : "hash0214: req_some_keys: (nok, empty)",
+         "name" : "hash0215: req_some_keys: (nok, empty)",
          "schema" : [
             "hash",
             {
@@ -4647,7 +4689,7 @@
          "input" : {
             "d" : 0
          },
-         "name" : "hash0215: req_some_keys: (nok, d)",
+         "name" : "hash0216: req_some_keys: (nok, d)",
          "schema" : [
             "hash",
             {
@@ -4673,7 +4715,7 @@
          "input" : {
             "a" : 0
          },
-         "name" : "hash0216: req_some_keys: (ok, a)",
+         "name" : "hash0217: req_some_keys: (ok, a)",
          "schema" : [
             "hash",
             {
@@ -4700,7 +4742,7 @@
             "a" : 0,
             "d" : 0
          },
-         "name" : "hash0217: req_some_keys: (ok, a+d)",
+         "name" : "hash0218: req_some_keys: (ok, a+d)",
          "schema" : [
             "hash",
             {
@@ -4726,7 +4768,7 @@
          "input" : {
             "b" : 0
          },
-         "name" : "hash0218: req_some_keys: (ok, b)",
+         "name" : "hash0219: req_some_keys: (ok, b)",
          "schema" : [
             "hash",
             {
@@ -4752,7 +4794,7 @@
          "input" : {
             "b" : 0
          },
-         "name" : "hash0219: req_some_keys: (ok, c)",
+         "name" : "hash0220: req_some_keys: (ok, c)",
          "schema" : [
             "hash",
             {
@@ -4779,7 +4821,7 @@
             "a" : 0,
             "b" : 0
          },
-         "name" : "hash0220: req_some_keys: (ok, a+b)",
+         "name" : "hash0221: req_some_keys: (ok, a+b)",
          "schema" : [
             "hash",
             {
@@ -4806,7 +4848,7 @@
             "a" : 0,
             "c" : 0
          },
-         "name" : "hash0221: req_some_keys: (ok, a+c)",
+         "name" : "hash0222: req_some_keys: (ok, a+c)",
          "schema" : [
             "hash",
             {
@@ -4833,7 +4875,7 @@
             "b" : 0,
             "c" : 0
          },
-         "name" : "hash0222: req_some_keys: (ok, b+c)",
+         "name" : "hash0223: req_some_keys: (ok, b+c)",
          "schema" : [
             "hash",
             {
@@ -4861,7 +4903,7 @@
             "b" : 0,
             "c" : 0
          },
-         "name" : "hash0223: req_some_keys: (nok, a+b+c)",
+         "name" : "hash0224: req_some_keys: (nok, a+b+c)",
          "schema" : [
             "hash",
             {
@@ -4885,7 +4927,7 @@
       },
       {
          "input" : {},
-         "name" : "hash0224: req_some: (nok, empty)",
+         "name" : "hash0225: req_some: (nok, empty)",
          "schema" : [
             "hash",
             {
@@ -4911,7 +4953,7 @@
          "input" : {
             "d" : 0
          },
-         "name" : "hash0225: req_some: (nok, d)",
+         "name" : "hash0226: req_some: (nok, d)",
          "schema" : [
             "hash",
             {
@@ -4937,7 +4979,7 @@
          "input" : {
             "a" : 0
          },
-         "name" : "hash0226: req_some: (ok, a)",
+         "name" : "hash0227: req_some: (ok, a)",
          "schema" : [
             "hash",
             {
@@ -4964,7 +5006,7 @@
             "a" : 0,
             "d" : 0
          },
-         "name" : "hash0227: req_some: (ok, a+d)",
+         "name" : "hash0228: req_some: (ok, a+d)",
          "schema" : [
             "hash",
             {
@@ -4990,7 +5032,7 @@
          "input" : {
             "b" : 0
          },
-         "name" : "hash0228: req_some: (ok, b)",
+         "name" : "hash0229: req_some: (ok, b)",
          "schema" : [
             "hash",
             {
@@ -5016,7 +5058,7 @@
          "input" : {
             "b" : 0
          },
-         "name" : "hash0229: req_some: (ok, c)",
+         "name" : "hash0230: req_some: (ok, c)",
          "schema" : [
             "hash",
             {
@@ -5043,7 +5085,7 @@
             "a" : 0,
             "b" : 0
          },
-         "name" : "hash0230: req_some: (ok, a+b)",
+         "name" : "hash0231: req_some: (ok, a+b)",
          "schema" : [
             "hash",
             {
@@ -5070,7 +5112,7 @@
             "a" : 0,
             "c" : 0
          },
-         "name" : "hash0231: req_some: (ok, a+c)",
+         "name" : "hash0232: req_some: (ok, a+c)",
          "schema" : [
             "hash",
             {
@@ -5097,7 +5139,7 @@
             "b" : 0,
             "c" : 0
          },
-         "name" : "hash0232: req_some: (ok, b+c)",
+         "name" : "hash0233: req_some: (ok, b+c)",
          "schema" : [
             "hash",
             {
@@ -5125,7 +5167,7 @@
             "b" : 0,
             "c" : 0
          },
-         "name" : "hash0233: req_some: (nok, a+b+c)",
+         "name" : "hash0234: req_some: (nok, a+b+c)",
          "schema" : [
             "hash",
             {
@@ -5149,7 +5191,7 @@
       },
       {
          "input" : {},
-         "name" : "hash0234: dep_any: (ok, empty)",
+         "name" : "hash0235: dep_any: (ok, empty)",
          "schema" : [
             "hash",
             {
@@ -5172,7 +5214,7 @@
          "input" : {
             "a" : 0
          },
-         "name" : "hash0235: dep_any: (nok, a specified without d1/d2)",
+         "name" : "hash0236: dep_any: (nok, a specified without d1/d2)",
          "schema" : [
             "hash",
             {
@@ -5196,7 +5238,7 @@
             "a" : 0,
             "d1" : 0
          },
-         "name" : "hash0236: dep_any: (ok, a specified with d1)",
+         "name" : "hash0237: dep_any: (ok, a specified with d1)",
          "schema" : [
             "hash",
             {
@@ -5220,7 +5262,7 @@
             "a" : 0,
             "d2" : 0
          },
-         "name" : "hash0237: dep_any: (ok, a specified with d2)",
+         "name" : "hash0238: dep_any: (ok, a specified with d2)",
          "schema" : [
             "hash",
             {
@@ -5245,7 +5287,7 @@
             "d1" : 0,
             "d2" : 0
          },
-         "name" : "hash0238: dep_any: (ok, a specified with d1 & d2)",
+         "name" : "hash0239: dep_any: (ok, a specified with d1 & d2)",
          "schema" : [
             "hash",
             {
@@ -5269,7 +5311,7 @@
             "d1" : 0,
             "d2" : 0
          },
-         "name" : "hash0239: dep_any: (ok, no a with d1 & d2)",
+         "name" : "hash0240: dep_any: (ok, no a with d1 & d2)",
          "schema" : [
             "hash",
             {
@@ -5290,7 +5332,7 @@
       },
       {
          "input" : {},
-         "name" : "hash0240: dep_all: (ok, empty)",
+         "name" : "hash0241: dep_all: (ok, empty)",
          "schema" : [
             "hash",
             {
@@ -5313,7 +5355,7 @@
          "input" : {
             "a" : 0
          },
-         "name" : "hash0241: dep_all: (nok, a specified without d1/d2)",
+         "name" : "hash0242: dep_all: (nok, a specified without d1/d2)",
          "schema" : [
             "hash",
             {
@@ -5337,7 +5379,7 @@
             "a" : 0,
             "d1" : 0
          },
-         "name" : "hash0242: dep_all: (nok, a specified with d1)",
+         "name" : "hash0243: dep_all: (nok, a specified with d1)",
          "schema" : [
             "hash",
             {
@@ -5361,7 +5403,7 @@
             "a" : 0,
             "d2" : 0
          },
-         "name" : "hash0243: dep_all: (ok, a specified with d2)",
+         "name" : "hash0244: dep_all: (ok, a specified with d2)",
          "schema" : [
             "hash",
             {
@@ -5386,7 +5428,7 @@
             "d1" : 0,
             "d2" : 0
          },
-         "name" : "hash0244: dep_all: (ok, a specified with d1 & d2)",
+         "name" : "hash0245: dep_all: (ok, a specified with d1 & d2)",
          "schema" : [
             "hash",
             {
@@ -5410,7 +5452,7 @@
             "d1" : 0,
             "d2" : 0
          },
-         "name" : "hash0245: dep_all: (ok, no a with d1 & d2)",
+         "name" : "hash0246: dep_all: (ok, no a with d1 & d2)",
          "schema" : [
             "hash",
             {
@@ -5431,7 +5473,7 @@
       },
       {
          "input" : {},
-         "name" : "hash0246: req_dep_any: (ok, empty)",
+         "name" : "hash0247: req_dep_any: (ok, empty)",
          "schema" : [
             "hash",
             {
@@ -5454,7 +5496,7 @@
          "input" : {
             "a" : 0
          },
-         "name" : "hash0247: req_dep_any: (ok, a specified without d1/d2)",
+         "name" : "hash0248: req_dep_any: (ok, a specified without d1/d2)",
          "schema" : [
             "hash",
             {
@@ -5478,7 +5520,7 @@
             "a" : 0,
             "d1" : 0
          },
-         "name" : "hash0248: req_dep_any: (ok, a specified with d1)",
+         "name" : "hash0249: req_dep_any: (ok, a specified with d1)",
          "schema" : [
             "hash",
             {
@@ -5502,7 +5544,7 @@
             "a" : 0,
             "d2" : 0
          },
-         "name" : "hash0249: req_dep_any: (ok, a specified with d2)",
+         "name" : "hash0250: req_dep_any: (ok, a specified with d2)",
          "schema" : [
             "hash",
             {
@@ -5527,7 +5569,7 @@
             "d1" : 0,
             "d2" : 0
          },
-         "name" : "hash0250: req_dep_any: (ok, a specified with d1 & d2)",
+         "name" : "hash0251: req_dep_any: (ok, a specified with d1 & d2)",
          "schema" : [
             "hash",
             {
@@ -5550,7 +5592,7 @@
          "input" : {
             "d1" : 0
          },
-         "name" : "hash0251: req_dep_any: (ok, no a with d1)",
+         "name" : "hash0252: req_dep_any: (ok, no a with d1)",
          "schema" : [
             "hash",
             {
@@ -5573,7 +5615,7 @@
          "input" : {
             "d2" : 0
          },
-         "name" : "hash0252: req_dep_any: (ok, no a with d2)",
+         "name" : "hash0253: req_dep_any: (ok, no a with d2)",
          "schema" : [
             "hash",
             {
@@ -5597,7 +5639,7 @@
             "d1" : 0,
             "d2" : 0
          },
-         "name" : "hash0253: req_dep_any: (ok, no a with d1 & d2)",
+         "name" : "hash0254: req_dep_any: (ok, no a with d1 & d2)",
          "schema" : [
             "hash",
             {
@@ -5618,7 +5660,7 @@
       },
       {
          "input" : {},
-         "name" : "hash0254: req_dep_all: (ok, empty)",
+         "name" : "hash0255: req_dep_all: (ok, empty)",
          "schema" : [
             "hash",
             {
@@ -5641,7 +5683,7 @@
          "input" : {
             "a" : 0
          },
-         "name" : "hash0255: req_dep_all: (ok, a specified without d1/d2)",
+         "name" : "hash0256: req_dep_all: (ok, a specified without d1/d2)",
          "schema" : [
             "hash",
             {
@@ -5665,7 +5707,7 @@
             "a" : 0,
             "d1" : 0
          },
-         "name" : "hash0256: req_dep_all: (ok, a specified with d1)",
+         "name" : "hash0257: req_dep_all: (ok, a specified with d1)",
          "schema" : [
             "hash",
             {
@@ -5689,7 +5731,7 @@
             "a" : 0,
             "d2" : 0
          },
-         "name" : "hash0257: req_dep_all: (ok, a specified with d2)",
+         "name" : "hash0258: req_dep_all: (ok, a specified with d2)",
          "schema" : [
             "hash",
             {
@@ -5714,7 +5756,7 @@
             "d1" : 0,
             "d2" : 0
          },
-         "name" : "hash0258: req_dep_all: (ok, a specified with d1 & d2)",
+         "name" : "hash0259: req_dep_all: (ok, a specified with d1 & d2)",
          "schema" : [
             "hash",
             {
@@ -5737,7 +5779,7 @@
          "input" : {
             "d1" : 0
          },
-         "name" : "hash0259: req_dep_all: (ok, no a with d1)",
+         "name" : "hash0260: req_dep_all: (ok, no a with d1)",
          "schema" : [
             "hash",
             {
@@ -5760,7 +5802,7 @@
          "input" : {
             "d2" : 0
          },
-         "name" : "hash0260: req_dep_all: (ok, no a with d2)",
+         "name" : "hash0261: req_dep_all: (ok, no a with d2)",
          "schema" : [
             "hash",
             {
@@ -5784,7 +5826,7 @@
             "d1" : 0,
             "d2" : 0
          },
-         "name" : "hash0261: req_dep_all: (nok, no a with d1 & d2)",
+         "name" : "hash0262: req_dep_all: (nok, no a with d1 & d2)",
          "schema" : [
             "hash",
             {
@@ -5810,7 +5852,7 @@
                "y" : "x"
             }
          ],
-         "name" : "hash0262: prop:keys",
+         "name" : "hash0263: prop:keys",
          "schema" : [
             "hash",
             "prop",
@@ -5845,7 +5887,7 @@
                "x" : "y"
             }
          ],
-         "name" : "hash0263: prop:values",
+         "name" : "hash0264: prop:values",
          "schema" : [
             "hash",
             "prop",
@@ -5874,5 +5916,5 @@
          ]
       }
    ],
-   "version" : "v0.9.41 (generated by devscripts/gen-type-spectest on Sun Jun 12 14:49:05 2016)"
+   "version" : "v0.9.41 (generated by devscripts/gen-type-spectest on Fri Jul 22 01:37:29 2016)"
 }
