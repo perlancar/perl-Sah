@@ -1908,6 +1908,19 @@ sub gen_hash_tests {
         },
     );
 
+    # this is to test implementation that uses nested loop variable (e.g. $_ in
+    # perl). we want to make sure that they work.
+    $sch  = [hash => {re_keys => {'[ab]' => [array => {of=>"int"}]}}];
+    push @res, (
+        {
+            name           => "re_keys + array[of] (test nested loop variable in implementation)",
+            schema         => $sch,
+            valid_inputs   => [{}, {a=>[]}, {a=>[1]}],
+            invalid_inputs => [{a=>1}, {a=>["b"]}],
+            tags           => ['clause:re_keys'],
+        },
+    );
+
     for my $cl ("req_keys", "req_all_keys", "req_all") {
         $sch  = [hash => {$cl => []}];
         $sch2 = [hash => {$cl => [qw/a b/]}];
