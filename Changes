@@ -1,5 +1,15 @@
 Revision history for Sah
 
+0.9.42  2016-07-22 (PERLANCAR)
+
+        - No spec changes.
+
+        - Add a couple of tests to test for nested loop variables in
+          implementation (e.g. [array => of=>[array => of=>int]]).
+
+        - Some minor refactoring, add missing tags, add untested clause aliases.
+
+
 0.9.41  2016-06-11 (PERLANCAR)
 
 	- Add hash clause: req_some_keys (and alias req_some).
