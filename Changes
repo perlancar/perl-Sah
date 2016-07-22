@@ -1,5 +1,13 @@
 Revision history for Sah
 
+0.9.43  2016-07-22 (PERLANCAR)
+
+        - No spec changes.
+
+        - Remove Sah::Schemas::Sah because we are not a Sah-Schemas-*
+          distribution.
+
+
 0.9.42  2016-07-22 (PERLANCAR)
 
         - No spec changes.
