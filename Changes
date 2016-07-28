@@ -1,5 +1,13 @@
 Revision history for Sah
 
+0.9.44  2016-07-28 (PERLANCAR)
+
+	- No spec changes.
+
+	- [Removed] Split Sah::Schema::* into its own dist to avoid having
+	  to release this spec dists everytime we tweak the schemas.
+
+
 0.9.43  2016-07-22 (PERLANCAR)
 
         - No spec changes.
