@@ -204,15 +204,12 @@
 
          - Remove .{min,max}_{ok,nok} attributes because they are too generic
            and only the and/or/not/none cases are needed most of the time. This
-           generic attributes make it slightly more complex for compilers.
-
-           They are now replaced by the new .op attribute, which can currently
-           contain 'and', 'or', 'not', or 'none'.
-
-           The old attributes will probably be re-added in the future if proven
-           needed, perhaps in the form of .op having the value of [1, 3]
-           (equivalent of .min_ok 1 + .max_ok 3) or [-1, -3] (equivalent to
-           .min_nok 1 + .max_nok 3).
+           generic attributes make it slightly more complex for compilers. They
+           are now replaced by the new .op attribute, which can currently
+           contain 'and', 'or', 'not', or 'none'. The old attributes will
+           probably be re-added in the future if proven needed, perhaps in the
+           form of .op having the value of [1, 3] (equivalent of .min_ok 1 +
+           .max_ok 3) or [-1, -3] (equivalent to .min_nok 1 + .max_nok 3).
 
          - Remove .ok_err_msg attribute to simplify things.
 
