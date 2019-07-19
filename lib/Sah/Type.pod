@@ -1158,6 +1158,18 @@ Object.
 =head1 TYPE: date (not yet specified)
 
 
+=head1 TYPE: datenotime (not yet specified)
+
+
+=head1 TYPE: datetime (not yet specified)
+
+
+=head1 TYPE: duration (not yet specified)
+
+
+=head1 TYPE: timeofday (not yet specified)
+
+
 =head1 SEE ALSO
 
 L<Sah>
