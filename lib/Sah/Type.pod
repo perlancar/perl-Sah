@@ -492,6 +492,34 @@ Run expression(s), usually to postprocess data. Data is referred to in
 expression by variable C<$_>. From here on, the data will be permanently set to
 the postfiltered value.
 
+=head3 examples
+
+Value: array of (non-hash values|defhash)
+
+Priority: 99 (informational)
+
+Category: metadata.
+
+A list of sample valid values. Can be used, e.g. for documentation, testing, or
+completion. Each element is sample value, except when value is a hash then it is
+assumed as a defhash (with the actual value in the C<value> property). So if
+your sample value happens to be a hash like C<{}>, it has to be specified as C<<
+{"value":{}} >>.
+
+See also: L</invalid_examples>.
+
+=head3 invalid_examples
+
+Value: array of (non-hash values|defhash)
+
+Priority: 99 (informational)
+
+Category: metadata.
+
+This is the counterpart of L</examples>, containing examples of invalid values.
+
+See also: L</examples>.
+
 
 =head1 ROLE: Comparable
 
