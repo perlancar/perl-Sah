@@ -506,7 +506,10 @@ assumed as a defhash (with the actual value in the C<value> property). So if
 your sample value happens to be a hash like C<{}>, it has to be specified as C<<
 {"value":{}} >>.
 
-See also: L</invalid_examples>.
+Note that this clause is informational only and does not require the value to be
+in one of the specified examples (use L</in> clause for this purpose).
+
+See also: L</invalid_examples>, L</in>.
 
 =head3 invalid_examples
 
@@ -539,13 +542,16 @@ Category: constraint
 
 Require that the data be one of the specified choices.
 
-See also: L</match> (for type L<str|/"TYPE: str">), L</has> (for
-L<HasElems|/"ROLE: HasElems"> types).
-
 Examples:
 
  ["int", {"in": [1, 2, 3, 4, 5, 6]}] // single dice throw value
  ["str", {"!in": ["root", "admin", "administrator"]}] // forbidden usernames
+
+To provide sample valid values that are not binding, use the L</examples>
+clause.
+
+See also: L</examples>, L</match> (for type L<str|/"TYPE: str">), L</has> (for
+L<HasElems|/"ROLE: HasElems"> types).
 
 =head3 is
 
