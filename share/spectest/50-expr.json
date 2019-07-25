@@ -1,4 +1,19 @@
 {
     "tests": [
+        {
+            "name": "invalid expr",
+            "schema": ["int", "min=", "1+"],
+            "dies": 1
+        },
+        {
+            "schema":["int", "min=", "2+2"],
+            "input": 3,
+            "valid": 0
+        },
+        {
+            "schema":["int", "min=", "2+2"],
+            "input": 4,
+            "valid": 1
+        }
     ]
 }
