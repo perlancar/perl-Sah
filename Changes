@@ -110,7 +110,7 @@
          - Add a test for any.
 
 
-0.9.32   2015-02-14 (PERLANCAR) - The Day After Friday The 13th
+0.9.32   2015-02-14  Released-By: PERLANCAR; Note: The Day After Friday The 13th
 
          - No spec changes.
 
@@ -515,3 +515,4 @@
 0.9.0    2012-07-21  Released-By: SHARYANTO
 
          - First release, split specification from Data-Sah.
+
