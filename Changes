@@ -1,3 +1,8 @@
+0.9.48  2020-02-10  Released-By: PERLANCAR; Urgency: medium
+
+	- Fix prefilters spectest.
+
+
 0.9.47  2020-02-10  Released-By: PERLANCAR; Urgency: medium
 
 	- [incompatible change] prefilters/postfilters values are now rule
