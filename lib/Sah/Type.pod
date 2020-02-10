@@ -315,7 +315,7 @@ See also: L</req>
 
 =head3 prefilters
 
-Value: array of expression string.
+Value: array of filter rule names.
 
 Priority: 10 (high). Run after L</default> and L</req>/L</forbidden>.
 
@@ -324,11 +324,6 @@ Category: filter.
 Attributes specific to this clause: C<temp> (bool, default 0, if set to true
 then prefiltered value will only be used during validation and at the end of the
 clause set data will not use this value).
-
-Run expression(s), usually to preprocess data before further checking. Data is
-referred to in expression by variable C<$_>. Prefiltered value should persist
-until the end of all other clauses (until the end of clause set), after which
-the old value can be restored.
 
 =head3 clause
 
@@ -482,15 +477,13 @@ avoid ambiguity with expression:
 
 =head3 postfilters
 
-Value: array of expression strings.
+Value: array of filter rule names.
 
 Priority: 90 (very low). Run after all other clauses.
 
 Category: filter.
 
-Run expression(s), usually to postprocess data. Data is referred to in
-expression by variable C<$_>. From here on, the data will be permanently set to
-the postfiltered value.
+From here on, the data will be permanently set to the postfiltered value.
 
 =head3 examples
 

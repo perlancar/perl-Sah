@@ -162,11 +162,6 @@ C<allowed_keys>, C<forbidden_keys>, to validate a certain property of the value
  // check hash values are unique
  ["hash", {"prop": ["values", ["array", {"uniq":1}]]}]
 
-Or, for more general use, you can apply a temporary prefilter first to the data:
-
- // check hash values are unique
- ["array", {"prefilters.temp":1, "prefilters":["values($_)"], "uniq":1}]
-
 =head3 General advice when writing schemas?
 
 =over 4
