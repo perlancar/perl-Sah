@@ -1,3 +1,11 @@
+0.9.47  2020-02-10  Released-By: PERLANCAR; Urgency: medium
+
+	- [incompatible change] prefilters/postfilters values are now rule
+	  names instead of expr.
+
+	- Add some expr tests.
+
+
 0.9.46  2019-07-19  Released-By: PERLANCAR; Urgency: medium
 
 	- Introduce clauses: examples, invalid_examples.
@@ -515,4 +523,3 @@
 0.9.0    2012-07-21  Released-By: SHARYANTO
 
          - First release, split specification from Data-Sah.
-
