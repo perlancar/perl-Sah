@@ -3,10 +3,10 @@
     "tests": [
         {
             "name"           : "prefilters",
-            "schema"         : ["int", {"prefilters":["Str::trim"], "div_by":2}],
-            "valid_inputs"   : [2, " 2", "2 ", " 2 "],
-            "invalid_inputs" : [1, " 1 "],
-            "tags"           : ['clause:prefilters']
+            "schema"         : ["str", {"prefilters":["Str::downcase"], "in":["a","b","c"]}],
+            "valid_inputs"   : ["a", "A"],
+            "invalid_inputs" : ["d"],
+            "tags"           : ["clause:prefilters"]
         }
     ]
 }
