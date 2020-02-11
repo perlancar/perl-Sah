@@ -315,7 +315,7 @@ See also: L</req>
 
 =head3 prefilters
 
-Value: array of filter rule names.
+Value: array of (filter rule name)s, or ([filter rule name, argument hash]).
 
 Priority: 10 (high). Run after L</default> and L</req>/L</forbidden>.
 
@@ -477,7 +477,7 @@ avoid ambiguity with expression:
 
 =head3 postfilters
 
-Value: array of filter rule names.
+Value: array of (filter rule name)s, or ([filter rule name, argument hash]).
 
 Priority: 90 (very low). Run after all other clauses.
 
