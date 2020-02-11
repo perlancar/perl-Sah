@@ -1,3 +1,11 @@
+0.9.49  2020-02-11  Released-By: PERLANCAR; Urgency: medium
+
+	- In addition to string (filter rule name), element of
+	  prefilters/postfilters value can also be a 2-element array:
+	  [filter rule name, argument hash] to pass arguments to filter
+	  rule generator module [no spectest yet].
+
+
 0.9.48  2020-02-10  Released-By: PERLANCAR; Urgency: medium
 
 	- Fix prefilters spectest.
