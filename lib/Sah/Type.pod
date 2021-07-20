@@ -1,6 +1,8 @@
 package Sah::Type; # just to make PodWeaver happy
 
+# AUTHORITY
 # DATE
+# DIST
 # VERSION
 
 1;
