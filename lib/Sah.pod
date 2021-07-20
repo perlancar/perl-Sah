@@ -186,7 +186,11 @@ Examples of invalid data:
  [1, [2, 3], 0]     // the third throw is invalid (not between 1-6)
  [1, [2, 0, 4], 4]  // the second throw is invalid (not sdt nor dpt)
 
-It is up to the implementation where the base schemas should be stored.
+It is up to the implementation where the base schemas should be stored. The
+L<Data::Sah> implementation looks up base schemas in C<Sah::Schema::*> modules
+in the C<$schema> package variables. Old specification of Sah allows base
+schemas to be put in the schema itself in the extras part, but for simplicity
+this has been removed.
 
 
 =head1 CLAUSE AND CLAUSE SET

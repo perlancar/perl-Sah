@@ -258,11 +258,7 @@ Example (using Perl syntax because it supports heredoc):
      req         => 1,
      of          => 'http_header',
   },
-  {
-      def => {
-          http_header => ['array*', len=>2],
-      },
- }]
+  {}]
 
 See also: L</name>, L</summary>, L</tags>.
 

@@ -737,34 +737,6 @@
          "name" : "array: extras must be hash (fail, not hash)"
       },
       {
-         "input" : [
-            "foo",
-            {},
-            {
-               "def" : {}
-            }
-         ],
-         "name" : "array: def in extras must be hash (ok)",
-         "result" : [
-            "foo",
-            {},
-            {
-               "def" : {}
-            }
-         ]
-      },
-      {
-         "dies" : 1,
-         "input" : [
-            "foo",
-            {},
-            {
-               "def" : []
-            }
-         ],
-         "name" : "array: def in extras must be hash (fail)"
-      },
-      {
          "dies" : 1,
          "input" : [
             "int",
