@@ -13,6 +13,11 @@
 
 0.9.47  2020-02-10  Released-By: PERLANCAR; Urgency: medium
 
+        - [incompatible change] Remove extras/subschemas, for simplicity. The
+          canonicalized form of a schema is now just [$TYPENAME, \%CLAUSE_SET],
+          but the old form [$TYPENAME, \%CLAUSE_SET, \%EXTRAS] is still
+          supported for now and the \%EXTRAS part must be an empty hashref.
+
 	- [incompatible change] prefilters/postfilters values are now rule
 	  names instead of expr.
 
