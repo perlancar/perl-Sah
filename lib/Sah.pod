@@ -39,12 +39,9 @@ Sah schemas are regular data structures, specifically arrays:
 
  [TYPE_NAME, CLAUSE_SET]
 
-C<TYPE_NAME> is a string, C<CLAUSE_SET> is a hash of clauses. The old form:
+C<TYPE_NAME> is a string, C<CLAUSE_SET> is a hash of clauses.
 
- [TYPE_NAME, CLAUSE_SET, EXTRAS]
-
-(where EXTRAS is a hash) is deprecated but still supported, although EXTRAS is
-ignored. Some examples:
+Some examples:
 
  ["int", {"min": 0, "max": 100}]
 
@@ -189,8 +186,8 @@ Examples of invalid data:
 It is up to the implementation where the base schemas should be stored. The
 L<Data::Sah> implementation looks up base schemas in C<Sah::Schema::*> modules
 in the C<$schema> package variables. Old specification of Sah allows base
-schemas to be put in the schema itself in the extras part, but for simplicity
-this has been removed.
+schemas to be put in the schema itself in the so-called "e.xtras" part, but for
+simplicity this has been removed in later specification.
 
 
 =head1 CLAUSE AND CLAUSE SET
