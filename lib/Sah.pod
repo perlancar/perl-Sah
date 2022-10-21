@@ -620,13 +620,18 @@ argument is given, an exception will be thrown.
 
 =head1 HISTORY
 
-2012-07-21 split specification to Sah
+=head2 2012-07-21
 
-2011-11-23 Data::Sah
+Split specification to Sah.
 
-2009-03-30 Data::Schema (first CPAN release)
+=head2 2011-11-23
 
-Previous incarnation as Schema-Nested (internal)
+L<Data::Sah>.
+
+=head2 2009-03-30
+
+Data::Schema (first CPAN release). Previous incarnation as Schema-Nested
+(internal).
 
 
 =head1 SEE ALSO
