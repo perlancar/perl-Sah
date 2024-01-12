@@ -173,15 +173,14 @@ description text.
 Aside from string, it can also be a two-element string to set the singular and
 plural form of the noun.
 
-To store translations, you can use DefHash's C<alt.lang.*> clause attributes (or
-its shortcut form using C<(LANG)> suffix).
+To store translations, you can use DefHash's C<alt.lang.*> clause attributes.
 
 Example:
 
  ["int", {
      "min": 0,
      "name": ["positive integer", "positive integers"],
-     "name(id_ID)": "bilangan positif"
+     "name.alt.lang.id_ID": "bilangan positif"
  }]
 
 See also: L</summary>, L</description>, L</tags>.
@@ -207,8 +206,7 @@ formatting) to describe the schema. This is useful, e.g. for manually describing
 a schema instead of using the human compiler. It can also be used in form field
 labels.
 
-To store translations, you can use DefHash's C<alt.lang.*> clause attributes (or
-its shortcut form using C<(LANG)> suffix).
+To store translations, you can use DefHash's C<alt.lang.*> clause attributes.
 
 Example:
 
@@ -217,7 +215,7 @@ Example:
      "req": 1,
      "summary":
          "A number representing result of single dice throw (1-6)",
-     "summary(id_ID)":
+     "summary.alt.lang.id_ID":
          "Bilangan yang menyatakan hasil lempar sebuah dadu (1-6)",
      "between": [1, 6]
  }]
@@ -238,8 +236,7 @@ Category: metadata.
 From DefHash. A longer text (a paragraph or more) to describe the schema, useful
 e.g. for help/usage text. Text should be in Markdown format.
 
-To store translations, you can use DefHash's C<alt.lang.*> clause attributes (or
-its shortcut form using C<(LANG)> suffix).
+To store translations, you can use DefHash's C<alt.lang.*> clause attributes.
 
 Example (using Perl syntax because it supports heredoc):
 
