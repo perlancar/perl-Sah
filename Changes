@@ -1,6 +1,7 @@
-0.9.51  2022-10-21  Released-By: PERLANCAR; Urgency: low
+0.9.51  2022-10-21  Released-By: PERLANCAR; Backward-Incompatible: yes; Urgency: high
 
-        - No spec changes.
+        - Follow DefHash 2.0.0 which removes support for "(LANG)" suffix (you
+          now have to write using the "alt.lang.LANG" attribute).
 
         - Remove some more mentions of the old extras part.
 
